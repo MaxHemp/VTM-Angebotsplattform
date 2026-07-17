@@ -1,0 +1,2662 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#121e39">
+  <meta
+    name="description"
+    content="VTM Angebotsplattform – Stellen Sie Ihr Leistungspaket aus Podcast, Reichweite und Thought Leadership beim VersicherungsTech Magazin modular zusammen."
+  >
+  <meta name="color-scheme" content="light">
+  <title>VTM Leistungs-Konfigurator · VersicherungsTech Magazin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&amp;family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Source+Serif+4:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    /* =========================================================
+       VTM ANGEBOTSPLATTFORM
+       Basiert auf VTM Brand & Design System 4.2
+       Luminous Editorial Edition
+    ========================================================= */
+
+    :root {
+      --c-cobalt-950: #121e39;
+      --c-cobalt-900: #172645;
+      --c-cobalt-800: #203255;
+
+      --c-blue-800: #0e3387;
+      --c-blue-700: #123fa6;
+      --c-blue-600: #2468e8;
+      --c-blue-500: #427ef0;
+      --c-blue-100: #dce8ff;
+      --c-blue-050: #f2f6ff;
+
+      --c-brass-700: #9b7017;
+      --c-brass-600: #b48220;
+      --c-brass-500: #c99b32;
+      --c-brass-300: #e4c36e;
+      --c-brass-100: #f8edcf;
+
+      --c-white: #ffffff;
+      --c-paper: #fbfcfe;
+      --c-paper-blue: #f7f9fd;
+      --c-neutral-100: #edf0f5;
+      --c-neutral-200: #dce1e9;
+      --c-neutral-300: #c7ced9;
+      --c-neutral-500: #6e7888;
+      --c-neutral-700: #3f4958;
+
+      --c-success: #17663a;
+      --c-success-bg: #e8f6ee;
+
+      --surface-page: var(--c-white);
+      --text-primary: var(--c-cobalt-950);
+      --text-secondary: var(--c-neutral-700);
+      --text-muted: var(--c-neutral-500);
+
+      --border-soft: rgb(18 30 57 / 0.10);
+      --border-medium: rgb(18 30 57 / 0.18);
+      --border-electric: rgb(18 63 166 / 0.24);
+      --border-brass: rgb(155 112 23 / 0.26);
+
+      --action: var(--c-blue-700);
+      --action-hover: var(--c-blue-800);
+      --focus: var(--c-blue-600);
+
+      --font-display: "Plus Jakarta Sans", "Aptos Display", "Segoe UI", Arial, sans-serif;
+      --font-body: "Inter", "Aptos", "Segoe UI", Arial, sans-serif;
+      --font-editorial: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+      --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+      --step--1: clamp(0.76rem, 0.73rem + 0.10vw, 0.82rem);
+      --step-0: clamp(1rem, 0.97rem + 0.16vw, 1.08rem);
+      --step-1: clamp(1.18rem, 1.10rem + 0.35vw, 1.38rem);
+      --step-2: clamp(1.45rem, 1.28rem + 0.74vw, 1.88rem);
+      --step-3: clamp(1.86rem, 1.56rem + 1.20vw, 2.56rem);
+      --step-4: clamp(2.35rem, 1.84rem + 2.08vw, 3.55rem);
+      --step-hero: clamp(2.9rem, 1.6rem + 5vw, 6.2rem);
+
+      --content-max: 1200px;
+      --wide-max: 1440px;
+      --nav-height: 76px;
+
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.5rem;
+      --space-6: 2rem;
+      --space-7: 3rem;
+
+      --radius-s: 4px;
+      --radius-m: 6px;
+      --radius-l: 8px;
+
+      --shadow-soft:
+        0 1px 2px rgb(18 30 57 / 0.04),
+        0 12px 32px rgb(18 30 57 / 0.055);
+      --glow-electric:
+        0 0 0 1px rgb(18 63 166 / 0.08),
+        0 14px 44px rgb(18 63 166 / 0.13);
+      --glow-brass:
+        0 0 0 1px rgb(155 112 23 / 0.13),
+        0 14px 42px rgb(155 112 23 / 0.13);
+
+      --gradient-brand-deep:
+        linear-gradient(125deg, var(--c-cobalt-950) 0%, #172f64 42%, var(--c-blue-700) 76%, var(--c-blue-600) 100%);
+      --gradient-signature:
+        linear-gradient(135deg, var(--c-brass-300), var(--c-brass-500) 46%, var(--c-brass-700));
+      --gradient-electric-beam:
+        linear-gradient(90deg, transparent 0%, rgb(18 63 166 / 0.08) 18%, rgb(36 104 232 / 0.82) 47%, rgb(255 255 255 / 0.92) 52%, rgb(36 104 232 / 0.44) 59%, transparent 100%);
+      --gradient-hero-atmosphere:
+        radial-gradient(circle at 78% 18%, rgb(36 104 232 / 0.15), transparent 31%),
+        radial-gradient(circle at 92% 68%, rgb(18 63 166 / 0.09), transparent 28%),
+        radial-gradient(circle at 16% 86%, rgb(201 155 50 / 0.065), transparent 25%),
+        linear-gradient(180deg, #f2f6ff 0%, #fafcff 52%, #ffffff 100%);
+
+      --motion-fast: 160ms;
+      --motion-medium: 320ms;
+      --motion-slow: 780ms;
+      --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+      --ease-signal: cubic-bezier(0.22, 1, 0.36, 1);
+
+      --z-nav: 100;
+      --z-bar: 90;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + 24px);
+      background: var(--surface-page);
+    }
+
+    body {
+      min-width: 320px;
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--text-primary);
+      background:
+        linear-gradient(180deg, rgb(18 63 166 / 0.018), transparent 420px),
+        var(--surface-page);
+      font-family: var(--font-body);
+      font-size: var(--step-0);
+      font-weight: 400;
+      line-height: 1.72;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img, svg { display: block; max-width: 100%; }
+    img { height: auto; }
+    button, input, textarea, select { color: inherit; font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    a {
+      color: var(--action);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.18em;
+    }
+    a:hover { color: var(--action-hover); }
+
+    p, ul, ol, figure, table { margin-top: 0; }
+
+    h1, h2, h3, h4 {
+      margin-top: 0;
+      color: var(--text-primary);
+      font-family: var(--font-display);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      text-wrap: balance;
+    }
+
+    h1 {
+      font-size: var(--step-hero);
+      font-weight: 800;
+      line-height: 0.96;
+      letter-spacing: -0.055em;
+    }
+    h2 { font-size: var(--step-4); }
+    h3 { font-size: var(--step-2); letter-spacing: -0.025em; }
+    h4 { font-size: var(--step-1); letter-spacing: -0.018em; }
+
+    ::selection { color: var(--c-white); background: var(--c-blue-700); }
+    :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+    [id] { scroll-margin-top: calc(var(--nav-height) + 28px); }
+
+    .wrap {
+      width: min(calc(100% - clamp(2rem, 7vw, 7rem)), var(--content-max));
+      margin-inline: auto;
+    }
+
+    .wrap-wide {
+      width: min(calc(100% - clamp(2rem, 5vw, 5rem)), var(--wide-max));
+      margin-inline: auto;
+    }
+
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 1000;
+      padding: 0.75rem 1rem;
+      color: var(--c-white);
+      background: var(--c-blue-700);
+      border-radius: var(--radius-s);
+      font-weight: 700;
+      transform: translateY(-180%);
+      transition: transform var(--motion-fast) ease;
+    }
+    .skip-link:focus { color: var(--c-white); transform: translateY(0); }
+
+    .meta, .kicker {
+      margin-bottom: var(--space-3);
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: var(--step--1);
+      font-weight: 600;
+      line-height: 1.45;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      color: var(--action);
+    }
+
+    .kicker::before {
+      content: "";
+      width: 1.9rem;
+      height: 2px;
+      flex: none;
+      background: linear-gradient(90deg, var(--c-blue-700), var(--c-blue-600));
+      box-shadow: 0 0 12px rgb(36 104 232 / 0.25);
+    }
+
+    .lead {
+      max-width: 66ch;
+      color: var(--text-secondary);
+      font-size: var(--step-1);
+      line-height: 1.65;
+      text-wrap: pretty;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: var(--space-4);
+      color: var(--action);
+      font-family: var(--font-mono);
+      font-size: var(--step--1);
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      background: var(--c-blue-600);
+      border: 2px solid var(--c-white);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 4px rgb(36 104 232 / 0.09),
+        0 0 16px rgb(36 104 232 / 0.30);
+    }
+
+    /* ------- Brand Rail ------- */
+
+    .brand-rail {
+      position: relative;
+      height: 4px;
+      overflow: hidden;
+      background: var(--c-cobalt-950);
+    }
+
+    .brand-rail::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg,
+          var(--c-cobalt-950) 0%,
+          var(--c-blue-700) 48%,
+          var(--c-blue-600) 78%,
+          var(--c-brass-500) 96%,
+          var(--c-brass-300) 100%);
+    }
+
+    .brand-rail::after {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0; left: -28%;
+      width: 24%;
+      background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.88), transparent);
+      filter: blur(2px);
+      opacity: 0;
+      animation: vtm-rail-pass 10s 1.4s ease-in-out infinite;
+    }
+
+    @keyframes vtm-rail-pass {
+      0%, 68% { left: -28%; opacity: 0; }
+      74% { opacity: 0.92; }
+      90% { opacity: 0.42; }
+      100% { left: 108%; opacity: 0; }
+    }
+
+    /* ------- Navigation ------- */
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: var(--z-nav);
+      height: var(--nav-height);
+      border-bottom: 1px solid rgb(18 30 57 / 0.08);
+      background: rgb(255 255 255 / 0.90);
+      box-shadow: 0 8px 30px rgb(18 30 57 / 0.035);
+      backdrop-filter: blur(16px) saturate(130%);
+      -webkit-backdrop-filter: blur(16px) saturate(130%);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      gap: var(--space-6);
+    }
+
+    .brand-logo { display: block; width: auto; object-fit: contain; }
+    .brand-logo-nav { height: 32px; max-width: min(280px, 34vw); }
+    .brand-logo-footer { height: 42px; max-width: min(360px, 80vw); }
+
+    .logo-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      flex: none;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(0.75rem, 1.5vw, 1.45rem);
+      min-width: 0;
+      margin: 0;
+      padding: 0.5rem 0;
+      overflow-x: auto;
+      list-style: none;
+      scrollbar-width: thin;
+      scrollbar-color: var(--c-blue-100) transparent;
+    }
+
+    .nav-links li { flex: none; }
+
+    .nav-links a {
+      position: relative;
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.055em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color var(--motion-fast) ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      right: 0; bottom: 5px; left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--c-blue-700), var(--c-blue-600));
+      box-shadow: 0 0 12px rgb(36 104 232 / 0.24);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform var(--motion-medium) var(--ease-signal);
+    }
+
+    .nav-links a:hover { color: var(--action); }
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+
+    /* ------- Hero ------- */
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      background: var(--gradient-hero-atmosphere);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .hero > .wrap {
+      position: relative;
+      z-index: 2;
+      padding-block: clamp(4.5rem, 9vw, 8rem);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.42fr) minmax(290px, 0.58fr);
+      align-items: end;
+      gap: clamp(3rem, 7vw, 7rem);
+    }
+
+    .hero h1 { max-width: 14ch; margin-bottom: var(--space-6); }
+    .hero .lead { max-width: 58ch; margin-bottom: var(--space-6); }
+
+    .gradient-text { color: var(--action); }
+
+    @supports ((background-clip: text) or (-webkit-background-clip: text)) {
+      .gradient-text {
+        color: transparent;
+        background:
+          linear-gradient(105deg,
+            var(--c-blue-700) 0%,
+            var(--c-blue-700) 28%,
+            var(--c-blue-600) 42%,
+            #789eff 49%,
+            var(--c-blue-700) 58%,
+            var(--c-cobalt-950) 100%);
+        background-position: 100% 50%;
+        background-size: 240% 100%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: vtm-headline-glint 1.55s 280ms var(--ease-signal) both;
+      }
+    }
+
+    @keyframes vtm-headline-glint {
+      from { background-position: 100% 50%; }
+      to { background-position: 0% 50%; }
+    }
+
+    .signal-line {
+      position: relative;
+      height: 2px;
+      overflow: visible;
+      background:
+        linear-gradient(90deg,
+          var(--c-cobalt-950) 0 16%,
+          var(--c-blue-700) 16% 74%,
+          var(--c-brass-500) 74% 77%,
+          transparent 77%);
+      margin-bottom: var(--space-6);
+    }
+
+    .signal-line::before {
+      content: "";
+      position: absolute;
+      top: 50%; left: 16%;
+      width: 9px; height: 9px;
+      background: var(--c-blue-600);
+      border: 2px solid var(--c-white);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 4px rgb(36 104 232 / 0.10),
+        0 0 18px rgb(36 104 232 / 0.32);
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-claim {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 44rem;
+      margin-top: var(--space-7);
+      padding-top: var(--space-5);
+      border-top: 1px solid rgb(18 30 57 / 0.13);
+      color: var(--text-primary);
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 0.94rem + 0.3vw, 1.2rem);
+      font-weight: 700;
+    }
+
+    .hero-claim::before {
+      content: "";
+      width: 38px;
+      height: 3px;
+      flex: none;
+      background: var(--gradient-signature);
+      box-shadow: 0 0 14px rgb(201 155 50 / 0.28);
+    }
+
+    .hero-atmosphere {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .hero-atmosphere::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.30;
+      background-image:
+        linear-gradient(rgb(18 30 57 / 0.052) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(18 30 57 / 0.052) 1px, transparent 1px);
+      background-size: 72px 72px;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgb(0 0 0 / 0.46) 42%, #000 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, rgb(0 0 0 / 0.46) 42%, #000 100%);
+    }
+
+    .hero-orbit {
+      position: absolute;
+      border: 1px solid rgb(18 63 166 / 0.12);
+      border-radius: 50%;
+      transform: rotate(-12deg);
+    }
+
+    .hero-orbit-a { top: -46%; right: -18%; width: min(62vw, 840px); aspect-ratio: 1; }
+    .hero-orbit-b {
+      top: 10%; right: 7%;
+      width: min(38vw, 540px);
+      aspect-ratio: 1;
+      border-color: rgb(155 112 23 / 0.12);
+    }
+
+    .hero-signal {
+      position: absolute;
+      top: 18%; right: -10%;
+      width: min(62vw, 900px);
+      height: 1px;
+      background: var(--gradient-electric-beam);
+      box-shadow: 0 0 18px rgb(36 104 232 / 0.28);
+      transform: rotate(-17deg);
+      animation: vtm-signal-breathe 7s ease-in-out infinite;
+    }
+
+    @keyframes vtm-signal-breathe {
+      0%, 100% { opacity: 0.34; transform: rotate(-17deg) translateX(-3%); }
+      50% { opacity: 0.92; transform: rotate(-17deg) translateX(3%); }
+    }
+
+    .hero-node {
+      position: absolute;
+      width: 7px; height: 7px;
+      background: var(--c-blue-600);
+      border: 2px solid var(--c-white);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 5px rgb(36 104 232 / 0.09),
+        0 0 24px rgb(36 104 232 / 0.38);
+    }
+
+    .hero-node-a { top: 32%; right: 18%; animation: vtm-node-pulse 3.8s ease-in-out infinite; }
+    .hero-node-b {
+      right: 8%; bottom: 25%;
+      width: 6px; height: 6px;
+      background: var(--c-brass-500);
+      box-shadow:
+        0 0 0 5px rgb(201 155 50 / 0.08),
+        0 0 20px rgb(201 155 50 / 0.28);
+      animation: vtm-node-pulse 4.6s 1.2s ease-in-out infinite;
+    }
+
+    @keyframes vtm-node-pulse {
+      0%, 100% { opacity: 0.58; transform: scale(0.85); }
+      50% { opacity: 1; transform: scale(1.14); }
+    }
+
+    .hero-panel {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(1.5rem, 3vw, 2.25rem);
+      color: rgb(255 255 255 / 0.82);
+      background:
+        linear-gradient(145deg, rgb(255 255 255 / 0.055), transparent 40%),
+        var(--gradient-brand-deep);
+      border: 1px solid rgb(255 255 255 / 0.14);
+      border-radius: var(--radius-l);
+      box-shadow:
+        0 24px 70px rgb(18 30 57 / 0.22),
+        inset 0 1px 0 rgb(255 255 255 / 0.12);
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      top: -45%; right: -25%;
+      width: 260px;
+      aspect-ratio: 1;
+      border: 1px solid rgb(255 255 255 / 0.10);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 34px rgb(255 255 255 / 0.025),
+        0 0 0 70px rgb(255 255 255 / 0.018);
+    }
+
+    .hero-panel > * { position: relative; z-index: 1; }
+
+    .hero-panel h2 {
+      margin-bottom: var(--space-5);
+      color: var(--c-white);
+      font-size: var(--step-2);
+    }
+
+    .hero-panel .meta { color: var(--c-brass-300); }
+
+    .hero-steps {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: steps;
+    }
+
+    .hero-steps li {
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      align-items: start;
+      gap: 0.8rem;
+      padding-block: 0.9rem;
+      border-top: 1px solid rgb(255 255 255 / 0.12);
+      counter-increment: steps;
+    }
+
+    .hero-steps li::before {
+      content: "0" counter(steps);
+      color: var(--c-brass-300);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    /* ------- Buttons & Tags ------- */
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      margin-block: var(--space-5);
+    }
+
+    .button {
+      position: relative;
+      isolation: isolate;
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      overflow: hidden;
+      padding: 0.7rem 1.1rem;
+      border: 1px solid transparent;
+      border-radius: var(--radius-s);
+      font-family: var(--font-body);
+      font-size: 0.94rem;
+      font-weight: 700;
+      line-height: 1.2;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition:
+        color var(--motion-fast) ease,
+        background var(--motion-fast) ease,
+        border-color var(--motion-fast) ease,
+        box-shadow var(--motion-medium) ease,
+        transform var(--motion-fast) var(--ease-signal);
+    }
+
+    .button-primary {
+      color: var(--c-white);
+      background: var(--c-blue-700);
+      box-shadow:
+        0 8px 22px rgb(18 63 166 / 0.16),
+        inset 0 1px 0 rgb(255 255 255 / 0.16);
+    }
+
+    .button-primary::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(105deg, transparent 0 34%, rgb(255 255 255 / 0.25) 46%, transparent 58% 100%);
+      transform: translateX(-120%);
+      transition: transform 620ms var(--ease-signal);
+    }
+
+    .button-primary:hover {
+      color: var(--c-white);
+      background: var(--c-blue-800);
+      box-shadow:
+        0 12px 30px rgb(18 63 166 / 0.25),
+        0 0 0 1px rgb(36 104 232 / 0.18);
+      transform: translateY(-2px);
+    }
+
+    .button-primary:hover::before { transform: translateX(120%); }
+
+    .button-secondary {
+      color: var(--action);
+      background: var(--c-white);
+      border-color: rgb(18 63 166 / 0.30);
+    }
+
+    .button-secondary:hover {
+      color: var(--action-hover);
+      background: var(--c-blue-050);
+      border-color: var(--c-blue-700);
+      box-shadow: 0 10px 26px rgb(18 63 166 / 0.10);
+      transform: translateY(-2px);
+    }
+
+    .button:active { transform: translateY(0); transition-duration: 80ms; }
+
+    .tag {
+      display: inline-flex;
+      min-height: 28px;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.28rem 0.55rem;
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-s);
+      color: var(--text-secondary);
+      background: var(--c-white);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: 0.045em;
+      text-transform: uppercase;
+    }
+
+    .tag-electric {
+      color: var(--c-blue-800);
+      background: var(--c-blue-050);
+      border-color: rgb(18 63 166 / 0.24);
+    }
+
+    .tag-brass {
+      color: #6a4905;
+      background: var(--c-brass-100);
+      border-color: rgb(155 112 23 / 0.28);
+    }
+
+    .tag-success {
+      color: var(--c-success);
+      background: var(--c-success-bg);
+      border-color: rgb(23 102 58 / 0.24);
+    }
+
+    /* ------- Chapter ------- */
+
+    .chapter {
+      position: relative;
+      isolation: isolate;
+      padding-block: clamp(4.5rem, 9vw, 8rem);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .chapter:nth-of-type(even) {
+      background:
+        linear-gradient(180deg, rgb(18 63 166 / 0.026), transparent 190px),
+        var(--surface-page);
+    }
+
+    .chapter-head {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+      align-items: end;
+      gap: clamp(2rem, 6vw, 6rem);
+      margin-bottom: clamp(3rem, 7vw, 5rem);
+      padding-top: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .chapter-head::before {
+      content: attr(data-index);
+      position: absolute;
+      top: 0; right: 0;
+      z-index: -1;
+      color: transparent;
+      font-family: var(--font-display);
+      font-size: clamp(5.5rem, 15vw, 12.5rem);
+      font-weight: 800;
+      line-height: 0.78;
+      letter-spacing: -0.09em;
+      -webkit-text-stroke: 1px rgb(18 63 166 / 0.085);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .chapter-head h2 { max-width: 16ch; margin-bottom: 0; }
+    .chapter-head .lead { margin-bottom: 0; }
+
+    .chapter-head::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: calc(-1 * var(--space-6));
+      left: 0;
+      height: 2px;
+      background:
+        linear-gradient(90deg,
+          var(--c-cobalt-950) 0 14%,
+          var(--c-blue-700) 14% 46%,
+          var(--c-brass-500) 46% 48%,
+          rgb(18 30 57 / 0.08) 48% 100%);
+    }
+
+    /* ------- Konfigurator-Layout ------- */
+
+    .config-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 400px);
+      align-items: start;
+      gap: clamp(1.5rem, 3vw, 2.5rem);
+    }
+
+    .config-groups { display: grid; gap: clamp(2.5rem, 5vw, 3.5rem); }
+
+    .config-group-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem 1.5rem;
+      margin-bottom: var(--space-5);
+    }
+
+    .config-group-head h3 { margin-bottom: 0; }
+
+    .config-group-head .meta { margin-bottom: 0; }
+
+    .config-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(1rem, 2vw, 1.5rem);
+    }
+
+    /* ------- Leistungs-Card ------- */
+
+    .offer-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      overflow: hidden;
+      padding: clamp(1.25rem, 2.5vw, 1.75rem);
+      background: linear-gradient(180deg, rgb(255 255 255 / 0.99), var(--c-white));
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-m);
+      box-shadow: var(--shadow-soft);
+      transition:
+        transform var(--motion-medium) var(--ease-signal),
+        border-color var(--motion-medium) ease,
+        box-shadow var(--motion-medium) ease;
+    }
+
+    .offer-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: clamp(64px, 24%, 148px);
+      height: 2px;
+      opacity: 0.68;
+      background: linear-gradient(90deg, var(--c-blue-700), var(--c-blue-600), transparent);
+      transition: width var(--motion-slow) var(--ease-signal), opacity var(--motion-medium) ease;
+    }
+
+    .offer-card:hover {
+      z-index: 2;
+      border-color: var(--border-electric);
+      box-shadow: var(--glow-electric);
+      transform: translateY(-3px);
+    }
+
+    .offer-card:hover::before { width: 54%; opacity: 1; }
+
+    .offer-card.is-selected {
+      border-color: var(--c-blue-700);
+      box-shadow:
+        0 0 0 1px var(--c-blue-700),
+        0 14px 44px rgb(18 63 166 / 0.16);
+    }
+
+    .offer-card.is-selected::before { width: 100%; opacity: 1; }
+
+    .offer-card.is-request { border-color: var(--border-brass); }
+    .offer-card.is-request::before {
+      background: linear-gradient(90deg, var(--c-brass-700), var(--c-brass-500), transparent);
+    }
+    .offer-card.is-request:hover { box-shadow: var(--glow-brass); }
+    .offer-card.is-request.is-selected {
+      border-color: var(--c-brass-600);
+      box-shadow:
+        0 0 0 1px var(--c-brass-600),
+        0 14px 42px rgb(155 112 23 / 0.18);
+    }
+
+    .offer-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .offer-top h4 { margin-bottom: 0.25rem; }
+
+    .offer-format {
+      margin: 0 0 0.35rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .offer-check {
+      flex: none;
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      margin: -6px -6px 0 0;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .offer-check .box {
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--border-medium);
+      border-radius: var(--radius-s);
+      background: var(--c-white);
+      transition:
+        border-color var(--motion-fast) ease,
+        background var(--motion-fast) ease,
+        box-shadow var(--motion-medium) ease;
+    }
+
+    .offer-check svg {
+      width: 14px;
+      height: 14px;
+      opacity: 0;
+      transform: scale(0.5);
+      transition:
+        opacity var(--motion-fast) ease,
+        transform var(--motion-medium) var(--ease-signal);
+    }
+
+    .is-selected .offer-check .box {
+      border-color: var(--c-blue-700);
+      background: var(--c-blue-700);
+      box-shadow: 0 0 0 4px rgb(18 63 166 / 0.12);
+    }
+
+    .is-request.is-selected .offer-check .box {
+      border-color: var(--c-brass-600);
+      background: var(--c-brass-600);
+      box-shadow: 0 0 0 4px rgb(155 112 23 / 0.14);
+    }
+
+    .is-selected .offer-check svg { opacity: 1; transform: scale(1); }
+
+    .offer-desc {
+      margin-bottom: 0;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .offer-includes {
+      display: grid;
+      gap: 0.3rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: var(--text-secondary);
+      font-size: 0.86rem;
+    }
+
+    .offer-includes li {
+      position: relative;
+      padding-left: 1.1rem;
+    }
+
+    .offer-includes li::before {
+      content: "";
+      position: absolute;
+      top: 0.55em;
+      left: 0.15rem;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--c-blue-600);
+      box-shadow: 0 0 8px rgb(36 104 232 / 0.4);
+    }
+
+    .offer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: auto;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .offer-price {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+    }
+
+    .offer-price strong {
+      font-family: var(--font-display);
+      font-size: 1.28rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .offer-price span {
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .offer-price .price-request {
+      font-size: 1.02rem;
+      color: var(--c-brass-700);
+    }
+
+    /* ------- Stepper ------- */
+
+    .stepper {
+      display: inline-flex;
+      align-items: stretch;
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-s);
+      overflow: hidden;
+      background: var(--c-white);
+      opacity: 0;
+      transform: translateY(4px);
+      pointer-events: none;
+      transition: opacity var(--motion-fast) ease, transform var(--motion-medium) var(--ease-signal);
+    }
+
+    .is-selected .stepper {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .stepper button {
+      width: 40px;
+      min-height: 40px;
+      border: 0;
+      background: var(--c-blue-050);
+      color: var(--action);
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background var(--motion-fast) ease, color var(--motion-fast) ease;
+    }
+
+    .stepper button:hover { background: var(--c-blue-100); color: var(--action-hover); }
+
+    .stepper button:disabled {
+      color: var(--c-neutral-300);
+      background: var(--c-neutral-100);
+      cursor: not-allowed;
+    }
+
+    .stepper output {
+      display: grid;
+      place-items: center;
+      min-width: 76px;
+      padding-inline: 0.4rem;
+      border-inline: 1px solid var(--border-soft);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .offer-hint {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    .offer-hint strong { color: var(--c-success); }
+
+    /* ------- Summary ------- */
+
+    .summary-panel {
+      position: sticky;
+      top: calc(var(--nav-height) + 20px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      color: rgb(255 255 255 / 0.80);
+      background:
+        radial-gradient(circle at 90% 0%, rgb(36 104 232 / 0.24), transparent 34%),
+        var(--gradient-brand-deep);
+      border: 1px solid rgb(255 255 255 / 0.12);
+      border-radius: var(--radius-l);
+      box-shadow: 0 22px 54px rgb(18 30 57 / 0.20);
+    }
+
+    .summary-panel::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 148px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--c-brass-300), var(--c-blue-500), transparent);
+    }
+
+    .summary-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: clamp(1.4rem, 2.5vw, 1.9rem);
+      max-height: calc(100vh - var(--nav-height) - 40px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgb(255 255 255 / 0.25) transparent;
+    }
+
+    .summary-panel .meta { color: var(--c-brass-300); margin-bottom: 0; }
+
+    .summary-panel h3 { color: var(--c-white); margin-bottom: 0; }
+
+    .summary-empty {
+      margin: 0;
+      padding: 1rem 0 0.5rem;
+      color: rgb(255 255 255 / 0.62);
+      font-size: 0.92rem;
+      border-top: 1px solid rgb(255 255 255 / 0.12);
+    }
+
+    .summary-list {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .summary-list li {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 0.25rem 1rem;
+      padding-block: 0.7rem;
+      border-top: 1px solid rgb(255 255 255 / 0.12);
+      font-size: 0.9rem;
+    }
+
+    .summary-list .item-name { color: var(--c-white); font-weight: 600; }
+
+    .summary-list .item-detail {
+      grid-column: 1;
+      color: rgb(255 255 255 / 0.56);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .summary-list .item-amount {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--c-white);
+      white-space: nowrap;
+    }
+
+    .summary-list .item-amount.is-request { color: var(--c-brass-300); }
+
+    .summary-list .item-remove {
+      grid-column: 2;
+      justify-self: end;
+      padding: 0;
+      border: 0;
+      background: none;
+      color: rgb(255 255 255 / 0.45);
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .summary-list .item-remove:hover { color: var(--c-brass-300); }
+
+    .summary-total {
+      display: grid;
+      gap: 0.2rem;
+      padding-top: 1rem;
+      border-top: 2px solid rgb(255 255 255 / 0.25);
+    }
+
+    .summary-total .total-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .summary-total .total-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgb(255 255 255 / 0.62);
+    }
+
+    .summary-total .total-value {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--c-white);
+    }
+
+    .summary-total .total-note {
+      margin: 0;
+      color: rgb(255 255 255 / 0.5);
+      font-size: 0.76rem;
+    }
+
+    .summary-savings {
+      margin: 0;
+      color: var(--c-brass-300);
+      font-size: 0.8rem;
+    }
+
+    .summary-panel .button { width: 100%; }
+
+    .summary-panel .button-primary {
+      background: var(--c-white);
+      color: var(--c-blue-800);
+      box-shadow: 0 10px 30px rgb(0 0 0 / 0.25);
+    }
+
+    .summary-panel .button-primary:hover {
+      background: var(--c-blue-050);
+      color: var(--c-blue-800);
+    }
+
+    .summary-panel .button-secondary {
+      background: transparent;
+      color: var(--c-white);
+      border-color: rgb(255 255 255 / 0.35);
+    }
+
+    .summary-panel .button-secondary:hover {
+      background: rgb(255 255 255 / 0.08);
+      color: var(--c-white);
+      border-color: rgb(255 255 255 / 0.6);
+    }
+
+    .summary-actions { display: grid; gap: 0.6rem; }
+
+    /* ------- Mobile Summary Bar ------- */
+
+    .mobile-bar {
+      position: fixed;
+      right: 0; bottom: 0; left: 0;
+      z-index: var(--z-bar);
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.8rem clamp(1rem, 4vw, 1.5rem);
+      padding-bottom: calc(0.8rem + env(safe-area-inset-bottom, 0px));
+      color: var(--c-white);
+      background: var(--c-cobalt-950);
+      border-top: 1px solid rgb(255 255 255 / 0.14);
+      box-shadow: 0 -12px 40px rgb(18 30 57 / 0.35);
+    }
+
+    .mobile-bar .bar-info { display: grid; line-height: 1.3; }
+
+    .mobile-bar .bar-label {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgb(255 255 255 / 0.6);
+    }
+
+    .mobile-bar .bar-total {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .mobile-bar .button { min-height: 42px; padding: 0.5rem 1rem; }
+
+    /* ------- Programme (Jahresprogramme) ------- */
+
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(1rem, 2.5vw, 1.75rem);
+    }
+
+    .program-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      overflow: hidden;
+      padding: clamp(1.35rem, 3vw, 2rem);
+      background: linear-gradient(180deg, rgb(255 255 255 / 0.99), var(--c-white));
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-m);
+      box-shadow: var(--shadow-soft);
+      transition:
+        transform var(--motion-medium) var(--ease-signal),
+        border-color var(--motion-medium) ease,
+        box-shadow var(--motion-medium) ease;
+    }
+
+    .program-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: clamp(64px, 24%, 148px);
+      height: 2px;
+      opacity: 0.68;
+      background: linear-gradient(90deg, var(--c-blue-700), var(--c-blue-600), transparent);
+    }
+
+    .program-card:hover {
+      border-color: var(--border-electric);
+      box-shadow: var(--glow-electric);
+      transform: translateY(-3px);
+    }
+
+    .program-card h4 { margin-bottom: 0; }
+
+    .program-card .program-price {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .program-card .program-price span {
+      display: block;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .program-card p { color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 0; }
+
+    .program-card .offer-includes { margin-top: auto; }
+
+    /* ------- Anfrage-Formular ------- */
+
+    .request-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: start;
+    }
+
+    .form-grid { display: grid; gap: 1rem; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .field { display: grid; gap: 0.35rem; }
+
+    .field label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      padding: 0.75rem 0.9rem;
+      background: var(--c-white);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-s);
+      font-size: 0.95rem;
+      transition: border-color var(--motion-fast) ease, box-shadow var(--motion-fast) ease;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--c-blue-600);
+      box-shadow: 0 0 0 3px rgb(36 104 232 / 0.15);
+    }
+
+    .field textarea { min-height: 120px; resize: vertical; }
+
+    .note {
+      position: relative;
+      margin-top: var(--space-6);
+      padding: 1.2rem 1.3rem 1.2rem 1.5rem;
+      color: var(--text-secondary);
+      background:
+        linear-gradient(90deg, rgb(18 63 166 / 0.055), transparent),
+        var(--c-blue-050);
+      border: 1px solid rgb(18 63 166 / 0.15);
+      border-left: 3px solid var(--c-blue-700);
+      border-radius: 0 var(--radius-m) var(--radius-m) 0;
+      font-size: 0.92rem;
+    }
+
+    /* ------- Trust-Leiste ------- */
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(1rem, 2.5vw, 1.75rem);
+    }
+
+    .trust-stat {
+      padding: 1.25rem 1.4rem;
+      background: var(--c-paper-blue);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-m);
+    }
+
+    .trust-stat strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: var(--step-3);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+
+    .trust-stat span {
+      display: block;
+      margin-top: 0.35rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    /* ------- Footer ------- */
+
+    .site-footer {
+      position: relative;
+      overflow: hidden;
+      padding-block: clamp(4rem, 8vw, 7rem) 2rem;
+      color: rgb(255 255 255 / 0.72);
+      background:
+        radial-gradient(circle at 84% 12%, rgb(36 104 232 / 0.28), transparent 28%),
+        radial-gradient(circle at 18% 100%, rgb(201 155 50 / 0.10), transparent 24%),
+        var(--c-cobalt-950);
+    }
+
+    .site-footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.22;
+      background-image:
+        linear-gradient(rgb(255 255 255 / 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(255 255 255 / 0.07) 1px, transparent 1px);
+      background-size: 72px 72px;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000);
+      mask-image: linear-gradient(90deg, transparent, #000);
+      pointer-events: none;
+    }
+
+    .site-footer > .wrap { position: relative; z-index: 1; }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr 0.75fr;
+      gap: clamp(2rem, 6vw, 6rem);
+    }
+
+    .footer-grid h3, .footer-grid strong { color: var(--c-white); }
+    .site-footer .meta { color: var(--c-brass-300); }
+    .site-footer a { color: var(--c-white); }
+
+    .footer-list {
+      display: grid;
+      gap: 0.4rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: clamp(3rem, 7vw, 6rem);
+      padding-top: 1.5rem;
+      border-top: 1px solid rgb(255 255 255 / 0.12);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.035em;
+      text-transform: uppercase;
+    }
+
+    .footer-bottom p { margin-bottom: 0; }
+
+    /* ------- Toast ------- */
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      z-index: 200;
+      padding: 0.8rem 1.3rem;
+      color: var(--c-white);
+      background: var(--c-cobalt-900);
+      border: 1px solid rgb(255 255 255 / 0.2);
+      border-radius: var(--radius-m);
+      box-shadow: 0 18px 48px rgb(18 30 57 / 0.35);
+      font-size: 0.9rem;
+      font-weight: 600;
+      opacity: 0;
+      transform: translate(-50%, 12px);
+      pointer-events: none;
+      transition: opacity var(--motion-medium) ease, transform var(--motion-medium) var(--ease-signal);
+    }
+
+    .toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+    /* ------- Responsive ------- */
+
+    @media (max-width: 1080px) {
+      .config-layout { grid-template-columns: 1fr; }
+
+      .summary-panel { position: static; }
+      .summary-inner { max-height: none; }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .mobile-bar { display: flex; }
+      body { padding-bottom: 90px; }
+    }
+
+    @media (max-width: 860px) {
+      .chapter-head { grid-template-columns: 1fr; align-items: start; }
+      .program-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .request-layout { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 700px) {
+      .config-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .brand-logo-nav { height: 26px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip-link" href="#konfigurator">Zum Konfigurator springen</a>
+
+  <div class="brand-rail" aria-hidden="true"></div>
+
+  <nav class="site-nav" aria-label="Hauptnavigation">
+    <div class="wrap-wide nav-inner">
+      <a class="logo-link" href="#top" aria-label="VersicherungsTech Magazin – zum Anfang">
+        <img
+          class="brand-logo brand-logo-nav"
+          src="https://storage.ghost.io/c/16/79/16794837-6459-4f6f-b4c4-2787d5771849/content/images/size/w1000/2026/04/Logo--2-.png"
+          alt="VersicherungsTech Magazin"
+          decoding="async"
+          fetchpriority="high"
+          referrerpolicy="no-referrer"
+        >
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#konfigurator">Konfigurator</a></li>
+        <li><a href="#podcast">Podcast</a></li>
+        <li><a href="#reichweite">Reichweite</a></li>
+        <li><a href="#content">Content</a></li>
+        <li><a href="#programme">Jahresprogramme</a></li>
+        <li><a href="#anfrage">Anfrage</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- =====================================================
+       HERO
+  ====================================================== -->
+  <header class="hero" aria-labelledby="hero-title">
+    <div class="hero-atmosphere" aria-hidden="true">
+      <span class="hero-orbit hero-orbit-a"></span>
+      <span class="hero-orbit hero-orbit-b"></span>
+      <span class="hero-signal"></span>
+      <span class="hero-node hero-node-a"></span>
+      <span class="hero-node hero-node-b"></span>
+    </div>
+
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">VTM Angebotsplattform</p>
+
+          <h1 id="hero-title">
+            Ihr Programm.<br>
+            <span class="gradient-text">Ihre Bausteine.</span>
+          </h1>
+
+          <p class="lead">
+            Stellen Sie Ihre Präsenz in der DACH-Versicherungswirtschaft
+            selbst zusammen: Podcast, Newsletter, Fachcontent und
+            LinkedIn&nbsp;– modular kombinierbar, transparent kalkuliert,
+            mit sofortiger Preisübersicht.
+          </p>
+
+          <div class="signal-line" aria-hidden="true"></div>
+
+          <div class="button-row">
+            <a class="button button-primary" href="#konfigurator">
+              Leistungen zusammenstellen
+            </a>
+            <a class="button button-secondary" href="#programme">
+              Jahresprogramme ansehen
+            </a>
+          </div>
+
+          <p class="hero-claim">Versicherung verändern.</p>
+        </div>
+
+        <aside class="hero-panel" aria-labelledby="steps-title">
+          <p class="meta">So funktioniert es</p>
+          <h2 id="steps-title">In drei Schritten zum Angebot</h2>
+
+          <ol class="hero-steps">
+            <li>Leistungen auswählen und Umfang festlegen</li>
+            <li>Preisübersicht live in der Zusammenfassung prüfen</li>
+            <li>Konfiguration absenden – wir melden uns binnen 24&nbsp;h</li>
+          </ol>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- =====================================================
+         01 · KONFIGURATOR
+    ====================================================== -->
+    <section class="chapter" id="konfigurator" aria-labelledby="konfigurator-title">
+      <div class="wrap">
+        <header class="chapter-head" data-index="01">
+          <div>
+            <p class="kicker">01 · Leistungs-Konfigurator</p>
+            <h2 id="konfigurator-title">Modular zusammenstellen</h2>
+          </div>
+          <p class="lead">
+            Wählen Sie einzelne Leistungen aus und legen Sie Laufzeit oder
+            Stückzahl fest. Alle Preise netto zuzüglich Umsatzsteuer.
+          </p>
+        </header>
+
+        <div class="config-layout">
+          <div class="config-groups">
+
+            <!-- Podcast & Audio -->
+            <div class="config-group" id="podcast">
+              <div class="config-group-head">
+                <h3>Podcast &amp; Audio</h3>
+                <p class="meta">Insurance Monday · ca. 35.000 Downloads / Monat</p>
+              </div>
+              <div class="config-grid" data-group="podcast"></div>
+            </div>
+
+            <!-- Reichweite & Sichtbarkeit -->
+            <div class="config-group" id="reichweite">
+              <div class="config-group-head">
+                <h3>Reichweite &amp; Sichtbarkeit</h3>
+                <p class="meta">Website · App · Newsletter</p>
+              </div>
+              <div class="config-grid" data-group="reichweite"></div>
+            </div>
+
+            <!-- Content & Thought Leadership -->
+            <div class="config-group" id="content">
+              <div class="config-group-head">
+                <h3>Content &amp; Thought Leadership</h3>
+                <p class="meta">Redaktionell produziert · werblich gekennzeichnet</p>
+              </div>
+              <div class="config-grid" data-group="content"></div>
+            </div>
+
+            <!-- Programm-Bausteine -->
+            <div class="config-group" id="bausteine">
+              <div class="config-group-head">
+                <h3>Programm-Bausteine</h3>
+                <p class="meta">Individuell kalkuliert · Preis auf Anfrage</p>
+              </div>
+              <div class="config-grid" data-group="anfrage"></div>
+            </div>
+
+          </div>
+
+          <!-- Zusammenfassung -->
+          <aside class="summary-panel" id="zusammenfassung" aria-labelledby="summary-title">
+            <div class="summary-inner">
+              <p class="meta">Ihre Auswahl</p>
+              <h3 id="summary-title">Zusammenfassung</h3>
+
+              <p class="summary-empty" id="summary-empty">
+                Noch keine Leistungen ausgewählt. Klicken Sie links auf die
+                Bausteine, die Sie interessieren.
+              </p>
+
+              <ul class="summary-list" id="summary-list"></ul>
+
+              <div class="summary-total" id="summary-total" hidden>
+                <div class="total-row">
+                  <span class="total-label">Gesamt netto</span>
+                  <span class="total-value" id="total-value">0&nbsp;€</span>
+                </div>
+                <p class="summary-savings" id="summary-savings" hidden></p>
+                <p class="total-note">
+                  zzgl. gesetzlicher USt. · unverbindliche Konfiguration
+                </p>
+                <p class="total-note" id="request-note" hidden></p>
+              </div>
+
+              <div class="summary-actions">
+                <a class="button button-primary" href="#anfrage">
+                  Unverbindlich anfragen
+                </a>
+                <button class="button button-secondary" type="button" id="copy-config">
+                  Konfiguration kopieren
+                </button>
+                <button class="button button-secondary" type="button" id="reset-config">
+                  Auswahl zurücksetzen
+                </button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         02 · WARUM VTM
+    ====================================================== -->
+    <section class="chapter" id="warum" aria-labelledby="warum-title">
+      <div class="wrap">
+        <header class="chapter-head" data-index="02">
+          <div>
+            <p class="kicker">02 · Warum VTM</p>
+            <h2 id="warum-title">Fachrelevanz statt Streuverlust</h2>
+          </div>
+          <p class="lead">
+            Das VTM ist das unabhängige Fachmedium für
+            Versicherungstechnologie im DACH-Raum. Zur regelmäßigen
+            Leserschaft zählen Entscheiderinnen und Entscheider führender
+            Versicherer.
+          </p>
+        </header>
+
+        <div class="trust-grid">
+          <div class="trust-stat">
+            <strong>35.000</strong>
+            <span>Podcast-Downloads pro Monat · Insurance Monday</span>
+          </div>
+          <div class="trust-stat">
+            <strong>6.000+</strong>
+            <span>Newsletter-Empfänger · rund 50&nbsp;% Öffnungsrate</span>
+          </div>
+          <div class="trust-stat">
+            <strong>20.000+</strong>
+            <span>LinkedIn-Follower im Team-Netzwerk</span>
+          </div>
+          <div class="trust-stat">
+            <strong>4 Kanäle</strong>
+            <span>Magazin · App · Podcast · Branchennetzwerk</span>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>Redaktionelle Leitplanken:</strong> Bezahlte Inhalte werden
+          eindeutig gekennzeichnet. Redaktionelle Berichterstattung bleibt
+          unabhängig und ist nicht Bestandteil buchbarer Leistungen.
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         03 · JAHRESPROGRAMME
+    ====================================================== -->
+    <section class="chapter" id="programme" aria-labelledby="programme-title">
+      <div class="wrap">
+        <header class="chapter-head" data-index="03">
+          <div>
+            <p class="kicker">03 · Jahresprogramme</p>
+            <h2 id="programme-title">Lieber ein geführtes Programm?</h2>
+          </div>
+          <p class="lead">
+            Einzelleistungen schaffen Sichtbarkeit – eine Marktposition
+            entsteht über zwölf Monate. Unsere Jahresprogramme bündeln die
+            Bausteine zu einem geführten Plan mit Quartals-Reviews.
+          </p>
+        </header>
+
+        <div class="program-grid">
+          <article class="program-card">
+            <p class="meta">Kontinuierliche Präsenz</p>
+            <h4>VTM Category Presence</h4>
+            <p class="program-price">
+              ab 14.400&nbsp;€
+              <span>pro Jahr · netto</span>
+            </p>
+            <p>
+              Zwölf Monate kontinuierlich in Ihrer Technologiekategorie
+              wahrgenommen werden – mit monatlich rotierender Präsenz.
+            </p>
+            <ul class="offer-includes">
+              <li>Positionierungs-Workshop &amp; Anbieterprofil</li>
+              <li>Monatlicher Präsenzslot: Podcast, Banner oder Newsletter</li>
+              <li>Zwei Expertenstatements pro Jahr</li>
+              <li>Quartalsreport &amp; Jahres-Review</li>
+            </ul>
+          </article>
+
+          <article class="program-card">
+            <p class="meta">Thought Leadership</p>
+            <h4>VTM Authority Program</h4>
+            <p class="program-price">
+              ab 28.000&nbsp;€
+              <span>pro Jahr · netto</span>
+            </p>
+            <p>
+              Eine belastbare fachliche Position zu einem
+              Versicherungsthema aufbauen – mit Jahres-Storyline und
+              kontinuierlicher Distribution.
+            </p>
+            <ul class="offer-includes">
+              <li>Themen-Workshop &amp; Jahres-Storyline</li>
+              <li>Vier hochwertige Content-Module</li>
+              <li>Podcast-Integrationen &amp; Executive Interviews</li>
+              <li>Digitaler Roundtable &amp; vier QBRs</li>
+            </ul>
+          </article>
+
+          <article class="program-card">
+            <p class="meta">Für Start-ups</p>
+            <h4>VTM Startup Presence</h4>
+            <p class="program-price">
+              ab 4.800&nbsp;€
+              <span>pro Jahr · netto · monatlich zahlbar</span>
+            </p>
+            <p>
+              Als auffindbarer, verständlicher Anbieter wahrgenommen
+              werden – bewusst schlank und ohne das Budget eines
+              etablierten IT-Anbieters vorauszusetzen.
+            </p>
+            <ul class="offer-includes">
+              <li>Startup-Profil &amp; Kategorieeinordnung</li>
+              <li>Sechs rotierende Aktivierungen pro Jahr</li>
+              <li>Gründerinterview oder Startup-Porträt</li>
+              <li>Halbjahresreport</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="note">
+          Jahresprogramme werden individuell zugeschnitten und gemeinsam
+          kalkuliert. <a href="#anfrage">Sprechen Sie uns an</a> – wir
+          entwickeln den passenden Zwölf-Monats-Plan für Ihr Ziel.
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         04 · ANFRAGE
+    ====================================================== -->
+    <section class="chapter" id="anfrage" aria-labelledby="anfrage-title">
+      <div class="wrap">
+        <header class="chapter-head" data-index="04">
+          <div>
+            <p class="kicker">04 · Anfrage</p>
+            <h2 id="anfrage-title">Konfiguration absenden</h2>
+          </div>
+          <p class="lead">
+            Ihre Auswahl wird automatisch übernommen. Kein Pitch, kein
+            Druck – wir melden uns innerhalb von 24 Stunden mit einem
+            konkreten Vorschlag.
+          </p>
+        </header>
+
+        <div class="request-layout">
+          <div>
+            <h3>Was danach passiert</h3>
+            <ol class="hero-steps" style="color: var(--text-secondary);">
+              <li style="border-color: var(--border-soft);">
+                Kurzes Feedbackgespräch zu Auswahl und Zielen
+              </li>
+              <li style="border-color: var(--border-soft);">
+                Konkretes Angebot mit Themen- und Terminplan
+              </li>
+              <li style="border-color: var(--border-soft);">
+                Erste Inhalte in der Regel binnen 10 Werktagen live
+              </li>
+            </ol>
+
+            <div class="note">
+              <strong>Direkter Kontakt:</strong><br>
+              Maximilian Hempel · Herausgeber &amp; Geschäftsführer<br>
+              <a href="mailto:maximilian.hempel@versicherungstech-magazin.de">
+                maximilian.hempel@versicherungstech-magazin.de
+              </a>
+            </div>
+          </div>
+
+          <form class="form-grid" id="request-form" novalidate>
+            <div class="form-row">
+              <div class="field">
+                <label for="f-name">Name*</label>
+                <input id="f-name" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="f-company">Unternehmen*</label>
+                <input id="f-company" name="company" type="text" autocomplete="organization" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-email">E-Mail*</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="f-message">Nachricht (optional)</label>
+              <textarea
+                id="f-message"
+                name="message"
+                placeholder="Ziele, Zeitrahmen, Fragen …"
+              ></textarea>
+            </div>
+            <div class="button-row" style="margin-block: 0.5rem 0;">
+              <button class="button button-primary" type="submit">
+                Anfrage per E-Mail senden
+              </button>
+            </div>
+            <p class="offer-hint">
+              Öffnet Ihr E-Mail-Programm mit Ihrer Konfiguration als
+              vorbereiteter Nachricht. Es entsteht keine Zahlungspflicht.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <img
+            class="brand-logo brand-logo-footer"
+            src="https://storage.ghost.io/c/16/79/16794837-6459-4f6f-b4c4-2787d5771849/content/images/size/w1000/2026/07/versicherungstech_logo_white.png"
+            alt="VersicherungsTech Magazin"
+            decoding="async"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          >
+          <p style="margin-top: 1.25rem; max-width: 42ch;">
+            Die Fachmedien- und Dialogplattform für
+            Technologieentscheidungen in der DACH-Versicherungswirtschaft.
+          </p>
+        </div>
+
+        <div>
+          <p class="meta">Navigation</p>
+          <ul class="footer-list">
+            <li><a href="#konfigurator">Konfigurator</a></li>
+            <li><a href="#programme">Jahresprogramme</a></li>
+            <li><a href="#anfrage">Anfrage</a></li>
+            <li><a href="https://www.versicherungstech-magazin.de" rel="noopener">versicherungstech-magazin.de</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="meta">Kontakt</p>
+          <ul class="footer-list">
+            <li><strong>Maximilian Hempel</strong></li>
+            <li>
+              <a href="mailto:maximilian.hempel@versicherungstech-magazin.de">
+                E-Mail schreiben
+              </a>
+            </li>
+            <li>
+              <a href="https://linkedin.com/in/maximilianhempel" rel="noopener">LinkedIn</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© VersicherungsTech Media UG · Moitzfeld 17 · 51429 Bergisch Gladbach</p>
+        <p>Alle Preise netto zzgl. USt.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Summary Bar -->
+  <div class="mobile-bar" id="mobile-bar" aria-hidden="true">
+    <div class="bar-info">
+      <span class="bar-label" id="bar-label">0 Leistungen</span>
+      <span class="bar-total" id="bar-total">0&nbsp;€</span>
+    </div>
+    <a class="button button-primary" href="#zusammenfassung">Zur Übersicht</a>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    "use strict";
+
+    /* =========================================================
+       Leistungskatalog
+       Alle Preise netto in Euro.
+    ========================================================= */
+
+    const CATALOG = [
+      /* ---- Podcast & Audio ---- */
+      {
+        id: "quartalssponsoring",
+        group: "podcast",
+        format: "Sponsoring · pro Quartal",
+        name: "Quartalssponsoring Insurance Monday",
+        desc: "Das Flaggschiff: Ihr Unternehmen als offizieller Sponsor des reichweitenstärksten Podcasts der Branche.",
+        includes: [
+          "3 Podcast-Episoden mit Ihrem Thema",
+          "Vermarktung auf LinkedIn & allen Podcast-Plattformen",
+          "Audio-Ads-Produktion + Mid-Roll-Placement in 30 Episoden",
+          "Offizielles Sponsor-Branding auf allen Assets"
+        ],
+        unit: 30000,
+        unitSuffix: "pro Quartal",
+        mode: "qty",
+        qtyLabel: "Quartal(e)",
+        max: 4
+      },
+      {
+        id: "podcast-episode",
+        group: "podcast",
+        format: "Einzelformat",
+        name: "Einzelne Podcast-Episode",
+        desc: "Ihr Experte im Gespräch bei Insurance Monday – eine ganze Folge zu Ihrem Thema, erzählt an echten Praxisfällen.",
+        unit: 3500,
+        unitSuffix: "pro Episode",
+        mode: "qty",
+        qtyLabel: "Episode(n)",
+        max: 12
+      },
+      {
+        id: "podcast-ads",
+        group: "podcast",
+        format: "Audio Ads",
+        name: "Podcast Ads · Pre-Roll",
+        desc: "Ihre Botschaft als Pre-Roll in drei Episoden – direkt am Anfang, wenn die Aufmerksamkeit am höchsten ist.",
+        unit: 2500,
+        unitSuffix: "pro Paket (3 Episoden)",
+        mode: "qty",
+        qtyLabel: "Paket(e)",
+        max: 10
+      },
+
+      /* ---- Reichweite & Sichtbarkeit ---- */
+      {
+        id: "banner-web",
+        group: "reichweite",
+        format: "Display",
+        name: "Website-Werbebanner",
+        desc: "Ihr Banner auf allen Seiten von versicherungstech-magazin.de – dauerhaft präsent im redaktionellen Umfeld.",
+        unit: 1200,
+        unitSuffix: "pro Monat",
+        mode: "months",
+        qtyLabel: "Monat(e)",
+        max: 12,
+        excludes: "banner-app"
+      },
+      {
+        id: "banner-app",
+        group: "reichweite",
+        format: "Display + App",
+        name: "Werbebanner Website + VTM App",
+        desc: "Maximale Präsenz: Ihr Banner auf allen Webseiten und zusätzlich in der VTM App – direkt auf dem Startbildschirm der Entscheider.",
+        unit: 2000,
+        unitSuffix: "pro Monat",
+        mode: "months",
+        qtyLabel: "Monat(e)",
+        max: 12,
+        excludes: "banner-web"
+      },
+      {
+        id: "newsletter",
+        group: "reichweite",
+        format: "Newsletter",
+        name: "Newsletter-Sponsoring",
+        desc: "Exklusive Präsenz im VTM Briefing – 6.000+ Empfänger, rund 50 % Öffnungsrate, direkt im Posteingang der Branche.",
+        unit: 1900,
+        unitSuffix: "pro Monat",
+        mode: "months",
+        qtyLabel: "Monat(e)",
+        max: 12
+      },
+
+      /* ---- Content & Thought Leadership ---- */
+      {
+        id: "fachartikel",
+        group: "content",
+        format: "Sponsored Article",
+        name: "Fachartikel",
+        desc: "Redaktionell produzierter Fachbeitrag zu Ihrem Thema – auf der Website, in der App und als Teaser im Newsletter.",
+        unit: 900,
+        unitSuffix: "pro Artikel",
+        mode: "qty",
+        qtyLabel: "Artikel",
+        max: 12
+      },
+      {
+        id: "interview",
+        group: "content",
+        format: "Interview",
+        name: "Executive Interview",
+        desc: "Ihr Entscheider im redaktionellen Interview – Positionierung über Person und Haltung statt Werbebotschaft.",
+        unit: 1200,
+        unitSuffix: "pro Interview",
+        mode: "qty",
+        qtyLabel: "Interview(s)",
+        max: 12
+      },
+      {
+        id: "casestudy",
+        group: "content",
+        format: "Case Study + Leads",
+        name: "Case Study inkl. Lead-Liste",
+        desc: "Ihr Projekt als belastbare Case Study – inklusive Liste der Interessenten, die das Dokument angefordert haben.",
+        unit: 3000,
+        unitSuffix: "pro Case Study",
+        mode: "qty",
+        qtyLabel: "Case Studies",
+        max: 6
+      },
+      {
+        id: "linkedin-service",
+        group: "content",
+        format: "LinkedIn as a Service",
+        name: "LinkedIn as a Service",
+        desc: "Wir liefern 4 Content Pieces pro Monat für die LinkedIn-Accounts Ihrer Vertriebler und Entscheider – Thought Leadership zu relevanten Versicherungsthemen.",
+        unit: 2500,
+        unitSuffix: "pro Monat",
+        mode: "months",
+        qtyLabel: "Monat(e)",
+        max: 12
+      },
+      {
+        id: "sponsored-post",
+        group: "content",
+        format: "VTM LinkedIn-Kanal",
+        name: "Sponsored LinkedIn Post",
+        desc: "Ihr Beitrag über den VTM-Kanal – dort, wo die Branche täglich mitliest. Mengenrabatt: ab 5 Posts −10 %, ab 10 Posts −20 %.",
+        unit: 750,
+        unitSuffix: "pro Post",
+        mode: "qty",
+        qtyLabel: "Post(s)",
+        max: 30,
+        tiers: [
+          { min: 10, discount: 0.20 },
+          { min: 5, discount: 0.10 }
+        ]
+      },
+
+      /* ---- Programm-Bausteine (auf Anfrage) ---- */
+      {
+        id: "marktcheck",
+        group: "anfrage",
+        format: "Research",
+        name: "Marktcheck im Entscheider-Panel",
+        desc: "Wir befragen das VTM-Entscheider-Panel zu Ihrem Thema. Das Ergebnis: Ihre zitierfähige Zahl für Presse und Vertrieb.",
+        request: true
+      },
+      {
+        id: "webinar",
+        group: "anfrage",
+        format: "Konversion",
+        name: "Deep-Dive-Webinar mit Lead-Liste",
+        desc: "45 Minuten unter VTM-Banner: Das VTM moderiert, Ihr Experte zeigt die Lösung. Die komplette Anmeldeliste geht an Ihren Vertrieb.",
+        request: true
+      },
+      {
+        id: "commentaries",
+        group: "anfrage",
+        format: "Dauerpräsenz",
+        name: "Expert Commentaries",
+        desc: "Kurze Einordnungen Ihres Experten in der laufenden VTM-Berichterstattung – wirken redaktionell statt werblich.",
+        request: true
+      },
+      {
+        id: "exklusiv",
+        group: "anfrage",
+        format: "Exklusivität",
+        name: "Kategorie-Exklusivität",
+        desc: "Ihr Thema allein: Für eine definierte Kategorie tritt kein weiterer Sponsor im VTM auf. 100 % Share of Voice.",
+        request: true
+      }
+    ];
+
+    /* =========================================================
+       State & Helpers
+    ========================================================= */
+
+    const STORAGE_KEY = "vtm-konfigurator-v1";
+    const state = {}; // id -> qty (Number) | true (request items)
+
+    const fmt = new Intl.NumberFormat("de-DE", {
+      style: "currency",
+      currency: "EUR",
+      maximumFractionDigits: 0
+    });
+
+    function itemById(id) {
+      return CATALOG.find((i) => i.id === id);
+    }
+
+    function itemDiscount(item, qty) {
+      if (!item.tiers) return 0;
+      for (const t of item.tiers) {
+        if (qty >= t.min) return t.discount;
+      }
+      return 0;
+    }
+
+    function itemTotal(item, qty) {
+      const gross = item.unit * qty;
+      return Math.round(gross * (1 - itemDiscount(item, qty)));
+    }
+
+    function itemDetail(item, qty) {
+      const unitWord = item.qtyLabel || "×";
+      let detail = qty + " " + unitWord;
+      const disc = itemDiscount(item, qty);
+      if (disc > 0) detail += " · −" + Math.round(disc * 100) + " % Rabatt";
+      return detail;
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) { /* Private Mode etc. – Auswahl bleibt für die Sitzung erhalten */ }
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const parsed = JSON.parse(raw);
+        for (const [id, val] of Object.entries(parsed)) {
+          if (itemById(id)) state[id] = val;
+        }
+      } catch (e) { /* ignorieren */ }
+    }
+
+    /* =========================================================
+       Card-Rendering
+    ========================================================= */
+
+    const CHECK_SVG =
+      '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+    function priceMarkup(item) {
+      if (item.request) {
+        return '<strong class="price-request">Auf Anfrage</strong><span>individuell kalkuliert</span>';
+      }
+      return "<strong>" + fmt.format(item.unit) + "</strong><span>" + item.unitSuffix + "</span>";
+    }
+
+    function renderCards() {
+      for (const item of CATALOG) {
+        const grid = document.querySelector('[data-group="' + item.group + '"]');
+        if (!grid) continue;
+
+        const card = document.createElement("article");
+        card.className = "offer-card" + (item.request ? " is-request" : "");
+        card.dataset.id = item.id;
+
+        let controls = "";
+        if (!item.request) {
+          controls =
+            '<div class="stepper" aria-label="Menge wählen">' +
+            '<button type="button" data-step="-1" aria-label="Weniger">−</button>' +
+            '<output>1 ' + (item.qtyLabel || "") + "</output>" +
+            '<button type="button" data-step="1" aria-label="Mehr">+</button>' +
+            "</div>";
+        } else {
+          controls = '<span class="tag tag-brass">Im Gespräch klären</span>';
+        }
+
+        card.innerHTML =
+          '<div class="offer-top">' +
+          "<div>" +
+          '<p class="offer-format">' + item.format + "</p>" +
+          "<h4>" + item.name + "</h4>" +
+          "</div>" +
+          '<button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="' +
+          item.name + ' auswählen">' +
+          '<span class="box">' + CHECK_SVG + "</span>" +
+          "</button>" +
+          "</div>" +
+          '<p class="offer-desc">' + item.desc + "</p>" +
+          (item.includes
+            ? '<ul class="offer-includes">' +
+              item.includes.map((x) => "<li>" + x + "</li>").join("") +
+              "</ul>"
+            : "") +
+          '<div class="offer-bottom">' +
+          '<div class="offer-price">' + priceMarkup(item) + "</div>" +
+          controls +
+          "</div>";
+
+        /* Auswahl togglen: Klick auf Card oder Checkbox */
+        card.addEventListener("click", (ev) => {
+          if (ev.target.closest(".stepper")) return;
+          if (ev.target.closest("a")) return;
+          toggleItem(item.id);
+        });
+
+        if (!item.request) {
+          card.querySelectorAll(".stepper button").forEach((btn) => {
+            btn.addEventListener("click", (ev) => {
+              ev.stopPropagation();
+              stepItem(item.id, Number(btn.dataset.step));
+            });
+          });
+        }
+
+        grid.appendChild(card);
+      }
+    }
+
+    /* =========================================================
+       Interaktion
+    ========================================================= */
+
+    function toggleItem(id) {
+      const item = itemById(id);
+      if (state[id]) {
+        delete state[id];
+      } else {
+        state[id] = item.request ? true : 1;
+        /* Gegenseitig ausschließende Banner-Varianten */
+        if (item.excludes && state[item.excludes]) {
+          delete state[item.excludes];
+        }
+      }
+      update();
+    }
+
+    function stepItem(id, delta) {
+      const item = itemById(id);
+      if (!state[id]) return;
+      const next = Math.min(item.max || 99, Math.max(1, state[id] + delta));
+      state[id] = next;
+      update();
+    }
+
+    function removeItem(id) {
+      delete state[id];
+      update();
+    }
+
+    function resetAll() {
+      for (const key of Object.keys(state)) delete state[key];
+      update();
+      showToast("Auswahl zurückgesetzt.");
+    }
+
+    /* =========================================================
+       Rendering: Cards synchronisieren + Summary
+    ========================================================= */
+
+    function update() {
+      /* Cards */
+      for (const item of CATALOG) {
+        const card = document.querySelector('.offer-card[data-id="' + item.id + '"]');
+        if (!card) continue;
+        const selected = Boolean(state[item.id]);
+        card.classList.toggle("is-selected", selected);
+        card.querySelector(".offer-check").setAttribute("aria-checked", String(selected));
+
+        if (!item.request) {
+          const out = card.querySelector(".stepper output");
+          const qty = state[item.id] || 1;
+          out.textContent = qty + " " + (item.qtyLabel || "");
+          card.querySelector('[data-step="-1"]').disabled = qty <= 1;
+          card.querySelector('[data-step="1"]').disabled = qty >= (item.max || 99);
+        }
+      }
+
+      /* Summary */
+      const list = document.getElementById("summary-list");
+      const empty = document.getElementById("summary-empty");
+      const totalBox = document.getElementById("summary-total");
+      const totalValue = document.getElementById("total-value");
+      const savingsEl = document.getElementById("summary-savings");
+      const requestNote = document.getElementById("request-note");
+
+      list.innerHTML = "";
+      let total = 0;
+      let savings = 0;
+      let priced = 0;
+      let requests = 0;
+
+      for (const item of CATALOG) {
+        const val = state[item.id];
+        if (!val) continue;
+
+        const li = document.createElement("li");
+
+        if (item.request) {
+          requests++;
+          li.innerHTML =
+            '<span class="item-name">' + item.name + "</span>" +
+            '<span class="item-amount is-request">auf Anfrage</span>' +
+            '<span class="item-detail">' + item.format + "</span>";
+        } else {
+          priced++;
+          const qty = val;
+          const sum = itemTotal(item, qty);
+          total += sum;
+          savings += item.unit * qty - sum;
+          li.innerHTML =
+            '<span class="item-name">' + item.name + "</span>" +
+            '<span class="item-amount">' + fmt.format(sum) + "</span>" +
+            '<span class="item-detail">' + itemDetail(item, qty) + "</span>";
+        }
+
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "item-remove";
+        remove.textContent = "Entfernen";
+        remove.setAttribute("aria-label", item.name + " entfernen");
+        remove.addEventListener("click", () => removeItem(item.id));
+        li.appendChild(remove);
+
+        list.appendChild(li);
+      }
+
+      const any = priced + requests > 0;
+      empty.hidden = any;
+      totalBox.hidden = !any;
+      totalValue.textContent = fmt.format(total);
+
+      savingsEl.hidden = savings <= 0;
+      if (savings > 0) {
+        savingsEl.textContent = "Sie sparen " + fmt.format(savings) + " durch Mengenrabatt.";
+      }
+
+      requestNote.hidden = requests === 0;
+      if (requests > 0) {
+        requestNote.textContent =
+          requests + (requests === 1
+            ? " Baustein wird individuell kalkuliert."
+            : " Bausteine werden individuell kalkuliert.");
+      }
+
+      /* Mobile Bar */
+      const bar = document.getElementById("mobile-bar");
+      const count = priced + requests;
+      document.getElementById("bar-label").textContent =
+        count + (count === 1 ? " Leistung" : " Leistungen") +
+        (requests > 0 ? " · " + requests + "× auf Anfrage" : "");
+      document.getElementById("bar-total").textContent = fmt.format(total);
+      bar.setAttribute("aria-hidden", String(!any));
+      bar.style.display = any ? "" : "none";
+
+      saveState();
+    }
+
+    /* =========================================================
+       Konfiguration als Text
+    ========================================================= */
+
+    function configAsText() {
+      const lines = [];
+      let total = 0;
+      let requests = 0;
+
+      for (const item of CATALOG) {
+        const val = state[item.id];
+        if (!val) continue;
+        if (item.request) {
+          requests++;
+          lines.push("- " + item.name + " (Preis auf Anfrage)");
+        } else {
+          const sum = itemTotal(item, val);
+          total += sum;
+          lines.push("- " + item.name + " · " + itemDetail(item, val) + " · " + fmt.format(sum));
+        }
+      }
+
+      if (lines.length === 0) {
+        return "Noch keine Leistungen ausgewählt.";
+      }
+
+      lines.push("");
+      lines.push("Zwischensumme (netto, zzgl. USt.): " + fmt.format(total));
+      if (requests > 0) {
+        lines.push("Zzgl. " + requests + " Baustein(e) auf Anfrage.");
+      }
+      return lines.join("\n");
+    }
+
+    /* =========================================================
+       Toast
+    ========================================================= */
+
+    let toastTimer = null;
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      toast.textContent = msg;
+      toast.classList.add("is-visible");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 2600);
+    }
+
+    /* =========================================================
+       Aktionen
+    ========================================================= */
+
+    document.getElementById("copy-config").addEventListener("click", async () => {
+      const text = "Meine VTM-Konfiguration\n\n" + configAsText();
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast("Konfiguration in die Zwischenablage kopiert.");
+      } catch (e) {
+        showToast("Kopieren nicht möglich – bitte manuell markieren.");
+      }
+    });
+
+    document.getElementById("reset-config").addEventListener("click", resetAll);
+
+    document.getElementById("request-form").addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      const form = ev.target;
+      if (!form.reportValidity()) return;
+
+      const name = form.elements.name.value.trim();
+      const company = form.elements.company.value.trim();
+      const email = form.elements.email.value.trim();
+      const message = form.elements.message.value.trim();
+
+      const subject = "Anfrage VTM Leistungspaket – " + company;
+      const body =
+        "Guten Tag Herr Hempel,\n\n" +
+        "über die VTM Angebotsplattform habe ich folgende Leistungen zusammengestellt:\n\n" +
+        configAsText() +
+        "\n\n" +
+        (message ? "Anmerkungen:\n" + message + "\n\n" : "") +
+        "Kontakt:\n" +
+        name + "\n" +
+        company + "\n" +
+        email + "\n";
+
+      const mailto =
+        "mailto:maximilian.hempel@versicherungstech-magazin.de" +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
+
+      window.location.href = mailto;
+      showToast("Ihr E-Mail-Programm öffnet sich mit der Anfrage.");
+    });
+
+    /* =========================================================
+       Init
+    ========================================================= */
+
+    renderCards();
+    loadState();
+    update();
+  </script>
+</body>
+</html>
