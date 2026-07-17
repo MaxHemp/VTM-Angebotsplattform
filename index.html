@@ -407,6 +407,24 @@
     .nav-links a:hover::after,
     .nav-links a:focus-visible::after { transform: scaleX(1); transform-origin: left; }
 
+    .nav-links a.nav-cta {
+      padding: 0.45rem 0.9rem;
+      min-height: 38px;
+      color: var(--c-white);
+      background: var(--c-blue-700);
+      border-radius: var(--radius-s);
+      box-shadow: 0 6px 18px rgb(18 63 166 / 0.22);
+      transition: background var(--motion-fast) ease, transform var(--motion-fast) var(--ease-signal);
+    }
+
+    .nav-links a.nav-cta:hover {
+      color: var(--c-white);
+      background: var(--c-blue-800);
+      transform: translateY(-1px);
+    }
+
+    .nav-links a.nav-cta::after { content: none; }
+
     /* ------- Hero ------- */
 
     .hero {
@@ -775,6 +793,311 @@
       background: var(--c-success-bg);
       border-color: rgb(23 102 58 / 0.24);
     }
+
+    /* ------- Leser-Band (Social Proof) ------- */
+
+    .client-band {
+      border-bottom: 1px solid var(--border-soft);
+      background: var(--c-paper-blue);
+    }
+
+    .client-band .wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem clamp(1.25rem, 3vw, 2.5rem);
+      padding-block: 1.1rem;
+    }
+
+    .client-band .band-label {
+      margin: 0;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .client-band .band-names {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem clamp(1.25rem, 3vw, 2.25rem);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .client-band .band-names li {
+      color: var(--c-neutral-700);
+      font-family: var(--font-display);
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      opacity: 0.75;
+    }
+
+    /* ------- Beliebte Pakete (Presets) ------- */
+
+    .preset-block { margin-bottom: clamp(2.5rem, 5vw, 3.5rem); }
+
+    .preset-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem 1.5rem;
+      margin-bottom: var(--space-5);
+    }
+
+    .preset-head h3 { margin-bottom: 0; }
+    .preset-head .meta { margin-bottom: 0; }
+
+    .preset-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(1rem, 2vw, 1.5rem);
+    }
+
+    .preset-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      overflow: hidden;
+      padding: clamp(1.25rem, 2.5vw, 1.6rem);
+      background:
+        linear-gradient(180deg, var(--c-blue-050), var(--c-white) 55%);
+      border: 1px solid var(--border-electric);
+      border-radius: var(--radius-m);
+      box-shadow: var(--shadow-soft);
+      transition:
+        transform var(--motion-medium) var(--ease-signal),
+        border-color var(--motion-medium) ease,
+        box-shadow var(--motion-medium) ease;
+    }
+
+    .preset-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--c-blue-700), var(--c-blue-600), var(--c-brass-500));
+    }
+
+    .preset-card:hover {
+      border-color: var(--c-blue-700);
+      box-shadow: var(--glow-electric);
+      transform: translateY(-3px);
+    }
+
+    .preset-card.is-featured {
+      background:
+        radial-gradient(circle at 90% 0%, rgb(36 104 232 / 0.24), transparent 34%),
+        var(--gradient-brand-deep);
+      border-color: rgb(255 255 255 / 0.14);
+      color: rgb(255 255 255 / 0.82);
+      box-shadow: 0 22px 54px rgb(18 30 57 / 0.20);
+    }
+
+    .preset-card.is-featured h4 { color: var(--c-white); }
+    .preset-card.is-featured .preset-price { color: var(--c-white); }
+    .preset-card.is-featured .offer-includes { color: rgb(255 255 255 / 0.78); }
+    .preset-card.is-featured .offer-includes li::before { background: var(--c-brass-300); }
+
+    .preset-badge {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.22rem 0.55rem;
+      border-radius: var(--radius-s);
+      background: var(--c-brass-100);
+      border: 1px solid rgb(155 112 23 / 0.28);
+      color: #6a4905;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .preset-card.is-featured .preset-badge {
+      background: var(--c-brass-500);
+      border-color: transparent;
+      color: var(--c-cobalt-950);
+    }
+
+    .preset-card h4 { margin-bottom: 0; }
+
+    .preset-price {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .preset-price span {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .preset-card.is-featured .preset-price span { color: rgb(255 255 255 / 0.6); }
+
+    .preset-card .offer-includes { flex: 1; }
+
+    .preset-card .button { width: 100%; }
+
+    /* ------- Badges auf Leistungs-Cards ------- */
+
+    .offer-format-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .offer-format-row .offer-format { margin: 0; }
+
+    .offer-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.14rem 0.45rem;
+      border-radius: var(--radius-s);
+      background: var(--c-brass-100);
+      border: 1px solid rgb(155 112 23 / 0.28);
+      color: #6a4905;
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    /* ------- Reassurance ------- */
+
+    .summary-reassure {
+      display: grid;
+      gap: 0.35rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0.8rem;
+      color: rgb(255 255 255 / 0.66);
+    }
+
+    .summary-reassure li {
+      position: relative;
+      padding-left: 1.3rem;
+    }
+
+    .summary-reassure li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--c-brass-300);
+      font-weight: 700;
+    }
+
+    .form-reassure {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.25rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+    }
+
+    .form-reassure li {
+      position: relative;
+      padding-left: 1.2rem;
+    }
+
+    .form-reassure li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--c-success);
+      font-weight: 700;
+    }
+
+    /* ------- FAQ ------- */
+
+    .faq-list {
+      display: grid;
+      gap: 0.75rem;
+      max-width: 860px;
+    }
+
+    .faq-item {
+      background: var(--c-white);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-m);
+      box-shadow: var(--shadow-soft);
+      transition: border-color var(--motion-fast) ease, box-shadow var(--motion-medium) ease;
+    }
+
+    .faq-item:hover { border-color: var(--border-electric); }
+
+    .faq-item[open] {
+      border-color: var(--border-electric);
+      box-shadow: var(--glow-electric);
+    }
+
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.1rem 1.3rem;
+      cursor: pointer;
+      list-style: none;
+      font-family: var(--font-display);
+      font-size: 1.02rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: "+";
+      flex: none;
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--border-medium);
+      border-radius: 50%;
+      color: var(--action);
+      font-weight: 600;
+      transition: transform var(--motion-medium) var(--ease-signal), background var(--motion-fast) ease;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+      background: var(--c-blue-050);
+      transform: rotate(180deg);
+    }
+
+    .faq-item .faq-body {
+      padding: 0 1.3rem 1.2rem;
+      color: var(--text-secondary);
+      font-size: 0.94rem;
+      line-height: 1.65;
+    }
+
+    .faq-item .faq-body p { margin-bottom: 0; }
 
     /* ------- Chapter ------- */
 
@@ -1608,6 +1931,7 @@
     @media (max-width: 860px) {
       .chapter-head { grid-template-columns: 1fr; align-items: start; }
       .program-grid { grid-template-columns: 1fr; }
+      .preset-grid { grid-template-columns: 1fr; }
       .trust-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .request-layout { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
@@ -1649,11 +1973,11 @@
 
       <ul class="nav-links">
         <li><a href="#konfigurator">Konfigurator</a></li>
-        <li><a href="#podcast">Podcast</a></li>
-        <li><a href="#reichweite">Reichweite</a></li>
+        <li><a href="#magazin">Magazin</a></li>
         <li><a href="#content">Content</a></li>
+        <li><a href="#podcast">Podcast</a></li>
         <li><a href="#programme">Jahresprogramme</a></li>
-        <li><a href="#anfrage">Anfrage</a></li>
+        <li><a class="nav-cta" href="#anfrage">Anfrage senden</a></li>
       </ul>
     </div>
   </nav>
@@ -1682,21 +2006,27 @@
 
           <p class="lead">
             Stellen Sie Ihre Präsenz in der DACH-Versicherungswirtschaft
-            selbst zusammen: Podcast, Newsletter, Fachcontent und
-            LinkedIn&nbsp;– modular kombinierbar, transparent kalkuliert,
-            mit sofortiger Preisübersicht.
+            in unter 2 Minuten selbst zusammen: Magazin, Newsletter,
+            Fachcontent, LinkedIn und Podcast&nbsp;– modular kombinierbar,
+            transparent kalkuliert, mit sofortiger Preisübersicht.
           </p>
 
           <div class="signal-line" aria-hidden="true"></div>
 
           <div class="button-row">
             <a class="button button-primary" href="#konfigurator">
-              Leistungen zusammenstellen
+              Jetzt Paket zusammenstellen – unverbindlich
             </a>
             <a class="button button-secondary" href="#programme">
               Jahresprogramme ansehen
             </a>
           </div>
+
+          <ul class="form-reassure">
+            <li>Antwort binnen 24 Stunden</li>
+            <li>Keine Zahlungspflicht</li>
+            <li>Kein Pitch, kein Druck</li>
+          </ul>
 
           <p class="hero-claim">Versicherung verändern.</p>
         </div>
@@ -1718,6 +2048,21 @@
   <main id="main-content">
 
     <!-- =====================================================
+         LESERSCHAFT · SOCIAL PROOF
+    ====================================================== -->
+    <aside class="client-band" aria-label="Leserschaft">
+      <div class="wrap">
+        <p class="band-label">Gelesen von Entscheidern bei</p>
+        <ul class="band-names">
+          <li>ERGO</li>
+          <li>HUK-COBURG</li>
+          <li>Provinzial</li>
+          <li>BarmeniaGothaer</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- =====================================================
          01 · KONFIGURATOR
     ====================================================== -->
     <section class="chapter" id="konfigurator" aria-labelledby="konfigurator-title">
@@ -1736,6 +2081,33 @@
         <div class="config-layout">
           <div class="config-groups">
 
+            <!-- Beliebte Pakete -->
+            <div class="preset-block" id="pakete">
+              <div class="preset-head">
+                <h3>Beliebte Kombinationen</h3>
+                <p class="meta">1 Klick · danach frei anpassbar</p>
+              </div>
+              <div class="preset-grid" id="preset-grid"></div>
+            </div>
+
+            <!-- Magazin: Reichweite & Sichtbarkeit -->
+            <div class="config-group" id="magazin">
+              <div class="config-group-head">
+                <h3>Magazin · Reichweite &amp; Sichtbarkeit</h3>
+                <p class="meta">Website · App · Newsletter mit 6.000+ Empfängern</p>
+              </div>
+              <div class="config-grid" data-group="reichweite"></div>
+            </div>
+
+            <!-- Magazin: Content & Thought Leadership -->
+            <div class="config-group" id="content">
+              <div class="config-group-head">
+                <h3>Magazin · Content &amp; Thought Leadership</h3>
+                <p class="meta">Redaktionell produziert · werblich gekennzeichnet</p>
+              </div>
+              <div class="config-grid" data-group="content"></div>
+            </div>
+
             <!-- Podcast & Audio -->
             <div class="config-group" id="podcast">
               <div class="config-group-head">
@@ -1743,24 +2115,6 @@
                 <p class="meta">Insurance Monday · ca. 35.000 Downloads / Monat</p>
               </div>
               <div class="config-grid" data-group="podcast"></div>
-            </div>
-
-            <!-- Reichweite & Sichtbarkeit -->
-            <div class="config-group" id="reichweite">
-              <div class="config-group-head">
-                <h3>Reichweite &amp; Sichtbarkeit</h3>
-                <p class="meta">Website · App · Newsletter</p>
-              </div>
-              <div class="config-grid" data-group="reichweite"></div>
-            </div>
-
-            <!-- Content & Thought Leadership -->
-            <div class="config-group" id="content">
-              <div class="config-group-head">
-                <h3>Content &amp; Thought Leadership</h3>
-                <p class="meta">Redaktionell produziert · werblich gekennzeichnet</p>
-              </div>
-              <div class="config-grid" data-group="content"></div>
             </div>
 
             <!-- Programm-Bausteine -->
@@ -1801,7 +2155,7 @@
 
               <div class="summary-actions">
                 <a class="button button-primary" href="#anfrage">
-                  Unverbindlich anfragen
+                  Jetzt unverbindlich anfragen
                 </a>
                 <button class="button button-secondary" type="button" id="copy-config">
                   Konfiguration kopieren
@@ -1810,6 +2164,12 @@
                   Auswahl zurücksetzen
                 </button>
               </div>
+
+              <ul class="summary-reassure">
+                <li>Antwort binnen 24 Stunden</li>
+                <li>Keine Zahlungspflicht, keine Vorkasse</li>
+                <li>Erste Inhalte i.&nbsp;d.&nbsp;R. binnen 10 Werktagen live</li>
+              </ul>
             </div>
           </aside>
         </div>
@@ -1851,6 +2211,13 @@
             <strong>4 Kanäle</strong>
             <span>Magazin · App · Podcast · Branchennetzwerk</span>
           </div>
+        </div>
+
+        <div class="note" style="margin-top: var(--space-6);">
+          <strong>73&nbsp;% der B2B-Entscheider</strong> halten Fachbeiträge
+          für vertrauenswürdiger als Marketingmaterial
+          (Edelman/LinkedIn). Genau solche Beiträge produzieren wir mit
+          Ihnen – im redaktionellen Umfeld eines unabhängigen Fachmediums.
         </div>
 
         <div class="note">
@@ -1948,13 +2315,113 @@
     </section>
 
     <!-- =====================================================
-         04 · ANFRAGE
+         04 · FAQ
     ====================================================== -->
-    <section class="chapter" id="anfrage" aria-labelledby="anfrage-title">
+    <section class="chapter" id="faq" aria-labelledby="faq-title">
       <div class="wrap">
         <header class="chapter-head" data-index="04">
           <div>
-            <p class="kicker">04 · Anfrage</p>
+            <p class="kicker">04 · Häufige Fragen</p>
+            <h2 id="faq-title">Was Kunden vorab wissen wollen</h2>
+          </div>
+          <p class="lead">
+            Die wichtigsten Antworten vor Ihrer Anfrage – offen und ohne
+            Kleingedrucktes.
+          </p>
+        </header>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Wie schnell sind die ersten Inhalte live?</summary>
+            <div class="faq-body">
+              <p>
+                Erste Inhalte gehen in der Regel innerhalb von
+                10&nbsp;Werktagen nach Beauftragung live. Kein
+                komplizierter Agenturprozess, kein langer Vorlauf: Nach
+                Ihrer Anfrage folgt ein kurzes Feedbackgespräch, dann
+                startet die Redaktion.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Wie viel Aufwand entsteht auf unserer Seite?</summary>
+            <div class="faq-body">
+              <p>
+                Bewusst wenig. Bei Content-Formaten reicht typischerweise
+                ein Gespräch von 30–45 Minuten pro Beitrag mit der
+                Redaktion – Produktion, Distribution und Reporting
+                übernimmt das VTM. Jeden Beitrag geben Sie vor
+                Veröffentlichung frei.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Garantieren Sie Leads oder Abschlüsse?</summary>
+            <div class="faq-body">
+              <p>
+                Nein – das kann seriös niemand. Was wir liefern:
+                kontinuierliche Sichtbarkeit im Fachumfeld, messbare
+                Reichweite und je nach Format konkrete Kontakte (z.&nbsp;B.
+                die Lead-Liste einer Case Study oder eines Webinars). Die
+                Wirkung weisen wir transparent mit Reports nach.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Ist die Reichweite nicht zu klein?</summary>
+            <div class="faq-body">
+              <p>
+                Wenn Sie eine Massenkampagne suchen, sind wir nicht der
+                richtige Partner. Unser Wert liegt in der engen
+                Spezialisierung: ca. 35.000 Podcast-Downloads pro Monat,
+                6.000+ Newsletter-Empfänger mit rund 50&nbsp;%
+                Öffnungsrate – und eine Leserschaft, zu der
+                Vorstandsmitglieder führender Versicherer zählen.
+                Fachrelevanz statt Streuverlust.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Können wir klein starten und später erweitern?</summary>
+            <div class="faq-body">
+              <p>
+                Ja – genau dafür ist der Konfigurator gedacht. Viele
+                Kunden starten mit einem Fachartikel oder einer
+                Podcast-Episode und bauen danach aus. Wer von Anfang an
+                eine dauerhafte Marktposition aufbauen will, fährt mit
+                einem <a href="#programme">Jahresprogramm</a> am besten.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Sind die Preise verhandelbar?</summary>
+            <div class="faq-body">
+              <p>
+                Unsere Preise sind bewusst transparent und fair
+                kalkuliert. Statt zu rabattieren, passen wir lieber den
+                Leistungsumfang an Ihr Budget an – Mengenvorteile (etwa
+                bei Sponsored Posts) sind bereits im Konfigurator
+                hinterlegt.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         05 · ANFRAGE
+    ====================================================== -->
+    <section class="chapter" id="anfrage" aria-labelledby="anfrage-title">
+      <div class="wrap">
+        <header class="chapter-head" data-index="05">
+          <div>
+            <p class="kicker">05 · Anfrage</p>
             <h2 id="anfrage-title">Konfiguration absenden</h2>
           </div>
           <p class="lead">
@@ -2013,12 +2480,17 @@
             </div>
             <div class="button-row" style="margin-block: 0.5rem 0;">
               <button class="button button-primary" type="submit">
-                Anfrage per E-Mail senden
+                Jetzt Angebot anfordern – Antwort in 24 h
               </button>
             </div>
+            <ul class="form-reassure">
+              <li>Unverbindlich</li>
+              <li>Keine Zahlungspflicht</li>
+              <li>Persönliche Antwort vom Herausgeber</li>
+            </ul>
             <p class="offer-hint">
               Öffnet Ihr E-Mail-Programm mit Ihrer Konfiguration als
-              vorbereiteter Nachricht. Es entsteht keine Zahlungspflicht.
+              vorbereiteter Nachricht.
             </p>
           </form>
         </div>
@@ -2100,55 +2572,12 @@
     ========================================================= */
 
     const CATALOG = [
-      /* ---- Podcast & Audio ---- */
-      {
-        id: "quartalssponsoring",
-        group: "podcast",
-        format: "Sponsoring · pro Quartal",
-        name: "Quartalssponsoring Insurance Monday",
-        desc: "Das Flaggschiff: Ihr Unternehmen als offizieller Sponsor des reichweitenstärksten Podcasts der Branche.",
-        includes: [
-          "3 Podcast-Episoden mit Ihrem Thema",
-          "Vermarktung auf LinkedIn & allen Podcast-Plattformen",
-          "Audio-Ads-Produktion + Mid-Roll-Placement in 30 Episoden",
-          "Offizielles Sponsor-Branding auf allen Assets"
-        ],
-        unit: 30000,
-        unitSuffix: "pro Quartal",
-        mode: "qty",
-        qtyLabel: "Quartal(e)",
-        max: 4
-      },
-      {
-        id: "podcast-episode",
-        group: "podcast",
-        format: "Einzelformat",
-        name: "Einzelne Podcast-Episode",
-        desc: "Ihr Experte im Gespräch bei Insurance Monday – eine ganze Folge zu Ihrem Thema, erzählt an echten Praxisfällen.",
-        unit: 3500,
-        unitSuffix: "pro Episode",
-        mode: "qty",
-        qtyLabel: "Episode(n)",
-        max: 12
-      },
-      {
-        id: "podcast-ads",
-        group: "podcast",
-        format: "Audio Ads",
-        name: "Podcast Ads · Pre-Roll",
-        desc: "Ihre Botschaft als Pre-Roll in drei Episoden – direkt am Anfang, wenn die Aufmerksamkeit am höchsten ist.",
-        unit: 2500,
-        unitSuffix: "pro Paket (3 Episoden)",
-        mode: "qty",
-        qtyLabel: "Paket(e)",
-        max: 10
-      },
-
-      /* ---- Reichweite & Sichtbarkeit ---- */
+      /* ---- Magazin: Reichweite & Sichtbarkeit ---- */
       {
         id: "banner-web",
         group: "reichweite",
         format: "Display",
+        badge: "Bestseller",
         name: "Website-Werbebanner",
         desc: "Ihr Banner auf allen Seiten von versicherungstech-magazin.de – dauerhaft präsent im redaktionellen Umfeld.",
         unit: 1200,
@@ -2175,6 +2604,7 @@
         id: "newsletter",
         group: "reichweite",
         format: "Newsletter",
+        badge: "Beliebt",
         name: "Newsletter-Sponsoring",
         desc: "Exklusive Präsenz im VTM Briefing – 6.000+ Empfänger, rund 50 % Öffnungsrate, direkt im Posteingang der Branche.",
         unit: 1900,
@@ -2184,7 +2614,7 @@
         max: 12
       },
 
-      /* ---- Content & Thought Leadership ---- */
+      /* ---- Magazin: Content & Thought Leadership ---- */
       {
         id: "fachartikel",
         group: "content",
@@ -2248,6 +2678,51 @@
           { min: 10, discount: 0.20 },
           { min: 5, discount: 0.10 }
         ]
+      },
+
+      /* ---- Podcast & Audio ---- */
+      {
+        id: "quartalssponsoring",
+        group: "podcast",
+        format: "Sponsoring · pro Quartal",
+        name: "Quartalssponsoring Insurance Monday",
+        desc: "Das Flaggschiff: Ihr Unternehmen als offizieller Sponsor des reichweitenstärksten Podcasts der Branche.",
+        includes: [
+          "3 Podcast-Episoden mit Ihrem Thema",
+          "Vermarktung auf LinkedIn & allen Podcast-Plattformen",
+          "Audio-Ads-Produktion + Mid-Roll-Placement in 30 Episoden",
+          "Offizielles Sponsor-Branding auf allen Assets"
+        ],
+        unit: 30000,
+        unitSuffix: "pro Quartal",
+        mode: "qty",
+        qtyLabel: "Quartal(e)",
+        max: 4
+      },
+      {
+        id: "podcast-episode",
+        group: "podcast",
+        format: "Einzelformat",
+        badge: "Bestseller",
+        name: "Einzelne Podcast-Episode",
+        desc: "Ihr Experte im Gespräch bei Insurance Monday – eine ganze Folge zu Ihrem Thema, erzählt an echten Praxisfällen.",
+        unit: 3500,
+        unitSuffix: "pro Episode",
+        mode: "qty",
+        qtyLabel: "Episode(n)",
+        max: 12
+      },
+      {
+        id: "podcast-ads",
+        group: "podcast",
+        format: "Audio Ads",
+        name: "Podcast Ads · Pre-Roll",
+        desc: "Ihre Botschaft als Pre-Roll in drei Episoden – direkt am Anfang, wenn die Aufmerksamkeit am höchsten ist.",
+        unit: 2500,
+        unitSuffix: "pro Paket (3 Episoden)",
+        mode: "qty",
+        qtyLabel: "Paket(e)",
+        max: 10
       },
 
       /* ---- Programm-Bausteine (auf Anfrage) ---- */
@@ -2378,7 +2853,10 @@
         card.innerHTML =
           '<div class="offer-top">' +
           "<div>" +
+          '<div class="offer-format-row">' +
           '<p class="offer-format">' + item.format + "</p>" +
+          (item.badge ? '<span class="offer-badge">' + item.badge + "</span>" : "") +
+          "</div>" +
           "<h4>" + item.name + "</h4>" +
           "</div>" +
           '<button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="' +
@@ -2414,6 +2892,96 @@
         }
 
         grid.appendChild(card);
+      }
+    }
+
+    /* =========================================================
+       Beliebte Kombinationen (Presets)
+    ========================================================= */
+
+    const PRESETS = [
+      {
+        id: "starter",
+        badge: "Schneller Einstieg",
+        name: "Sichtbarkeits-Start",
+        tagline: "Erste Präsenz im Fachumfeld – ohne großes Budget.",
+        items: { "fachartikel": 1, "newsletter": 3, "sponsored-post": 5 }
+      },
+      {
+        id: "authority",
+        badge: "Meistgewählt",
+        featured: true,
+        name: "Thought-Leader-Paket",
+        tagline: "Gesicht und Thema systematisch in der Branche verankern.",
+        items: { "podcast-episode": 1, "interview": 1, "fachartikel": 2, "linkedin-service": 6 }
+      },
+      {
+        id: "market",
+        badge: "Maximale Präsenz",
+        name: "Marktführer-Paket",
+        tagline: "Volle Sichtbarkeit über alle Kanäle – ein Quartal lang.",
+        items: { "quartalssponsoring": 1, "newsletter": 3, "banner-app": 3, "casestudy": 1 }
+      }
+    ];
+
+    function presetTotal(preset) {
+      let total = 0;
+      for (const [id, qty] of Object.entries(preset.items)) {
+        const item = itemById(id);
+        if (item && !item.request) total += itemTotal(item, qty);
+      }
+      return total;
+    }
+
+    function presetLines(preset) {
+      const lines = [];
+      for (const [id, qty] of Object.entries(preset.items)) {
+        const item = itemById(id);
+        if (!item) continue;
+        lines.push(item.name + " · " + qty + " " + (item.qtyLabel || "×"));
+      }
+      return lines;
+    }
+
+    function renderPresets() {
+      const grid = document.getElementById("preset-grid");
+      if (!grid) return;
+
+      for (const preset of PRESETS) {
+        const card = document.createElement("article");
+        card.className = "preset-card" + (preset.featured ? " is-featured" : "");
+        card.innerHTML =
+          '<span class="preset-badge">' + preset.badge + "</span>" +
+          "<h4>" + preset.name + "</h4>" +
+          '<p class="offer-desc"' + (preset.featured ? ' style="color: rgb(255 255 255 / 0.78);"' : "") + ">" +
+          preset.tagline + "</p>" +
+          '<ul class="offer-includes">' +
+          presetLines(preset).map((x) => "<li>" + x + "</li>").join("") +
+          "</ul>" +
+          '<p class="preset-price">' + fmt.format(presetTotal(preset)) +
+          "<span>gesamt netto</span></p>" +
+          '<button type="button" class="button ' +
+          (preset.featured ? "button-primary" : "button-secondary") +
+          '">Paket übernehmen</button>';
+
+        card.querySelector("button").addEventListener("click", () => {
+          applyPreset(preset);
+        });
+
+        grid.appendChild(card);
+      }
+    }
+
+    function applyPreset(preset) {
+      for (const key of Object.keys(state)) delete state[key];
+      for (const [id, qty] of Object.entries(preset.items)) {
+        if (itemById(id)) state[id] = qty;
+      }
+      update();
+      showToast("„" + preset.name + "“ übernommen – passen Sie es beliebig an.");
+      const summary = document.getElementById("zusammenfassung");
+      if (summary && window.matchMedia("(min-width: 1081px)").matches) {
+        summary.scrollIntoView({ behavior: "smooth", block: "nearest" });
       }
     }
 
@@ -2655,6 +3223,7 @@
     ========================================================= */
 
     renderCards();
+    renderPresets();
     loadState();
     update();
   </script>

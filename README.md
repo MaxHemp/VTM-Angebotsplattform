@@ -12,16 +12,22 @@ Preisübersicht und senden ihre Konfiguration als unverbindliche Anfrage.
 
 ## Funktionen
 
-- **Modularer Konfigurator** in vier Kategorien:
+- **Modularer Konfigurator** in vier Kategorien (Magazin-Leistungen
+  zuerst, Podcast danach):
+  - Magazin · Reichweite & Sichtbarkeit (Website-Banner,
+    Website + App-Banner, Newsletter-Sponsoring) – Banner-Varianten
+    schließen sich gegenseitig aus
+  - Magazin · Content & Thought Leadership (Fachartikel, Executive
+    Interview, Case Study inkl. Lead-Liste, LinkedIn as a Service,
+    Sponsored LinkedIn Posts)
   - Podcast & Audio (Quartalssponsoring Insurance Monday,
     Einzel-Episoden, Podcast Ads Pre-Roll)
-  - Reichweite & Sichtbarkeit (Website-Banner, Website + App-Banner,
-    Newsletter-Sponsoring) – Banner-Varianten schließen sich gegenseitig aus
-  - Content & Thought Leadership (Fachartikel, Executive Interview,
-    Case Study inkl. Lead-Liste, LinkedIn as a Service,
-    Sponsored LinkedIn Posts)
   - Programm-Bausteine auf Anfrage (Marktcheck im Entscheider-Panel,
     Deep-Dive-Webinar, Expert Commentaries, Kategorie-Exklusivität)
+- **Conversion-Elemente**: Social-Proof-Band (Leserschaft), drei
+  vorkonfigurierte „Beliebte Kombinationen" mit 1-Klick-Übernahme,
+  Bestseller-/Beliebt-Badges, Einwand-FAQ, Reassurance-Microcopy an
+  allen CTAs (Antwort in 24 h, keine Zahlungspflicht), Nav-CTA.
 - **Mengenrabatt-Logik** für Sponsored LinkedIn Posts:
   ab 5 Posts −10 %, ab 10 Posts −20 % (Ersparnis wird ausgewiesen).
 - **Laufzeit-/Stückzahl-Stepper** je Leistung (Monate, Episoden, Pakete …).
