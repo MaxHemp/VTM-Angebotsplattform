@@ -33,9 +33,13 @@ Preisübersicht und senden ihre Konfiguration als unverbindliche Anfrage.
 - **Laufzeit-/Stückzahl-Stepper** je Leistung (Monate, Episoden, Pakete …).
 - **Live-Zusammenfassung** als Sticky-Panel (Desktop) und
   Bottom-Bar (Mobile), Netto-Summe zzgl. USt.
-- **Anfrage-Formular**: öffnet das E-Mail-Programm mit der kompletten
-  Konfiguration als vorbereitete Nachricht; alternativ
-  „Konfiguration kopieren".
+- **Anfrage-Formular mit echtem Backend**: sendet die Anfrage inkl.
+  Konfiguration per `fetch` an einen konfigurierbaren
+  Formular-Endpoint (Formspree-kompatibel, siehe unten) – mit
+  Ladezustand, Erfolgsbestätigung, Fehlerbehandlung und
+  Honeypot-Spamschutz. Ohne konfigurierten Endpoint fällt das Formular
+  automatisch auf `mailto:` zurück. Zusätzlich zeigt eine
+  Live-Vorschau am Formular die gewählte Konfiguration.
 - **Persistenz** der Auswahl über `localStorage`.
 - **Jahresprogramme** (Category Presence, Authority Program,
   Startup Presence) als Teaser für geführte Zwölf-Monats-Programme.
@@ -46,6 +50,23 @@ Basiert auf dem **VTM Brand & Design System 4.2 „Luminous Editorial
 Edition"**: Farbwelt (Deep Cobalt / Electric Blue / Brass), Typografie
 (Plus Jakarta Sans, Inter, Source Serif 4, IBM Plex Mono), Brand Rail,
 Hero-Atmosphäre, Signal-Linien und Card-Sprache.
+
+## Formular-Backend aktivieren
+
+Das Formular ist Formspree-kompatibel vorbereitet:
+
+1. Kostenloses Konto auf [formspree.io](https://formspree.io) anlegen.
+2. Neues Formular erstellen, Ziel-E-Mail:
+   `maximilian.hempel@versicherungstech-magazin.de`.
+3. In `index.html` die Konstante `FORM_ENDPOINT` (oben im
+   `<script>`-Block) auf die Formular-URL setzen, z. B.
+   `https://formspree.io/f/abcdwxyz` – oder alternativ vor dem Skript
+   `window.VTM_FORM_ENDPOINT` definieren.
+
+Es funktioniert jeder Endpoint, der ein JSON-POST mit
+`{ name, company, email, message, konfiguration }` akzeptiert
+(Getform, Basin, eigene API …). Solange kein Endpoint gesetzt ist,
+öffnet das Formular als Fallback das E-Mail-Programm des Besuchers.
 
 ## Betrieb
 

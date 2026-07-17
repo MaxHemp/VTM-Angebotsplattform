@@ -152,6 +152,8 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    [hidden] { display: none !important; }
+
     img, svg { display: block; max-width: 100%; }
     img { height: auto; }
     button, input, textarea, select { color: inherit; font: inherit; }
@@ -1774,6 +1776,120 @@
 
     .field textarea { min-height: 120px; resize: vertical; }
 
+    /* Honeypot: für Menschen unsichtbar, Bots füllen es aus */
+    .field-hp {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+    }
+
+    .form-status {
+      padding: 1rem 1.2rem;
+      border-radius: var(--radius-m);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .form-status.is-error {
+      color: var(--c-danger, #a52626);
+      background: #fdeaea;
+      border: 1px solid rgb(165 38 38 / 0.24);
+    }
+
+    .form-success {
+      display: grid;
+      gap: 0.75rem;
+      padding: clamp(1.5rem, 3vw, 2.25rem);
+      background:
+        linear-gradient(90deg, rgb(23 102 58 / 0.06), transparent),
+        var(--c-success-bg);
+      border: 1px solid rgb(23 102 58 / 0.24);
+      border-left: 3px solid var(--c-success);
+      border-radius: 0 var(--radius-m) var(--radius-m) 0;
+    }
+
+    .form-success h3 { margin-bottom: 0; color: var(--c-success); }
+    .form-success p { margin-bottom: 0; color: var(--text-secondary); }
+
+    .button.is-loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    /* ------- Konfigurations-Recap am Formular ------- */
+
+    .form-recap {
+      display: grid;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      padding: 1rem 1.2rem;
+      background: var(--c-paper-blue);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-m);
+    }
+
+    .form-recap .recap-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .form-recap .recap-title {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .form-recap .recap-edit {
+      font-size: 0.78rem;
+      white-space: nowrap;
+    }
+
+    .form-recap ul {
+      display: grid;
+      gap: 0.25rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+    }
+
+    .form-recap li {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .form-recap li .recap-price {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      white-space: nowrap;
+    }
+
+    .form-recap .recap-total {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--border-medium);
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .form-recap .recap-empty {
+      margin: 0;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
     .note {
       position: relative;
       margin-top: var(--space-6);
@@ -1938,9 +2054,46 @@
     }
 
     @media (max-width: 700px) {
+      :root { --nav-height: 60px; }
+
       .config-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
-      .brand-logo-nav { height: 26px; }
+      .brand-logo-nav { height: 24px; }
+
+      .nav-inner { gap: 0.75rem; }
+      .nav-links { gap: 0.85rem; }
+      .nav-links a { font-size: 0.66rem; min-height: 40px; }
+      .nav-links a.nav-cta { min-height: 34px; padding: 0.35rem 0.7rem; }
+
+      .hero > .wrap { padding-block: clamp(3rem, 8vw, 4.5rem); }
+      .hero-grid { gap: 2rem; }
+      .hero .lead { font-size: 1.02rem; }
+      .hero-claim { margin-top: var(--space-5); }
+
+      .chapter { padding-block: clamp(3.5rem, 9vw, 5rem); }
+      .chapter-head { margin-bottom: clamp(2.5rem, 7vw, 3.5rem); }
+
+      /* Touch-Targets vergrößern */
+      .stepper button { width: 46px; min-height: 46px; }
+      .stepper output { min-width: 68px; }
+
+      /* iOS zoomt bei Inputs unter 16px – verhindern */
+      .field input,
+      .field textarea { font-size: 16px; }
+
+      .offer-card { padding: 1.15rem 1.05rem; }
+      .summary-inner { padding: 1.25rem 1.1rem; }
+
+      .footer-bottom { justify-content: center; text-align: center; }
+    }
+
+    @media (max-width: 1080px) {
+      /* Toast über der Mobile-Bar anzeigen */
+      .toast {
+        bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+        width: max-content;
+        max-width: calc(100vw - 2rem);
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -2141,7 +2294,7 @@
 
               <ul class="summary-list" id="summary-list"></ul>
 
-              <div class="summary-total" id="summary-total" hidden>
+              <div class="summary-total" id="summary-total" aria-live="polite" hidden>
                 <div class="total-row">
                   <span class="total-label">Gesamt netto</span>
                   <span class="total-value" id="total-value">0&nbsp;€</span>
@@ -2455,44 +2608,81 @@
             </div>
           </div>
 
-          <form class="form-grid" id="request-form" novalidate>
-            <div class="form-row">
-              <div class="field">
-                <label for="f-name">Name*</label>
-                <input id="f-name" name="name" type="text" autocomplete="name" required>
+          <div id="form-wrapper">
+            <div class="form-recap" id="form-recap" aria-live="polite">
+              <div class="recap-head">
+                <p class="recap-title">Ihre Konfiguration</p>
+                <a class="recap-edit" href="#konfigurator">Bearbeiten</a>
+              </div>
+              <p class="recap-empty" id="recap-empty">
+                Noch keine Leistungen ausgewählt – Ihre Anfrage können Sie
+                trotzdem senden, z.&nbsp;B. für eine individuelle Beratung.
+              </p>
+              <ul id="recap-list"></ul>
+              <div class="recap-total" id="recap-total" hidden>
+                <span>Gesamt netto</span>
+                <span id="recap-total-value">0&nbsp;€</span>
+              </div>
+            </div>
+
+            <form class="form-grid" id="request-form" novalidate>
+              <div class="form-row">
+                <div class="field">
+                  <label for="f-name">Name*</label>
+                  <input id="f-name" name="name" type="text" autocomplete="name" required>
+                </div>
+                <div class="field">
+                  <label for="f-company">Unternehmen*</label>
+                  <input id="f-company" name="company" type="text" autocomplete="organization" required>
+                </div>
               </div>
               <div class="field">
-                <label for="f-company">Unternehmen*</label>
-                <input id="f-company" name="company" type="text" autocomplete="organization" required>
+                <label for="f-email">E-Mail*</label>
+                <input id="f-email" name="email" type="email" autocomplete="email" required>
               </div>
-            </div>
-            <div class="field">
-              <label for="f-email">E-Mail*</label>
-              <input id="f-email" name="email" type="email" autocomplete="email" required>
-            </div>
-            <div class="field">
-              <label for="f-message">Nachricht (optional)</label>
-              <textarea
-                id="f-message"
-                name="message"
-                placeholder="Ziele, Zeitrahmen, Fragen …"
-              ></textarea>
-            </div>
-            <div class="button-row" style="margin-block: 0.5rem 0;">
-              <button class="button button-primary" type="submit">
-                Jetzt Angebot anfordern – Antwort in 24 h
-              </button>
-            </div>
-            <ul class="form-reassure">
-              <li>Unverbindlich</li>
-              <li>Keine Zahlungspflicht</li>
-              <li>Persönliche Antwort vom Herausgeber</li>
-            </ul>
-            <p class="offer-hint">
-              Öffnet Ihr E-Mail-Programm mit Ihrer Konfiguration als
-              vorbereiteter Nachricht.
+              <div class="field">
+                <label for="f-message">Nachricht (optional)</label>
+                <textarea
+                  id="f-message"
+                  name="message"
+                  placeholder="Ziele, Zeitrahmen, Fragen …"
+                ></textarea>
+              </div>
+
+              <!-- Honeypot gegen Spam-Bots -->
+              <div class="field field-hp" aria-hidden="true">
+                <label for="f-website">Website</label>
+                <input id="f-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+              </div>
+
+              <div class="form-status is-error" id="form-error" hidden></div>
+
+              <div class="button-row" style="margin-block: 0.5rem 0;">
+                <button class="button button-primary" type="submit" id="submit-btn">
+                  Jetzt Angebot anfordern – Antwort in 24 h
+                </button>
+              </div>
+              <ul class="form-reassure">
+                <li>Unverbindlich</li>
+                <li>Keine Zahlungspflicht</li>
+                <li>Persönliche Antwort vom Herausgeber</li>
+              </ul>
+            </form>
+          </div>
+
+          <div class="form-success" id="form-success" hidden>
+            <h3>Vielen Dank für Ihre Anfrage!</h3>
+            <p>
+              Ihre Konfiguration ist bei uns eingegangen. Sie erhalten
+              innerhalb von 24 Stunden eine persönliche Antwort von
+              Maximilian Hempel – in der Regel deutlich schneller.
             </p>
-          </form>
+            <p>
+              Dringend? Schreiben Sie direkt an
+              <a href="mailto:maximilian.hempel@versicherungstech-magazin.de">
+                maximilian.hempel@versicherungstech-magazin.de</a>.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -2565,6 +2755,24 @@
 
   <script>
     "use strict";
+
+    /* =========================================================
+       Formular-Backend
+       ---------------------------------------------------------
+       Hier den Endpoint eines Formular-Dienstes eintragen, z. B.
+       Formspree:  1. Kostenloses Konto auf formspree.io anlegen
+                   2. Neues Formular erstellen (Ziel-E-Mail:
+                      maximilian.hempel@versicherungstech-magazin.de)
+                   3. Die Formular-ID unten eintragen, z. B.
+                      "https://formspree.io/f/abcdwxyz"
+       Alternativ funktioniert jeder Endpoint, der ein
+       JSON-POST mit { name, company, email, ... } akzeptiert
+       (Getform, Basin, eigene API …).
+       Solange kein Endpoint gesetzt ist, öffnet das Formular als
+       Fallback das E-Mail-Programm (mailto).
+    ========================================================= */
+
+    const FORM_ENDPOINT = window.VTM_FORM_ENDPOINT || "";
 
     /* =========================================================
        Leistungskatalog
@@ -3111,6 +3319,9 @@
             : " Bausteine werden individuell kalkuliert.");
       }
 
+      /* Recap am Formular */
+      renderRecap();
+
       /* Mobile Bar */
       const bar = document.getElementById("mobile-bar");
       const count = priced + requests;
@@ -3122,6 +3333,46 @@
       bar.style.display = any ? "" : "none";
 
       saveState();
+    }
+
+    /* =========================================================
+       Recap am Formular
+    ========================================================= */
+
+    function renderRecap() {
+      const list = document.getElementById("recap-list");
+      const empty = document.getElementById("recap-empty");
+      const totalBox = document.getElementById("recap-total");
+      const totalValue = document.getElementById("recap-total-value");
+      if (!list) return;
+
+      list.innerHTML = "";
+      let total = 0;
+      let count = 0;
+
+      for (const item of CATALOG) {
+        const val = state[item.id];
+        if (!val) continue;
+        count++;
+
+        const li = document.createElement("li");
+        if (item.request) {
+          li.innerHTML =
+            "<span>" + item.name + "</span>" +
+            '<span class="recap-price">auf Anfrage</span>';
+        } else {
+          const sum = itemTotal(item, val);
+          total += sum;
+          li.innerHTML =
+            "<span>" + item.name + " · " + val + " " + (item.qtyLabel || "×") + "</span>" +
+            '<span class="recap-price">' + fmt.format(sum) + "</span>";
+        }
+        list.appendChild(li);
+      }
+
+      empty.hidden = count > 0;
+      totalBox.hidden = count === 0;
+      totalValue.textContent = fmt.format(total);
     }
 
     /* =========================================================
@@ -3187,16 +3438,7 @@
 
     document.getElementById("reset-config").addEventListener("click", resetAll);
 
-    document.getElementById("request-form").addEventListener("submit", (ev) => {
-      ev.preventDefault();
-      const form = ev.target;
-      if (!form.reportValidity()) return;
-
-      const name = form.elements.name.value.trim();
-      const company = form.elements.company.value.trim();
-      const email = form.elements.email.value.trim();
-      const message = form.elements.message.value.trim();
-
+    function buildMailto(name, company, email, message) {
       const subject = "Anfrage VTM Leistungspaket – " + company;
       const body =
         "Guten Tag Herr Hempel,\n\n" +
@@ -3209,13 +3451,85 @@
         company + "\n" +
         email + "\n";
 
-      const mailto =
+      return (
         "mailto:maximilian.hempel@versicherungstech-magazin.de" +
         "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(body);
+        "&body=" + encodeURIComponent(body)
+      );
+    }
 
-      window.location.href = mailto;
-      showToast("Ihr E-Mail-Programm öffnet sich mit der Anfrage.");
+    function showFormError(mailtoUrl) {
+      const errBox = document.getElementById("form-error");
+      errBox.hidden = false;
+      errBox.innerHTML =
+        "Die Anfrage konnte gerade nicht übertragen werden. " +
+        "Bitte versuchen Sie es erneut oder senden Sie Ihre Konfiguration " +
+        '<a href="' + mailtoUrl + '">direkt per E-Mail</a>.';
+    }
+
+    function showFormSuccess() {
+      document.getElementById("form-wrapper").hidden = true;
+      const success = document.getElementById("form-success");
+      success.hidden = false;
+      success.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    document.getElementById("request-form").addEventListener("submit", async (ev) => {
+      ev.preventDefault();
+      const form = ev.target;
+      if (!form.reportValidity()) return;
+
+      /* Honeypot: von Bots ausgefüllt → still verwerfen */
+      if (form.elements._gotcha.value) {
+        showFormSuccess();
+        return;
+      }
+
+      const name = form.elements.name.value.trim();
+      const company = form.elements.company.value.trim();
+      const email = form.elements.email.value.trim();
+      const message = form.elements.message.value.trim();
+      const mailtoUrl = buildMailto(name, company, email, message);
+
+      document.getElementById("form-error").hidden = true;
+
+      /* Ohne konfigurierten Endpoint: Fallback auf E-Mail-Programm */
+      if (!FORM_ENDPOINT) {
+        window.location.href = mailtoUrl;
+        showToast("Ihr E-Mail-Programm öffnet sich mit der Anfrage.");
+        return;
+      }
+
+      const btn = document.getElementById("submit-btn");
+      const btnLabel = btn.textContent;
+      btn.classList.add("is-loading");
+      btn.textContent = "Wird gesendet …";
+
+      try {
+        const res = await fetch(FORM_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            name: name,
+            company: company,
+            email: email,
+            message: message,
+            konfiguration: configAsText(),
+            _subject: "Anfrage VTM Leistungspaket – " + company
+          })
+        });
+
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        showFormSuccess();
+      } catch (e) {
+        showFormError(mailtoUrl);
+      } finally {
+        btn.classList.remove("is-loading");
+        btn.textContent = btnLabel;
+      }
     });
 
     /* =========================================================
