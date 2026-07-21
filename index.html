@@ -352,9 +352,30 @@
       gap: var(--space-6);
     }
 
-    .brand-logo { display: block; width: auto; object-fit: contain; }
-    .brand-logo-nav { height: 32px; max-width: min(280px, 34vw); }
-    .brand-logo-footer { height: 42px; max-width: min(360px, 80vw); }
+    /* Wortmarke: selbst gerendert, keine externe Bildabhängigkeit */
+    .wordmark {
+      display: inline-block;
+      color: var(--c-cobalt-950);
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 0.9rem + 0.5vw, 1.22rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .wordmark em {
+      margin-left: 0.32ch;
+      color: var(--c-blue-700);
+      font-style: normal;
+    }
+
+    .wordmark-footer {
+      color: var(--c-white);
+      font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.7rem);
+    }
+
+    .wordmark-footer em { color: var(--c-blue-500); }
 
     .logo-link {
       position: relative;
@@ -746,33 +767,61 @@
 
     /* ------- Conversational Quickstart (Hero) ------- */
 
+    .hero-prompt-form { margin-bottom: 1rem; }
+
     .hero-prompt {
       display: flex;
       align-items: center;
-      gap: 0.15rem;
-      margin-bottom: 1rem;
-      padding: 0.8rem 1.1rem;
+      gap: 0.5rem;
+      padding: 0.45rem 0.45rem 0.45rem 1.1rem;
       background: rgb(255 255 255 / 0.09);
       border: 1px solid rgb(255 255 255 / 0.22);
       border-radius: 999px;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      color: rgb(255 255 255 / 0.66);
-      font-size: 0.9rem;
       box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.10);
+      transition: border-color var(--motion-fast) ease, background var(--motion-fast) ease;
     }
 
-    .prompt-caret {
-      width: 2px;
-      height: 1.15em;
+    .hero-prompt:focus-within {
+      background: rgb(255 255 255 / 0.14);
+      border-color: var(--c-brass-300);
+    }
+
+    .hero-prompt input {
+      flex: 1;
+      min-width: 0;
+      padding: 0.35rem 0;
+      background: transparent;
+      border: 0;
+      outline: none;
+      color: var(--c-white);
+      font-size: 16px;
+      caret-color: var(--c-brass-300);
+    }
+
+    .hero-prompt input::placeholder { color: rgb(255 255 255 / 0.55); }
+
+    .prompt-send {
       flex: none;
-      background: var(--c-brass-300);
-      animation: vtm-caret 1.1s step-end infinite;
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgb(255 255 255 / 0.30);
+      border-radius: 50%;
+      background: rgb(255 255 255 / 0.12);
+      color: var(--c-white);
+      font-size: 1.05rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background var(--motion-fast) ease, border-color var(--motion-fast) ease, transform var(--motion-fast) var(--ease-signal);
     }
 
-    @keyframes vtm-caret {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
+    .prompt-send:hover {
+      background: var(--c-blue-600);
+      border-color: transparent;
+      transform: translateX(1px);
     }
 
     .goal-chips {
@@ -2333,7 +2382,6 @@
 
       .config-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
-      .brand-logo-nav { height: 24px; }
 
       .nav-inner { gap: 0.75rem; }
       .nav-links { gap: 0.85rem; }
@@ -2399,14 +2447,7 @@
   <nav class="site-nav" aria-label="Hauptnavigation">
     <div class="wrap-wide nav-inner">
       <a class="logo-link" href="#top" aria-label="VersicherungsTech Magazin – zum Anfang">
-        <img
-          class="brand-logo brand-logo-nav"
-          src="https://storage.ghost.io/c/16/79/16794837-6459-4f6f-b4c4-2787d5771849/content/images/size/w1000/2026/04/Logo--2-.png"
-          alt="VersicherungsTech Magazin"
-          decoding="async"
-          fetchpriority="high"
-          referrerpolicy="no-referrer"
-        >
+        <span class="wordmark">VersicherungsTech<em>Magazin</em></span>
       </a>
 
       <ul class="nav-links">
@@ -2475,10 +2516,21 @@
           <p class="meta">Schnellstart</p>
           <h2 id="goal-title">Was möchten Sie erreichen?</h2>
 
-          <div class="hero-prompt" aria-hidden="true">
-            <span>Ihr Ziel in der Versicherungsbranche&nbsp;…</span>
-            <span class="prompt-caret"></span>
-          </div>
+          <form class="hero-prompt-form" id="goal-form">
+            <label class="sr-only" for="goal-input">
+              Ihr Ziel in der Versicherungsbranche
+            </label>
+            <div class="hero-prompt">
+              <input
+                id="goal-input"
+                type="text"
+                placeholder="Ihr Ziel in der Versicherungsbranche …"
+                autocomplete="off"
+                maxlength="200"
+              >
+              <button type="submit" class="prompt-send" aria-label="Ziel absenden">→</button>
+            </div>
+          </form>
 
           <div class="goal-chips" role="group" aria-label="Ziel wählen">
             <button type="button" class="goal-chip" data-goal="starter">
@@ -2548,7 +2600,46 @@
                 <h3>Beliebte Kombinationen</h3>
                 <p class="meta">1 Klick · danach frei anpassbar</p>
               </div>
-              <div class="preset-grid" id="preset-grid"></div>
+              <div class="preset-grid" id="preset-grid">
+                <article class="preset-card" data-preset="starter">
+                  <span class="preset-badge">Schneller Einstieg</span>
+                  <h4>Sichtbarkeits-Start</h4>
+                  <p class="offer-desc">Der kompakte Einstieg: gesehen werden, wo die Branche liest.</p>
+                  <ul class="offer-includes">
+                    <li>Fachartikel · 1 Artikel</li>
+                    <li>Newsletter-Sponsoring · 3 Monat(e)</li>
+                    <li>Sponsored LinkedIn Post · 5 Post(s)</li>
+                  </ul>
+                  <p class="preset-price">9.975&nbsp;€<span>gesamt netto</span></p>
+                  <button type="button" class="button button-secondary">Paket übernehmen</button>
+                </article>
+                <article class="preset-card is-featured" data-preset="authority">
+                  <span class="preset-badge">Meistgewählt</span>
+                  <h4>Thought-Leader-Paket</h4>
+                  <p class="offer-desc" style="color: rgb(255 255 255 / 0.78);">Ihr Kopf und Ihr Thema werden in der Branche verankert.</p>
+                  <ul class="offer-includes">
+                    <li>Einzelne Podcast-Episode · 1 Episode(n)</li>
+                    <li>Executive Interview · 1 Interview(s)</li>
+                    <li>Fachartikel · 2 Artikel</li>
+                    <li>LinkedIn as a Service · 6 Monat(e)</li>
+                  </ul>
+                  <p class="preset-price">21.500&nbsp;€<span>gesamt netto</span></p>
+                  <button type="button" class="button button-primary">Paket übernehmen</button>
+                </article>
+                <article class="preset-card" data-preset="market">
+                  <span class="preset-badge">Maximale Präsenz</span>
+                  <h4>Marktführer-Paket</h4>
+                  <p class="offer-desc">Volle Sichtbarkeit über alle Kanäle – ein Quartal lang.</p>
+                  <ul class="offer-includes">
+                    <li>Quartalssponsoring Insurance Monday · 1 Quartal(e)</li>
+                    <li>Newsletter-Sponsoring · 3 Monat(e)</li>
+                    <li>Werbebanner Website + VTM App · 3 Monat(e)</li>
+                    <li>Case Study inkl. Lead-Liste · 1 Case Studies</li>
+                  </ul>
+                  <p class="preset-price">44.700&nbsp;€<span>gesamt netto</span></p>
+                  <button type="button" class="button button-secondary">Paket übernehmen</button>
+                </article>
+              </div>
             </div>
 
             <!-- Magazin: Reichweite & Sichtbarkeit -->
@@ -2557,7 +2648,82 @@
                 <h3>Magazin · Reichweite &amp; Sichtbarkeit</h3>
                 <p class="meta">Website · App · Newsletter mit 6.000+ Empfängern</p>
               </div>
-              <div class="config-grid" data-group="reichweite"></div>
+              <div class="config-grid" data-group="reichweite">
+                <article class="offer-card" data-id="banner-web">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">Werbebanner</p>
+                        <span class="offer-badge">Bestseller</span>
+                      </div>
+                      <h4>Website-Werbebanner</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Website-Werbebanner auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">Ihr Banner auf allen Seiten von versicherungstech-magazin.de – dauerhaft präsent im redaktionellen Umfeld.</p>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong>1.200&nbsp;€</strong><span>pro Monat</span>
+                    </div>
+                    <div class="stepper" aria-label="Menge wählen">
+                      <button type="button" data-step="-1" aria-label="Weniger">−</button>
+                      <output>1 Monat(e)</output>
+                      <button type="button" data-step="1" aria-label="Mehr">+</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="offer-card" data-id="banner-app">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">Werbebanner + App</p>
+                      </div>
+                      <h4>Werbebanner Website + VTM App</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Werbebanner Website + VTM App auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">Maximale Präsenz: Ihr Banner auf allen Webseiten und zusätzlich in der VTM App – direkt auf dem Startbildschirm der Entscheider.</p>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong>2.000&nbsp;€</strong><span>pro Monat</span>
+                    </div>
+                    <div class="stepper" aria-label="Menge wählen">
+                      <button type="button" data-step="-1" aria-label="Weniger">−</button>
+                      <output>1 Monat(e)</output>
+                      <button type="button" data-step="1" aria-label="Mehr">+</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="offer-card" data-id="newsletter">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">Newsletter</p>
+                        <span class="offer-badge">Beliebt</span>
+                      </div>
+                      <h4>Newsletter-Sponsoring</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Newsletter-Sponsoring auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">Exklusive Präsenz im VTM Briefing – 6.000+ Empfänger, rund 50 % Öffnungsrate, direkt im Posteingang der Branche.</p>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong>1.900&nbsp;€</strong><span>pro Monat</span>
+                    </div>
+                    <div class="stepper" aria-label="Menge wählen">
+                      <button type="button" data-step="-1" aria-label="Weniger">−</button>
+                      <output>1 Monat(e)</output>
+                      <button type="button" data-step="1" aria-label="Mehr">+</button>
+                    </div>
+                  </div>
+                </article>
+              </div>
             </div>
 
             <!-- Magazin: Content & Thought Leadership -->
@@ -2566,7 +2732,128 @@
                 <h3>Magazin · Content &amp; Thought Leadership</h3>
                 <p class="meta">Redaktionell produziert · werblich gekennzeichnet</p>
               </div>
-              <div class="config-grid" data-group="content"></div>
+              <div class="config-grid" data-group="content">
+                <article class="offer-card" data-id="fachartikel">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">Gesponserter Fachbeitrag</p>
+                      </div>
+                      <h4>Fachartikel</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Fachartikel auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">Von unserer Redaktion geschriebener Fachbeitrag zu Ihrem Thema – auf der Website, in der App und angeteasert im Newsletter.</p>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong>900&nbsp;€</strong><span>pro Artikel</span>
+                    </div>
+                    <div class="stepper" aria-label="Menge wählen">
+                      <button type="button" data-step="-1" aria-label="Weniger">−</button>
+                      <output>1 Artikel</output>
+                      <button type="button" data-step="1" aria-label="Mehr">+</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="offer-card" data-id="interview">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">Interview</p>
+                      </div>
+                      <h4>Executive Interview</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Executive Interview auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">Ihre Führungskraft im redaktionellen Interview – Positionierung über Person und Haltung statt Werbebotschaft.</p>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong>1.200&nbsp;€</strong><span>pro Interview</span>
+                    </div>
+                    <div class="stepper" aria-label="Menge wählen">
+                      <button type="button" data-step="-1" aria-label="Weniger">−</button>
+                      <output>1 Interview(s)</output>
+                      <button type="button" data-step="1" aria-label="Mehr">+</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="offer-card" data-id="casestudy">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">Praxisbericht + Kontakte</p>
+                      </div>
+                      <h4>Case Study inkl. Lead-Liste</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Case Study inkl. Lead-Liste auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">Ihr Kundenprojekt als überzeugende Erfolgsgeschichte – inklusive Kontaktliste aller Interessenten, die den Bericht angefordert haben.</p>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong>3.000&nbsp;€</strong><span>pro Case Study</span>
+                    </div>
+                    <div class="stepper" aria-label="Menge wählen">
+                      <button type="button" data-step="-1" aria-label="Weniger">−</button>
+                      <output>1 Case Studies</output>
+                      <button type="button" data-step="1" aria-label="Mehr">+</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="offer-card" data-id="linkedin-service">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">LinkedIn as a Service</p>
+                      </div>
+                      <h4>LinkedIn as a Service</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="LinkedIn as a Service auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">Wir liefern 4 fertige LinkedIn-Beiträge pro Monat für die Profile Ihrer Vertriebs- und Führungskräfte – damit sie zu relevanten Versicherungsthemen als Experten sichtbar werden.</p>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong>2.500&nbsp;€</strong><span>pro Monat</span>
+                    </div>
+                    <div class="stepper" aria-label="Menge wählen">
+                      <button type="button" data-step="-1" aria-label="Weniger">−</button>
+                      <output>1 Monat(e)</output>
+                      <button type="button" data-step="1" aria-label="Mehr">+</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="offer-card" data-id="sponsored-post">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">VTM LinkedIn-Kanal</p>
+                      </div>
+                      <h4>Sponsored LinkedIn Post</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Sponsored LinkedIn Post auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">Ihr Beitrag über den VTM-Kanal – dort, wo die Branche täglich mitliest. Mengenrabatt: ab 5 Posts −10 %, ab 10 Posts −20 %.</p>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong>750&nbsp;€</strong><span>pro Post</span>
+                    </div>
+                    <div class="stepper" aria-label="Menge wählen">
+                      <button type="button" data-step="-1" aria-label="Weniger">−</button>
+                      <output>1 Post(s)</output>
+                      <button type="button" data-step="1" aria-label="Mehr">+</button>
+                    </div>
+                  </div>
+                </article>
+              </div>
             </div>
 
             <!-- Podcast & Audio -->
@@ -2575,7 +2862,87 @@
                 <h3>Podcast &amp; Audio</h3>
                 <p class="meta">Insurance Monday · ca. 35.000 Downloads / Monat</p>
               </div>
-              <div class="config-grid" data-group="podcast"></div>
+              <div class="config-grid" data-group="podcast">
+                <article class="offer-card" data-id="quartalssponsoring">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">Sponsoring · pro Quartal</p>
+                      </div>
+                      <h4>Quartalssponsoring Insurance Monday</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Quartalssponsoring Insurance Monday auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">Das Flaggschiff: Ihr Unternehmen ein Quartal lang als offizieller Sponsor des reichweitenstärksten Podcasts der Branche.</p>
+                  <ul class="offer-includes">
+                    <li>3 komplette Podcast-Episoden zu Ihrem Thema</li>
+                    <li>Bewerbung auf LinkedIn & allen gängigen Podcast-Plattformen</li>
+                    <li>Produktion Ihres Audio-Werbespots + Ausspielung in 30 weiteren Episoden (mitten in der Folge)</li>
+                    <li>Offizielle Nennung als Sponsor auf allen Materialien</li>
+                  </ul>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong>30.000&nbsp;€</strong><span>pro Quartal</span>
+                    </div>
+                    <div class="stepper" aria-label="Menge wählen">
+                      <button type="button" data-step="-1" aria-label="Weniger">−</button>
+                      <output>1 Quartal(e)</output>
+                      <button type="button" data-step="1" aria-label="Mehr">+</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="offer-card" data-id="podcast-episode">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">Einzelformat</p>
+                        <span class="offer-badge">Bestseller</span>
+                      </div>
+                      <h4>Einzelne Podcast-Episode</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Einzelne Podcast-Episode auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">Ihr Experte im Gespräch bei Insurance Monday – eine ganze Folge zu Ihrem Thema, erzählt an echten Fällen aus der Praxis.</p>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong>3.500&nbsp;€</strong><span>pro Episode</span>
+                    </div>
+                    <div class="stepper" aria-label="Menge wählen">
+                      <button type="button" data-step="-1" aria-label="Weniger">−</button>
+                      <output>1 Episode(n)</output>
+                      <button type="button" data-step="1" aria-label="Mehr">+</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="offer-card" data-id="podcast-ads">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">Podcast-Werbung</p>
+                      </div>
+                      <h4>Podcast-Werbespot (Pre-Roll)</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Podcast-Werbespot (Pre-Roll) auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">Ihr Werbespot am Anfang von drei Episoden – dort, wo die Aufmerksamkeit am höchsten ist.</p>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong>2.500&nbsp;€</strong><span>pro Paket (3 Episoden)</span>
+                    </div>
+                    <div class="stepper" aria-label="Menge wählen">
+                      <button type="button" data-step="-1" aria-label="Weniger">−</button>
+                      <output>1 Paket(e)</output>
+                      <button type="button" data-step="1" aria-label="Mehr">+</button>
+                    </div>
+                  </div>
+                </article>
+              </div>
             </div>
 
             <!-- Programm-Bausteine -->
@@ -2584,7 +2951,88 @@
                 <h3>Programm-Bausteine</h3>
                 <p class="meta">Individuell kalkuliert · Preis auf Anfrage</p>
               </div>
-              <div class="config-grid" data-group="anfrage"></div>
+              <div class="config-grid" data-group="anfrage">
+                <article class="offer-card is-request" data-id="marktcheck">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">Marktbefragung</p>
+                      </div>
+                      <h4>Marktcheck im Entscheider-Panel</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Marktcheck im Entscheider-Panel auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">Wir befragen unser Netzwerk aus Führungskräften der Versicherungsbranche zu Ihrem Thema. Das Ergebnis: eine zitierfähige Zahl für Presse und Vertrieb.</p>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong class="price-request">Auf Anfrage</strong><span>individuell kalkuliert</span>
+                    </div>
+                    <span class="tag tag-brass">Im Gespräch klären</span>
+                  </div>
+                </article>
+                <article class="offer-card is-request" data-id="webinar">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">Webinar + Kontakte</p>
+                      </div>
+                      <h4>Fach-Webinar mit Teilnehmerliste</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Fach-Webinar mit Teilnehmerliste auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">45 Minuten unter VTM-Flagge: Wir moderieren, Ihr Experte zeigt die Lösung an einem konkreten Fall. Die komplette Anmeldeliste geht an Ihren Vertrieb – jede Anmeldung ist echtes Interesse.</p>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong class="price-request">Auf Anfrage</strong><span>individuell kalkuliert</span>
+                    </div>
+                    <span class="tag tag-brass">Im Gespräch klären</span>
+                  </div>
+                </article>
+                <article class="offer-card is-request" data-id="commentaries">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">Dauerpräsenz</p>
+                      </div>
+                      <h4>Experten-Statements</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Experten-Statements auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">Kurze Zitate und Einschätzungen Ihres Experten in der laufenden VTM-Berichterstattung – wirken redaktionell statt werblich und halten Ihr Gesicht in der Branche präsent.</p>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong class="price-request">Auf Anfrage</strong><span>individuell kalkuliert</span>
+                    </div>
+                    <span class="tag tag-brass">Im Gespräch klären</span>
+                  </div>
+                </article>
+                <article class="offer-card is-request" data-id="exklusiv">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">Exklusivität</p>
+                      </div>
+                      <h4>Kategorie-Exklusivität</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Kategorie-Exklusivität auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">Ihr Thema gehört Ihnen allein: In Ihrer Kategorie tritt kein weiterer Werbepartner im VTM auf – die volle Aufmerksamkeit liegt bei Ihnen.</p>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong class="price-request">Auf Anfrage</strong><span>individuell kalkuliert</span>
+                    </div>
+                    <span class="tag tag-brass">Im Gespräch klären</span>
+                  </div>
+                </article>
+              </div>
             </div>
 
           </div>
@@ -3041,14 +3489,7 @@
     <div class="wrap">
       <div class="footer-grid">
         <div>
-          <img
-            class="brand-logo brand-logo-footer"
-            src="https://storage.ghost.io/c/16/79/16794837-6459-4f6f-b4c4-2787d5771849/content/images/size/w1000/2026/07/versicherungstech_logo_white.png"
-            alt="VersicherungsTech Magazin"
-            decoding="async"
-            loading="lazy"
-            referrerpolicy="no-referrer"
-          >
+          <span class="wordmark wordmark-footer">VersicherungsTech<em>Magazin</em></span>
           <p style="margin-top: 1.25rem; max-width: 42ch;">
             Die Fachmedien- und Dialogplattform für
             Technologieentscheidungen in der DACH-Versicherungswirtschaft.
@@ -3089,7 +3530,7 @@
   </footer>
 
   <!-- Mobile Summary Bar -->
-  <div class="mobile-bar" id="mobile-bar" aria-hidden="true">
+  <div class="mobile-bar" id="mobile-bar" aria-hidden="true" style="display: none;">
     <div class="bar-info">
       <span class="bar-label" id="bar-label">0 Leistungen</span>
       <span class="bar-total" id="bar-total">0&nbsp;€</span>
@@ -3367,64 +3808,16 @@
     }
 
     /* =========================================================
-       Card-Rendering
+       Card-Hydration
+       Die Karten stehen vollständig als statisches HTML in der
+       Seite (Inhalte & Preise ohne JavaScript sichtbar). Hier
+       werden nur noch die Interaktionen angeschlossen.
     ========================================================= */
 
-    const CHECK_SVG =
-      '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-
-    function priceMarkup(item) {
-      if (item.request) {
-        return '<strong class="price-request">Auf Anfrage</strong><span>individuell kalkuliert</span>';
-      }
-      return "<strong>" + fmt.format(item.unit) + "</strong><span>" + item.unitSuffix + "</span>";
-    }
-
-    function renderCards() {
+    function hydrateCards() {
       for (const item of CATALOG) {
-        const grid = document.querySelector('[data-group="' + item.group + '"]');
-        if (!grid) continue;
-
-        const card = document.createElement("article");
-        card.className = "offer-card" + (item.request ? " is-request" : "");
-        card.dataset.id = item.id;
-
-        let controls = "";
-        if (!item.request) {
-          controls =
-            '<div class="stepper" aria-label="Menge wählen">' +
-            '<button type="button" data-step="-1" aria-label="Weniger">−</button>' +
-            '<output>1 ' + (item.qtyLabel || "") + "</output>" +
-            '<button type="button" data-step="1" aria-label="Mehr">+</button>' +
-            "</div>";
-        } else {
-          controls = '<span class="tag tag-brass">Im Gespräch klären</span>';
-        }
-
-        card.innerHTML =
-          '<div class="offer-top">' +
-          "<div>" +
-          '<div class="offer-format-row">' +
-          '<p class="offer-format">' + item.format + "</p>" +
-          (item.badge ? '<span class="offer-badge">' + item.badge + "</span>" : "") +
-          "</div>" +
-          "<h4>" + item.name + "</h4>" +
-          "</div>" +
-          '<button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="' +
-          item.name + ' auswählen">' +
-          '<span class="box">' + CHECK_SVG + "</span>" +
-          "</button>" +
-          "</div>" +
-          '<p class="offer-desc">' + item.desc + "</p>" +
-          (item.includes
-            ? '<ul class="offer-includes">' +
-              item.includes.map((x) => "<li>" + x + "</li>").join("") +
-              "</ul>"
-            : "") +
-          '<div class="offer-bottom">' +
-          '<div class="offer-price">' + priceMarkup(item) + "</div>" +
-          controls +
-          "</div>";
+        const card = document.querySelector('.offer-card[data-id="' + item.id + '"]');
+        if (!card) continue;
 
         /* Auswahl togglen: Klick auf Card oder Checkbox */
         card.addEventListener("click", (ev) => {
@@ -3441,8 +3834,6 @@
             });
           });
         }
-
-        grid.appendChild(card);
       }
     }
 
@@ -3484,42 +3875,21 @@
       return total;
     }
 
-    function presetLines(preset) {
-      const lines = [];
-      for (const [id, qty] of Object.entries(preset.items)) {
-        const item = itemById(id);
-        if (!item) continue;
-        lines.push(item.name + " · " + qty + " " + (item.qtyLabel || "×"));
-      }
-      return lines;
-    }
-
-    function renderPresets() {
-      const grid = document.getElementById("preset-grid");
-      if (!grid) return;
-
+    function hydratePresets() {
       for (const preset of PRESETS) {
-        const card = document.createElement("article");
-        card.className = "preset-card" + (preset.featured ? " is-featured" : "");
-        card.innerHTML =
-          '<span class="preset-badge">' + preset.badge + "</span>" +
-          "<h4>" + preset.name + "</h4>" +
-          '<p class="offer-desc"' + (preset.featured ? ' style="color: rgb(255 255 255 / 0.78);"' : "") + ">" +
-          preset.tagline + "</p>" +
-          '<ul class="offer-includes">' +
-          presetLines(preset).map((x) => "<li>" + x + "</li>").join("") +
-          "</ul>" +
-          '<p class="preset-price">' + fmt.format(presetTotal(preset)) +
-          "<span>gesamt netto</span></p>" +
-          '<button type="button" class="button ' +
-          (preset.featured ? "button-primary" : "button-secondary") +
-          '">Paket übernehmen</button>';
+        const card = document.querySelector('.preset-card[data-preset="' + preset.id + '"]');
+        if (!card) continue;
+
+        /* Preis aus dem Katalog nachrechnen, damit statisches HTML
+           und Einzelpreise nie auseinanderlaufen */
+        const price = card.querySelector(".preset-price");
+        if (price) {
+          price.innerHTML = fmt.format(presetTotal(preset)) + "<span>gesamt netto</span>";
+        }
 
         card.querySelector("button").addEventListener("click", () => {
           applyPreset(preset);
         });
-
-        grid.appendChild(card);
       }
     }
 
@@ -3557,6 +3927,46 @@
         if (preset) applyPreset(preset, { scrollTarget: "#pakete" });
       });
     });
+
+    /* Freitext-Ziel im Hero: wird in die Anfrage übernommen,
+       bei erkennbarem Ziel wird das passende Startpaket geladen */
+    const goalForm = document.getElementById("goal-form");
+    if (goalForm) {
+      goalForm.addEventListener("submit", (ev) => {
+        ev.preventDefault();
+        const input = document.getElementById("goal-input");
+        const text = input.value.trim();
+
+        if (text) {
+          const msg = document.getElementById("f-message");
+          if (msg) {
+            const line = "Mein Ziel: " + text;
+            if (!msg.value.includes(line)) {
+              msg.value = msg.value ? msg.value + "\n" + line : line;
+            }
+          }
+        }
+
+        const t = text.toLowerCase();
+        let preset = null;
+        if (/sichtbar|bekannt|reichweit|einstieg|erste|klein|start/.test(t)) {
+          preset = PRESETS.find((p) => p.id === "starter");
+        } else if (/thought|leader|expert|autori|positionier|thema|wissen|vertrauen/.test(t)) {
+          preset = PRESETS.find((p) => p.id === "authority");
+        } else if (/maximal|marktf|überall|ueberall|sponsor|gross|groß|premium|voll/.test(t)) {
+          preset = PRESETS.find((p) => p.id === "market");
+        }
+
+        if (preset) {
+          applyPreset(preset, { scrollTarget: "#pakete" });
+          if (text) showToast("Passendes Startpaket geladen – Ihr Ziel geht mit in die Anfrage.");
+        } else {
+          if (text) showToast("Ihr Ziel wird in die Anfrage übernommen.");
+          const target = document.getElementById("konfigurator");
+          if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    }
 
     /* =========================================================
        Interaktion
@@ -3916,8 +4326,8 @@
       document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
     }
 
-    renderCards();
-    renderPresets();
+    hydrateCards();
+    hydratePresets();
     loadState();
     update();
   </script>

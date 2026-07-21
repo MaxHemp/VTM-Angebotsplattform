@@ -84,6 +84,25 @@ funktioniert jeder Endpoint, der ein JSON-POST mit
 `{ name, company, email, message, konfiguration }` akzeptiert
 (Getform, Basin, eigene API …).
 
+## Robustheit (Progressive Enhancement)
+
+Alle Leistungs- und Paketkarten stehen **statisch im HTML** – Inhalte,
+Umfang und Preise sind auch ohne JavaScript sichtbar (wichtig für
+SEO, restriktive Firmen-Browser und Datei-Vorschauen). JavaScript
+„hydratisiert" die Karten nur noch: Auswahl, Stepper, Summen, Presets
+und Formularversand. Die Preset-Preise im HTML werden bei aktivem
+JavaScript aus dem Katalog nachgerechnet, damit statisches Markup und
+Einzelpreise nie auseinanderlaufen (nach Preisänderungen im `CATALOG`
+bitte auch die statischen Kartenpreise im HTML anpassen).
+
+Die Logos sind als selbst gerenderte **Text-Wortmarke** umgesetzt –
+ohne externe Bildabhängigkeit, damit die Marke auch bei blockiertem
+CDN oder strenger Content-Security-Policy erscheint. Das
+Schnellstart-Feld im Hero ist ein echtes Eingabefeld: Freitext wird
+in die Anfrage-Nachricht übernommen; erkennt die Seite ein Ziel
+(Sichtbarkeit / Thought Leadership / maximale Präsenz), lädt sie
+zusätzlich das passende Startpaket.
+
 ## Betrieb
 
 Statische Seite – einfach `index.html` ausliefern (z. B. GitHub Pages,
