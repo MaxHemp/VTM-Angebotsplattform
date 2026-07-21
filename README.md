@@ -65,6 +65,16 @@ Moderne Design-Patterns (alle rein CSS/JS, keine Video-Assets):
 - **Card Stacking (Story Stack)** für die Jahresprogramme: Karten
   schieben sich beim Scrollen per `position: sticky` übereinander;
   auf Mobile automatischer Reflow zum vertikalen Stapel.
+- **KI-Video-Loop im Hero**: 6-Sekunden-Micro-Loop (Seedance 2.0 aus
+  einem GPT-Image-2-Master-Motiv, identischer Start-/End-Frame =
+  nahtlos). Lädt nur auf Desktop und ohne
+  `prefers-reduced-motion`-Präferenz (JS injiziert die Quelle, Mobile
+  lädt kein Video); Fallback ist die CSS-Aurora-Atmosphäre. Das
+  Master-Standbild wird zusätzlich im Anfrage-Bereich wiederverwendet
+  (konsistenter Bildstil, gleiche Szene an mehreren Stellen).
+- **Maus-Parallax im Hero** (nur feine Zeiger, respektiert
+  Reduced Motion): Video, Atmosphäre und Panel verschieben sich
+  subtil gegenläufig zur Mausbewegung.
 - **Soft Glassmorphism**: mattierte, halbtransparente Flächen mit
   `backdrop-filter` für Navigation, Hero-Panel, Mobile-Bar und Toasts.
 - **Scroll Reveals** via `IntersectionObserver` – Inhalte sind ohne

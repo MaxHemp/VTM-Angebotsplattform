@@ -528,6 +528,45 @@
       to { transform: translate3d(2.5%, 2%, 0) scale(1.07); }
     }
 
+    /* Video-Loop im Hero: KI-generierter Micro-Loop, lädt nur auf
+       Desktop und ohne Reduced-Motion-Präferenz (JS-gesteuert) */
+    .hero-video-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1400ms ease;
+    }
+
+    .hero.has-video .hero-video-layer { opacity: 1; }
+
+    .hero.has-video .hero-aurora,
+    .hero.has-video .hero-atmosphere { display: none; }
+
+    .hero-video-layer video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: right center;
+      transform: scale(1.05);
+      will-change: transform;
+    }
+
+    /* Lesbarkeits-Verlauf über dem Video, links am stärksten */
+    .hero-video-layer::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg,
+          rgb(255 255 255 / 0.94) 0%,
+          rgb(255 255 255 / 0.72) 38%,
+          rgb(255 255 255 / 0.18) 72%,
+          rgb(255 255 255 / 0.04) 100%);
+    }
+
     .scroll-cue {
       position: absolute;
       bottom: 1.4rem;
@@ -2589,6 +2628,9 @@
        HERO
   ====================================================== -->
   <header class="hero" aria-labelledby="hero-title">
+    <div class="hero-video-layer" aria-hidden="true">
+      <video id="hero-video" muted loop playsinline preload="none"></video>
+    </div>
     <div class="hero-aurora" aria-hidden="true"></div>
     <div class="hero-atmosphere" aria-hidden="true">
       <span class="hero-orbit hero-orbit-a"></span>
@@ -3532,7 +3574,7 @@
           <div>
             <div class="request-visual reveal">
               <img
-                src="https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_192911_06587ffa-fea3-48a9-bd36-b72a4e7c9a7f_min.webp"
+                src="https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_194120_fdf14a25-efd8-46ce-8627-99975ff50504_min.webp"
                 alt=""
                 loading="lazy"
                 decoding="async"
@@ -4472,6 +4514,69 @@
     /* =========================================================
        Init
     ========================================================= */
+
+    /* Hero-Video-Loop: nur Desktop, nur ohne Reduced-Motion,
+       Quelle wird erst hier injiziert (kein Download auf Mobile) */
+    const HERO_VIDEO_URL = "https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_194403_3aee469a-e842-49fa-ba0c-348501bdf066.mp4";
+    const HERO_POSTER_URL = "https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_194120_fdf14a25-efd8-46ce-8627-99975ff50504_min.webp";
+
+    (function initHeroVideo() {
+      const video = document.getElementById("hero-video");
+      const hero = document.querySelector(".hero");
+      if (!video || !hero || HERO_VIDEO_URL.indexOf("http") !== 0) return;
+
+      const allowed =
+        window.matchMedia("(min-width: 861px)").matches &&
+        !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!allowed) return;
+
+      video.poster = HERO_POSTER_URL;
+      const source = document.createElement("source");
+      source.src = HERO_VIDEO_URL;
+      source.type = "video/mp4";
+      video.appendChild(source);
+      video.load();
+
+      const start = video.play();
+      const show = () => hero.classList.add("has-video");
+      if (start && start.then) start.then(show).catch(() => {});
+      else show();
+    })();
+
+    /* Maus-Parallax im Hero: nur feine Zeiger, nur ohne Reduced-Motion */
+    (function initHeroParallax() {
+      const hero = document.querySelector(".hero");
+      if (!hero) return;
+      if (!window.matchMedia("(pointer: fine)").matches) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      const layers = [
+        { el: document.querySelector(".hero-video-layer video"), fx: -14, fy: -9, scale: " scale(1.05)" },
+        { el: document.querySelector(".hero-atmosphere"), fx: -10, fy: -6, scale: "" },
+        { el: document.querySelector(".hero-panel"), fx: 6, fy: 4, scale: "" }
+      ].filter((l) => l.el);
+      if (!layers.length) return;
+
+      let raf = null;
+      hero.addEventListener("mousemove", (ev) => {
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = null;
+          const r = hero.getBoundingClientRect();
+          const x = (ev.clientX - r.left) / r.width - 0.5;
+          const y = (ev.clientY - r.top) / r.height - 0.5;
+          for (const l of layers) {
+            l.el.style.transform =
+              "translate3d(" + (x * l.fx).toFixed(1) + "px, " +
+              (y * l.fy).toFixed(1) + "px, 0)" + l.scale;
+          }
+        });
+      });
+
+      hero.addEventListener("mouseleave", () => {
+        for (const l of layers) l.el.style.transform = "";
+      });
+    })();
 
     /* Scroll Reveal: nur ohne Reduced-Motion-Präferenz aktivieren */
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
