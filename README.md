@@ -70,22 +70,19 @@ Moderne Design-Patterns (alle rein CSS/JS, keine Video-Assets):
 - **Scroll Reveals** via `IntersectionObserver` – Inhalte sind ohne
   JavaScript und bei `prefers-reduced-motion` vollständig sichtbar.
 
-## Formular-Backend aktivieren
+## Formular-Backend
 
-Das Formular ist Formspree-kompatibel vorbereitet:
+Das Formular sendet per `fetch` an Formspree
+(`https://formspree.io/f/mzdnvzqq`, konfiguriert in der Konstante
+`FORM_ENDPOINT` in `index.html`). Die Ziel-Adresse
+`info@versicherungstech-magazin.de` wird im Formspree-Dashboard
+verwaltet. Schlägt der Versand fehl, bietet das Formular automatisch
+einen E-Mail-Fallback (`mailto:` an dieselbe Adresse) an.
 
-1. Kostenloses Konto auf [formspree.io](https://formspree.io) anlegen.
-2. Neues Formular erstellen, Ziel-E-Mail:
-   `maximilian.hempel@versicherungstech-magazin.de`.
-3. In `index.html` die Konstante `FORM_ENDPOINT` (oben im
-   `<script>`-Block) auf die Formular-URL setzen, z. B.
-   `https://formspree.io/f/abcdwxyz` – oder alternativ vor dem Skript
-   `window.VTM_FORM_ENDPOINT` definieren.
-
-Es funktioniert jeder Endpoint, der ein JSON-POST mit
+Zum Austausch des Backends genügt es, `FORM_ENDPOINT` zu ändern – es
+funktioniert jeder Endpoint, der ein JSON-POST mit
 `{ name, company, email, message, konfiguration }` akzeptiert
-(Getform, Basin, eigene API …). Solange kein Endpoint gesetzt ist,
-öffnet das Formular als Fallback das E-Mail-Programm des Besuchers.
+(Getform, Basin, eigene API …).
 
 ## Betrieb
 

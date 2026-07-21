@@ -2596,8 +2596,9 @@
               <h3 id="summary-title">Zusammenfassung</h3>
 
               <p class="summary-empty" id="summary-empty">
-                Noch keine Leistungen ausgewählt. Klicken Sie links auf die
-                Bausteine, die Sie interessieren.
+                Noch keine Leistungen ausgewählt. Wählen Sie im
+                Konfigurator einfach die Bausteine an, die Sie
+                interessieren.
               </p>
 
               <ul class="summary-list" id="summary-list"></ul>
@@ -2746,10 +2747,10 @@
             </div>
             <div class="program-side">
               <ul class="offer-includes">
-                <li>Startup-Profil &amp; Kategorieeinordnung</li>
-                <li>Sechs rotierende Aktivierungen pro Jahr</li>
+                <li>Startup-Profil &amp; Einordnung in Ihre Kategorie</li>
+                <li>Sechs Präsenz-Slots pro Jahr, rotierend über die VTM-Kanäle</li>
                 <li>Gründerinterview oder Startup-Porträt</li>
-                <li>Halbjahresreport</li>
+                <li>Halbjahresbericht mit allen Kennzahlen</li>
               </ul>
             </div>
           </article>
@@ -2771,9 +2772,9 @@
             <div class="program-side">
               <ul class="offer-includes">
                 <li>Positionierungs-Workshop &amp; Anbieterprofil</li>
-                <li>Monatlicher Präsenzslot: Podcast, Banner oder Newsletter</li>
-                <li>Zwei Expertenstatements pro Jahr</li>
-                <li>Quartalsreport &amp; Jahres-Review</li>
+                <li>Jeden Monat ein Präsenz-Slot: Podcast, Banner oder Newsletter</li>
+                <li>Zwei Experten-Statements pro Jahr</li>
+                <li>Quartalsbericht &amp; gemeinsame Jahresauswertung</li>
               </ul>
             </div>
           </article>
@@ -2784,8 +2785,9 @@
               <h4>VTM Authority Program</h4>
               <p>
                 Eine belastbare fachliche Position zu einem
-                Versicherungsthema aufbauen – mit Jahres-Storyline,
-                kontinuierlicher Distribution und Quartals-Reviews.
+                Versicherungsthema aufbauen – mit durchgängiger
+                Jahresgeschichte, laufender Verbreitung über alle Kanäle
+                und regelmäßiger Auswertung.
               </p>
               <p class="program-price">
                 ab 28.000&nbsp;€
@@ -2794,10 +2796,10 @@
             </div>
             <div class="program-side">
               <ul class="offer-includes">
-                <li>Themen-Workshop &amp; Jahres-Storyline</li>
-                <li>Vier hochwertige Content-Module</li>
-                <li>Podcast-Integrationen &amp; Executive Interviews</li>
-                <li>Digitaler Roundtable &amp; vier QBRs</li>
+                <li>Themen-Workshop &amp; Planung Ihrer Jahresgeschichte</li>
+                <li>Vier große Fachinhalte (z.&nbsp;B. Studie, Whitepaper, Case Study)</li>
+                <li>Podcast-Auftritte &amp; Interviews mit Ihren Führungskräften</li>
+                <li>Digitale Expertenrunde &amp; Auswertung in jedem Quartal</li>
               </ul>
             </div>
           </article>
@@ -3023,8 +3025,8 @@
             </p>
             <p>
               Dringend? Schreiben Sie direkt an
-              <a href="mailto:maximilian.hempel@versicherungstech-magazin.de">
-                maximilian.hempel@versicherungstech-magazin.de</a>.
+              <a href="mailto:info@versicherungstech-magazin.de">
+                info@versicherungstech-magazin.de</a>.
             </p>
           </div>
         </div>
@@ -3103,20 +3105,17 @@
     /* =========================================================
        Formular-Backend
        ---------------------------------------------------------
-       Hier den Endpoint eines Formular-Dienstes eintragen, z. B.
-       Formspree:  1. Kostenloses Konto auf formspree.io anlegen
-                   2. Neues Formular erstellen (Ziel-E-Mail:
-                      maximilian.hempel@versicherungstech-magazin.de)
-                   3. Die Formular-ID unten eintragen, z. B.
-                      "https://formspree.io/f/abcdwxyz"
-       Alternativ funktioniert jeder Endpoint, der ein
-       JSON-POST mit { name, company, email, ... } akzeptiert
-       (Getform, Basin, eigene API …).
-       Solange kein Endpoint gesetzt ist, öffnet das Formular als
-       Fallback das E-Mail-Programm (mailto).
+       Formspree-Formular, Ziel-Postfach:
+       info@versicherungstech-magazin.de
+       (Ziel-Adresse wird im Formspree-Dashboard verwaltet.)
+       Alternativ funktioniert jeder Endpoint, der ein JSON-POST
+       mit { name, company, email, ... } akzeptiert.
+       Fällt der Versand aus, bietet das Formular automatisch den
+       E-Mail-Fallback an.
     ========================================================= */
 
-    const FORM_ENDPOINT = window.VTM_FORM_ENDPOINT || "";
+    const FORM_ENDPOINT = window.VTM_FORM_ENDPOINT || "https://formspree.io/f/mzdnvzqq";
+    const CONTACT_EMAIL = "info@versicherungstech-magazin.de";
 
     /* =========================================================
        Leistungskatalog
@@ -3128,7 +3127,7 @@
       {
         id: "banner-web",
         group: "reichweite",
-        format: "Display",
+        format: "Werbebanner",
         badge: "Bestseller",
         name: "Website-Werbebanner",
         desc: "Ihr Banner auf allen Seiten von versicherungstech-magazin.de – dauerhaft präsent im redaktionellen Umfeld.",
@@ -3142,7 +3141,7 @@
       {
         id: "banner-app",
         group: "reichweite",
-        format: "Display + App",
+        format: "Werbebanner + App",
         name: "Werbebanner Website + VTM App",
         desc: "Maximale Präsenz: Ihr Banner auf allen Webseiten und zusätzlich in der VTM App – direkt auf dem Startbildschirm der Entscheider.",
         unit: 2000,
@@ -3170,9 +3169,9 @@
       {
         id: "fachartikel",
         group: "content",
-        format: "Sponsored Article",
+        format: "Gesponserter Fachbeitrag",
         name: "Fachartikel",
-        desc: "Redaktionell produzierter Fachbeitrag zu Ihrem Thema – auf der Website, in der App und als Teaser im Newsletter.",
+        desc: "Von unserer Redaktion geschriebener Fachbeitrag zu Ihrem Thema – auf der Website, in der App und angeteasert im Newsletter.",
         unit: 900,
         unitSuffix: "pro Artikel",
         mode: "qty",
@@ -3184,7 +3183,7 @@
         group: "content",
         format: "Interview",
         name: "Executive Interview",
-        desc: "Ihr Entscheider im redaktionellen Interview – Positionierung über Person und Haltung statt Werbebotschaft.",
+        desc: "Ihre Führungskraft im redaktionellen Interview – Positionierung über Person und Haltung statt Werbebotschaft.",
         unit: 1200,
         unitSuffix: "pro Interview",
         mode: "qty",
@@ -3194,9 +3193,9 @@
       {
         id: "casestudy",
         group: "content",
-        format: "Case Study + Leads",
+        format: "Praxisbericht + Kontakte",
         name: "Case Study inkl. Lead-Liste",
-        desc: "Ihr Projekt als belastbare Case Study – inklusive Liste der Interessenten, die das Dokument angefordert haben.",
+        desc: "Ihr Kundenprojekt als überzeugende Erfolgsgeschichte – inklusive Kontaktliste aller Interessenten, die den Bericht angefordert haben.",
         unit: 3000,
         unitSuffix: "pro Case Study",
         mode: "qty",
@@ -3208,7 +3207,7 @@
         group: "content",
         format: "LinkedIn as a Service",
         name: "LinkedIn as a Service",
-        desc: "Wir liefern 4 Content Pieces pro Monat für die LinkedIn-Accounts Ihrer Vertriebler und Entscheider – Thought Leadership zu relevanten Versicherungsthemen.",
+        desc: "Wir liefern 4 fertige LinkedIn-Beiträge pro Monat für die Profile Ihrer Vertriebs- und Führungskräfte – damit sie zu relevanten Versicherungsthemen als Experten sichtbar werden.",
         unit: 2500,
         unitSuffix: "pro Monat",
         mode: "months",
@@ -3238,12 +3237,12 @@
         group: "podcast",
         format: "Sponsoring · pro Quartal",
         name: "Quartalssponsoring Insurance Monday",
-        desc: "Das Flaggschiff: Ihr Unternehmen als offizieller Sponsor des reichweitenstärksten Podcasts der Branche.",
+        desc: "Das Flaggschiff: Ihr Unternehmen ein Quartal lang als offizieller Sponsor des reichweitenstärksten Podcasts der Branche.",
         includes: [
-          "3 Podcast-Episoden mit Ihrem Thema",
-          "Vermarktung auf LinkedIn & allen Podcast-Plattformen",
-          "Audio-Ads-Produktion + Mid-Roll-Placement in 30 Episoden",
-          "Offizielles Sponsor-Branding auf allen Assets"
+          "3 komplette Podcast-Episoden zu Ihrem Thema",
+          "Bewerbung auf LinkedIn & allen gängigen Podcast-Plattformen",
+          "Produktion Ihres Audio-Werbespots + Ausspielung in 30 weiteren Episoden (mitten in der Folge)",
+          "Offizielle Nennung als Sponsor auf allen Materialien"
         ],
         unit: 30000,
         unitSuffix: "pro Quartal",
@@ -3257,7 +3256,7 @@
         format: "Einzelformat",
         badge: "Bestseller",
         name: "Einzelne Podcast-Episode",
-        desc: "Ihr Experte im Gespräch bei Insurance Monday – eine ganze Folge zu Ihrem Thema, erzählt an echten Praxisfällen.",
+        desc: "Ihr Experte im Gespräch bei Insurance Monday – eine ganze Folge zu Ihrem Thema, erzählt an echten Fällen aus der Praxis.",
         unit: 3500,
         unitSuffix: "pro Episode",
         mode: "qty",
@@ -3267,9 +3266,9 @@
       {
         id: "podcast-ads",
         group: "podcast",
-        format: "Audio Ads",
-        name: "Podcast Ads · Pre-Roll",
-        desc: "Ihre Botschaft als Pre-Roll in drei Episoden – direkt am Anfang, wenn die Aufmerksamkeit am höchsten ist.",
+        format: "Podcast-Werbung",
+        name: "Podcast-Werbespot (Pre-Roll)",
+        desc: "Ihr Werbespot am Anfang von drei Episoden – dort, wo die Aufmerksamkeit am höchsten ist.",
         unit: 2500,
         unitSuffix: "pro Paket (3 Episoden)",
         mode: "qty",
@@ -3281,25 +3280,25 @@
       {
         id: "marktcheck",
         group: "anfrage",
-        format: "Research",
+        format: "Marktbefragung",
         name: "Marktcheck im Entscheider-Panel",
-        desc: "Wir befragen das VTM-Entscheider-Panel zu Ihrem Thema. Das Ergebnis: Ihre zitierfähige Zahl für Presse und Vertrieb.",
+        desc: "Wir befragen unser Netzwerk aus Führungskräften der Versicherungsbranche zu Ihrem Thema. Das Ergebnis: eine zitierfähige Zahl für Presse und Vertrieb.",
         request: true
       },
       {
         id: "webinar",
         group: "anfrage",
-        format: "Konversion",
-        name: "Deep-Dive-Webinar mit Lead-Liste",
-        desc: "45 Minuten unter VTM-Banner: Das VTM moderiert, Ihr Experte zeigt die Lösung. Die komplette Anmeldeliste geht an Ihren Vertrieb.",
+        format: "Webinar + Kontakte",
+        name: "Fach-Webinar mit Teilnehmerliste",
+        desc: "45 Minuten unter VTM-Flagge: Wir moderieren, Ihr Experte zeigt die Lösung an einem konkreten Fall. Die komplette Anmeldeliste geht an Ihren Vertrieb – jede Anmeldung ist echtes Interesse.",
         request: true
       },
       {
         id: "commentaries",
         group: "anfrage",
         format: "Dauerpräsenz",
-        name: "Expert Commentaries",
-        desc: "Kurze Einordnungen Ihres Experten in der laufenden VTM-Berichterstattung – wirken redaktionell statt werblich.",
+        name: "Experten-Statements",
+        desc: "Kurze Zitate und Einschätzungen Ihres Experten in der laufenden VTM-Berichterstattung – wirken redaktionell statt werblich und halten Ihr Gesicht in der Branche präsent.",
         request: true
       },
       {
@@ -3307,7 +3306,7 @@
         group: "anfrage",
         format: "Exklusivität",
         name: "Kategorie-Exklusivität",
-        desc: "Ihr Thema allein: Für eine definierte Kategorie tritt kein weiterer Sponsor im VTM auf. 100 % Share of Voice.",
+        desc: "Ihr Thema gehört Ihnen allein: In Ihrer Kategorie tritt kein weiterer Werbepartner im VTM auf – die volle Aufmerksamkeit liegt bei Ihnen.",
         request: true
       }
     ];
@@ -3456,7 +3455,7 @@
         id: "starter",
         badge: "Schneller Einstieg",
         name: "Sichtbarkeits-Start",
-        tagline: "Erste Präsenz im Fachumfeld – ohne großes Budget.",
+        tagline: "Der kompakte Einstieg: gesehen werden, wo die Branche liest.",
         items: { "fachartikel": 1, "newsletter": 3, "sponsored-post": 5 }
       },
       {
@@ -3464,7 +3463,7 @@
         badge: "Meistgewählt",
         featured: true,
         name: "Thought-Leader-Paket",
-        tagline: "Gesicht und Thema systematisch in der Branche verankern.",
+        tagline: "Ihr Kopf und Ihr Thema werden in der Branche verankert.",
         items: { "podcast-episode": 1, "interview": 1, "fachartikel": 2, "linkedin-service": 6 }
       },
       {
@@ -3818,7 +3817,7 @@
         email + "\n";
 
       return (
-        "mailto:maximilian.hempel@versicherungstech-magazin.de" +
+        "mailto:" + CONTACT_EMAIL +
         "?subject=" + encodeURIComponent(subject) +
         "&body=" + encodeURIComponent(body)
       );
