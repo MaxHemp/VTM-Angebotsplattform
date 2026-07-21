@@ -1870,6 +1870,55 @@
 
     .mobile-bar .button { min-height: 42px; padding: 0.5rem 1rem; }
 
+    /* ------- Programm-Bildband ------- */
+
+    .program-hero {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+      border-radius: var(--radius-xl);
+      background: var(--gradient-brand-deep);
+      box-shadow: 0 22px 54px rgb(18 30 57 / 0.20);
+      aspect-ratio: 21 / 7;
+    }
+
+    .program-hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.92;
+    }
+
+    .program-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgb(18 30 57 / 0.88) 0%, rgb(18 30 57 / 0.55) 45%, rgb(18 30 57 / 0.30) 100%);
+    }
+
+    .program-hero .program-hero-copy {
+      position: absolute;
+      inset: auto auto 0 0;
+      z-index: 1;
+      max-width: 34ch;
+      padding: clamp(1.25rem, 3vw, 2.25rem);
+      color: var(--c-white);
+    }
+
+    .program-hero .program-hero-copy .meta { color: var(--c-brass-300); margin-bottom: 0.4rem; }
+
+    .program-hero .program-hero-copy p:last-child {
+      margin-bottom: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 1rem + 0.9vw, 1.7rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
     /* ------- Jahresprogramme: Story Stack ------- */
 
     .stack-wrap { display: grid; gap: 1.25rem; }
@@ -1969,6 +2018,32 @@
       grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
       gap: clamp(2rem, 5vw, 4rem);
       align-items: start;
+    }
+
+    .request-visual {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: var(--space-6);
+      border-radius: var(--radius-l);
+      background: var(--gradient-hero-atmosphere);
+      box-shadow: var(--shadow-soft);
+      aspect-ratio: 3 / 2;
+    }
+
+    .request-visual img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .request-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 0 1px rgb(18 30 57 / 0.06);
+      border-radius: inherit;
     }
 
     .form-grid { display: grid; gap: 1rem; }
@@ -2171,6 +2246,31 @@
     }
 
     .bento-tile .meta { margin-bottom: auto; }
+
+    /* Foto-Hintergrund für Kacheln (mit Brand-Scrim für Lesbarkeit) */
+    .tile-media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .tile-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.9;
+    }
+
+    .tile-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgb(18 30 57 / 0.45) 0%, rgb(18 30 57 / 0.82) 62%, rgb(18 30 57 / 0.94) 100%);
+    }
+
+    .bento-tile.has-photo > *:not(.tile-media) { position: relative; z-index: 1; }
 
     .bento-num {
       margin: 0.75rem 0 0;
@@ -2393,6 +2493,8 @@
       .bento-a { min-height: 240px; }
 
       .program-card { grid-template-columns: 1fr; }
+      .program-hero { aspect-ratio: 16 / 10; }
+      .program-hero .program-hero-copy { max-width: none; }
 
       .hero { min-height: 0; }
       .scroll-cue { display: none; }
@@ -3127,7 +3229,15 @@
         </header>
 
         <div class="bento-grid">
-          <article class="bento-tile is-dark bento-a reveal">
+          <article class="bento-tile is-dark has-photo bento-a reveal">
+            <div class="tile-media" aria-hidden="true">
+              <img
+                src="https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_191135_4b8c37c4-2118-4eb4-bdea-a5956a0f1ac9_min.webp"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
             <p class="meta">Insurance Monday · Podcast</p>
             <p class="bento-num">35.000</p>
             <p>
@@ -3199,6 +3309,19 @@
             Bausteine zu einem geführten Plan mit Quartals-Reviews.
           </p>
         </header>
+
+        <div class="program-hero reveal">
+          <img
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_191137_f8497aea-9124-489b-99e7-5bf3a644e292_min.webp"
+            alt="Fachpublikum bei einer Insurance-Technology-Konferenz"
+            loading="lazy"
+            decoding="async"
+          >
+          <div class="program-hero-copy">
+            <p class="meta">Präsenz, die ankommt</p>
+            <p>Von kontinuierlicher Sichtbarkeit bis zur Bühne beim Insurance Innovation Day.</p>
+          </div>
+        </div>
 
         <div class="stack-wrap">
           <article class="program-card stack-card">
@@ -3407,6 +3530,14 @@
 
         <div class="request-layout">
           <div>
+            <div class="request-visual reveal">
+              <img
+                src="https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_191113_821bcc71-da78-4a74-bf58-caece6181aec_min.webp"
+                alt="Zwei Fachleute im strategischen Gespräch"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
             <h3>Was danach passiert</h3>
             <ol class="hero-steps" style="color: var(--text-secondary);">
               <li style="border-color: var(--border-soft);">

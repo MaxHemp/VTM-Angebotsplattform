@@ -107,6 +107,24 @@ in die Anfrage-Nachricht übernommen; erkennt die Seite ein Ziel
 (Sichtbarkeit / Thought Leadership / maximale Präsenz), lädt sie
 zusätzlich das passende Startpaket.
 
+## Bilder
+
+Drei editorial Bildmotive (mit Higgsfield generiert, VTM-Farbwelt) sind
+eingebunden:
+
+- **Podcast-Studio** – Hintergrund der großen Podcast-Kachel im
+  Bento-Grid („35.000 Downloads").
+- **Insurance-Innovation-Day / Konferenz** – Bildband über den
+  Jahresprogrammen.
+- **Business-Dialog** – Visual im Anfrage-Bereich.
+
+Jedes Bild liegt hinter einem Gradient-Scrim (Textlesbarkeit) und über
+einem Brand-Gradient-Fallback: Fällt ein Bild aus, bleibt die Sektion
+im freigegebenen Design bestehen. Die Bilder werden aktuell vom
+Higgsfield-CDN geladen (lazy). Für vollständige Selbstständigkeit die
+drei Dateien nach `assets/` herunterladen und die `src`-URLs in
+`index.html` auf die lokalen Pfade umstellen.
+
 ## Betrieb
 
 Statische Seite – einfach `index.html` ausliefern (z. B. GitHub Pages,
