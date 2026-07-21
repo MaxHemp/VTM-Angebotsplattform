@@ -95,9 +95,13 @@ JavaScript aus dem Katalog nachgerechnet, damit statisches Markup und
 Einzelpreise nie auseinanderlaufen (nach Preisänderungen im `CATALOG`
 bitte auch die statischen Kartenpreise im HTML anpassen).
 
-Die Logos sind als selbst gerenderte **Text-Wortmarke** umgesetzt –
-ohne externe Bildabhängigkeit, damit die Marke auch bei blockiertem
-CDN oder strenger Content-Security-Policy erscheint. Das
+Die Bildmarke (Original-Dateien unter `assets/`) ist als optimierte
+**Data-URI direkt in die Seite eingebettet** – Navigation und Favicon
+farbig, Footer in Weiß, daneben die Text-Wortmarke. Keine externen
+Bild-Requests, die Marke erscheint auch bei blockiertem CDN oder
+strenger Content-Security-Policy. Bei einem Logo-Update die Dateien
+in `assets/` ersetzen und die Base64-Werte in `index.html` neu
+erzeugen (verkleinert auf ~144 px, transparenter Rand beschnitten). Das
 Schnellstart-Feld im Hero ist ein echtes Eingabefeld: Freitext wird
 in die Anfrage-Nachricht übernommen; erkennt die Seite ein Ziel
 (Sichtbarkeit / Thought Leadership / maximale Präsenz), lädt sie
