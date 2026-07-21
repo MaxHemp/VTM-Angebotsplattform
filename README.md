@@ -51,6 +51,25 @@ Edition"**: Farbwelt (Deep Cobalt / Electric Blue / Brass), Typografie
 (Plus Jakarta Sans, Inter, Source Serif 4, IBM Plex Mono), Brand Rail,
 Hero-Atmosphäre, Signal-Linien und Card-Sprache.
 
+Moderne Design-Patterns (alle rein CSS/JS, keine Video-Assets):
+
+- **Immersiver Full-Screen-Hero** mit Kinetic Type (gestaffelt
+  aufsteigende Headline), animiertem Aurora-Hintergrund als
+  performanter Video-Loop-Ersatz und Scroll-Cue.
+- **Conversational Quickstart** im Hero: Prompt-Optik mit Ziel-Chips
+  („Sichtbarkeit aufbauen", „Thought Leader werden" …), die per Klick
+  das passende Startpaket in den Konfigurator laden.
+- **Bento Grid** für den Warum-VTM-Abschnitt: modulare Kacheln
+  unterschiedlicher Größe, dunkle Kachel mit leuchtender Akzentkante,
+  Brass-Kachel für die 73-%-Studie.
+- **Card Stacking (Story Stack)** für die Jahresprogramme: Karten
+  schieben sich beim Scrollen per `position: sticky` übereinander;
+  auf Mobile automatischer Reflow zum vertikalen Stapel.
+- **Soft Glassmorphism**: mattierte, halbtransparente Flächen mit
+  `backdrop-filter` für Navigation, Hero-Panel, Mobile-Bar und Toasts.
+- **Scroll Reveals** via `IntersectionObserver` – Inhalte sind ohne
+  JavaScript und bei `prefers-reduced-motion` vollständig sichtbar.
+
 ## Formular-Backend aktivieren
 
 Das Formular ist Formspree-kompatibel vorbereitet:
