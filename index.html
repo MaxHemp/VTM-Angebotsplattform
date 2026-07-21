@@ -4520,9 +4520,15 @@
 
     /* Hero-Video-Loop: nur Desktop, nur ohne Reduced-Motion,
        Quelle wird erst hier injiziert (kein Download auf Mobile) */
-    /* Lokale Assets zuerst, CDN als Fallback */
-    const HERO_VIDEO_LOCAL = "assets/hero-loop.mp4";
-    const HERO_VIDEO_CDN = "https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_194403_3aee469a-e842-49fa-ba0c-348501bdf066.mp4";
+    /* Lokale Assets zuerst (WebM klein & modern, MP4 als Codec-
+       Fallback), CDN nur wenn beides fehlt */
+    const HERO_SOURCES_LOCAL = [
+      { src: "assets/hero-loop.webm", type: "video/webm" },
+      { src: "assets/hero-loop.mp4", type: "video/mp4" }
+    ];
+    const HERO_SOURCES_CDN = [
+      { src: "https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_194403_3aee469a-e842-49fa-ba0c-348501bdf066.mp4", type: "video/mp4" }
+    ];
     const HERO_POSTER_LOCAL = "assets/hero-master.webp";
     const HERO_POSTER_CDN = "https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_194120_fdf14a25-efd8-46ce-8627-99975ff50504_min.webp";
 
@@ -4538,26 +4544,29 @@
 
       const show = () => hero.classList.add("has-video");
 
-      function tryPlay(videoUrl, posterUrl, onFail) {
+      function tryPlay(sources, posterUrl, onFail) {
         video.innerHTML = "";
         video.poster = posterUrl;
-        const source = document.createElement("source");
-        source.src = videoUrl;
-        source.type = "video/mp4";
-        if (onFail) {
-          source.addEventListener("error", onFail, { once: true });
-          video.addEventListener("error", onFail, { once: true });
+        for (let i = 0; i < sources.length; i++) {
+          const source = document.createElement("source");
+          source.src = sources[i].src;
+          source.type = sources[i].type;
+          /* Der Browser kaskadiert selbst durch die Quellen;
+             erst der Fehler der letzten Quelle gilt als Fehlschlag */
+          if (onFail && i === sources.length - 1) {
+            source.addEventListener("error", onFail, { once: true });
+          }
+          video.appendChild(source);
         }
-        video.appendChild(source);
         video.load();
         const start = video.play();
         if (start && start.then) start.then(show).catch(() => {});
         else show();
       }
 
-      tryPlay(HERO_VIDEO_LOCAL, HERO_POSTER_LOCAL, () => {
+      tryPlay(HERO_SOURCES_LOCAL, HERO_POSTER_LOCAL, () => {
         hero.classList.remove("has-video");
-        tryPlay(HERO_VIDEO_CDN, HERO_POSTER_CDN, null);
+        tryPlay(HERO_SOURCES_CDN, HERO_POSTER_CDN, null);
       });
     })();
 
