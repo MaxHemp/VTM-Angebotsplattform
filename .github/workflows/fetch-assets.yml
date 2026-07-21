@@ -1,6 +1,10 @@
 name: Fetch media assets
 
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - claude/vtm-leistungen-konfigurator-arw4vr
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -13,7 +17,17 @@ jobs:
         with:
           ref: claude/vtm-leistungen-konfigurator-arw4vr
 
+      - name: Skip if assets already present
+        id: check
+        run: |
+          if [ -f assets/hero-loop.mp4 ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Download generated assets
+        if: steps.check.outputs.skip == 'false'
         run: |
           mkdir -p assets
           curl -fL --retry 3 -o assets/hero-loop.mp4 "https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_194403_3aee469a-e842-49fa-ba0c-348501bdf066.mp4"
@@ -23,9 +37,10 @@ jobs:
           ls -la assets/
 
       - name: Commit assets
+        if: steps.check.outputs.skip == 'false'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add assets
-          git commit -m "Add generated media assets (hero loop + stills)"
+          git diff --staged --quiet || git commit -m "Add generated media assets (hero loop + stills) [skip ci]"
           git push
