@@ -135,6 +135,16 @@ Higgsfield-CDN geladen (lazy). Für vollständige Selbstständigkeit die
 drei Dateien nach `assets/` herunterladen und die `src`-URLs in
 `index.html` auf die lokalen Pfade umstellen.
 
+## Medien-Assets
+
+Alle generierten Motive werden **lokal aus `assets/` geladen**
+(`hero-loop.mp4`, `hero-master.webp`, `podcast-mic.webp`,
+`network-band.webp`) – mit automatischem CDN-Fallback, falls eine
+Datei fehlt. Der Workflow `.github/workflows/fetch-assets.yml` lädt
+die Dateien vom Higgsfield-CDN und committet sie; er läuft bei Push
+auf den Branch bzw. manuell über den „Run workflow"-Button im
+Actions-Tab (überspringt sich selbst, sobald die Assets vorliegen).
+
 ## Betrieb
 
 Statische Seite – einfach `index.html` ausliefern (z. B. GitHub Pages,

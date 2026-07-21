@@ -3274,7 +3274,8 @@
           <article class="bento-tile is-dark has-photo bento-a reveal">
             <div class="tile-media" aria-hidden="true">
               <img
-                src="https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_192906_3bef134c-6d43-48a9-abc0-eb93b3b14d4b_min.webp"
+                src="assets/podcast-mic.webp"
+                onerror="this.onerror=null;this.src='https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_192906_3bef134c-6d43-48a9-abc0-eb93b3b14d4b_min.webp';"
                 alt=""
                 loading="lazy"
                 decoding="async"
@@ -3354,7 +3355,8 @@
 
         <div class="program-hero reveal">
           <img
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_192908_bc06911d-317d-4267-81fb-d7286276d76e_min.webp"
+            src="assets/network-band.webp"
+            onerror="this.onerror=null;this.src='https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_192908_bc06911d-317d-4267-81fb-d7286276d76e_min.webp';"
             alt=""
             loading="lazy"
             decoding="async"
@@ -3574,7 +3576,8 @@
           <div>
             <div class="request-visual reveal">
               <img
-                src="https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_194120_fdf14a25-efd8-46ce-8627-99975ff50504_min.webp"
+                src="assets/hero-master.webp"
+                onerror="this.onerror=null;this.src='https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_194120_fdf14a25-efd8-46ce-8627-99975ff50504_min.webp';"
                 alt=""
                 loading="lazy"
                 decoding="async"
@@ -4517,30 +4520,45 @@
 
     /* Hero-Video-Loop: nur Desktop, nur ohne Reduced-Motion,
        Quelle wird erst hier injiziert (kein Download auf Mobile) */
-    const HERO_VIDEO_URL = "https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_194403_3aee469a-e842-49fa-ba0c-348501bdf066.mp4";
-    const HERO_POSTER_URL = "https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_194120_fdf14a25-efd8-46ce-8627-99975ff50504_min.webp";
+    /* Lokale Assets zuerst, CDN als Fallback */
+    const HERO_VIDEO_LOCAL = "assets/hero-loop.mp4";
+    const HERO_VIDEO_CDN = "https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_194403_3aee469a-e842-49fa-ba0c-348501bdf066.mp4";
+    const HERO_POSTER_LOCAL = "assets/hero-master.webp";
+    const HERO_POSTER_CDN = "https://d8j0ntlcm91z4.cloudfront.net/user_3GK5fibZJUNs4KnXvEQ87FA3v46/hf_20260721_194120_fdf14a25-efd8-46ce-8627-99975ff50504_min.webp";
 
     (function initHeroVideo() {
       const video = document.getElementById("hero-video");
       const hero = document.querySelector(".hero");
-      if (!video || !hero || HERO_VIDEO_URL.indexOf("http") !== 0) return;
+      if (!video || !hero) return;
 
       const allowed =
         window.matchMedia("(min-width: 861px)").matches &&
         !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (!allowed) return;
 
-      video.poster = HERO_POSTER_URL;
-      const source = document.createElement("source");
-      source.src = HERO_VIDEO_URL;
-      source.type = "video/mp4";
-      video.appendChild(source);
-      video.load();
-
-      const start = video.play();
       const show = () => hero.classList.add("has-video");
-      if (start && start.then) start.then(show).catch(() => {});
-      else show();
+
+      function tryPlay(videoUrl, posterUrl, onFail) {
+        video.innerHTML = "";
+        video.poster = posterUrl;
+        const source = document.createElement("source");
+        source.src = videoUrl;
+        source.type = "video/mp4";
+        if (onFail) {
+          source.addEventListener("error", onFail, { once: true });
+          video.addEventListener("error", onFail, { once: true });
+        }
+        video.appendChild(source);
+        video.load();
+        const start = video.play();
+        if (start && start.then) start.then(show).catch(() => {});
+        else show();
+      }
+
+      tryPlay(HERO_VIDEO_LOCAL, HERO_POSTER_LOCAL, () => {
+        hero.classList.remove("has-video");
+        tryPlay(HERO_VIDEO_CDN, HERO_POSTER_CDN, null);
+      });
     })();
 
     /* Maus-Parallax im Hero: nur feine Zeiger, nur ohne Reduced-Motion */
