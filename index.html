@@ -10,6 +10,7 @@
   >
   <meta name="color-scheme" content="light">
   <title>VTM Leistungs-Konfigurator · VersicherungsTech Magazin</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpath%20d='M%2073.7%2019.4%20A%2040%2040%200%201%200%2073.7%2080.6'%20fill='none'%20stroke='%232468e8'%20stroke-width='13'/%3E%3Cpath%20d='M%2043.5%2024.4%20A%2026%2026%200%200%200%2033.1%2071.3'%20fill='none'%20stroke='%232468e8'%20stroke-width='11'/%3E%3Cg%20stroke='%239fb0c9'%20stroke-width='3.6'%3E%3Cline%20x1='63'%20y1='58'%20x2='82'%20y2='38'/%3E%3Cline%20x1='63'%20y1='58'%20x2='46'%20y2='74'/%3E%3Cline%20x1='63'%20y1='58'%20x2='80'%20y2='76'/%3E%3C/g%3E%3Ccircle%20cx='63'%20cy='58'%20r='8'%20fill='%232468e8'/%3E%3Ccircle%20cx='82'%20cy='38'%20r='6.6'%20fill='%232468e8'/%3E%3Ccircle%20cx='46'%20cy='74'%20r='5'%20fill='%232468e8'/%3E%3Ccircle%20cx='80'%20cy='76'%20r='6.6'%20fill='%232468e8'/%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -351,6 +352,26 @@
       height: 100%;
       gap: var(--space-6);
     }
+
+    /* Bildmarke: Inline-SVG, keine externe Bildabhängigkeit */
+    .brand-mark {
+      display: block;
+      width: auto;
+      height: 36px;
+      flex: none;
+    }
+
+    .logo-link { gap: 0.6rem; }
+
+    .wordmark-footer + p { margin-top: 1.25rem; }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .footer-brand .brand-mark { height: 44px; }
 
     /* Wortmarke: selbst gerendert, keine externe Bildabhängigkeit */
     .wordmark {
@@ -2447,6 +2468,30 @@
   <nav class="site-nav" aria-label="Hauptnavigation">
     <div class="wrap-wide nav-inner">
       <a class="logo-link" href="#top" aria-label="VersicherungsTech Magazin – zum Anfang">
+        <svg class="brand-mark" viewBox="0 0 100 100" role="img" aria-hidden="true">
+          <defs>
+            <linearGradient id="vtm-arc" x1="0.85" y1="0.1" x2="0.1" y2="0.85">
+              <stop offset="0" stop-color="#2f83e8"/>
+              <stop offset="0.55" stop-color="#1a5cc4"/>
+              <stop offset="1" stop-color="#123f8f"/>
+            </linearGradient>
+            <linearGradient id="vtm-node" x1="0.2" y1="0.1" x2="0.8" y2="0.95">
+              <stop offset="0" stop-color="#2f83e8"/>
+              <stop offset="1" stop-color="#155bbd"/>
+            </linearGradient>
+          </defs>
+          <path d="M 73.7 19.4 A 40 40 0 1 0 73.7 80.6" fill="none" stroke="url(#vtm-arc)" stroke-width="13"/>
+          <path d="M 43.5 24.4 A 26 26 0 0 0 33.1 71.3" fill="none" stroke="url(#vtm-arc)" stroke-width="11"/>
+          <g stroke="#9fb0c9" stroke-width="3.6">
+            <line x1="63" y1="58" x2="82" y2="38"/>
+            <line x1="63" y1="58" x2="46" y2="74"/>
+            <line x1="63" y1="58" x2="80" y2="76"/>
+          </g>
+          <circle cx="63" cy="58" r="8" fill="url(#vtm-node)" stroke="#c7d2e2" stroke-width="1.6"/>
+          <circle cx="82" cy="38" r="6.6" fill="url(#vtm-node)" stroke="#c7d2e2" stroke-width="1.6"/>
+          <circle cx="46" cy="74" r="5" fill="url(#vtm-node)" stroke="#c7d2e2" stroke-width="1.6"/>
+          <circle cx="80" cy="76" r="6.6" fill="url(#vtm-node)" stroke="#c7d2e2" stroke-width="1.6"/>
+        </svg>
         <span class="wordmark">VersicherungsTech<em>Magazin</em></span>
       </a>
 
@@ -3185,20 +3230,20 @@
               <h4>VTM Startup Presence</h4>
               <p>
                 Als auffindbarer, verständlicher Anbieter wahrgenommen
-                werden – bewusst schlank und ohne das Budget eines
-                etablierten IT-Anbieters vorauszusetzen.
+                werden – das kompakte Jahrespaket mit monatlicher
+                Sichtbarkeit, bewusst schlank für Start-up-Budgets.
               </p>
               <p class="program-price">
-                ab 4.800&nbsp;€
+                ab 12.000&nbsp;€
                 <span>pro Jahr · netto · monatlich zahlbar</span>
               </p>
             </div>
             <div class="program-side">
               <ul class="offer-includes">
-                <li>Startup-Profil &amp; Einordnung in Ihre Kategorie</li>
-                <li>Sechs Präsenz-Slots pro Jahr, rotierend über die VTM-Kanäle</li>
-                <li>Gründerinterview oder Startup-Porträt</li>
-                <li>Halbjahresbericht mit allen Kennzahlen</li>
+                <li>1× Podcast-Episode bei Insurance Monday</li>
+                <li>2× Fachartikel</li>
+                <li>1× Gründerinterview oder Startup-Porträt</li>
+                <li>12× LinkedIn-Post über den VTM-Kanal (1× pro Monat)</li>
               </ul>
             </div>
           </article>
@@ -3208,21 +3253,23 @@
               <p class="meta">02 · Kontinuierliche Präsenz</p>
               <h4>VTM Category Presence</h4>
               <p>
-                Zwölf Monate kontinuierlich in Ihrer Technologiekategorie
-                wahrgenommen werden – mit monatlich rotierender Präsenz
-                über Podcast, Banner oder Newsletter.
+                Zwölf Monate durchgehend in Ihrer Technologiekategorie
+                präsent – Ihre Marke begleitet als Sponsor alle Inhalte
+                Ihrer Kategorie, von Banner bis Newsletter.
               </p>
               <p class="program-price">
-                ab 14.400&nbsp;€
+                ab 25.000&nbsp;€
                 <span>pro Jahr · netto</span>
               </p>
             </div>
             <div class="program-side">
               <ul class="offer-includes">
-                <li>Positionierungs-Workshop &amp; Anbieterprofil</li>
-                <li>Jeden Monat ein Präsenz-Slot: Podcast, Banner oder Newsletter</li>
-                <li>Zwei Experten-Statements pro Jahr</li>
-                <li>Quartalsbericht &amp; gemeinsame Jahresauswertung</li>
+                <li>Positionierungs-Workshop zum Start</li>
+                <li>2× Podcast-Folge bei Insurance Monday</li>
+                <li>12 Monate Werbebanner &amp; Newsletter-Präsenz in Ihrer Kategorie</li>
+                <li>2× Executive Interview</li>
+                <li>1× Deep-Dive-Webinar, moderiert vom VTM</li>
+                <li>„sponsored by“-Logo auf allen Inhalten Ihrer Kategorie, 12 Monate</li>
               </ul>
             </div>
           </article>
@@ -3232,22 +3279,25 @@
               <p class="meta">03 · Thought Leadership</p>
               <h4>VTM Authority Program</h4>
               <p>
-                Eine belastbare fachliche Position zu einem
-                Versicherungsthema aufbauen – mit durchgängiger
-                Jahresgeschichte, laufender Verbreitung über alle Kanäle
-                und regelmäßiger Auswertung.
+                Die Branchenautorität: maximale Präsenz über alle
+                VTM-Kanäle, große Fachformate, Personal &amp; Corporate
+                Branding – und Ihr Auftritt beim Hamburger Insurance
+                Innovation Day.
               </p>
               <p class="program-price">
-                ab 28.000&nbsp;€
+                ab 70.000&nbsp;€
                 <span>pro Jahr · netto</span>
               </p>
             </div>
             <div class="program-side">
               <ul class="offer-includes">
-                <li>Themen-Workshop &amp; Planung Ihrer Jahresgeschichte</li>
-                <li>Vier große Fachinhalte (z.&nbsp;B. Studie, Whitepaper, Case Study)</li>
-                <li>Podcast-Auftritte &amp; Interviews mit Ihren Führungskräften</li>
-                <li>Digitale Expertenrunde &amp; Auswertung in jedem Quartal</li>
+                <li>Quartalsweiser Workshop zur Markenpositionierung</li>
+                <li>4× Podcast-Folge bei Insurance Monday</li>
+                <li>12 Monate Banner auf der VTM-Startseite und in der App</li>
+                <li>4× große Fachinhalte (z.&nbsp;B. Studie, Whitepaper, Case Study)</li>
+                <li>2× Deep-Dive-Webinar, moderiert vom VTM</li>
+                <li>Sponsorslot, Tickets &amp; Ausstellerpaket beim Hamburger Insurance Innovation Day</li>
+                <li>12 Monate LinkedIn as a Service für einen Mitarbeiter – optional auch für den Unternehmens-Account (Personal &amp; Corporate Branding)</li>
               </ul>
             </div>
           </article>
@@ -3489,7 +3539,22 @@
     <div class="wrap">
       <div class="footer-grid">
         <div>
-          <span class="wordmark wordmark-footer">VersicherungsTech<em>Magazin</em></span>
+          <div class="footer-brand">
+            <svg class="brand-mark" viewBox="0 0 100 100" role="img" aria-hidden="true">
+              <path d="M 73.7 19.4 A 40 40 0 1 0 73.7 80.6" fill="none" stroke="#ffffff" stroke-width="13"/>
+              <path d="M 43.5 24.4 A 26 26 0 0 0 33.1 71.3" fill="none" stroke="#ffffff" stroke-width="11"/>
+              <g stroke="#ffffff" stroke-opacity="0.65" stroke-width="3.6">
+                <line x1="63" y1="58" x2="82" y2="38"/>
+                <line x1="63" y1="58" x2="46" y2="74"/>
+                <line x1="63" y1="58" x2="80" y2="76"/>
+              </g>
+              <circle cx="63" cy="58" r="8" fill="#ffffff"/>
+              <circle cx="82" cy="38" r="6.6" fill="#ffffff"/>
+              <circle cx="46" cy="74" r="5" fill="#ffffff"/>
+              <circle cx="80" cy="76" r="6.6" fill="#ffffff"/>
+            </svg>
+            <span class="wordmark wordmark-footer">VersicherungsTech<em>Magazin</em></span>
+          </div>
           <p style="margin-top: 1.25rem; max-width: 42ch;">
             Die Fachmedien- und Dialogplattform für
             Technologieentscheidungen in der DACH-Versicherungswirtschaft.
