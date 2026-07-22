@@ -91,10 +91,10 @@ Statische Seite – es genügt, die Dateien auszuliefern:
 
 **GitHub Pages (empfohlen, kostenlos):**
 1. Repo → *Settings → Pages* → Source: diesen Branch, Ordner `/ (root)`.
-2. Die Datei `CNAME` enthält `vertrieb.versicherungstech-magazin.de`
+2. Die Datei `CNAME` enthält `adam.versicherungstech-magazin.de`
    (bei Bedarf anpassen).
 3. Beim DNS-Anbieter einen **CNAME-Record** anlegen:
-   `vertrieb` → `maxhemp.github.io`. HTTPS aktiviert GitHub
+   `adam` → `maxhemp.github.io`. HTTPS aktiviert GitHub
    automatisch („Enforce HTTPS" anhaken).
 
 Alternativ Netlify/Vercel (Repo verbinden, kein Build-Command) oder
