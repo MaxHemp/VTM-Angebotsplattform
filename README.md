@@ -1,156 +1,116 @@
-# VTM Angebotsplattform
+# VTM Angebotsdesk
 
-Landingpage mit modularem Leistungs-Konfigurator für das
-**VersicherungsTech Magazin (VTM)**. Kundinnen und Kunden stellen sich
-ihre gewünschten VTM-Leistungen selbstständig zusammen, sehen live eine
-Preisübersicht und senden ihre Konfiguration als unverbindliche Anfrage.
+Interne **Angebotssoftware für das Vertriebsteam** des
+VersicherungsTech Magazins (VTM). Statische Webanwendung ohne
+Build-Tools und ohne Server-Abhängigkeiten – einfach deployen,
+Domain verbinden, loslegen.
 
-## Inhalt
+Gebaut nach dem **VTM Brand & Design System „Master Next"**
+(Kapitel Webanwendungen: Cobalt-Seitenleiste, Inter/Plus Jakarta
+Sans/IBM Plex Mono, Electric nur für Aktionen, Brass nur für
+Research) und der Struktur des **VTM Sales Desk**.
 
-- `index.html` – vollständige, selbstenthaltene Landingpage
-  (HTML + CSS + Vanilla JS, keine Build-Tools, kein Framework).
+## Bereiche
 
-## Funktionen
+- **Dashboard** – offene Angebote, Pipeline-Wert (netto), gewonnene
+  Summe und Abschlussquote des Jahres, fällige Wiedervorlagen,
+  ablaufende Angebote, zuletzt bearbeitete Vorgänge.
+- **Angebote** – Team-Übersicht mit Suche, Status- und
+  Betreuer-Filter, CSV-Export, Duplizieren, Löschen.
+- **Angebots-Editor** – drei Reiter (Angebot / Vertrag / Rechnung)
+  mit Live-A4-Vorschau im Dokumentdesign „Master Next":
+  - Leistungskatalog mit Paket-Bundles und automatischem
+    Mengenrabatt für Sponsored LinkedIn Posts (ab 5 −10 %, ab 10 −20 %)
+  - Anschreiben-Generator und Textvorlagen
+  - Nummernkreise (A-JJJJ-NNN, V-JJJJ-NNN, VTM-JJJJ-NNNN) mit
+    „Nächste Nummer ziehen", Startwerte gemäß letzter Belege
+  - Autosave, Word-Export (.doc), PDF über den Druckdialog,
+    E-Mail-Text-Generator (inkl. mailto)
+  - Interne Steuerung: Wiedervorlage, Abschlusswahrscheinlichkeit,
+    Notizen (erscheinen nie im Dokument)
+- **Kunden** – gemeinsamer Kundenstamm; Übernahme in Angebote per
+  Auswahl, „Als Kunde speichern" direkt aus dem Editor,
+  „＋ Angebot" direkt aus der Kundenliste.
+- **Produkte & Leistungen** – Katalog- und Paketpflege
+  (nur Administration), inkl. rechnerischer Kontrolle der
+  Bundle-Listenpreise.
+- **Freigaben** – Vier-Augen-Workflow: Angebote über den Grenzen
+  (Standard: Paketrabatt > 15 % oder Netto > 25.000 €) werden „Zur
+  Freigabe eingereicht"; die Administration gibt frei oder weist
+  mit Begründung zurück. Entscheidungen werden protokolliert.
+- **Vorlagen** – Textbausteine für Anschreiben und E-Mails mit
+  Platzhaltern (`{NR} {BETREFF} {SUMME} {GUELTIG} {BETREUER}`).
+- **Einstellungen** – Firmendaten (Dokument-Footer), USt.-Satz,
+  Freigaberegeln, Zahlungsziel-/Gültigkeits-Standards,
+  Nummernkreise, Benutzerverwaltung, Datensicherung
+  (JSON-Export/-Import, Zurücksetzen).
 
-- **Modularer Konfigurator** in vier Kategorien (Magazin-Leistungen
-  zuerst, Podcast danach):
-  - Magazin · Reichweite & Sichtbarkeit (Website-Banner,
-    Website + App-Banner, Newsletter-Sponsoring) – Banner-Varianten
-    schließen sich gegenseitig aus
-  - Magazin · Content & Thought Leadership (Fachartikel, Executive
-    Interview, Case Study inkl. Lead-Liste, LinkedIn as a Service,
-    Sponsored LinkedIn Posts)
-  - Podcast & Audio (Quartalssponsoring Insurance Monday,
-    Einzel-Episoden, Podcast Ads Pre-Roll)
-  - Programm-Bausteine auf Anfrage (Marktcheck im Entscheider-Panel,
-    Deep-Dive-Webinar, Expert Commentaries, Kategorie-Exklusivität)
-- **Conversion-Elemente**: Social-Proof-Band (Leserschaft), drei
-  vorkonfigurierte „Beliebte Kombinationen" mit 1-Klick-Übernahme,
-  Bestseller-/Beliebt-Badges, Einwand-FAQ, Reassurance-Microcopy an
-  allen CTAs (Antwort in 24 h, keine Zahlungspflicht), Nav-CTA.
-- **Mengenrabatt-Logik** für Sponsored LinkedIn Posts:
-  ab 5 Posts −10 %, ab 10 Posts −20 % (Ersparnis wird ausgewiesen).
-- **Laufzeit-/Stückzahl-Stepper** je Leistung (Monate, Episoden, Pakete …).
-- **Live-Zusammenfassung** als Sticky-Panel (Desktop) und
-  Bottom-Bar (Mobile), Netto-Summe zzgl. USt.
-- **Anfrage-Formular mit echtem Backend**: sendet die Anfrage inkl.
-  Konfiguration per `fetch` an einen konfigurierbaren
-  Formular-Endpoint (Formspree-kompatibel, siehe unten) – mit
-  Ladezustand, Erfolgsbestätigung, Fehlerbehandlung und
-  Honeypot-Spamschutz. Ohne konfigurierten Endpoint fällt das Formular
-  automatisch auf `mailto:` zurück. Zusätzlich zeigt eine
-  Live-Vorschau am Formular die gewählte Konfiguration.
-- **Persistenz** der Auswahl über `localStorage`.
-- **Jahresprogramme** (Category Presence, Authority Program,
-  Startup Presence) als Teaser für geführte Zwölf-Monats-Programme.
+## Login & Rollen
 
-## Design
+- **Administration:** `maximilian.hempel@versicherungstech-magazin.de`
+  (voreingerichtet). Beim **ersten Login** wird das persönliche
+  Passwort festgelegt (mind. 8 Zeichen) – es gibt kein
+  Standard-Passwort.
+- **Vertrieb:** Das Team (Maximilian Dahmen, Lukas Härle, Johannes
+  Oberhofer, Karl Heinz Passler) ist als Betreuer vorangelegt.
+  Login-Zugänge entstehen, sobald die Administration unter
+  **Einstellungen → Benutzer** die jeweilige E-Mail-Adresse
+  hinterlegt; das Passwort setzt jede Person beim ersten Login
+  selbst.
+- Rollenunterschiede: Nur Admins pflegen Katalog, Firmendaten,
+  Regeln, Nummernkreise und Benutzer und entscheiden Freigaben.
+  Statusworkflow: Entwurf → In Prüfung → Freigegeben → Versendet →
+  Angenommen/Abgelehnt (Abgelaufen wird automatisch angezeigt).
 
-Basiert auf dem **VTM Brand & Design System 4.2 „Luminous Editorial
-Edition"**: Farbwelt (Deep Cobalt / Electric Blue / Brass), Typografie
-(Plus Jakarta Sans, Inter, Source Serif 4, IBM Plex Mono), Brand Rail,
-Hero-Atmosphäre, Signal-Linien und Card-Sprache.
+> **Wichtig – Sicherheitsmodell:** Dies ist eine rein statische
+> Anwendung. Der Login steuert Rollen und Bedienung, ist aber **kein
+> Serverschutz** – wer die URL kennt, kann den Quellcode lesen.
+> Keine hochsensiblen Daten ablegen und die Seite idealerweise
+> zusätzlich absichern (z. B. Cloudflare Access, Netlify
+> Password/Identity oder Basic Auth des Webservers).
 
-Moderne Design-Patterns (alle rein CSS/JS, keine Video-Assets):
+## Datenhaltung
 
-- **Immersiver Full-Screen-Hero** mit Kinetic Type (gestaffelt
-  aufsteigende Headline), animiertem Aurora-Hintergrund als
-  performanter Video-Loop-Ersatz und Scroll-Cue.
-- **Conversational Quickstart** im Hero: Prompt-Optik mit Ziel-Chips
-  („Sichtbarkeit aufbauen", „Thought Leader werden" …), die per Klick
-  das passende Startpaket in den Konfigurator laden.
-- **Bento Grid** für den Warum-VTM-Abschnitt: modulare Kacheln
-  unterschiedlicher Größe, dunkle Kachel mit leuchtender Akzentkante,
-  Brass-Kachel für die 73-%-Studie.
-- **Card Stacking (Story Stack)** für die Jahresprogramme: Karten
-  schieben sich beim Scrollen per `position: sticky` übereinander;
-  auf Mobile automatischer Reflow zum vertikalen Stapel.
-- **KI-Video-Loop im Hero**: 6-Sekunden-Micro-Loop (Seedance 2.0 aus
-  einem GPT-Image-2-Master-Motiv, identischer Start-/End-Frame =
-  nahtlos). Lädt nur auf Desktop und ohne
-  `prefers-reduced-motion`-Präferenz (JS injiziert die Quelle, Mobile
-  lädt kein Video); Fallback ist die CSS-Aurora-Atmosphäre. Das
-  Master-Standbild wird zusätzlich im Anfrage-Bereich wiederverwendet
-  (konsistenter Bildstil, gleiche Szene an mehreren Stellen).
-- **Maus-Parallax im Hero** (nur feine Zeiger, respektiert
-  Reduced Motion): Video, Atmosphäre und Panel verschieben sich
-  subtil gegenläufig zur Mausbewegung.
-- **Soft Glassmorphism**: mattierte, halbtransparente Flächen mit
-  `backdrop-filter` für Navigation, Hero-Panel, Mobile-Bar und Toasts.
-- **Scroll Reveals** via `IntersectionObserver` – Inhalte sind ohne
-  JavaScript und bei `prefers-reduced-motion` vollständig sichtbar.
+Alle Daten (Angebote, Kunden, Katalog, Benutzer, Einstellungen)
+liegen im **localStorage des jeweiligen Browsers** – es gibt
+bewusst kein Backend, damit die Software ohne Betriebskosten sofort
+läuft. Konsequenzen:
 
-## Formular-Backend
+- Pro Gerät/Browser ein eigener Datenbestand. Austausch im Team
+  über **Einstellungen → Datensicherung** (JSON-Export/-Import).
+- Regelmäßig exportieren (Backup!). Browserdaten löschen = Daten weg.
+- Späterer Ausbau: Die gesamte Persistenz läuft über das
+  `Store`-Objekt in `app.js` (`Store.load`/`Store.save`). Wer eine
+  echte Team-Synchronisation möchte, ersetzt diese zwei Methoden
+  durch API-Aufrufe (z. B. Supabase, Firebase, eigener Endpoint) –
+  der Rest der Anwendung bleibt unverändert.
 
-Das Formular sendet per `fetch` an Formspree
-(`https://formspree.io/f/mzdnvzqq`, konfiguriert in der Konstante
-`FORM_ENDPOINT` in `index.html`). Die Ziel-Adresse
-`info@versicherungstech-magazin.de` wird im Formspree-Dashboard
-verwaltet. Schlägt der Versand fehl, bietet das Formular automatisch
-einen E-Mail-Fallback (`mailto:` an dieselbe Adresse) an.
+## Deployment
 
-Zum Austausch des Backends genügt es, `FORM_ENDPOINT` zu ändern – es
-funktioniert jeder Endpoint, der ein JSON-POST mit
-`{ name, company, email, message, konfiguration }` akzeptiert
-(Getform, Basin, eigene API …).
+Statische Seite – es genügt, die Dateien auszuliefern:
 
-## Robustheit (Progressive Enhancement)
+**GitHub Pages (empfohlen, kostenlos):**
+1. Repo → *Settings → Pages* → Source: diesen Branch, Ordner `/ (root)`.
+2. Die Datei `CNAME` enthält `vertrieb.versicherungstech-magazin.de`
+   (bei Bedarf anpassen).
+3. Beim DNS-Anbieter einen **CNAME-Record** anlegen:
+   `vertrieb` → `maxhemp.github.io`. HTTPS aktiviert GitHub
+   automatisch („Enforce HTTPS" anhaken).
 
-Alle Leistungs- und Paketkarten stehen **statisch im HTML** – Inhalte,
-Umfang und Preise sind auch ohne JavaScript sichtbar (wichtig für
-SEO, restriktive Firmen-Browser und Datei-Vorschauen). JavaScript
-„hydratisiert" die Karten nur noch: Auswahl, Stepper, Summen, Presets
-und Formularversand. Die Preset-Preise im HTML werden bei aktivem
-JavaScript aus dem Katalog nachgerechnet, damit statisches Markup und
-Einzelpreise nie auseinanderlaufen (nach Preisänderungen im `CATALOG`
-bitte auch die statischen Kartenpreise im HTML anpassen).
+Alternativ Netlify/Vercel (Repo verbinden, kein Build-Command) oder
+ein beliebiger Webserver. Es gibt keine Abhängigkeiten und keinen
+Build-Schritt; Schriften kommen von Google Fonts.
 
-Die Bildmarke (Original-Dateien unter `assets/`) ist als optimierte
-**Data-URI direkt in die Seite eingebettet** – Navigation und Favicon
-farbig, Footer in Weiß, daneben die Text-Wortmarke. Keine externen
-Bild-Requests, die Marke erscheint auch bei blockiertem CDN oder
-strenger Content-Security-Policy. Bei einem Logo-Update die Dateien
-in `assets/` ersetzen und die Base64-Werte in `index.html` neu
-erzeugen (verkleinert auf ~144 px, transparenter Rand beschnitten). Das
-Schnellstart-Feld im Hero ist ein echtes Eingabefeld: Freitext wird
-in die Anfrage-Nachricht übernommen; erkennt die Seite ein Ziel
-(Sichtbarkeit / Thought Leadership / maximale Präsenz), lädt sie
-zusätzlich das passende Startpaket.
+## Dateien
 
-## Bilder
+| Datei | Inhalt |
+|---|---|
+| `index.html` | Markup: Login, App-Shell, alle Bereiche, Editor, A4-Vorschau |
+| `app.css` | Design-Tokens „Master Next" + UI- und Dokument-Styles + Print |
+| `app.js` | Store, Auth/Rollen, Router, Views, Editor, Word-Export |
+| `data.js` | Seed-Daten: Katalog, Bundles, Vorlagen, Firma, Benutzer, Nummernkreise |
+| `assets/` | VTM-Logos (farbig/weiß) |
 
-Drei editorial Bildmotive (mit Higgsfield generiert, VTM-Farbwelt) sind
-eingebunden:
-
-- **Podcast-Studio** – Hintergrund der großen Podcast-Kachel im
-  Bento-Grid („35.000 Downloads").
-- **Insurance-Innovation-Day / Konferenz** – Bildband über den
-  Jahresprogrammen.
-- **Business-Dialog** – Visual im Anfrage-Bereich.
-
-Jedes Bild liegt hinter einem Gradient-Scrim (Textlesbarkeit) und über
-einem Brand-Gradient-Fallback: Fällt ein Bild aus, bleibt die Sektion
-im freigegebenen Design bestehen. Die Bilder werden aktuell vom
-Higgsfield-CDN geladen (lazy). Für vollständige Selbstständigkeit die
-drei Dateien nach `assets/` herunterladen und die `src`-URLs in
-`index.html` auf die lokalen Pfade umstellen.
-
-## Medien-Assets
-
-Alle generierten Motive werden **lokal aus `assets/` geladen**
-(`hero-loop.mp4`, `hero-master.webp`, `podcast-mic.webp`,
-`network-band.webp`) – mit automatischem CDN-Fallback, falls eine
-Datei fehlt. Der Workflow `.github/workflows/fetch-assets.yml` lädt
-die Dateien vom Higgsfield-CDN und committet sie; er läuft bei Push
-auf den Branch bzw. manuell über den „Run workflow"-Button im
-Actions-Tab (überspringt sich selbst, sobald die Assets vorliegen).
-
-## Betrieb
-
-Statische Seite – einfach `index.html` ausliefern (z. B. GitHub Pages,
-Netlify oder ein beliebiger Webserver). Es sind keine Abhängigkeiten
-oder Build-Schritte nötig; Schriften werden über Google Fonts geladen,
-Logos über das bestehende VTM-CDN.
-
-Alle Preise sind Netto-Preise zuzüglich Umsatzsteuer und werden im
-Katalog-Array `CATALOG` in `index.html` gepflegt.
+Preise, Katalog und Firmendaten werden **in der App** gepflegt
+(Einstellungen bzw. Produkte & Leistungen); `data.js` dient nur der
+Erstbefüllung neuer Browser.
