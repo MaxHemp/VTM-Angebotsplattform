@@ -1,156 +1,184 @@
-# VTM Angebotsplattform
+# VTM Angebotsdesk
 
-Landingpage mit modularem Leistungs-Konfigurator für das
-**VersicherungsTech Magazin (VTM)**. Kundinnen und Kunden stellen sich
-ihre gewünschten VTM-Leistungen selbstständig zusammen, sehen live eine
-Preisübersicht und senden ihre Konfiguration als unverbindliche Anfrage.
+Interne **Angebotssoftware für das Vertriebsteam** des
+VersicherungsTech Magazins (VTM). Statische Webanwendung ohne
+Build-Tools und ohne Server-Abhängigkeiten – einfach deployen,
+Domain verbinden, loslegen.
 
-## Inhalt
+Gebaut nach dem **VTM Brand & Design System „Master Next"**
+(Kapitel Webanwendungen: Cobalt-Seitenleiste, Inter/Plus Jakarta
+Sans/IBM Plex Mono, Electric nur für Aktionen, Brass nur für
+Research) und der Struktur des **VTM Sales Desk**.
 
-- `index.html` – vollständige, selbstenthaltene Landingpage
-  (HTML + CSS + Vanilla JS, keine Build-Tools, kein Framework).
+## Bereiche
 
-## Funktionen
+- **Dashboard** – offene Angebote, Pipeline-Wert (netto), gewonnene
+  Summe und Abschlussquote des Jahres, fällige Wiedervorlagen,
+  ablaufende Angebote, zuletzt bearbeitete Vorgänge.
+- **Angebote** – Team-Übersicht mit Suche, Status- und
+  Betreuer-Filter, CSV-Export, Duplizieren, Löschen.
+- **Angebots-Editor** – drei Reiter (Angebot / Vertrag / Rechnung)
+  mit Live-A4-Vorschau im Dokumentdesign „Master Next":
+  - Leistungskatalog mit Paket-Bundles und automatischem
+    Mengenrabatt für Sponsored LinkedIn Posts (ab 5 −10 %, ab 10 −20 %)
+  - Anschreiben-Generator und Textvorlagen
+  - Nummernkreise (A-JJJJ-NNN, V-JJJJ-NNN, VTM-JJJJ-NNNN) mit
+    „Nächste Nummer ziehen", Startwerte gemäß letzter Belege
+  - Autosave, Word-Export (.doc), PDF über den Druckdialog,
+    E-Mail-Text-Generator (inkl. mailto)
+  - Interne Steuerung: Wiedervorlage, Abschlusswahrscheinlichkeit,
+    Notizen (erscheinen nie im Dokument)
+- **Kunden** – gemeinsamer Kundenstamm; Übernahme in Angebote per
+  Auswahl, „Als Kunde speichern" direkt aus dem Editor,
+  „＋ Angebot" direkt aus der Kundenliste. **Excel-/CSV-Import**
+  (.xlsx, .csv/.tsv) mit automatischer Spaltenerkennung: Kopfzeile
+  und Inhalte werden analysiert und den Feldern zugeordnet
+  (deutsche und englische Bezeichnungen), die Zuordnung ist im
+  Dialog änderbar; Vor- und Nachname werden zusammengeführt, PLZ
+  und Ort kombiniert, Dubletten über E-Mail bzw. Firma erkannt und
+  wahlweise ergänzt oder übersprungen. Gelesen wird ohne externe
+  Bibliothek (XLSX = ZIP + XML, entpackt per DecompressionStream).
+- **Produkte & Leistungen** – Katalog- und Paketpflege
+  (nur Administration), inkl. rechnerischer Kontrolle der
+  Bundle-Listenpreise.
+- **Freigaben** – Vier-Augen-Workflow: Angebote über den Grenzen
+  (Standard: Paketrabatt > 15 % oder Netto > 25.000 €) werden „Zur
+  Freigabe eingereicht"; die Administration gibt frei oder weist
+  mit Begründung zurück. Entscheidungen werden protokolliert.
+- **Vorlagen** – Textbausteine für Anschreiben und E-Mails mit
+  Platzhaltern (`{NR} {BETREFF} {SUMME} {GUELTIG} {BETREUER}`).
+- **Einstellungen** – Firmendaten (Dokument-Footer), USt.-Satz,
+  Freigaberegeln, Zahlungsziel-/Gültigkeits-Standards,
+  Nummernkreise, Benutzerverwaltung, Datensicherung
+  (JSON-Export/-Import, Zurücksetzen).
 
-- **Modularer Konfigurator** in vier Kategorien (Magazin-Leistungen
-  zuerst, Podcast danach):
-  - Magazin · Reichweite & Sichtbarkeit (Website-Banner,
-    Website + App-Banner, Newsletter-Sponsoring) – Banner-Varianten
-    schließen sich gegenseitig aus
-  - Magazin · Content & Thought Leadership (Fachartikel, Executive
-    Interview, Case Study inkl. Lead-Liste, LinkedIn as a Service,
-    Sponsored LinkedIn Posts)
-  - Podcast & Audio (Quartalssponsoring Insurance Monday,
-    Einzel-Episoden, Podcast Ads Pre-Roll)
-  - Programm-Bausteine auf Anfrage (Marktcheck im Entscheider-Panel,
-    Deep-Dive-Webinar, Expert Commentaries, Kategorie-Exklusivität)
-- **Conversion-Elemente**: Social-Proof-Band (Leserschaft), drei
-  vorkonfigurierte „Beliebte Kombinationen" mit 1-Klick-Übernahme,
-  Bestseller-/Beliebt-Badges, Einwand-FAQ, Reassurance-Microcopy an
-  allen CTAs (Antwort in 24 h, keine Zahlungspflicht), Nav-CTA.
-- **Mengenrabatt-Logik** für Sponsored LinkedIn Posts:
-  ab 5 Posts −10 %, ab 10 Posts −20 % (Ersparnis wird ausgewiesen).
-- **Laufzeit-/Stückzahl-Stepper** je Leistung (Monate, Episoden, Pakete …).
-- **Live-Zusammenfassung** als Sticky-Panel (Desktop) und
-  Bottom-Bar (Mobile), Netto-Summe zzgl. USt.
-- **Anfrage-Formular mit echtem Backend**: sendet die Anfrage inkl.
-  Konfiguration per `fetch` an einen konfigurierbaren
-  Formular-Endpoint (Formspree-kompatibel, siehe unten) – mit
-  Ladezustand, Erfolgsbestätigung, Fehlerbehandlung und
-  Honeypot-Spamschutz. Ohne konfigurierten Endpoint fällt das Formular
-  automatisch auf `mailto:` zurück. Zusätzlich zeigt eine
-  Live-Vorschau am Formular die gewählte Konfiguration.
-- **Persistenz** der Auswahl über `localStorage`.
-- **Jahresprogramme** (Category Presence, Authority Program,
-  Startup Presence) als Teaser für geführte Zwölf-Monats-Programme.
+## Login & Rollen
 
-## Design
+- **Administration:** `maximilian.hempel@versicherungstech-magazin.de`
+  (voreingerichtet). Beim **ersten Login** wird das persönliche
+  Passwort festgelegt (mind. 8 Zeichen) – es gibt kein
+  Standard-Passwort.
+- **Vertrieb:** Das Team (Maximilian Dahmen, Lukas Härle, Johannes
+  Oberhofer, Karl Heinz Passler) ist als Betreuer vorangelegt.
+  Login-Zugänge entstehen, sobald die Administration unter
+  **Einstellungen → Benutzer** die jeweilige E-Mail-Adresse
+  hinterlegt; das Passwort setzt jede Person beim ersten Login
+  selbst.
+- Rollenunterschiede: Nur Admins pflegen Katalog, Firmendaten,
+  Regeln, Nummernkreise und Benutzer und entscheiden Freigaben.
+  Statusworkflow: Entwurf → In Prüfung → Freigegeben → Versendet →
+  Angenommen/Abgelehnt (Abgelaufen wird automatisch angezeigt).
 
-Basiert auf dem **VTM Brand & Design System 4.2 „Luminous Editorial
-Edition"**: Farbwelt (Deep Cobalt / Electric Blue / Brass), Typografie
-(Plus Jakarta Sans, Inter, Source Serif 4, IBM Plex Mono), Brand Rail,
-Hero-Atmosphäre, Signal-Linien und Card-Sprache.
+> **Wichtig – Sicherheitsmodell:** Dies ist eine rein statische
+> Anwendung. Der Login steuert Rollen und Bedienung, ist aber **kein
+> Serverschutz** – wer die URL kennt, kann den Quellcode lesen.
+> Keine hochsensiblen Daten ablegen und die Seite idealerweise
+> zusätzlich absichern (z. B. Cloudflare Access, Netlify
+> Password/Identity oder Basic Auth des Webservers).
 
-Moderne Design-Patterns (alle rein CSS/JS, keine Video-Assets):
+## Team-Synchronisation (Backend)
 
-- **Immersiver Full-Screen-Hero** mit Kinetic Type (gestaffelt
-  aufsteigende Headline), animiertem Aurora-Hintergrund als
-  performanter Video-Loop-Ersatz und Scroll-Cue.
-- **Conversational Quickstart** im Hero: Prompt-Optik mit Ziel-Chips
-  („Sichtbarkeit aufbauen", „Thought Leader werden" …), die per Klick
-  das passende Startpaket in den Konfigurator laden.
-- **Bento Grid** für den Warum-VTM-Abschnitt: modulare Kacheln
-  unterschiedlicher Größe, dunkle Kachel mit leuchtender Akzentkante,
-  Brass-Kachel für die 73-%-Studie.
-- **Card Stacking (Story Stack)** für die Jahresprogramme: Karten
-  schieben sich beim Scrollen per `position: sticky` übereinander;
-  auf Mobile automatischer Reflow zum vertikalen Stapel.
-- **KI-Video-Loop im Hero**: 6-Sekunden-Micro-Loop (Seedance 2.0 aus
-  einem GPT-Image-2-Master-Motiv, identischer Start-/End-Frame =
-  nahtlos). Lädt nur auf Desktop und ohne
-  `prefers-reduced-motion`-Präferenz (JS injiziert die Quelle, Mobile
-  lädt kein Video); Fallback ist die CSS-Aurora-Atmosphäre. Das
-  Master-Standbild wird zusätzlich im Anfrage-Bereich wiederverwendet
-  (konsistenter Bildstil, gleiche Szene an mehreren Stellen).
-- **Maus-Parallax im Hero** (nur feine Zeiger, respektiert
-  Reduced Motion): Video, Atmosphäre und Panel verschieben sich
-  subtil gegenläufig zur Mausbewegung.
-- **Soft Glassmorphism**: mattierte, halbtransparente Flächen mit
-  `backdrop-filter` für Navigation, Hero-Panel, Mobile-Bar und Toasts.
-- **Scroll Reveals** via `IntersectionObserver` – Inhalte sind ohne
-  JavaScript und bei `prefers-reduced-motion` vollständig sichtbar.
+Die App synchronisiert den kompletten Datenbestand (Angebote,
+Kunden, Katalog, Benutzer, Einstellungen) über ein **kleines
+Supabase-Backend** (kostenloser Tarif). Synchronisiert wird
+automatisch: nach jeder Änderung (leicht verzögert), alle
+45 Sekunden und beim Fokus-Wechsel ins Fenster. Der Status ist
+unten in der Seitenleiste sichtbar.
 
-## Formular-Backend
+**Einmalige Einrichtung (Administration, ca. 5 Minuten):**
 
-Das Formular sendet per `fetch` an Formspree
-(`https://formspree.io/f/mzdnvzqq`, konfiguriert in der Konstante
-`FORM_ENDPOINT` in `index.html`). Die Ziel-Adresse
-`info@versicherungstech-magazin.de` wird im Formspree-Dashboard
-verwaltet. Schlägt der Versand fehl, bietet das Formular automatisch
-einen E-Mail-Fallback (`mailto:` an dieselbe Adresse) an.
+1. Auf [supabase.com](https://supabase.com) ein Projekt anlegen
+   (Free-Tarif genügt).
+2. Im Projekt **SQL Editor** öffnen und `supabase-setup.sql`
+   ausführen (liegt im Repo; identisch in der App unter
+   Einstellungen → Team-Synchronisation).
+3. **Settings → API**: *Project URL* und *anon public key*
+   kopieren.
+4. In der App: **Einstellungen → Team-Synchronisation** → beide
+   Werte eintragen → „Speichern & verbinden".
 
-Zum Austausch des Backends genügt es, `FORM_ENDPOINT` zu ändern – es
-funktioniert jeder Endpoint, der ein JSON-POST mit
-`{ name, company, email, message, konfiguration }` akzeptiert
-(Getform, Basin, eigene API …).
+**Onboarding neuer Teammitglieder (mit E-Mail-Einladung):**
 
-## Robustheit (Progressive Enhancement)
+1. Administration legt die Person unter **Einstellungen →
+   Benutzer** mit E-Mail-Adresse an. Die App erzeugt automatisch
+   ein Einmalpasswort und der Team-Server verschickt die
+   **Einladungs-E-Mail** (Link zu ADAM, Benutzername = E-Mail,
+   Einmalpasswort). Das Einmalpasswort wird der Administration
+   zusätzlich einmalig als Fallback angezeigt.
+2. Person: **Link aus der Mail öffnen** – die Team-Verbindung
+   richtet sich dabei automatisch ein (der Link enthält die
+   Zugangsdaten des Team-Servers) – und mit E-Mail +
+   Einmalpasswort anmelden. Manuelles Verbinden („Mit Team-Server
+   verbinden") oder Team-Datei-Import bleiben als Fallback.
+3. Beim ersten Login **erzwingt** die App das Festlegen eines
+   eigenen Passworts; das Einmalpasswort wird damit ungültig.
+   „Neues Einmalpasswort senden" in der Benutzerverwaltung setzt
+   ein vergessenes Passwort zurück.
 
-Alle Leistungs- und Paketkarten stehen **statisch im HTML** – Inhalte,
-Umfang und Preise sind auch ohne JavaScript sichtbar (wichtig für
-SEO, restriktive Firmen-Browser und Datei-Vorschauen). JavaScript
-„hydratisiert" die Karten nur noch: Auswahl, Stepper, Summen, Presets
-und Formularversand. Die Preset-Preise im HTML werden bei aktivem
-JavaScript aus dem Katalog nachgerechnet, damit statisches Markup und
-Einzelpreise nie auseinanderlaufen (nach Preisänderungen im `CATALOG`
-bitte auch die statischen Kartenpreise im HTML anpassen).
+**Mailversand einrichten (einmalig):** Einstellungen →
+**E-Mail-Einladungen** → Resend-API-Key (nur Versandrecht)
+eintragen → „SQL erzeugen" → Script im Supabase SQL Editor
+ausführen (`supabase-mail-setup.sql` ist die Vorlage). Versand
+läuft über einen Datenbank-Trigger (pg_net → Resend) mit der
+verifizierten Absender-Domain `versicherungstech-magazin.de`;
+der Key liegt nur in Supabase (RLS-geschützt, per API nicht
+auslesbar), Empfänger sind auf konfigurierte Domains beschränkt.
+Hinweis: Der Einladungslink enthält die Team-Server-Zugangsdaten
+(anon key) – Einladungsmails daher wie interne Zugangsdaten
+behandeln.
 
-Die Bildmarke (Original-Dateien unter `assets/`) ist als optimierte
-**Data-URI direkt in die Seite eingebettet** – Navigation und Favicon
-farbig, Footer in Weiß, daneben die Text-Wortmarke. Keine externen
-Bild-Requests, die Marke erscheint auch bei blockiertem CDN oder
-strenger Content-Security-Policy. Bei einem Logo-Update die Dateien
-in `assets/` ersetzen und die Base64-Werte in `index.html` neu
-erzeugen (verkleinert auf ~144 px, transparenter Rand beschnitten). Das
-Schnellstart-Feld im Hero ist ein echtes Eingabefeld: Freitext wird
-in die Anfrage-Nachricht übernommen; erkennt die Seite ein Ziel
-(Sichtbarkeit / Thought Leadership / maximale Präsenz), lädt sie
-zusätzlich das passende Startpaket.
+**Konfliktverhalten:** Pro Angebot/Kunde/Benutzer/Vorlage gewinnt
+die zuletzt gespeicherte Änderung; Katalog und Einstellungen als
+Ganzes ebenso. Nummernkreise werden auf das Maximum zusammengeführt,
+damit parallel gezogene Nummern nicht doppelt vergeben werden.
+Löschungen synchronisieren über Lösch-Markierungen (Tombstones).
+Schreibkonflikte verhindert eine optimistische Sperre (`rev`-Spalte)
+mit automatischem Merge-Retry.
 
-## Bilder
+## Datenhaltung
 
-Drei editorial Bildmotive (mit Higgsfield generiert, VTM-Farbwelt) sind
-eingebunden:
+Jedes Gerät hält eine lokale Kopie im **localStorage** (die App
+funktioniert damit auch offline weiter) und gleicht sie mit dem
+Team-Server ab. Ohne konfigurierten Server arbeitet die App rein
+lokal – dann gilt: Austausch über **Einstellungen → Datensicherung**
+(JSON-Export/-Import) und regelmäßig exportieren (Backup!).
 
-- **Podcast-Studio** – Hintergrund der großen Podcast-Kachel im
-  Bento-Grid („35.000 Downloads").
-- **Insurance-Innovation-Day / Konferenz** – Bildband über den
-  Jahresprogrammen.
-- **Business-Dialog** – Visual im Anfrage-Bereich.
+Hinweis zum Zugriffsschutz: Der *anon public key* berechtigt zum
+Lesen/Schreiben der Team-Daten und wird deshalb nur intern geteilt
+(er steht bewusst **nicht** im Code des Repos, sondern wird pro
+Gerät hinterlegt). Wer den Schlüssel rotieren will: in Supabase
+unter Settings → API neu generieren und im Team neu verteilen.
 
-Jedes Bild liegt hinter einem Gradient-Scrim (Textlesbarkeit) und über
-einem Brand-Gradient-Fallback: Fällt ein Bild aus, bleibt die Sektion
-im freigegebenen Design bestehen. Die Bilder werden aktuell vom
-Higgsfield-CDN geladen (lazy). Für vollständige Selbstständigkeit die
-drei Dateien nach `assets/` herunterladen und die `src`-URLs in
-`index.html` auf die lokalen Pfade umstellen.
+## Deployment
 
-## Medien-Assets
+Statische Seite – es genügt, die Dateien auszuliefern:
 
-Alle generierten Motive werden **lokal aus `assets/` geladen**
-(`hero-loop.mp4`, `hero-master.webp`, `podcast-mic.webp`,
-`network-band.webp`) – mit automatischem CDN-Fallback, falls eine
-Datei fehlt. Der Workflow `.github/workflows/fetch-assets.yml` lädt
-die Dateien vom Higgsfield-CDN und committet sie; er läuft bei Push
-auf den Branch bzw. manuell über den „Run workflow"-Button im
-Actions-Tab (überspringt sich selbst, sobald die Assets vorliegen).
+**GitHub Pages (empfohlen, kostenlos):**
+1. Repo → *Settings → Pages* → Source: diesen Branch, Ordner `/ (root)`.
+2. Die Datei `CNAME` enthält `adam.versicherungstech-magazin.de`
+   (bei Bedarf anpassen).
+3. Beim DNS-Anbieter einen **CNAME-Record** anlegen:
+   `adam` → `maxhemp.github.io`. HTTPS aktiviert GitHub
+   automatisch („Enforce HTTPS" anhaken).
 
-## Betrieb
+Alternativ Netlify/Vercel (Repo verbinden, kein Build-Command) oder
+ein beliebiger Webserver. Es gibt keine Abhängigkeiten und keinen
+Build-Schritt; Schriften kommen von Google Fonts.
 
-Statische Seite – einfach `index.html` ausliefern (z. B. GitHub Pages,
-Netlify oder ein beliebiger Webserver). Es sind keine Abhängigkeiten
-oder Build-Schritte nötig; Schriften werden über Google Fonts geladen,
-Logos über das bestehende VTM-CDN.
+## Dateien
 
-Alle Preise sind Netto-Preise zuzüglich Umsatzsteuer und werden im
-Katalog-Array `CATALOG` in `index.html` gepflegt.
+| Datei | Inhalt |
+|---|---|
+| `index.html` | Markup: Login, App-Shell, alle Bereiche, Editor, A4-Vorschau |
+| `app.css` | Design-Tokens „Master Next" + UI- und Dokument-Styles + Print |
+| `app.js` | Store, Auth/Rollen, Router, Views, Editor, Word-Export |
+| `sync.js` | Team-Synchronisation: Supabase-Anbindung, Merge-Logik, Statusanzeige |
+| `import.js` | Excel-/CSV-Kontaktimport: ZIP-/XLSX-Leser, CSV-Parser, Spaltenerkennung |
+| `supabase-setup.sql` | Einmaliges SQL-Setup für das Backend |
+| `supabase-mail-setup.sql` | Vorlage für den Einladungs-Mailversand (pg_net → Resend) |
+| `data.js` | Seed-Daten: Katalog, Bundles, Vorlagen, Firma, Benutzer, Nummernkreise |
+| `assets/` | VTM-Logos (farbig/weiß) |
+
+Preise, Katalog und Firmendaten werden **in der App** gepflegt
+(Einstellungen bzw. Produkte & Leistungen); `data.js` dient nur der
+Erstbefüllung neuer Browser.
