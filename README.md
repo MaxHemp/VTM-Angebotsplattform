@@ -145,6 +145,22 @@ die Dateien vom Higgsfield-CDN und committet sie; er läuft bei Push
 auf den Branch bzw. manuell über den „Run workflow"-Button im
 Actions-Tab (überspringt sich selbst, sobald die Assets vorliegen).
 
+## Gemeinsame Preispflege mit der Insurance-Monday-Seite
+
+Leistungen und Preise leben in **`catalog.json`** (Single Source of
+Truth für diese Seite und das Partner-Repo `im-angebotsplattform`).
+Nach jeder Änderung ausführen:
+
+```bash
+node scripts/sync-catalog.mjs ../im-angebotsplattform
+```
+
+Das Skript schreibt den Katalog in den JS-Block (zwischen den
+`CATALOG:BEGIN/END`-Markern) und regeneriert die statischen Karten in
+beiden Seiten. Die Gruppen-/Summary-Reihenfolge je Seite steuert das
+`data-catalog-order`-Attribut am `<body>`. Danach beide Repos
+committen und pushen.
+
 ## Betrieb
 
 Statische Seite – einfach `index.html` ausliefern (z. B. GitHub Pages,
