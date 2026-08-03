@@ -127,7 +127,18 @@ function syncFile(file) {
     (a, b) => order.indexOf(a.group) - order.indexOf(b.group)
   );
 
-  /* 1. JS-Blöcke zwischen den Markern ersetzen */
+  /* 1. JS-Blöcke zwischen den Markern ersetzen (fehlen die Marker,
+     ist die Seite nicht sync-fähig → hart abbrechen statt still
+     veraltete Preise stehen zu lassen) */
+  if (!/\/\* CATALOG:BEGIN[\s\S]*?CATALOG:END \*\//.test(src)) {
+    throw new Error(file + ": CATALOG:BEGIN/END-Marker fehlen");
+  }
+  if (!/\/\* PRESETS:BEGIN[\s\S]*?PRESETS:END \*\//.test(src)) {
+    throw new Error(file + ": PRESETS:BEGIN/END-Marker fehlen");
+  }
+  if (!orderMatch) {
+    throw new Error(file + ': data-catalog-order-Attribut am <body> fehlt');
+  }
   src = src.replace(
     /\/\* CATALOG:BEGIN[\s\S]*?CATALOG:END \*\//,
     "/* CATALOG:BEGIN (generiert aus catalog.json – nicht von Hand ändern) */\n    const CATALOG = " +

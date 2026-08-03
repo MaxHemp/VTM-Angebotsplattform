@@ -2618,7 +2618,7 @@
     }
   </style>
 </head>
-<body id="top">
+<body id="top" data-catalog-order="reichweite,content,podcast,anfrage">
   <a class="skip-link" href="#konfigurator">Zum Konfigurator springen</a>
 
   <div class="brand-rail" aria-hidden="true"></div>
@@ -3786,194 +3786,195 @@
        Alle Preise netto in Euro.
     ========================================================= */
 
+    /* CATALOG:BEGIN (generiert aus catalog.json – nicht von Hand ändern) */
     const CATALOG = [
-      /* ---- Magazin: Reichweite & Sichtbarkeit ---- */
       {
-        id: "banner-web",
-        group: "reichweite",
-        format: "Werbebanner",
-        badge: "Bestseller",
-        name: "Website-Werbebanner",
-        desc: "Ihr Banner auf allen Seiten von versicherungstech-magazin.de – dauerhaft präsent im redaktionellen Umfeld.",
-        unit: 1200,
-        unitSuffix: "pro Monat",
-        mode: "months",
-        qtyLabel: "Monat(e)",
-        max: 12,
-        excludes: "banner-app"
+        "id": "banner-web",
+        "group": "reichweite",
+        "format": "Werbebanner",
+        "badge": "Bestseller",
+        "name": "Website-Werbebanner",
+        "desc": "Ihr Banner auf allen Seiten von versicherungstech-magazin.de – dauerhaft präsent im redaktionellen Umfeld.",
+        "unit": 1200,
+        "unitSuffix": "pro Monat",
+        "mode": "months",
+        "qtyLabel": "Monat(e)",
+        "max": 12,
+        "excludes": "banner-app"
       },
       {
-        id: "banner-app",
-        group: "reichweite",
-        format: "Werbebanner + App",
-        name: "Werbebanner Website + VTM App",
-        desc: "Maximale Präsenz: Ihr Banner auf allen Webseiten und zusätzlich in der VTM App – direkt auf dem Startbildschirm der Entscheider.",
-        unit: 2000,
-        unitSuffix: "pro Monat",
-        mode: "months",
-        qtyLabel: "Monat(e)",
-        max: 12,
-        excludes: "banner-web"
+        "id": "banner-app",
+        "group": "reichweite",
+        "format": "Werbebanner + App",
+        "name": "Werbebanner Website + VTM App",
+        "desc": "Maximale Präsenz: Ihr Banner auf allen Webseiten und zusätzlich in der VTM App – direkt auf dem Startbildschirm der Entscheider.",
+        "unit": 2000,
+        "unitSuffix": "pro Monat",
+        "mode": "months",
+        "qtyLabel": "Monat(e)",
+        "max": 12,
+        "excludes": "banner-web"
       },
       {
-        id: "newsletter",
-        group: "reichweite",
-        format: "Newsletter",
-        badge: "Beliebt",
-        name: "Newsletter-Sponsoring",
-        desc: "Exklusive Präsenz im VTM Briefing – 6.000+ Empfänger, rund 50 % Öffnungsrate, direkt im Posteingang der Branche.",
-        unit: 1900,
-        unitSuffix: "pro Monat",
-        mode: "months",
-        qtyLabel: "Monat(e)",
-        max: 12
-      },
-
-      /* ---- Magazin: Content & Thought Leadership ---- */
-      {
-        id: "fachartikel",
-        group: "content",
-        format: "Gesponserter Fachbeitrag",
-        name: "Fachartikel",
-        desc: "Von unserer Redaktion geschriebener Fachbeitrag zu Ihrem Thema – auf der Website, in der App und angeteasert im Newsletter.",
-        unit: 900,
-        unitSuffix: "pro Artikel",
-        mode: "qty",
-        qtyLabel: "Artikel",
-        max: 12
+        "id": "newsletter",
+        "group": "reichweite",
+        "format": "Newsletter",
+        "badge": "Beliebt",
+        "name": "Newsletter-Sponsoring",
+        "desc": "Exklusive Präsenz im VTM Briefing – 6.000+ Empfänger, rund 50 % Öffnungsrate, direkt im Posteingang der Branche.",
+        "unit": 1900,
+        "unitSuffix": "pro Monat",
+        "mode": "months",
+        "qtyLabel": "Monat(e)",
+        "max": 12
       },
       {
-        id: "interview",
-        group: "content",
-        format: "Interview",
-        name: "Executive Interview",
-        desc: "Ihre Führungskraft im redaktionellen Interview – Positionierung über Person und Haltung statt Werbebotschaft.",
-        unit: 1200,
-        unitSuffix: "pro Interview",
-        mode: "qty",
-        qtyLabel: "Interview(s)",
-        max: 12
+        "id": "fachartikel",
+        "group": "content",
+        "format": "Gesponserter Fachbeitrag",
+        "name": "Fachartikel",
+        "desc": "Von unserer Redaktion geschriebener Fachbeitrag zu Ihrem Thema – auf der Website, in der App und angeteasert im Newsletter.",
+        "unit": 900,
+        "unitSuffix": "pro Artikel",
+        "mode": "qty",
+        "qtyLabel": "Artikel",
+        "max": 12
       },
       {
-        id: "casestudy",
-        group: "content",
-        format: "Praxisbericht + Kontakte",
-        name: "Case Study inkl. Lead-Liste",
-        desc: "Ihr Kundenprojekt als überzeugende Erfolgsgeschichte – inklusive Kontaktliste aller Interessenten, die den Bericht angefordert haben.",
-        unit: 3000,
-        unitSuffix: "pro Case Study",
-        mode: "qty",
-        qtyLabel: "Case Studies",
-        max: 6
+        "id": "interview",
+        "group": "content",
+        "format": "Interview",
+        "name": "Executive Interview",
+        "desc": "Ihre Führungskraft im redaktionellen Interview – Positionierung über Person und Haltung statt Werbebotschaft.",
+        "unit": 1200,
+        "unitSuffix": "pro Interview",
+        "mode": "qty",
+        "qtyLabel": "Interview(s)",
+        "max": 12
       },
       {
-        id: "linkedin-service",
-        group: "content",
-        format: "LinkedIn as a Service",
-        name: "LinkedIn as a Service",
-        desc: "Wir liefern 4 fertige LinkedIn-Beiträge pro Monat für die Profile Ihrer Vertriebs- und Führungskräfte – damit sie zu relevanten Versicherungsthemen als Experten sichtbar werden.",
-        unit: 2500,
-        unitSuffix: "pro Monat",
-        mode: "months",
-        qtyLabel: "Monat(e)",
-        max: 12
+        "id": "casestudy",
+        "group": "content",
+        "format": "Praxisbericht + Kontakte",
+        "name": "Case Study inkl. Lead-Liste",
+        "desc": "Ihr Kundenprojekt als überzeugende Erfolgsgeschichte – inklusive Kontaktliste aller Interessenten, die den Bericht angefordert haben.",
+        "unit": 3000,
+        "unitSuffix": "pro Case Study",
+        "mode": "qty",
+        "qtyLabel": "Case Studies",
+        "max": 6
       },
       {
-        id: "sponsored-post",
-        group: "content",
-        format: "VTM LinkedIn-Kanal",
-        name: "Sponsored LinkedIn Post",
-        desc: "Ihr Beitrag über den VTM-Kanal – dort, wo die Branche täglich mitliest. Mengenrabatt: ab 5 Posts −10 %, ab 10 Posts −20 %.",
-        unit: 750,
-        unitSuffix: "pro Post",
-        mode: "qty",
-        qtyLabel: "Post(s)",
-        max: 30,
-        tiers: [
-          { min: 10, discount: 0.20 },
-          { min: 5, discount: 0.10 }
+        "id": "linkedin-service",
+        "group": "content",
+        "format": "LinkedIn as a Service",
+        "name": "LinkedIn as a Service",
+        "desc": "Wir liefern 4 fertige LinkedIn-Beiträge pro Monat für die Profile Ihrer Vertriebs- und Führungskräfte – damit sie zu relevanten Versicherungsthemen als Experten sichtbar werden.",
+        "unit": 2500,
+        "unitSuffix": "pro Monat",
+        "mode": "months",
+        "qtyLabel": "Monat(e)",
+        "max": 12
+      },
+      {
+        "id": "sponsored-post",
+        "group": "content",
+        "format": "VTM LinkedIn-Kanal",
+        "name": "Sponsored LinkedIn Post",
+        "desc": "Ihr Beitrag über den VTM-Kanal – dort, wo die Branche täglich mitliest. Mengenrabatt: ab 5 Posts −10 %, ab 10 Posts −20 %.",
+        "unit": 750,
+        "unitSuffix": "pro Post",
+        "mode": "qty",
+        "qtyLabel": "Post(s)",
+        "max": 30,
+        "tiers": [
+          {
+            "min": 10,
+            "discount": 0.2
+          },
+          {
+            "min": 5,
+            "discount": 0.1
+          }
         ]
       },
-
-      /* ---- Podcast & Audio ---- */
       {
-        id: "quartalssponsoring",
-        group: "podcast",
-        format: "Sponsoring · pro Quartal",
-        name: "Quartalssponsoring Insurance Monday",
-        desc: "Das Flaggschiff: Ihr Unternehmen ein Quartal lang als offizieller Sponsor des reichweitenstärksten Podcasts der Branche.",
-        includes: [
+        "id": "quartalssponsoring",
+        "group": "podcast",
+        "format": "Sponsoring · pro Quartal",
+        "name": "Quartalssponsoring Insurance Monday",
+        "desc": "Das Flaggschiff: Ihr Unternehmen ein Quartal lang als offizieller Sponsor des reichweitenstärksten Podcasts der Branche.",
+        "includes": [
           "3 komplette Podcast-Episoden zu Ihrem Thema",
           "Bewerbung auf LinkedIn & allen gängigen Podcast-Plattformen",
           "Produktion Ihres Audio-Werbespots + Ausspielung in 30 weiteren Episoden (mitten in der Folge)",
           "Offizielle Nennung als Sponsor auf allen Materialien"
         ],
-        unit: 30000,
-        unitSuffix: "pro Quartal",
-        mode: "qty",
-        qtyLabel: "Quartal(e)",
-        max: 4
+        "unit": 30000,
+        "unitSuffix": "pro Quartal",
+        "mode": "qty",
+        "qtyLabel": "Quartal(e)",
+        "max": 4
       },
       {
-        id: "podcast-episode",
-        group: "podcast",
-        format: "Einzelformat",
-        badge: "Bestseller",
-        name: "Einzelne Podcast-Episode",
-        desc: "Ihr Experte im Gespräch bei Insurance Monday – eine ganze Folge zu Ihrem Thema, erzählt an echten Fällen aus der Praxis.",
-        unit: 3500,
-        unitSuffix: "pro Episode",
-        mode: "qty",
-        qtyLabel: "Episode(n)",
-        max: 12
+        "id": "podcast-episode",
+        "group": "podcast",
+        "format": "Einzelformat",
+        "badge": "Bestseller",
+        "name": "Einzelne Podcast-Episode",
+        "desc": "Ihr Experte im Gespräch bei Insurance Monday – eine ganze Folge zu Ihrem Thema, erzählt an echten Fällen aus der Praxis.",
+        "unit": 3500,
+        "unitSuffix": "pro Episode",
+        "mode": "qty",
+        "qtyLabel": "Episode(n)",
+        "max": 12
       },
       {
-        id: "podcast-ads",
-        group: "podcast",
-        format: "Podcast-Werbung",
-        name: "Podcast-Werbespot (Pre-Roll)",
-        desc: "Ihr Werbespot am Anfang von drei Episoden – dort, wo die Aufmerksamkeit am höchsten ist.",
-        unit: 2500,
-        unitSuffix: "pro Paket (3 Episoden)",
-        mode: "qty",
-        qtyLabel: "Paket(e)",
-        max: 10
-      },
-
-      /* ---- Programm-Bausteine (auf Anfrage) ---- */
-      {
-        id: "marktcheck",
-        group: "anfrage",
-        format: "Marktbefragung",
-        name: "Marktcheck im Entscheider-Panel",
-        desc: "Wir befragen unser Netzwerk aus Führungskräften der Versicherungsbranche zu Ihrem Thema. Das Ergebnis: eine zitierfähige Zahl für Presse und Vertrieb.",
-        request: true
+        "id": "podcast-ads",
+        "group": "podcast",
+        "format": "Podcast-Werbung",
+        "name": "Podcast-Werbespot (Pre-Roll)",
+        "desc": "Ihr Werbespot am Anfang von drei Episoden – dort, wo die Aufmerksamkeit am höchsten ist.",
+        "unit": 2500,
+        "unitSuffix": "pro Paket (3 Episoden)",
+        "mode": "qty",
+        "qtyLabel": "Paket(e)",
+        "max": 10
       },
       {
-        id: "webinar",
-        group: "anfrage",
-        format: "Webinar + Kontakte",
-        name: "Fach-Webinar mit Teilnehmerliste",
-        desc: "45 Minuten unter VTM-Flagge: Wir moderieren, Ihr Experte zeigt die Lösung an einem konkreten Fall. Die komplette Anmeldeliste geht an Ihren Vertrieb – jede Anmeldung ist echtes Interesse.",
-        request: true
+        "id": "marktcheck",
+        "group": "anfrage",
+        "format": "Marktbefragung",
+        "name": "Marktcheck im Entscheider-Panel",
+        "desc": "Wir befragen unser Netzwerk aus Führungskräften der Versicherungsbranche zu Ihrem Thema. Das Ergebnis: eine zitierfähige Zahl für Presse und Vertrieb.",
+        "request": true
       },
       {
-        id: "commentaries",
-        group: "anfrage",
-        format: "Dauerpräsenz",
-        name: "Experten-Statements",
-        desc: "Kurze Zitate und Einschätzungen Ihres Experten in der laufenden VTM-Berichterstattung – wirken redaktionell statt werblich und halten Ihr Gesicht in der Branche präsent.",
-        request: true
+        "id": "webinar",
+        "group": "anfrage",
+        "format": "Webinar + Kontakte",
+        "name": "Fach-Webinar mit Teilnehmerliste",
+        "desc": "45 Minuten unter VTM-Flagge: Wir moderieren, Ihr Experte zeigt die Lösung an einem konkreten Fall. Die komplette Anmeldeliste geht an Ihren Vertrieb – jede Anmeldung ist echtes Interesse.",
+        "request": true
       },
       {
-        id: "exklusiv",
-        group: "anfrage",
-        format: "Exklusivität",
-        name: "Kategorie-Exklusivität",
-        desc: "Ihr Thema gehört Ihnen allein: In Ihrer Kategorie tritt kein weiterer Werbepartner im VTM auf – die volle Aufmerksamkeit liegt bei Ihnen.",
-        request: true
+        "id": "commentaries",
+        "group": "anfrage",
+        "format": "Dauerpräsenz",
+        "name": "Experten-Statements",
+        "desc": "Kurze Zitate und Einschätzungen Ihres Experten in der laufenden VTM-Berichterstattung – wirken redaktionell statt werblich und halten Ihr Gesicht in der Branche präsent.",
+        "request": true
+      },
+      {
+        "id": "exklusiv",
+        "group": "anfrage",
+        "format": "Exklusivität",
+        "name": "Kategorie-Exklusivität",
+        "desc": "Ihr Thema gehört Ihnen allein: In Ihrer Kategorie tritt kein weiterer Werbepartner im VTM auf – die volle Aufmerksamkeit liegt bei Ihnen.",
+        "request": true
       }
     ];
+    /* CATALOG:END */
 
     /* =========================================================
        State & Helpers
@@ -4064,30 +4065,46 @@
        Beliebte Kombinationen (Presets)
     ========================================================= */
 
+    /* PRESETS:BEGIN (generiert aus catalog.json – nicht von Hand ändern) */
     const PRESETS = [
       {
-        id: "starter",
-        badge: "Schneller Einstieg",
-        name: "Sichtbarkeits-Start",
-        tagline: "Der kompakte Einstieg: gesehen werden, wo die Branche liest.",
-        items: { "fachartikel": 1, "newsletter": 3, "sponsored-post": 5 }
+        "id": "starter",
+        "badge": "Schneller Einstieg",
+        "name": "Sichtbarkeits-Start",
+        "tagline": "Der kompakte Einstieg: gesehen werden, wo die Branche liest.",
+        "items": {
+          "fachartikel": 1,
+          "newsletter": 3,
+          "sponsored-post": 5
+        }
       },
       {
-        id: "authority",
-        badge: "Meistgewählt",
-        featured: true,
-        name: "Thought-Leader-Paket",
-        tagline: "Ihr Kopf und Ihr Thema werden in der Branche verankert.",
-        items: { "podcast-episode": 1, "interview": 1, "fachartikel": 2, "linkedin-service": 6 }
+        "id": "authority",
+        "badge": "Meistgewählt",
+        "featured": true,
+        "name": "Thought-Leader-Paket",
+        "tagline": "Ihr Kopf und Ihr Thema werden in der Branche verankert.",
+        "items": {
+          "podcast-episode": 1,
+          "interview": 1,
+          "fachartikel": 2,
+          "linkedin-service": 6
+        }
       },
       {
-        id: "market",
-        badge: "Maximale Präsenz",
-        name: "Marktführer-Paket",
-        tagline: "Volle Sichtbarkeit über alle Kanäle – ein Quartal lang.",
-        items: { "quartalssponsoring": 1, "newsletter": 3, "banner-app": 3, "casestudy": 1 }
+        "id": "market",
+        "badge": "Maximale Präsenz",
+        "name": "Marktführer-Paket",
+        "tagline": "Volle Sichtbarkeit über alle Kanäle – ein Quartal lang.",
+        "items": {
+          "quartalssponsoring": 1,
+          "newsletter": 3,
+          "banner-app": 3,
+          "casestudy": 1
+        }
       }
     ];
+    /* PRESETS:END */
 
     function presetTotal(preset) {
       let total = 0;
