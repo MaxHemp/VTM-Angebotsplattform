@@ -1,172 +1,103 @@
-# VTM Angebotsplattform
+# VTM Angebotsplattform · Leistungskonfigurator 2.0
 
-Landingpage mit modularem Leistungs-Konfigurator für das
-**VersicherungsTech Magazin (VTM)**. Kundinnen und Kunden stellen sich
-ihre gewünschten VTM-Leistungen selbstständig zusammen, sehen live eine
-Preisübersicht und senden ihre Konfiguration als unverbindliche Anfrage.
+Landingpage mit Leistungskonfigurator für das **VersicherungsTech Magazin
+(VTM)**, live unter angebote.versicherungstech-magazin.de. Kundinnen und
+Kunden wählen aus den drei VTM-Leistungen der Mediadaten 2026 und den
+Podcast-Formaten von Insurance Monday, sehen die Netto-Summe live und senden
+ihre Konfiguration als unverbindliche Anfrage.
 
 ## Inhalt
 
-- `index.html` – vollständige, selbstenthaltene Landingpage
-  (HTML + CSS + Vanilla JS, keine Build-Tools, kein Framework).
+- `index.html` – vollständige, selbstenthaltene Seite (HTML + CSS + Vanilla
+  JS, kein Framework, kein Build-Schritt).
+- `catalog.json` – **Single Source of Truth** für Leistungen, Preise,
+  Detailtexte und Grundsätze (gilt auch für die Insurance-Monday-Seite).
+- `scripts/sync-catalog.mjs` – schreibt den Katalog in beide Seiten.
+- `assets/` – Bildmotive, Logos, OG-Bild.
 
-## Funktionen
+## Leistungen (Mediadaten 2026)
 
-- **Modularer Konfigurator** in vier Kategorien (Magazin-Leistungen
-  zuerst, Podcast danach):
-  - Magazin · Reichweite & Sichtbarkeit (Website-Banner,
-    Website + App-Banner, Newsletter-Sponsoring) – Banner-Varianten
-    schließen sich gegenseitig aus
-  - Magazin · Content & Thought Leadership (Fachartikel, Executive
-    Interview, Case Study inkl. Lead-Liste, LinkedIn as a Service,
-    Sponsored LinkedIn Posts)
-  - Podcast & Audio (Quartalssponsoring Insurance Monday,
-    Einzel-Episoden, Podcast Ads Pre-Roll)
-  - Programm-Bausteine auf Anfrage (Marktcheck im Entscheider-Panel,
-    Deep-Dive-Webinar, Expert Commentaries, Kategorie-Exklusivität)
-- **Conversion-Elemente**: Social-Proof-Band (Leserschaft), drei
-  vorkonfigurierte „Beliebte Kombinationen" mit 1-Klick-Übernahme,
-  Bestseller-/Beliebt-Badges, Einwand-FAQ, Reassurance-Microcopy an
-  allen CTAs (Antwort in 24 h, keine Zahlungspflicht), Nav-CTA.
-- **Mengenrabatt-Logik** für Sponsored LinkedIn Posts:
-  ab 5 Posts −10 %, ab 10 Posts −20 % (Ersparnis wird ausgewiesen).
-- **Laufzeit-/Stückzahl-Stepper** je Leistung (Monate, Episoden, Pakete …).
-- **Live-Zusammenfassung** als Sticky-Panel (Desktop) und
-  Bottom-Bar (Mobile), Netto-Summe zzgl. USt.
-- **Anfrage-Formular mit echtem Backend**: sendet die Anfrage inkl.
-  Konfiguration per `fetch` an einen konfigurierbaren
-  Formular-Endpoint (Formspree-kompatibel, siehe unten) – mit
-  Ladezustand, Erfolgsbestätigung, Fehlerbehandlung und
-  Honeypot-Spamschutz. Ohne konfigurierten Endpoint fällt das Formular
-  automatisch auf `mailto:` zurück. Zusätzlich zeigt eine
-  Live-Vorschau am Formular die gewählte Konfiguration.
-- **Persistenz** der Auswahl über `localStorage`.
-- **Jahresprogramme** (Category Presence, Authority Program,
-  Startup Presence) als Teaser für geführte Zwölf-Monats-Programme.
+**VTM-Leistungen** (ausschließlich die drei Bausteine der Mediadaten):
+
+| Leistung | Preis | Menge im Konfigurator |
+|---|---|---|
+| Themenkampagne | 9.000 € einmalig, 6 bis 8 Wochen | Kampagnen (1 bis 4) |
+| Führungskräfte-Kommunikation | 1.500 € pro Monat je Führungskraft | Führungskräfte (1 bis 5) × Monate (1 bis 24) |
+| Themenpartnerschaft | 36.000 € pro Jahr (3.000 € pro Monat) | Jahre (1 bis 3) |
+
+**Podcast · Insurance Monday** (Kooperationspartner, in der Seite als
+Partnerschaft gekennzeichnet): Quartalssponsoring 30.000 €, Podcast-Episode
+3.500 €, Pre-Roll-Paket 2.500 € (3 Episoden).
+
+Alle Preise netto zuzüglich gesetzlicher Umsatzsteuer. Preisformel:
+`unit × Menge` bzw. `unit × Führungskräfte × Monate`. Es gibt keine
+Staffelrabatte, Presets oder Jahresprogramme mehr.
+
+## Preispflege (beide Seiten)
+
+Leistungen, Preise, Detailblöcke (PDF-Seiten 2 bis 4) und die Grundsätze der
+Zusammenarbeit werden **nur in `catalog.json`** gepflegt. Danach:
+
+```bash
+# im VTM-Repo-Root, IM-Repo liegt daneben:
+node scripts/sync-catalog.mjs ../inmo-angebotsplattform
+```
+
+Das Skript ersetzt in jeder Seite den JS-Katalog (`CATALOG:BEGIN/END`), die
+statischen Karten in den `config-grid`-Containern (Gruppen laut
+`data-catalog-order` am `<body>`: VTM `vtm,podcast`, IM `podcast,vtm`), die
+Detailblöcke (`leistung-details`) und die Grundsätze (`principles`). Fehlt ein
+Marker oder Container, bricht es mit Fehler ab. Danach beide Repos committen.
 
 ## Design
 
-Basiert auf dem **VTM Brand & Design System 4.2 „Luminous Editorial
-Edition"**: Farbwelt (Deep Cobalt / Electric Blue / Brass), Typografie
-(Plus Jakarta Sans, Inter, Source Serif 4, IBM Plex Mono), Brand Rail,
-Hero-Atmosphäre, Signal-Linien und Card-Sprache.
+Umsetzung der **VTM Design Guidelines v6.1** (August 2026):
 
-Moderne Design-Patterns (alle rein CSS/JS, keine Video-Assets):
+- Farben: Nachtblau `#0A1638` trägt, Kobalt `#1F4FA3` handelt (einziger
+  Aktivfarbton), Gold `#D9A53C` belegt (nur Quellen und Marker, auf hellen
+  Flächen als Textvariante `#8A6512`), Eisweiß `#F3F7FD` als Standardfläche.
+- Schriften: Bricolage Grotesque Regular (Titel, Zahlen, nie fett),
+  Instrument Sans (Text, UI), Newsreader Light kursiv (Unterzeilen),
+  IBM Plex Mono (Kicker, Labels, Quellen). Geladen über Google Fonts.
+- Bausteine: Fazitband je Sektion, Karte mit Icon-Chip, Kennzahl mit Einheit,
+  Kontext und Gold-Quelle, Keymessage mit Kobalt-Rahmen und Gold-Punkt,
+  Chevron-Bullets, Dreier-Karten nur mit Hero-Karte, Sandwich-Rhythmus
+  (Hero dunkel, Inhalt hell, Keymessage dunkel).
+- Web-Regeln: Inhaltsbreite 82 rem, Navigation 64 px weiß mit Kobalt-
+  Unterstrich, Buttons 44 px, Karten 12 px Radius, WCAG 2.2 AA (Kontraste
+  nachgerechnet), alles funktioniert ohne JavaScript und ohne Animation.
 
-- **Immersiver Full-Screen-Hero** mit Kinetic Type (gestaffelt
-  aufsteigende Headline), animiertem Aurora-Hintergrund als
-  performanter Video-Loop-Ersatz und Scroll-Cue.
-- **Conversational Quickstart** im Hero: Prompt-Optik mit Ziel-Chips
-  („Sichtbarkeit aufbauen", „Thought Leader werden" …), die per Klick
-  das passende Startpaket in den Konfigurator laden.
-- **Bento Grid** für den Warum-VTM-Abschnitt: modulare Kacheln
-  unterschiedlicher Größe, dunkle Kachel mit leuchtender Akzentkante,
-  Brass-Kachel für die 73-%-Studie.
-- **Card Stacking (Story Stack)** für die Jahresprogramme: Karten
-  schieben sich beim Scrollen per `position: sticky` übereinander;
-  auf Mobile automatischer Reflow zum vertikalen Stapel.
-- **KI-Video-Loop im Hero**: 6-Sekunden-Micro-Loop (Seedance 2.0 aus
-  einem GPT-Image-2-Master-Motiv, identischer Start-/End-Frame =
-  nahtlos). Lädt nur auf Desktop und ohne
-  `prefers-reduced-motion`-Präferenz (JS injiziert die Quelle, Mobile
-  lädt kein Video); Fallback ist die CSS-Aurora-Atmosphäre. Das
-  Master-Standbild wird zusätzlich im Anfrage-Bereich wiederverwendet
-  (konsistenter Bildstil, gleiche Szene an mehreren Stellen).
-- **Maus-Parallax im Hero** (nur feine Zeiger, respektiert
-  Reduced Motion): Video, Atmosphäre und Panel verschieben sich
-  subtil gegenläufig zur Mausbewegung.
-- **Soft Glassmorphism**: mattierte, halbtransparente Flächen mit
-  `backdrop-filter` für Navigation, Hero-Panel, Mobile-Bar und Toasts.
-- **Scroll Reveals** via `IntersectionObserver` – Inhalte sind ohne
-  JavaScript und bei `prefers-reduced-motion` vollständig sichtbar.
-
-## Formular-Backend
-
-Das Formular sendet per `fetch` an Formspree
-(`https://formspree.io/f/mzdnvzqq`, konfiguriert in der Konstante
-`FORM_ENDPOINT` in `index.html`). Die Ziel-Adresse
-`info@versicherungstech-magazin.de` wird im Formspree-Dashboard
-verwaltet. Schlägt der Versand fehl, bietet das Formular automatisch
-einen E-Mail-Fallback (`mailto:` an dieselbe Adresse) an.
-
-Zum Austausch des Backends genügt es, `FORM_ENDPOINT` zu ändern – es
-funktioniert jeder Endpoint, der ein JSON-POST mit
-`{ name, company, email, message, konfiguration }` akzeptiert
-(Getform, Basin, eigene API …).
-
-## Robustheit (Progressive Enhancement)
-
-Alle Leistungs- und Paketkarten stehen **statisch im HTML** – Inhalte,
-Umfang und Preise sind auch ohne JavaScript sichtbar (wichtig für
-SEO, restriktive Firmen-Browser und Datei-Vorschauen). JavaScript
-„hydratisiert" die Karten nur noch: Auswahl, Stepper, Summen, Presets
-und Formularversand. Die Preset-Preise im HTML werden bei aktivem
-JavaScript aus dem Katalog nachgerechnet, damit statisches Markup und
-Einzelpreise nie auseinanderlaufen (nach Preisänderungen im `CATALOG`
-bitte auch die statischen Kartenpreise im HTML anpassen).
-
-Die Bildmarke (Original-Dateien unter `assets/`) ist als optimierte
-**Data-URI direkt in die Seite eingebettet** – Navigation und Favicon
-farbig, Footer in Weiß, daneben die Text-Wortmarke. Keine externen
-Bild-Requests, die Marke erscheint auch bei blockiertem CDN oder
-strenger Content-Security-Policy. Bei einem Logo-Update die Dateien
-in `assets/` ersetzen und die Base64-Werte in `index.html` neu
-erzeugen (verkleinert auf ~144 px, transparenter Rand beschnitten). Das
-Schnellstart-Feld im Hero ist ein echtes Eingabefeld: Freitext wird
-in die Anfrage-Nachricht übernommen; erkennt die Seite ein Ziel
-(Sichtbarkeit / Thought Leadership / maximale Präsenz), lädt sie
-zusätzlich das passende Startpaket.
+Token-Schichten im `<style>`-Block: primitiv (`--vtm-*`) → semantisch
+(`--sem-*`) → Komponente.
 
 ## Bilder
 
-Drei editorial Bildmotive (mit Higgsfield generiert, VTM-Farbwelt) sind
-eingebunden:
+- `assets/hero-skyline.webp` und `hero-skyline-mobile.webp`: freigegebenes
+  Motiv „Skyline zur blauen Stunde" aus dem Design-System-Repo
+  (`MaxHemp/vtm-design-system`), als Illustration gekennzeichnet.
+- `assets/kontakt-hempel.webp`: Teamfoto Maximilian Hempel (echtes Foto).
+- `assets/partner-insurance-monday.jpg`: Podcast-Cover des Kooperationspartners.
+- `assets/vtm-logo-farbe.png`, `vtm-logo-weiss.png`: offizielle Wort-Bild-
+  Marke; in der Seite als Data-URIs eingebettet (Nav farbig, Footer weiß).
+- `assets/og-image.jpg`: Social-Vorschau, farbiges Logo auf Eisweiß.
 
-- **Podcast-Studio** – Hintergrund der großen Podcast-Kachel im
-  Bento-Grid („35.000 Downloads").
-- **Insurance-Innovation-Day / Konferenz** – Bildband über den
-  Jahresprogrammen.
-- **Business-Dialog** – Visual im Anfrage-Bereich.
+## Formular-Backend
 
-Jedes Bild liegt hinter einem Gradient-Scrim (Textlesbarkeit) und über
-einem Brand-Gradient-Fallback: Fällt ein Bild aus, bleibt die Sektion
-im freigegebenen Design bestehen. Die Bilder werden aktuell vom
-Higgsfield-CDN geladen (lazy). Für vollständige Selbstständigkeit die
-drei Dateien nach `assets/` herunterladen und die `src`-URLs in
-`index.html` auf die lokalen Pfade umstellen.
+Das Formular sendet per `fetch` an Formspree (`https://formspree.io/f/mzdnvzqq`,
+Konstante `FORM_ENDPOINT` in `index.html`) mit `konfiguration`, `quelle: "VTM"`
+und Betreff-Prefix `[VTM Angebotsplattform]`. Ziel-Postfach
+info@versicherungstech-magazin.de wird im Formspree-Dashboard verwaltet.
+Schlägt der Versand fehl, bietet die Seite einen `mailto:`-Fallback an.
 
-## Medien-Assets
+## Robustheit
 
-Alle generierten Motive werden **lokal aus `assets/` geladen**
-(`hero-loop.mp4`, `hero-master.webp`, `podcast-mic.webp`,
-`network-band.webp`) – mit automatischem CDN-Fallback, falls eine
-Datei fehlt. Der Workflow `.github/workflows/fetch-assets.yml` lädt
-die Dateien vom Higgsfield-CDN und committet sie; er läuft bei Push
-auf den Branch bzw. manuell über den „Run workflow"-Button im
-Actions-Tab (überspringt sich selbst, sobald die Assets vorliegen).
-
-## Gemeinsame Preispflege mit der Insurance-Monday-Seite
-
-Leistungen und Preise leben in **`catalog.json`** (Single Source of
-Truth für diese Seite und das Partner-Repo `im-angebotsplattform`).
-Nach jeder Änderung ausführen:
-
-```bash
-node scripts/sync-catalog.mjs ../im-angebotsplattform
-```
-
-Das Skript schreibt den Katalog in den JS-Block (zwischen den
-`CATALOG:BEGIN/END`-Markern) und regeneriert die statischen Karten in
-beiden Seiten. Die Gruppen-/Summary-Reihenfolge je Seite steuert das
-`data-catalog-order`-Attribut am `<body>`. Danach beide Repos
-committen und pushen.
+Alle Karten, Preise, Detailblöcke und Grundsätze stehen statisch im HTML
+(ohne JavaScript sichtbar). JavaScript hydratisiert nur Auswahl, Stepper,
+Zusammenfassung, Persistenz (`localStorage`, Schlüssel `vtm-konfigurator-v2`)
+und Formularversand.
 
 ## Betrieb
 
-Statische Seite – einfach `index.html` ausliefern (z. B. GitHub Pages,
-Netlify oder ein beliebiger Webserver). Es sind keine Abhängigkeiten
-oder Build-Schritte nötig; Schriften werden über Google Fonts geladen,
-Logos über das bestehende VTM-CDN.
-
-Alle Preise sind Netto-Preise zuzüglich Umsatzsteuer und werden im
-Katalog-Array `CATALOG` in `index.html` gepflegt.
+Statische Seite über GitHub Pages (Branch
+`claude/vtm-leistungen-konfigurator-arw4vr`, Root), Custom Domain
+angebote.versicherungstech-magazin.de (`CNAME`).

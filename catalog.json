@@ -1,130 +1,108 @@
 {
+  "version": "2.0",
+  "stand": "Mediadaten 2026",
+  "groups": [
+    {
+      "id": "vtm",
+      "label": "VTM-Leistungen",
+      "meta": "VersicherungsTech Magazin · Leistungen & Preise"
+    },
+    {
+      "id": "podcast",
+      "label": "Podcast · Insurance Monday",
+      "meta": "In Partnerschaft mit Insurance Monday · rund 35.000 Downloads pro Monat"
+    }
+  ],
   "items": [
     {
-      "id": "banner-web",
-      "group": "reichweite",
-      "format": "Werbebanner",
-      "badge": "Bestseller",
-      "name": "Website-Werbebanner",
-      "desc": "Ihr Banner auf allen Seiten von versicherungstech-magazin.de – dauerhaft präsent im redaktionellen Umfeld.",
-      "unit": 1200,
+      "id": "themenkampagne",
+      "group": "vtm",
+      "format": "Fokussierte Kampagne",
+      "name": "Themenkampagne",
+      "desc": "Ein klar abgegrenztes Produkt, Projekt oder Fachthema wird über sechs bis acht Wochen aus mehreren Blickwinkeln verständlich erklärt und gezielt verbreitet.",
+      "includes": [
+        "1 ausführlicher Praxis- oder Erklärbeitrag",
+        "1 Experteninterview",
+        "2 PDF-Zusammenfassungen",
+        "4 LinkedIn-Beiträge und 2 Newsletterplatzierungen"
+      ],
+      "unit": 9000,
+      "unitSuffix": "einmalig",
+      "priceMeta": "Umsetzung über 6 bis 8 Wochen",
+      "qtyLabel": "Kampagne(n)",
+      "max": 4
+    },
+    {
+      "id": "fuehrungskraefte",
+      "group": "vtm",
+      "format": "Persönliche Kommunikation",
+      "name": "Führungskräfte-Kommunikation",
+      "desc": "Ein kontinuierlicher LinkedIn-Auftritt für eine Führungskraft: Aus einem monatlichen Redaktionsgespräch entstehen vier persönliche Beiträge, die die eigene Perspektive sichtbar machen.",
+      "includes": [
+        "4 persönliche LinkedIn-Beiträge pro Monat",
+        "Monatliches Redaktionsgespräch",
+        "Bis zu 2 Grafiken pro Monat",
+        "Positionierung zum Auftakt, quartalsweise Auswertung"
+      ],
+      "unit": 1500,
       "unitSuffix": "pro Monat",
-      "mode": "months",
-      "qtyLabel": "Monat(e)",
-      "max": 12,
-      "excludes": "banner-app"
-    },
-    {
-      "id": "banner-app",
-      "group": "reichweite",
-      "format": "Werbebanner + App",
-      "name": "Werbebanner Website + VTM App",
-      "desc": "Maximale Präsenz: Ihr Banner auf allen Webseiten und zusätzlich in der VTM App – direkt auf dem Startbildschirm der Entscheider.",
-      "unit": 2000,
-      "unitSuffix": "pro Monat",
-      "mode": "months",
-      "qtyLabel": "Monat(e)",
-      "max": 12,
-      "excludes": "banner-web"
-    },
-    {
-      "id": "newsletter",
-      "group": "reichweite",
-      "format": "Newsletter",
-      "badge": "Beliebt",
-      "name": "Newsletter-Sponsoring",
-      "desc": "Exklusive Präsenz im VTM Briefing – 6.000+ Empfänger, rund 50 % Öffnungsrate, direkt im Posteingang der Branche.",
-      "unit": 1900,
-      "unitSuffix": "pro Monat",
-      "mode": "months",
-      "qtyLabel": "Monat(e)",
-      "max": 12
-    },
-    {
-      "id": "fachartikel",
-      "group": "content",
-      "format": "Gesponserter Fachbeitrag",
-      "name": "Fachartikel",
-      "desc": "Von unserer Redaktion geschriebener Fachbeitrag zu Ihrem Thema – auf der Website, in der App und angeteasert im Newsletter.",
-      "unit": 900,
-      "unitSuffix": "pro Artikel",
-      "mode": "qty",
-      "qtyLabel": "Artikel",
-      "max": 12
-    },
-    {
-      "id": "interview",
-      "group": "content",
-      "format": "Interview",
-      "name": "Executive Interview",
-      "desc": "Ihre Führungskraft im redaktionellen Interview – Positionierung über Person und Haltung statt Werbebotschaft.",
-      "unit": 1200,
-      "unitSuffix": "pro Interview",
-      "mode": "qty",
-      "qtyLabel": "Interview(s)",
-      "max": 12
-    },
-    {
-      "id": "casestudy",
-      "group": "content",
-      "format": "Praxisbericht + Kontakte",
-      "name": "Case Study inkl. Lead-Liste",
-      "desc": "Ihr Kundenprojekt als überzeugende Erfolgsgeschichte – inklusive Kontaktliste aller Interessenten, die den Bericht angefordert haben.",
-      "unit": 3000,
-      "unitSuffix": "pro Case Study",
-      "mode": "qty",
-      "qtyLabel": "Case Studies",
-      "max": 6
-    },
-    {
-      "id": "linkedin-service",
-      "group": "content",
-      "format": "LinkedIn as a Service",
-      "name": "LinkedIn as a Service",
-      "desc": "Wir liefern 4 fertige LinkedIn-Beiträge pro Monat für die Profile Ihrer Vertriebs- und Führungskräfte – damit sie zu relevanten Versicherungsthemen als Experten sichtbar werden.",
-      "unit": 2500,
-      "unitSuffix": "pro Monat",
-      "mode": "months",
-      "qtyLabel": "Monat(e)",
-      "max": 12
-    },
-    {
-      "id": "sponsored-post",
-      "group": "content",
-      "format": "VTM LinkedIn-Kanal",
-      "name": "Sponsored LinkedIn Post",
-      "desc": "Ihr Beitrag über den VTM-Kanal – dort, wo die Branche täglich mitliest. Mengenrabatt: ab 5 Posts −10 %, ab 10 Posts −20 %.",
-      "unit": 750,
-      "unitSuffix": "pro Post",
-      "mode": "qty",
-      "qtyLabel": "Post(s)",
-      "max": 30,
-      "tiers": [
+      "priceMeta": "je Führungskraft",
+      "dims": [
         {
-          "min": 10,
-          "discount": 0.2
+          "key": "persons",
+          "label": "Führungskraft/-kräfte",
+          "singular": "Führungskraft",
+          "plural": "Führungskräfte",
+          "min": 1,
+          "max": 5,
+          "default": 1
         },
         {
-          "min": 5,
-          "discount": 0.1
+          "key": "months",
+          "label": "Monat(e)",
+          "singular": "Monat",
+          "plural": "Monate",
+          "min": 1,
+          "max": 24,
+          "default": 6
         }
       ]
+    },
+    {
+      "id": "themenpartnerschaft",
+      "group": "vtm",
+      "format": "Jahrespartnerschaft",
+      "badge": "Empfehlung",
+      "name": "Themenpartnerschaft",
+      "desc": "Zwölf Monate kontinuierliche Präsenz zu einem übergeordneten Jahresthema, das für die Versicherungsbranche relevant ist und zu Ihrer Expertise passt.",
+      "includes": [
+        "6 fundierte Inhalte (Fachbeiträge, Interviews, Praxisberichte)",
+        "6 PDF-Zusammenfassungen",
+        "12 LinkedIn-Beiträge und 6 Newsletterplatzierungen",
+        "Auftaktworkshop und quartalsweise Auswertung"
+      ],
+      "unit": 36000,
+      "unitSuffix": "pro Jahr",
+      "priceMeta": "entspricht 3.000 € pro Monat",
+      "qtyLabel": "Jahr(e)",
+      "max": 3
     },
     {
       "id": "quartalssponsoring",
       "group": "podcast",
       "format": "Sponsoring · pro Quartal",
+      "badge": "Empfehlung",
       "name": "Quartalssponsoring Insurance Monday",
-      "desc": "Das Flaggschiff: Ihr Unternehmen ein Quartal lang als offizieller Sponsor des reichweitenstärksten Podcasts der Branche.",
+      "desc": "Ihr Unternehmen ein Quartal lang als offizieller Sponsor des Podcasts mit rund 35.000 Downloads pro Monat.",
       "includes": [
         "3 komplette Podcast-Episoden zu Ihrem Thema",
-        "Bewerbung auf LinkedIn & allen gängigen Podcast-Plattformen",
-        "Produktion Ihres Audio-Werbespots + Ausspielung in 30 weiteren Episoden (mitten in der Folge)",
-        "Offizielle Nennung als Sponsor auf allen Materialien"
+        "Bewerbung auf LinkedIn und allen gängigen Podcast-Plattformen",
+        "Produktion Ihres Audio-Spots und Ausspielung in 30 weiteren Episoden",
+        "Nennung als Sponsor auf allen Materialien"
       ],
       "unit": 30000,
       "unitSuffix": "pro Quartal",
-      "mode": "qty",
+      "priceMeta": "3 Episoden plus 30 Spot-Ausspielungen",
       "qtyLabel": "Quartal(e)",
       "max": 4
     },
@@ -132,12 +110,16 @@
       "id": "podcast-episode",
       "group": "podcast",
       "format": "Einzelformat",
-      "badge": "Bestseller",
       "name": "Einzelne Podcast-Episode",
-      "desc": "Ihr Experte im Gespräch bei Insurance Monday – eine ganze Folge zu Ihrem Thema, erzählt an echten Fällen aus der Praxis.",
+      "desc": "Ihre Expertin oder Ihr Experte im Gespräch bei Insurance Monday: eine ganze Folge zu Ihrem Thema, erzählt an Fällen aus der Praxis.",
+      "includes": [
+        "Redaktionelle Vorbereitung und Aufzeichnung",
+        "Veröffentlichung auf allen gängigen Podcast-Plattformen",
+        "Bewerbung über die Insurance-Monday-Kanäle"
+      ],
       "unit": 3500,
       "unitSuffix": "pro Episode",
-      "mode": "qty",
+      "priceMeta": "Aufzeichnung remote oder im Studio",
       "qtyLabel": "Episode(n)",
       "max": 12
     },
@@ -146,82 +128,191 @@
       "group": "podcast",
       "format": "Podcast-Werbung",
       "name": "Podcast-Werbespot (Pre-Roll)",
-      "desc": "Ihr Werbespot am Anfang von drei Episoden – dort, wo die Aufmerksamkeit am höchsten ist.",
+      "desc": "Ihr Spot am Anfang von drei Episoden, dort, wo die Aufmerksamkeit am höchsten ist.",
+      "includes": [
+        "Produktion des Spots durch das Insurance-Monday-Team",
+        "Ausspielung als Pre-Roll in 3 Episoden",
+        "Reporting der Downloads je Episode"
+      ],
       "unit": 2500,
-      "unitSuffix": "pro Paket (3 Episoden)",
-      "mode": "qty",
+      "unitSuffix": "pro Paket",
+      "priceMeta": "ein Paket umfasst 3 Episoden",
       "qtyLabel": "Paket(e)",
       "max": 10
-    },
-    {
-      "id": "marktcheck",
-      "group": "anfrage",
-      "format": "Marktbefragung",
-      "name": "Marktcheck im Entscheider-Panel",
-      "desc": "Wir befragen unser Netzwerk aus Führungskräften der Versicherungsbranche zu Ihrem Thema. Das Ergebnis: eine zitierfähige Zahl für Presse und Vertrieb.",
-      "request": true
-    },
-    {
-      "id": "webinar",
-      "group": "anfrage",
-      "format": "Webinar + Kontakte",
-      "name": "Fach-Webinar mit Teilnehmerliste",
-      "desc": "45 Minuten unter VTM-Flagge: Wir moderieren, Ihr Experte zeigt die Lösung an einem konkreten Fall. Die komplette Anmeldeliste geht an Ihren Vertrieb – jede Anmeldung ist echtes Interesse.",
-      "request": true
-    },
-    {
-      "id": "commentaries",
-      "group": "anfrage",
-      "format": "Dauerpräsenz",
-      "name": "Experten-Statements",
-      "desc": "Kurze Zitate und Einschätzungen Ihres Experten in der laufenden VTM-Berichterstattung – wirken redaktionell statt werblich und halten Ihr Gesicht in der Branche präsent.",
-      "request": true
-    },
-    {
-      "id": "exklusiv",
-      "group": "anfrage",
-      "format": "Exklusivität",
-      "name": "Kategorie-Exklusivität",
-      "desc": "Ihr Thema gehört Ihnen allein: In Ihrer Kategorie tritt kein weiterer Werbepartner im VTM auf – die volle Aufmerksamkeit liegt bei Ihnen.",
-      "request": true
     }
   ],
-  "presets": [
+  "details": {
+    "themenpartnerschaft": {
+      "kicker": "01 · Jahrespartnerschaft",
+      "priceLine": "36.000 € pro Jahr · entspricht 3.000 € pro Monat · netto, zuzüglich gesetzlicher Umsatzsteuer",
+      "blocks": [
+        {
+          "title": "Strategische Themenplanung",
+          "text": "Auftaktworkshop zur Auswahl eines übergeordneten Jahresthemas, das für die Versicherungsbranche relevant ist und zu Ihrer Expertise passt. Definition von Zielgruppen, Kernbotschaften, Formaten und Veröffentlichungszeitpunkten."
+        },
+        {
+          "title": "Redaktionelle Inhalte",
+          "text": "6 fundierte Inhalte, zum Beispiel Fachbeiträge, Interviews, Praxisberichte oder Einordnungen. Jeder Inhalt wird redaktionell vorbereitet, strukturiert und auf einen konkreten Informationsbedarf der Leser ausgerichtet. Mögliche Themen: Digitalisierung, Schadenmanagement, Regulierung, Vertrieb, Daten, KI, Prozesse oder neue Geschäftsmodelle."
+        },
+        {
+          "title": "Praxis- und Leserorientierung",
+          "text": "Einbindung konkreter Anwendungsfälle, Erfahrungen, Kennzahlen, Entscheidungskriterien und Handlungsempfehlungen. Produkt- und Unternehmensbezüge werden transparent eingeordnet und nicht als reine Werbebotschaft aufbereitet."
+        },
+        {
+          "title": "Verwertbare Zusammenfassungen",
+          "text": "6 kompakte PDF-Zusammenfassungen mit Kernaussagen, Praxisimpulsen und weiterführenden Informationen für Marketing, Vertrieb, Kundentermine und interne Kommunikation."
+        },
+        {
+          "title": "Gezielte Verbreitung",
+          "text": "12 begleitende LinkedIn-Beiträge auf den VTM-Unternehmenskanälen, jeweils mit eigenständigem redaktionellem Aufhänger, sowie 6 Newsletterplatzierungen mit klarer Einordnung des jeweiligen Inhalts."
+        },
+        {
+          "title": "Laufende Optimierung",
+          "text": "Quartalsweise Auswertung der veröffentlichten Inhalte und Kanäle mit Erkenntnissen zu Reichweite, Interaktion, Themenresonanz und möglichen Folgeformaten."
+        },
+        {
+          "title": "Nutzungsrechte",
+          "text": "Nutzung der erstellten Inhalte und Zusammenfassungen auf den eigenen Kommunikationskanälen des Unternehmens unter Wahrung der redaktionellen Einordnung und Kennzeichnungspflichten."
+        }
+      ],
+      "benefits": [
+        {
+          "for": "Für Leser",
+          "text": "Kontinuierliche Orientierung zu einem relevanten Branchenthema, unterschiedliche Perspektiven, konkrete Praxisbeispiele und verständlich aufbereitete Fachinformationen."
+        },
+        {
+          "for": "Für Ihr Unternehmen",
+          "text": "Langfristiger Kompetenzaufbau, wiederholte Sichtbarkeit bei einer relevanten Fachzielgruppe, stärkere Themenführerschaft und eine belastbare Grundlage für Vertrieb, Marketing und Gespräche mit Kunden oder Partnern. Die regelmäßige Veröffentlichung schafft mehr Wirkung als eine einzelne Kampagne."
+        }
+      ]
+    },
+    "fuehrungskraefte": {
+      "kicker": "02 · Persönliche Kommunikation",
+      "priceLine": "1.500 € pro Monat je Führungskraft · netto, zuzüglich gesetzlicher Umsatzsteuer",
+      "blocks": [
+        {
+          "title": "Positionierung zum Auftakt",
+          "text": "Einmalige Analyse und Schärfung des LinkedIn-Profils, der fachlichen Themenfelder, der Zielgruppen und der persönlichen Kommunikationsrolle."
+        },
+        {
+          "title": "Monatliches Redaktionsgespräch",
+          "text": "Ein strukturiertes Interview mit der Führungskraft zu aktuellen Entwicklungen, eigenen Erfahrungen, Entscheidungen, Beobachtungen und relevanten Branchenthemen."
+        },
+        {
+          "title": "Individuelle Beiträge",
+          "text": "4 persönliche LinkedIn-Beiträge pro Monat. Die Inhalte werden aus dem Gespräch entwickelt und so formuliert, dass sie die Perspektive der Führungskraft sichtbar machen, ohne künstlich oder austauschbar zu wirken."
+        },
+        {
+          "title": "Inhaltliche Bandbreite",
+          "text": "Einordnung von Branchentrends, persönliche Learnings, Praxisbeispiele, Standpunkte, Kunden- und Marktbeobachtungen sowie Impulse zu Führung, Innovation und Veränderung."
+        },
+        {
+          "title": "Visuelle Unterstützung",
+          "text": "Bis zu 2 einfache Grafiken pro Monat, wenn sie zum Verständnis oder zur besseren Verbreitung eines Themas beitragen."
+        },
+        {
+          "title": "Freigabeprozess",
+          "text": "Die Führungskraft prüft und gibt die Beiträge frei. Die Veröffentlichung erfolgt durch die Führungskraft auf dem eigenen LinkedIn-Profil."
+        },
+        {
+          "title": "Auswertung",
+          "text": "Quartalsweise Analyse der Resonanz mit Empfehlungen zur Weiterentwicklung von Themen, Formaten und Tonalität."
+        }
+      ],
+      "benefits": [
+        {
+          "for": "Für Leser",
+          "text": "Authentische Einblicke, persönliche Einordnung und verständliche Perspektiven zu Entwicklungen, die den Arbeitsalltag und die Zukunft der Versicherungsbranche betreffen."
+        },
+        {
+          "for": "Für Ihre Führungskraft",
+          "text": "Ein glaubwürdiger und kontinuierlicher Auftritt ohne vollständige Eigenproduktion der Inhalte, klarere fachliche Positionierung und mehr Sichtbarkeit als Ansprechpartnerin oder Ansprechpartner."
+        },
+        {
+          "for": "Für Ihr Unternehmen",
+          "text": "Stärkung von Vertrauen, Arbeitgebermarke, Kundenbeziehungen und Themenführerschaft. Persönliche Kommunikation erhöht die Chance auf Dialoge, Empfehlungen und qualifizierte Kontakte."
+        }
+      ]
+    },
+    "themenkampagne": {
+      "kicker": "03 · Fokussierte Kampagne",
+      "priceLine": "9.000 € einmalig · Umsetzung über 6 bis 8 Wochen · netto, zuzüglich gesetzlicher Umsatzsteuer",
+      "blocks": [
+        {
+          "title": "Kampagnenkonzeption",
+          "text": "Auftaktgespräch zur Eingrenzung eines konkreten Produkts, Projekts oder Fachthemas. Entwicklung einer verständlichen Leitfrage und eines redaktionellen Blickwinkels mit erkennbarem Nutzen für die Leser."
+        },
+        {
+          "title": "Praxis- oder Erklärbeitrag",
+          "text": "1 ausführlicher Beitrag, der ein Problem, eine Entwicklung oder eine Lösung nachvollziehbar erklärt. Der Schwerpunkt liegt auf Kontext, Nutzen, Voraussetzungen und praktischer Relevanz, nicht auf einer reinen Produktdarstellung."
+        },
+        {
+          "title": "Experteninterview",
+          "text": "1 Interview mit einer fachlich geeigneten Person aus Ihrem Unternehmen oder dem relevanten Umfeld. Das Interview ergänzt den Beitrag um persönliche Erfahrung, Einordnung und konkrete Beispiele."
+        },
+        {
+          "title": "Kompakte Weiterverwendung",
+          "text": "2 PDF-Zusammenfassungen mit den wichtigsten Erkenntnissen, Begriffen, Handlungsempfehlungen oder Entscheidungskriterien."
+        },
+        {
+          "title": "Verbreitung",
+          "text": "4 begleitende LinkedIn-Beiträge auf den VTM-Unternehmenskanälen und 2 Newsletterplatzierungen. Die Beiträge greifen unterschiedliche Aspekte der Kampagne auf und führen jeweils zum vollständigen Inhalt."
+        },
+        {
+          "title": "Abschlussauswertung",
+          "text": "Zusammenfassung der Ergebnisse zu Reichweite, Interaktion, Resonanz und möglichen Anschlussmaßnahmen."
+        },
+        {
+          "title": "Zeitraum",
+          "text": "Umsetzung über 6 bis 8 Wochen mit abgestimmtem Redaktions- und Freigabeplan."
+        }
+      ],
+      "benefits": [
+        {
+          "for": "Für Leser",
+          "text": "Ein klar abgegrenztes Thema wird aus mehreren Blickwinkeln verständlich erklärt. Leser erhalten Orientierung, Praxiswissen und konkrete Kriterien, die sie auf eigene Fragestellungen übertragen können."
+        },
+        {
+          "for": "Für Ihr Unternehmen",
+          "text": "Fokussierte Sichtbarkeit für ein strategisch wichtiges Thema, Produkt oder Projekt. Die Kombination aus Erklärung, Interview, Zusammenfassung und Verbreitung schafft mehrere Kontaktpunkte und unterstützt Bekanntheit ebenso wie qualifizierte Gespräche."
+        },
+        {
+          "for": "Besonders geeignet für",
+          "text": "Markteinführungen, neue Lösungen, Studienergebnisse, Transformationsprojekte, regulatorische Veränderungen, Kundenbeispiele oder Themen, bei denen erklärungsbedürftige Expertise sichtbar gemacht werden soll."
+        }
+      ]
+    }
+  },
+  "principles": [
     {
-      "id": "starter",
-      "badge": "Schneller Einstieg",
-      "name": "Sichtbarkeits-Start",
-      "tagline": "Der kompakte Einstieg: gesehen werden, wo die Branche liest.",
-      "items": {
-        "fachartikel": 1,
-        "newsletter": 3,
-        "sponsored-post": 5
-      }
+      "label": "Relevanz",
+      "title": "Relevanz vor Werbebotschaft",
+      "text": "Inhalte werden so entwickelt, dass sie einen nachvollziehbaren Nutzen für die Leser bieten. Unternehmens- und Produktbezüge werden fachlich eingeordnet und transparent gemacht."
     },
     {
-      "id": "authority",
-      "badge": "Meistgewählt",
-      "featured": true,
-      "name": "Thought-Leader-Paket",
-      "tagline": "Ihr Kopf und Ihr Thema werden in der Branche verankert.",
-      "items": {
-        "podcast-episode": 1,
-        "interview": 1,
-        "fachartikel": 2,
-        "linkedin-service": 6
-      }
+      "label": "Qualität",
+      "title": "Redaktionelle Qualität",
+      "text": "VTM übernimmt Themenstruktur, redaktionelle Aufbereitung, verständliche Sprache und die Abstimmung der Formate. Fachliche Aussagen, Zahlen und Beispiele werden vom Unternehmen geprüft und freigegeben."
     },
     {
-      "id": "market",
-      "badge": "Maximale Präsenz",
-      "name": "Marktführer-Paket",
-      "tagline": "Volle Sichtbarkeit über alle Kanäle – ein Quartal lang.",
-      "items": {
-        "quartalssponsoring": 1,
-        "newsletter": 3,
-        "banner-app": 3,
-        "casestudy": 1
-      }
+      "label": "Transparenz",
+      "title": "Transparenz",
+      "text": "Bezahlte Veröffentlichungen und kommerzielle Kooperationen werden entsprechend den geltenden Vorgaben gekennzeichnet."
+    },
+    {
+      "label": "Prozess",
+      "title": "Abgestimmter Prozess",
+      "text": "Je Inhalt ist eine gebündelte Korrekturrunde enthalten. Umfangreiche inhaltliche Neuausrichtungen, zusätzliche Abstimmungsschleifen oder nachträgliche Änderungen werden separat kalkuliert."
+    },
+    {
+      "label": "Auswertung",
+      "title": "Messbare Weiterentwicklung",
+      "text": "Auswertungen dienen nicht nur der Dokumentation, sondern liefern Hinweise darauf, welche Themen, Formate und Perspektiven für Leser besonders relevant sind und wie die Kommunikation weiterentwickelt werden kann."
+    },
+    {
+      "label": "Zusatzleistungen",
+      "title": "Zusätzliche Leistungen",
+      "text": "Veranstaltungen, Podcastbuchungen, Studien, individuelle Landingpages, weiterführende Designleistungen und zusätzliches Werbebudget werden separat angeboten."
     }
   ]
 }
