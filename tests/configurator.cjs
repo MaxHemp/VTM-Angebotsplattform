@@ -1,0 +1,122 @@
+/* Run against a local static server. Formspree requests are intercepted;
+   this suite never sends a real inquiry. */
+const { chromium } = require('playwright');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const base = process.env.TEST_URL || 'http://127.0.0.1:8765';
+const output = process.env.TEST_OUTPUT || path.join(__dirname, '../test-results');
+fs.mkdirSync(output, {recursive:true});
+
+(async()=>{
+  const browser = await chromium.launch(process.env.CHROME_PATH ? {executablePath:process.env.CHROME_PATH} : {channel:'chrome'});
+  const context = await browser.newContext({viewport:{width:1440,height:1000}, reducedMotion:'reduce'});
+  const page = await context.newPage();
+  const errors=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  let payload, calls=0, responseStatus=200;
+  await context.route('https://formspree.io/**',async route=>{
+    calls++;payload=route.request().postDataJSON();
+    await route.fulfill({status:responseStatus,contentType:'application/json',body:JSON.stringify({ok:responseStatus===200})});
+  });
+  const card=id=>page.locator('.offer-card[data-id="'+id+'"]');
+  const select=async id=>card(id).getByRole('checkbox').click();
+  const text=async selector=>(await page.locator(selector).innerText()).replace(/\u00a0/g,' ');
+  const reset=async()=>page.locator('#reset-config').click();
+  try {
+    await page.goto(base,{waitUntil:'networkidle'});
+    assert.equal(await page.locator('.offer-card').count(),14);
+    assert(!await page.locator('body').innerText().then(t=>t.includes('PDF-Zusammenfassungen')));
+    assert.deepEqual(await page.evaluate(()=>{
+      const ids=Array.from(document.querySelectorAll('[id]'),e=>e.id);
+      return ids.filter((id,i)=>ids.indexOf(id)!==i);
+    }),[],'unique element IDs');
+    assert.deepEqual(await page.evaluate(()=>Array.from(document.querySelectorAll('a[href^="#"]')).filter(a=>!document.getElementById(a.getAttribute('href').slice(1))).map(a=>a.getAttribute('href'))),[],'valid anchor destinations');
+    await page.locator('#leistungen [data-add="themenkampagne"]').click();
+    assert.equal(await text('#total-value'),'9.000 €');
+    await page.locator('#leistungen [data-add="themenkampagne"]').click();
+    assert.equal(await page.locator('#summary-list li').count(),1,'adding an existing package is idempotent');
+    await select('themenpartnerschaft');
+    await select('experts-sponsoring');
+    assert.equal(await text('#total-value'),'53.500 €');
+    assert.equal(await card('experts-sponsoring').locator('.stepper').count(),0,'sponsorship has no quantity counter');
+    await select('marktcheck');
+    assert.equal(await text('#total-value'),'53.500 € + individuelles Angebot');
+    assert.equal(await text('#total-value'),await text('#recap-total-value'));
+    assert.match(await text('#selection-notes'),/Executive Interview/);
+    await card('experts-sponsoring').getByLabel('Edition wählen').selectOption('weitere-edition');
+    assert.equal(await text('#total-value'),'45.000 € + individuelles Angebot');
+    assert.match(await card('experts-sponsoring').innerText(),/Termin, Leistungsumfang und Preis nach Vereinbarung/i);
+    assert(!await card('experts-sponsoring').innerText().then(t=>t.includes('8.500')||t.includes('45 Minuten')),'no Change Management price or scope attached to other editions');
+    await page.reload({waitUntil:'networkidle'});
+    assert.equal(await card('experts-sponsoring').locator('select').inputValue(),'weitere-edition');
+    assert.equal(await text('#total-value'),'45.000 € + individuelles Angebot');
+    await reset(); await select('strategische-partnerschaft');
+    assert.equal(await text('#total-value'),'Individuelles Angebot');
+    assert(!await text('#recap-total-value').then(t=>t.includes('0 €')));
+    await reset();
+    await select('fuehrungskraefte');
+    assert.equal(await text('#total-value'),'9.000 €');
+    await card('fuehrungskraefte').locator('[data-dim="persons"] [data-step="1"]').click();
+    await card('fuehrungskraefte').locator('[data-dim="months"] [data-step="1"]').click();
+    assert.equal(await text('#total-value'),'21.000 €','two people for seven months');
+    await reset();await select('quartalssponsoring');await select('podcast-episode');await select('podcast-ads');
+    assert.equal(await text('#total-value'),'36.000 €');
+    assert.match(await text('#selection-notes'),/zusätzlich hinzu/);
+    await reset();
+    await page.evaluate(()=>localStorage.setItem('vtm-konfigurator-v3',JSON.stringify({themenkampagne:-4,fuehrungskraefte:{persons:99,months:1.9},'experts-sponsoring':{edition:'invalid'},unknown:1})));
+    await page.reload({waitUntil:'networkidle'});
+    assert.equal(await text('#total-value'),'25.000 €','persisted state is bounded and uses whole quantities');
+    await reset();
+    await page.evaluate(()=>localStorage.setItem('vtm-konfigurator-v3','null'));
+    await page.reload({waitUntil:'networkidle'});
+    assert.equal(await page.locator('#summary-list li').count(),0);
+    await card('themenkampagne').getByRole('checkbox').focus();await page.keyboard.press('Space');
+    assert.equal(await card('themenkampagne').getByRole('checkbox').getAttribute('aria-checked'),'true');
+    await select('experts-sponsoring');await select('marktcheck');
+    await page.evaluate(()=>{window.__copied='';Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async text=>{window.__copied=text;}}});});
+    await page.locator('#copy-config').click();
+    const copied=await page.evaluate(()=>window.__copied);
+    assert.match(copied,/17.500/);assert.match(copied,/Change Management/);assert.match(copied,/Position\(en\) werden individuell/);
+    await page.locator('#submit-btn').click();
+    assert.equal(calls,0,'required fields prevent submission');
+    await page.getByLabel('Name*',{exact:true}).fill('VTM Konfigurator-Test');
+    await page.getByLabel('Unternehmen*',{exact:true}).fill('Lokaler Funktionstest');
+    await page.getByLabel('E-Mail*',{exact:true}).fill('test@example.com');
+    await page.getByLabel('Nachricht (optional)',{exact:true}).fill('Testanfrage wird lokal abgefangen.');
+    responseStatus=503;
+    await page.locator('#submit-btn').click();
+    await page.locator('#form-error').waitFor({state:'visible'});
+    const mailto=await page.locator('#form-error a').getAttribute('href');
+    assert.match(decodeURIComponent(mailto),/17.500/);assert.match(decodeURIComponent(mailto),/Change Management/);
+    assert.equal(await page.locator('#submit-btn').isEnabled(),true);
+    responseStatus=200;
+    await page.locator('#submit-btn').click();
+    await page.locator('#form-success').waitFor({state:'visible'});
+    assert.equal(calls,2);assert.equal(payload.quelle,'VTM');assert.match(payload.konfiguration,/17.500/);assert.match(payload.konfiguration,/Marktbefragung/);
+    await page.reload({waitUntil:'networkidle'});
+    for (const width of [320,390,768,1024,1440]) {
+      await page.setViewportSize({width,height:1000});
+      assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No horizontal overflow at '+width);
+      await page.locator('#experts').scrollIntoViewIfNeeded();
+      await page.screenshot({path:path.join(output,'experts-'+width+'.png')});
+      if (width===390 || width===1440) {
+        await page.locator('#gruppe-experts').scrollIntoViewIfNeeded();
+        await page.screenshot({path:path.join(output,'configurator-'+width+'.png')});
+      }
+    }
+    await page.setViewportSize({width:1440,height:1000});
+    await page.evaluate(()=>scrollTo(0,0));
+    await page.screenshot({path:path.join(output,'desktop.png')});
+    assert.deepEqual(await page.evaluate(()=>Array.from(document.images).filter(i=>i.complete&&i.naturalWidth===0).map(i=>i.getAttribute('src'))),[],'all loaded images resolve');
+    assert.deepEqual(errors,[],'no uncaught browser errors');
+    const nojs=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
+    const staticPage=await nojs.newPage();await staticPage.goto(base,{waitUntil:'networkidle'});
+    assert.match(await staticPage.locator('body').innerText(),/8 fundierte Veröffentlichungen/);
+    assert.match(await staticPage.locator('body').innerText(),/8\.500/);
+    assert.equal(await staticPage.locator('#request-form').getAttribute('method'),'POST');
+    assert.equal(await staticPage.locator('.offer-check').first().isVisible(),false);
+    await nojs.close();
+    console.log('PASS: content, anchors, 14 offers, prices, editions, custom quotes, deduplication notes, persistence, malformed storage, keyboard selection, copy, form validation, mocked success/failure, responsive layouts and no-JS fallback. No real inquiries sent.');
+  } finally { await browser.close(); }
+})().catch(error=>{console.error(error);process.exitCode=1;});

@@ -1,16 +1,31 @@
 {
-  "version": "2.0",
-  "stand": "Mediadaten 2026",
+  "version": "3.0",
+  "stand": "Leistungen & Preise · September 2026",
   "groups": [
     {
       "id": "vtm",
-      "label": "VTM-Leistungen",
-      "meta": "VersicherungsTech Magazin · Leistungen & Preise"
+      "label": "VTM Themen & Expertise",
+      "meta": "Ein Thema erklären oder über zwölf Monate vertiefen"
     },
     {
       "id": "podcast",
-      "label": "Podcast · Insurance Monday",
-      "meta": "In Partnerschaft mit Insurance Monday · rund 35.000 Downloads pro Monat"
+      "label": "Insurance Monday",
+      "meta": "Podcast-Formate unseres Kooperationspartners"
+    },
+    {
+      "id": "experts",
+      "label": "25 EXPERTS",
+      "meta": "Hauptsponsoring einer ausgewählten Edition"
+    },
+    {
+      "id": "strategie",
+      "label": "Strategische Partnerschaft",
+      "meta": "Individuelles Programm über mehrere Formate"
+    },
+    {
+      "id": "extras",
+      "label": "Ergänzende Leistungen",
+      "meta": "Gezielt erweitern · individuelle Preise nach Umfang"
     }
   ],
   "items": [
@@ -19,12 +34,14 @@
       "group": "vtm",
       "format": "Fokussierte Kampagne",
       "name": "Themenkampagne",
-      "desc": "Ein klar abgegrenztes Produkt, Projekt oder Fachthema wird über sechs bis acht Wochen aus mehreren Blickwinkeln verständlich erklärt und gezielt verbreitet.",
+      "desc": "Eine konkrete Frage Ihrer Zielgruppe beantworten: Expertise verständlich erklären, mit Praxis belegen und ins Gespräch bringen.",
       "includes": [
-        "1 ausführlicher Praxis- oder Erklärbeitrag",
-        "1 Experteninterview",
-        "2 PDF-Zusammenfassungen",
-        "4 LinkedIn-Beiträge und 2 Newsletterplatzierungen"
+        "1 fundierter Erklärbeitrag",
+        "1 Praxisfallstudie oder Experteninterview",
+        "1 eigenständig nutzbare Fachgrafik",
+        "1 moderiertes Fachwebinar (45 Minuten)",
+        "4 LinkedIn-Beiträge und 2 Newsletterplatzierungen",
+        "Themenauftakt, Nutzungsrechte und Abschlussauswertung"
       ],
       "unit": 9000,
       "unitSuffix": "einmalig",
@@ -33,53 +50,18 @@
       "max": 4
     },
     {
-      "id": "fuehrungskraefte",
-      "group": "vtm",
-      "format": "Persönliche Kommunikation",
-      "name": "Führungskräfte-Kommunikation",
-      "desc": "Ein kontinuierlicher LinkedIn-Auftritt für eine Führungskraft: Aus einem monatlichen Redaktionsgespräch entstehen vier persönliche Beiträge, die die eigene Perspektive sichtbar machen.",
-      "includes": [
-        "4 persönliche LinkedIn-Beiträge pro Monat",
-        "Monatliches Redaktionsgespräch",
-        "Bis zu 2 Grafiken pro Monat",
-        "Positionierung zum Auftakt, quartalsweise Auswertung"
-      ],
-      "unit": 1500,
-      "unitSuffix": "pro Monat",
-      "priceMeta": "je Führungskraft",
-      "dims": [
-        {
-          "key": "persons",
-          "label": "Führungskraft/-kräfte",
-          "singular": "Führungskraft",
-          "plural": "Führungskräfte",
-          "min": 1,
-          "max": 5,
-          "default": 1
-        },
-        {
-          "key": "months",
-          "label": "Monat(e)",
-          "singular": "Monat",
-          "plural": "Monate",
-          "min": 1,
-          "max": 24,
-          "default": 6
-        }
-      ]
-    },
-    {
       "id": "themenpartnerschaft",
       "group": "vtm",
       "format": "Jahrespartnerschaft",
       "badge": "Empfehlung",
       "name": "Themenpartnerschaft",
-      "desc": "Zwölf Monate kontinuierliche Präsenz zu einem übergeordneten Jahresthema, das für die Versicherungsbranche relevant ist und zu Ihrer Expertise passt.",
+      "desc": "Über zwölf Monate Expertise sichtbar machen und ein relevantes Branchenthema kontinuierlich vertiefen – entlang von vier aufeinander aufbauenden Schwerpunkten.",
       "includes": [
-        "6 fundierte Inhalte (Fachbeiträge, Interviews, Praxisberichte)",
-        "6 PDF-Zusammenfassungen",
-        "12 LinkedIn-Beiträge und 6 Newsletterplatzierungen",
-        "Auftaktworkshop und quartalsweise Auswertung"
+        "8 fundierte Veröffentlichungen zu 4 Schwerpunkten",
+        "1 fortlaufend gepflegtes Themendossier auf VTM",
+        "2 moderierte Fachwebinare (je 45–60 Minuten)",
+        "16 LinkedIn-Beiträge und 8 Newsletterplatzierungen",
+        "Jahresplanung, 4 Quartalsgespräche und Nutzungsrechte"
       ],
       "unit": 36000,
       "unitSuffix": "pro Jahr",
@@ -139,50 +121,236 @@
       "priceMeta": "ein Paket umfasst 3 Episoden",
       "qtyLabel": "Paket(e)",
       "max": 10
+    },
+    {
+      "id": "experts-sponsoring",
+      "group": "experts",
+      "format": "Ein Hauptsponsor pro Edition",
+      "name": "25 EXPERTS · Hauptsponsoring",
+      "desc": "Eigene Erfahrung einbringen und persönliche Beziehungen aufbauen. Wählen Sie Ihre Edition; Verfügbarkeit und fachliche Passung bestätigen wir im Gespräch.",
+      "unit": 8500,
+      "unitSuffix": "netto pro Edition",
+      "priceMeta": "Change Management · 2./3. Dezember 2026 · Köln",
+      "max": 1,
+      "includes": [
+        "45 Minuten fachlich abgestimmter Praxisimpuls",
+        "2 Tickets für beide Tage, inklusive Aperitif und Dinner",
+        "Sichtbarkeit vor und während des Events",
+        "1 Executive Interview im VersicherungsTech Magazin",
+        "Kontaktdaten bei Zustimmung zur Weitergabe",
+        "Nennung im Dissenspapier und Erstzugriff auf die nächste Edition"
+      ],
+      "editions": [
+        {
+          "id": "change-management-2026",
+          "name": "Change Management · 2./3. Dezember 2026",
+          "unit": 8500,
+          "meta": "SESSEL HUB Rheinauhafen · Köln · Verfügbarkeit auf Anfrage"
+        },
+        {
+          "id": "weitere-edition",
+          "name": "Weitere Edition · Thema abstimmen",
+          "unit": null,
+          "meta": "Termin, Leistungsumfang und Preis nach Vereinbarung",
+          "includes": [
+            "Passende Edition gemeinsam auswählen",
+            "Leistungsumfang und Verfügbarkeit im Gespräch klären",
+            "Individuelles Angebot für Ihr Hauptsponsoring"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strategische-partnerschaft",
+      "group": "strategie",
+      "format": "Individuelles Jahresprogramm",
+      "name": "Strategische Partnerschaft",
+      "desc": "Ein strategisches Thema über Fachinhalte, eigene Erkenntnisse und persönlichen Austausch im Markt verankern.",
+      "includes": [
+        "Jahresthema und individuell zusammengestelltes Programm",
+        "Fachserie, Praxisfälle und optional eigene Markterkenntnisse",
+        "Passende Podcast-, Webinar- und Veranstaltungsformate",
+        "Monatliche Auswertung und quartalsweise Weiterentwicklung"
+      ],
+      "unit": null,
+      "unitSuffix": "",
+      "priceMeta": "Umfang, Laufzeit und Budget im persönlichen Gespräch",
+      "max": 1
+    },
+    {
+      "id": "marktcheck",
+      "group": "extras",
+      "format": "Individuelle Ergänzung",
+      "name": "Marktbefragung / Entscheider-Panel",
+      "desc": "Eigene Erkenntnisse zu Fragen, Prioritäten und Einschätzungen Ihrer Zielgruppe gewinnen.",
+      "includes": [
+        "Zielgruppe, Rekrutierung und Fallzahl gemeinsam festlegen",
+        "Fragebogen, Auswertung und transparente Methodik",
+        "Optional eine zweite Befragungswelle"
+      ],
+      "unit": null,
+      "unitSuffix": "",
+      "priceMeta": "Preis nach Umfang · unverbindlich anfragen",
+      "max": 1
+    },
+    {
+      "id": "case-study",
+      "group": "extras",
+      "format": "Individuelle Ergänzung",
+      "name": "Zusätzliche Praxisfallstudie",
+      "desc": "Einen weiteren Praxisfall mit Ausgangslage, Umsetzung und belegbaren Ergebnissen aufbereiten.",
+      "includes": [
+        "Recherche und Gespräche mit den Projektbeteiligten",
+        "Fachliche Aufbereitung und abgestimmte Veröffentlichung",
+        "Zusätzlicher Inhalt über den Bundle-Umfang hinaus"
+      ],
+      "unit": null,
+      "unitSuffix": "",
+      "priceMeta": "Preis nach Umfang · unverbindlich anfragen",
+      "max": 1
+    },
+    {
+      "id": "fachwebinar",
+      "group": "extras",
+      "format": "Individuelle Ergänzung",
+      "name": "Zusätzliches Fachwebinar",
+      "desc": "Eine weitere Frage vertiefen und Interessierten Raum für fachlichen Austausch geben.",
+      "includes": [
+        "Themenkonzeption, Vorbereitung und Moderation",
+        "Bewerbung und Durchführung nach vereinbartem Umfang",
+        "Zusätzlich zu den bereits enthaltenen Webinaren"
+      ],
+      "unit": null,
+      "unitSuffix": "",
+      "priceMeta": "Preis nach Umfang · unverbindlich anfragen",
+      "max": 1
+    },
+    {
+      "id": "eventbegleitung",
+      "group": "extras",
+      "format": "Individuelle Ergänzung",
+      "name": "Veranstaltungsbegleitung",
+      "desc": "Ihren Auftritt vor, während und nach einer Veranstaltung sichtbar machen.",
+      "includes": [
+        "Vorbereitende Kommunikation",
+        "Vor-Ort-Begleitung nach Vereinbarung",
+        "Nachbericht mit freigegebenen Erkenntnissen"
+      ],
+      "unit": null,
+      "unitSuffix": "",
+      "priceMeta": "Preis nach Umfang · unverbindlich anfragen",
+      "max": 1
+    },
+    {
+      "id": "fachveranstaltung",
+      "group": "extras",
+      "format": "Individuelle Ergänzung",
+      "name": "Eigene Fachveranstaltung",
+      "desc": "Ein eigenes Thema mit einem passenden Teilnehmerkreis vertiefen.",
+      "includes": [
+        "Konzept, Format und Teilnehmeransprache",
+        "Organisation und Moderation nach Umfang",
+        "Individuell kalkuliert, eigenständig neben 25 EXPERTS"
+      ],
+      "unit": null,
+      "unitSuffix": "",
+      "priceMeta": "Preis nach Umfang · unverbindlich anfragen",
+      "max": 1
+    },
+    {
+      "id": "rubrikensponsoring",
+      "group": "extras",
+      "format": "Individuelle Ergänzung",
+      "name": "Exklusives Rubrikensponsoring",
+      "desc": "Einen klar definierten Sponsoringplatz in einem passenden fachlichen Umfeld reservieren.",
+      "includes": [
+        "Rubrik, Laufzeit und Sponsoringumfang abstimmen",
+        "Buchung nach Verfügbarkeitsprüfung",
+        "Unabhängige redaktionelle Einordnung bleibt erhalten"
+      ],
+      "unit": null,
+      "unitSuffix": "",
+      "priceMeta": "Preis nach Umfang · unverbindlich anfragen",
+      "max": 1
+    },
+    {
+      "id": "fuehrungskraefte",
+      "group": "extras",
+      "format": "Persönliche Kommunikation",
+      "name": "Führungskräfte-Kommunikation",
+      "desc": "Ein kontinuierlicher LinkedIn-Auftritt für eine Führungskraft: Aus einem monatlichen Redaktionsgespräch entstehen vier persönliche Beiträge, die die eigene Perspektive sichtbar machen.",
+      "includes": [
+        "4 persönliche LinkedIn-Beiträge pro Monat",
+        "Monatliches Redaktionsgespräch",
+        "Bis zu 2 Grafiken pro Monat",
+        "Positionierung zum Auftakt, quartalsweise Auswertung"
+      ],
+      "unit": 1500,
+      "unitSuffix": "pro Monat",
+      "priceMeta": "je Führungskraft",
+      "dims": [
+        {
+          "key": "persons",
+          "label": "Führungskraft/-kräfte",
+          "singular": "Führungskraft",
+          "plural": "Führungskräfte",
+          "min": 1,
+          "max": 5,
+          "default": 1
+        },
+        {
+          "key": "months",
+          "label": "Monat(e)",
+          "singular": "Monat",
+          "plural": "Monate",
+          "min": 1,
+          "max": 24,
+          "default": 6
+        }
+      ]
     }
   ],
   "details": {
     "themenpartnerschaft": {
-      "kicker": "01 · Jahrespartnerschaft",
       "priceLine": "36.000 € pro Jahr · entspricht 3.000 € pro Monat · netto, zuzüglich gesetzlicher Umsatzsteuer",
       "blocks": [
         {
-          "title": "Strategische Themenplanung",
-          "text": "Auftaktworkshop zur Auswahl eines übergeordneten Jahresthemas, das für die Versicherungsbranche relevant ist und zu Ihrer Expertise passt. Definition von Zielgruppen, Kernbotschaften, Formaten und Veröffentlichungszeitpunkten."
+          "title": "Jahresplanung und vier Quartalsgespräche",
+          "text": "Gemeinsam entwickeln wir ein Jahresthema mit vier aufeinander aufbauenden Schwerpunkten. Neue Entwicklungen und Publikumsresonanz fließen in die weitere Planung ein."
         },
         {
-          "title": "Redaktionelle Inhalte",
-          "text": "6 fundierte Inhalte, zum Beispiel Fachbeiträge, Interviews, Praxisberichte oder Einordnungen. Jeder Inhalt wird redaktionell vorbereitet, strukturiert und auf einen konkreten Informationsbedarf der Leser ausgerichtet. Mögliche Themen: Digitalisierung, Schadenmanagement, Regulierung, Vertrieb, Daten, KI, Prozesse oder neue Geschäftsmodelle."
+          "title": "Acht fundierte Veröffentlichungen",
+          "text": "Je Schwerpunkt entstehen zwei passende Perspektiven. Möglich sind Erklärbeiträge, Praxisfallstudien und Experten- oder Executive Interviews. Eine mögliche Zusammenstellung: vier Folgen einer Fachserie, zwei Fallstudien und zwei Interviews – insgesamt acht Veröffentlichungen."
         },
         {
-          "title": "Praxis- und Leserorientierung",
-          "text": "Einbindung konkreter Anwendungsfälle, Erfahrungen, Kennzahlen, Entscheidungskriterien und Handlungsempfehlungen. Produkt- und Unternehmensbezüge werden transparent eingeordnet und nicht als reine Werbebotschaft aufbereitet."
+          "title": "Fortlaufend gepflegtes Themendossier",
+          "text": "Eine standardisierte Seite auf VTM bündelt und ordnet die Partnerschaftsinhalte über die Laufzeit ein. Ihr Unternehmen wird transparent als Partner sichtbar. Eine individuell gestaltete Kampagnenwebsite wird separat kalkuliert."
         },
         {
-          "title": "Verwertbare Zusammenfassungen",
-          "text": "6 kompakte PDF-Zusammenfassungen mit Kernaussagen, Praxisimpulsen und weiterführenden Informationen für Marketing, Vertrieb, Kundentermine und interne Kommunikation."
+          "title": "Zwei moderierte Fachwebinare",
+          "text": "Zwei digitale Fachgespräche von jeweils 45–60 Minuten vertiefen Fragen aus dem Jahresthema. Vorbereitung, Moderation, Durchführung und Bewerbung innerhalb der vereinbarten Platzierungen sind enthalten."
         },
         {
-          "title": "Gezielte Verbreitung",
-          "text": "12 begleitende LinkedIn-Beiträge auf den VTM-Unternehmenskanälen, jeweils mit eigenständigem redaktionellem Aufhänger, sowie 6 Newsletterplatzierungen mit klarer Einordnung des jeweiligen Inhalts."
+          "title": "Regelmäßige Verbreitung",
+          "text": "16 LinkedIn-Beiträge auf den VTM-Unternehmenskanälen und acht Newsletterplatzierungen begleiten Veröffentlichungen und Gesprächseinladungen."
         },
         {
-          "title": "Laufende Optimierung",
-          "text": "Quartalsweise Auswertung der veröffentlichten Inhalte und Kanäle mit Erkenntnissen zu Reichweite, Interaktion, Themenresonanz und möglichen Folgeformaten."
+          "title": "Weiterverwendung und Resonanz",
+          "text": "Nutzungsrechte für die erstellten Texte und geeigneten Grafiken auf Ihren eigenen Kommunikationskanälen, unter Wahrung der Einordnung und Kennzeichnung. In den Quartalsgesprächen besprechen wir Nutzung, Fragen und Reaktionen."
         },
         {
-          "title": "Nutzungsrechte",
-          "text": "Nutzung der erstellten Inhalte und Zusammenfassungen auf den eigenen Kommunikationskanälen des Unternehmens unter Wahrung der redaktionellen Einordnung und Kennzeichnungspflichten."
+          "title": "Gezielte Erweiterungen",
+          "text": "Zusätzliche Veröffentlichungen, eine monatliche Serie mit zwölf Folgen, Marktbefragungen, Podcastbuchungen und Veranstaltungen können individuell ergänzt werden. Enthaltene Leistungen werden dabei berücksichtigt."
         }
       ],
       "benefits": [
         {
-          "for": "Für Leser",
-          "text": "Kontinuierliche Orientierung zu einem relevanten Branchenthema, unterschiedliche Perspektiven, konkrete Praxisbeispiele und verständlich aufbereitete Fachinformationen."
+          "for": "Für Ihr Unternehmen",
+          "text": "Ein wachsendes Themendossier, wiederkehrende Präsenz und Erkenntnisse aus dem fachlichen Austausch."
         },
         {
-          "for": "Für Ihr Unternehmen",
-          "text": "Langfristiger Kompetenzaufbau, wiederholte Sichtbarkeit bei einer relevanten Fachzielgruppe, stärkere Themenführerschaft und eine belastbare Grundlage für Vertrieb, Marketing und Gespräche mit Kunden oder Partnern. Die regelmäßige Veröffentlichung schafft mehr Wirkung als eine einzelne Kampagne."
+          "for": "Für Leser",
+          "text": "Zusammenhängende Orientierung über das Jahr, ergänzt um Erfahrungen, Belege und unterschiedliche Perspektiven."
         }
       ]
     },
@@ -235,50 +403,84 @@
       ]
     },
     "themenkampagne": {
-      "kicker": "03 · Fokussierte Kampagne",
-      "priceLine": "9.000 € einmalig · Umsetzung über 6 bis 8 Wochen · netto, zuzüglich gesetzlicher Umsatzsteuer",
+      "priceLine": "9.000 € einmalig · 6 bis 8 Wochen · netto, zuzüglich gesetzlicher Umsatzsteuer",
       "blocks": [
         {
-          "title": "Kampagnenkonzeption",
-          "text": "Auftaktgespräch zur Eingrenzung eines konkreten Produkts, Projekts oder Fachthemas. Entwicklung einer verständlichen Leitfrage und eines redaktionellen Blickwinkels mit erkennbarem Nutzen für die Leser."
+          "title": "Themenauftakt",
+          "text": "Wir legen Zielgruppe, zentrale Leserfrage, fachliche Belege und die gewünschte Anschlussaktion fest. Daraus entsteht ein abgestimmter Themen- und Terminplan."
         },
         {
-          "title": "Praxis- oder Erklärbeitrag",
-          "text": "1 ausführlicher Beitrag, der ein Problem, eine Entwicklung oder eine Lösung nachvollziehbar erklärt. Der Schwerpunkt liegt auf Kontext, Nutzen, Voraussetzungen und praktischer Relevanz, nicht auf einer reinen Produktdarstellung."
+          "title": "Erklärung und Praxis",
+          "text": "Ein fundierter Erklärbeitrag erläutert Problem, Lösungsansätze, Voraussetzungen und Grenzen. Eine Praxisfallstudie oder ein Experteninterview zeigt konkrete Erfahrungen. Für einen Erfolgsbericht brauchen wir belastbare Ergebnisse; andernfalls wählen wir ein Fachinterview."
         },
         {
-          "title": "Experteninterview",
-          "text": "1 Interview mit einer fachlich geeigneten Person aus Ihrem Unternehmen oder dem relevanten Umfeld. Das Interview ergänzt den Beitrag um persönliche Erfahrung, Einordnung und konkrete Beispiele."
+          "title": "Eigenständig nutzbare Fachgrafik",
+          "text": "Eine Prozessdarstellung, Architekturübersicht oder Visualisierung belegter Ergebnisse entsteht aus der gemeinsamen Recherche. Sie können sie in Präsentationen, Kundengesprächen und eigenen Kanälen verwenden."
         },
         {
-          "title": "Kompakte Weiterverwendung",
-          "text": "2 PDF-Zusammenfassungen mit den wichtigsten Erkenntnissen, Begriffen, Handlungsempfehlungen oder Entscheidungskriterien."
+          "title": "Moderiertes Fachwebinar",
+          "text": "Ein digitales Fachgespräch von 45 Minuten mit einem Experten Ihres Unternehmens und Fragen aus dem Publikum. Enthalten sind Vorbereitung, Moderation, Durchführung und Bewerbung innerhalb der vereinbarten Platzierungen. Aufwendige Videobearbeitung wird separat kalkuliert."
         },
         {
-          "title": "Verbreitung",
-          "text": "4 begleitende LinkedIn-Beiträge auf den VTM-Unternehmenskanälen und 2 Newsletterplatzierungen. Die Beiträge greifen unterschiedliche Aspekte der Kampagne auf und führen jeweils zum vollständigen Inhalt."
+          "title": "Verbreitung und Nutzungsrechte",
+          "text": "Vier LinkedIn-Beiträge auf den VTM-Unternehmenskanälen und zwei Newsletterplatzierungen begleiten Inhalte und Einladung. Texte und Fachgrafik dürfen auf Ihren eigenen Kanälen unter Wahrung der Einordnung und Kennzeichnung weiterverwendet werden."
         },
         {
           "title": "Abschlussauswertung",
-          "text": "Zusammenfassung der Ergebnisse zu Reichweite, Interaktion, Resonanz und möglichen Anschlussmaßnahmen."
-        },
-        {
-          "title": "Zeitraum",
-          "text": "Umsetzung über 6 bis 8 Wochen mit abgestimmtem Redaktions- und Freigabeplan."
+          "text": "Wir besprechen Nutzung, Resonanz und eingegangene Fragen sowie sinnvolle Anschlussmaßnahmen. Teilnehmerzahlen, Kontaktanfragen und Abschlüsse werden nicht garantiert."
         }
       ],
       "benefits": [
         {
-          "for": "Für Leser",
-          "text": "Ein klar abgegrenztes Thema wird aus mehreren Blickwinkeln verständlich erklärt. Leser erhalten Orientierung, Praxiswissen und konkrete Kriterien, die sie auf eigene Fragestellungen übertragen können."
+          "for": "Für Ihr Unternehmen",
+          "text": "Ihre Expertise wird verständlich, mit Praxis belegt und für weitere Kommunikation nutzbar."
         },
+        {
+          "for": "Für Leser",
+          "text": "Eine konkrete fachliche Frage wird aus mehreren Perspektiven beantwortet. Das Webinar bietet Gelegenheit zum Nachfragen."
+        }
+      ]
+    },
+    "experts-sponsoring": {
+      "priceLine": "Change Management · 2./3. Dezember 2026 · Köln · 8.500 € netto, zuzüglich gesetzlicher Umsatzsteuer",
+      "blocks": [
+        {
+          "title": "Ein Hauptsponsor pro Edition",
+          "text": "Die vorliegende Change-Management-Edition hat einen Hauptsponsor mit dem einzigen Sponsor-Impuls. Verfügbarkeit und fachliche Passung bestätigen wir im persönlichen Gespräch."
+        },
+        {
+          "title": "45 Minuten Praxisimpuls",
+          "text": "Ein konkreter Praxisfall aus Ihrem Unternehmen, vorab fachlich abgestimmt. Der Impuls bringt Erfahrungen und Erkenntnisse in die gemeinsame Arbeit ein."
+        },
+        {
+          "title": "Zwei Tickets inklusive Abend",
+          "text": "Ihre beiden Vertreter nehmen an beiden Veranstaltungstagen sowie am Aperitif und Dinner am ersten Abend teil. Die Sponsorvertreter sind von den 25 kuratierten Teilnehmenden zu unterscheiden."
+        },
+        {
+          "title": "Sichtbarkeit rund um das Event",
+          "text": "Präsenz auf der Editionsseite, in der Anmeldestrecke, Teilnehmerkommunikation und im Programm sowie auf Namensschildern und im Veranstaltungsraum."
+        },
+        {
+          "title": "Executive Interview und Nachgang",
+          "text": "Ein als Partnerschaftsinhalt gekennzeichnetes Executive Interview im VersicherungsTech Magazin, Nennung im Dissenspapier und Erstzugriff auf das Hauptsponsoring der nächsten Edition."
+        },
+        {
+          "title": "Kontakte für den weiteren Austausch",
+          "text": "Im Nachgang erhalten Sie Kontaktdaten der Teilnehmenden, die einer Weitergabe zugestimmt haben. Eine feste Zahl von Kontakten oder Folgegesprächen wird nicht zugesagt."
+        },
+        {
+          "title": "Weitere Editionen",
+          "text": "Weitere Editionen sind individuell anfragbar. Termine, Leistungsumfang und Preise werden gesondert vereinbart; der Preis von 8.500 € gilt für die hier beschriebene Change-Management-Edition."
+        }
+      ],
+      "benefits": [
         {
           "for": "Für Ihr Unternehmen",
-          "text": "Fokussierte Sichtbarkeit für ein strategisch wichtiges Thema, Produkt oder Projekt. Die Kombination aus Erklärung, Interview, Zusammenfassung und Verbreitung schafft mehrere Kontaktpunkte und unterstützt Bekanntheit ebenso wie qualifizierte Gespräche."
+          "text": "Kompetenz anhand eines Praxisfalls zeigen, Branchenperspektiven kennenlernen und persönliche Anknüpfungspunkte schaffen."
         },
         {
-          "for": "Besonders geeignet für",
-          "text": "Markteinführungen, neue Lösungen, Studienergebnisse, Transformationsprojekte, regulatorische Veränderungen, Kundenbeispiele oder Themen, bei denen erklärungsbedürftige Expertise sichtbar gemacht werden soll."
+          "for": "Der Teilnehmerkreis",
+          "text": "25 ausgewählte Verantwortliche aus Versicherern, Maklerpools und Versicherungsvertrieben. Die Zusage erfolgt durch die Gastgeber."
         }
       ]
     }
@@ -297,7 +499,7 @@
     {
       "label": "Transparenz",
       "title": "Transparenz",
-      "text": "Bezahlte Veröffentlichungen und kommerzielle Kooperationen werden entsprechend den geltenden Vorgaben gekennzeichnet."
+      "text": "Bezahlte Veröffentlichungen und kommerzielle Kooperationen sind sichtbar gekennzeichnet. Sponsoring bezieht sich auf vereinbarte Plätze und Formate; unabhängige redaktionelle Entscheidungen bleiben erhalten."
     },
     {
       "label": "Prozess",
@@ -312,7 +514,7 @@
     {
       "label": "Zusatzleistungen",
       "title": "Zusätzliche Leistungen",
-      "text": "Veranstaltungen, Podcastbuchungen, Studien, individuelle Landingpages, weiterführende Designleistungen und zusätzliches Werbebudget werden separat angeboten."
+      "text": "Die enthaltenen Leistungen stehen beim jeweiligen Angebot. Zusätzliche Inhalte, Marktbefragungen, Podcast- und Veranstaltungsformate sowie individuelles Design und Werbebudget werden gesondert vereinbart. Überschneidungen berücksichtigen wir im Gesamtangebot."
     }
   ]
 }

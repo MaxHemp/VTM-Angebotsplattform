@@ -38,10 +38,12 @@ const fmt = new Intl.NumberFormat("de-DE", {
 });
 const nb = (s) => s.replace(/ /g, "&nbsp;");
 const esc = (s) =>
-  String(s).replace(/&(?!(amp|nbsp|lt|gt|quot);)/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  String(s).replace(/&(?!(amp|nbsp|lt|gt|quot);)/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 /* Preisformel: unit × Produkt aller Dimensionen (bzw. × qty) */
 export function itemTotal(item, val) {
+  if (item.editions) return (item.editions.find(e => e.id === val?.edition) || item.editions[0]).unit;
+  if (item.unit === null) return null;
   if (item.dims) {
     return item.dims.reduce((sum, d) => sum * (val && val[d.key] ? val[d.key] : d.default), item.unit);
   }
@@ -81,6 +83,10 @@ function cardHTML(item, indent) {
   l.push(`${p}    </button>`);
   l.push(`${p}  </div>`);
   l.push(`${p}  <p class="offer-desc">${esc(item.desc)}</p>`);
+  if (item.editions) {
+    l.push(`${p}  <label class="edition-label" for="edition-${item.id}">Edition wählen</label>`);
+    l.push(`${p}  <select id="edition-${item.id}" class="edition-select">${item.editions.map(e => `<option value="${e.id}">${esc(e.name)}</option>`).join("")}</select>`);
+  }
   if (item.includes) {
     l.push(`${p}  <ul class="offer-includes">`);
     for (const x of item.includes) l.push(`${p}    <li>${esc(x)}</li>`);
@@ -88,14 +94,14 @@ function cardHTML(item, indent) {
   }
   l.push(`${p}  <div class="offer-bottom">`);
   l.push(`${p}    <div class="offer-price">`);
-  l.push(`${p}      <strong>${nb(fmt.format(item.unit))}</strong><span>${esc(item.unitSuffix)}</span>`);
+  l.push(`${p}      <strong>${item.unit === null ? "Individuelles Angebot" : nb(fmt.format(item.unit))}</strong><span>${esc(item.unitSuffix)}</span>`);
   if (item.priceMeta) l.push(`${p}      <small class="offer-meta">${esc(item.priceMeta)}</small>`);
   l.push(`${p}    </div>`);
   if (item.dims) {
     l.push(`${p}    <div class="stepper-group">`);
     for (const d of item.dims) l.push(stepperHTML(p + "      ", d));
     l.push(`${p}    </div>`);
-  } else {
+  } else if (item.max !== 1 && !item.editions) {
     /* Ein-Dimensions-Stepper: Ausgabe „1 Kampagne(n)“ wird vom JS gesetzt,
        statisch steht die Einheit mit Menge 1 */
     l.push(
@@ -105,6 +111,19 @@ function cardHTML(item, indent) {
   l.push(`${p}  </div>`);
   l.push(`${p}</article>`);
   return l.join("\n");
+}
+
+function featuredHTML(item) {
+  const primary = item.id === "themenpartnerschaft";
+  return `<article class="karte angebot ${primary ? "is-hero" : ""} reveal" aria-labelledby="angebot-${item.id}">
+    <p class="format">${esc(item.format)}</p>
+    <h3 id="angebot-${item.id}">${esc(item.name)}</h3>
+    <p class="beschreibung">${esc(item.desc)}</p>
+    <div class="preis"><span class="betrag">${nb(fmt.format(item.unit))}<small>${esc(item.unitSuffix)}</small></span><p class="meta">${esc(item.priceMeta)}</p></div>
+    <ul class="chevrons">${item.includes.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+    <div class="btn-row"><a class="btn ${primary ? "btn-primary" : "btn-secondary"}" href="#konfigurator" data-add="${item.id}">${item.editions ? "Edition auswählen und anfragen" : "In den Konfigurator"}</a>
+    <a class="btn detail-link" href="#detail-${item.id}" data-open="detail-${item.id}">Leistungsumfang im Detail</a></div>
+  </article>`;
 }
 
 function detailsHTML(id, indent) {
@@ -207,6 +226,8 @@ function syncFile(file) {
     const items = sorted.filter((i) => i.group === group);
     src = replaceContainer(file, src, '<div class="config-grid" data-group="' + group + '">',
       items.map((i) => cardHTML(i, 16)).join("\n")).src;
+    src = replaceContainer(file, src, '<div class="leistungen-grid" data-featured="' + group + '">',
+      items.map(featuredHTML).join("\n"), false).src;
   }
 
   /* 3. Detailblöcke + Grundsätze (optional je Seite) */
