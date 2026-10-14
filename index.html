@@ -771,6 +771,11 @@
     .extras-overview p { color:var(--sem-text-sekundaer); }
     .extras-overview .textlink { display:inline-flex; min-height:44px; align-items:center; }
     .supplement-note { margin-top:2rem; color:var(--sem-text-sekundaer); }
+    .kapitel.is-anschluss { border-top:1px solid var(--vtm-grau-200); }
+    .leistungen-grid[data-featured="einzel"] { grid-template-columns:repeat(4,minmax(0,1fr)); }
+    @media (min-width:1201px) { .leistungen-grid[data-featured="einzel"] .preis .betrag small { display:block; margin:.45rem 0 0; vertical-align:baseline; } }
+    @media (max-width:1200px) { .leistungen-grid[data-featured="einzel"] { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:760px) { .leistungen-grid[data-featured="einzel"] { grid-template-columns:1fr; } }
     .edition-label { font-size:.875rem; font-weight:600; }
     .edition-select { width:100%; min-width:0; min-height:48px; padding:.7rem .5rem; font:inherit; font-size:.875rem; color:var(--sem-text); background:white; border:1px solid var(--vtm-grau-300); border-radius:8px; cursor:pointer; }
     .config-groups, .config-group, .offer-top > div { min-width:0; }
@@ -816,7 +821,7 @@
 
   </style>
 </head>
-<body id="top" data-catalog-order="vtm,podcast,experts,strategie,extras">
+<body id="top" data-catalog-order="vtm,einzel,podcast,experts,strategie,extras">
   <a class="skip-link" href="#konfigurator">Zum Konfigurator springen</a>
 
   <nav class="site-nav" aria-label="Hauptnavigation">
@@ -1002,12 +1007,63 @@
     </section>
 
     <!-- =====================================================
-         02 · PODCAST · INSURANCE MONDAY
+         02 · VTM EINZELLEISTUNGEN
+    ====================================================== -->
+    <section class="kapitel is-anschluss" id="einzelleistungen" aria-labelledby="einzelleistungen-title">
+      <div class="wrap">
+        <header class="kapitel-kopf reveal"><p class="kicker">02 · VTM Einzelleistungen</p>
+          <h2 id="einzelleistungen-title">Einzeln buchbar, fest kalkuliert.</h2>
+          <p class="lead">Für ein konkretes Vorhaben ohne Bundle: ein Artikel, ein Webinar, eine Marktbefragung oder die Begleitung Ihres Events.</p>
+        </header>
+        <div class="leistungen-grid" data-featured="einzel">
+<article class="karte angebot  reveal" aria-labelledby="angebot-einzelartikel">
+    <p class="format">Veröffentlichung</p>
+    <h3 id="angebot-einzelartikel">Einzelartikel</h3>
+    <p class="beschreibung">Ihr Fachbeitrag erscheint im VersicherungsTech Magazin und erreicht Entscheider über Newsletter und Social Media.</p>
+    <div class="preis"><span class="betrag">2.000 €<small>pro Artikel</small></span><p class="meta">inklusive Versand und Social Media</p></div>
+    <ul class="chevrons"><li>Redaktionelle Aufbereitung und Veröffentlichung auf VTM</li><li>Versand im VTM-Newsletter per E-Mail</li><li>Vermarktung auf den VTM-Social-Media-Kanälen</li><li>Kennzeichnung nach geltenden Vorgaben</li></ul>
+    <div class="btn-row"><a class="btn btn-secondary" href="#konfigurator" data-add="einzelartikel">In den Konfigurator</a>
+    </div>
+  </article>
+<article class="karte angebot  reveal" aria-labelledby="angebot-fachwebinar">
+    <p class="format">Austausch mit der Community</p>
+    <h3 id="angebot-fachwebinar">Moderiertes Webinar</h3>
+    <p class="beschreibung">Wir laden unsere Community zu einem gemeinsamen 45-minütigen Webinar ein. Sie erhalten die Lead-Liste der Interessenten im Nachgang.</p>
+    <div class="preis"><span class="betrag">4.500 €<small>pro Webinar</small></span><p class="meta">45 Minuten, inklusive Lead-Liste</p></div>
+    <ul class="chevrons"><li>Themenkonzeption und Moderation durch VTM</li><li>Einladung der VTM-Community</li><li>45 Minuten mit Fragerunde</li><li>Lead-Liste der Interessenten im Nachgang (bei Einwilligung zur Weitergabe)</li></ul>
+    <div class="btn-row"><a class="btn btn-secondary" href="#konfigurator" data-add="fachwebinar">In den Konfigurator</a>
+    </div>
+  </article>
+<article class="karte angebot  reveal" aria-labelledby="angebot-marktcheck">
+    <p class="format">Eigene Markterkenntnisse</p>
+    <h3 id="angebot-marktcheck">Markt-Check</h3>
+    <p class="beschreibung">Wir führen eine Marktbefragung in einem definierten Zeitraum zu einem gemeinsam definierten Thema durch. Sie dürfen die Ergebnisse für Ihr Marketing und Ihren Vertrieb nutzen.</p>
+    <div class="preis"><span class="betrag">4.800 €<small>pro Befragung</small></span><p class="meta">inklusive Nutzungsrecht der Ergebnisse</p></div>
+    <ul class="chevrons"><li>Thema und Fragestellung gemeinsam festlegen</li><li>Befragung im definierten Zeitraum</li><li>Auswertung mit transparenter Methodik</li><li>Nutzungsrecht der Ergebnisse für Marketing und Vertrieb</li></ul>
+    <div class="btn-row"><a class="btn btn-secondary" href="#konfigurator" data-add="marktcheck">In den Konfigurator</a>
+    </div>
+  </article>
+<article class="karte angebot  reveal" aria-labelledby="angebot-eventbegleitung">
+    <p class="format">Veranstaltung</p>
+    <h3 id="angebot-eventbegleitung">Eventbegleitung</h3>
+    <p class="beschreibung">Wir begleiten Ihr Event redaktionell und stellen eine professionelle Moderation, die unabhängig und fachlich bewandert durch die Veranstaltung führt.</p>
+    <div class="preis"><span class="betrag">5.490 €<small>pro Event</small></span><p class="meta">zuzüglich Reisekosten</p></div>
+    <ul class="chevrons"><li>Redaktionelle Begleitung vor, während und nach dem Event</li><li>Professionelle, unabhängige Moderation</li><li>Nachbericht auf VTM</li></ul>
+    <div class="btn-row"><a class="btn btn-secondary" href="#konfigurator" data-add="eventbegleitung">In den Konfigurator</a>
+    </div>
+  </article>
+              </div>
+        <div class="fazit reveal"><span class="mono">Fazit</span><p>Alle Preise netto zuzüglich gesetzlicher Umsatzsteuer. Für die Eventbegleitung berechnen wir Reisekosten zusätzlich.</p></div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         03 · PODCAST · INSURANCE MONDAY
     ====================================================== -->
     <section class="kapitel is-eis" id="podcast" aria-labelledby="podcast-title">
       <div class="wrap">
         <header class="kapitel-kopf reveal">
-          <p class="kicker">02 · Podcast · In Partnerschaft mit Insurance Monday</p>
+          <p class="kicker">03 · Podcast · In Partnerschaft mit Insurance Monday</p>
           <h2 id="podcast-title">Ihr Thema im Ohr der Branche.</h2>
           <p class="lead">
             Insurance Monday ist der Podcast unseres Kooperationspartners mit
@@ -1104,7 +1160,7 @@
     <section class="kapitel experts-section" id="experts" aria-labelledby="experts-title">
       <div class="wrap">
         <div class="experts-intro">
-          <div><p class="kicker">03 · Persönlicher Austausch</p>
+          <div><p class="kicker">04 · Persönlicher Austausch</p>
             <img class="experts-logo" src="assets/25experts-logo-horizontal-on-dark.svg" alt="25 EXPERTS" width="360" height="80" loading="lazy">
             <h2 id="experts-title">Expertise einbringen.<br>Persönliche Beziehungen aufbauen.</h2>
             <p class="lead">25 EXPERTS bringt 25 ausgewählte Verantwortliche aus der Versicherungswirtschaft zusammen. Im Mittelpunkt stehen konkrete Erfahrungen, offene Fragen und die gemeinsame Arbeit an einem relevanten Branchenthema.</p>
@@ -1175,7 +1231,7 @@
     </section>
     <section class="kapitel is-eis" id="strategie" aria-labelledby="strategie-title">
       <div class="wrap strategy-layout">
-        <header class="kapitel-kopf reveal"><p class="kicker">04 · Strategische Partnerschaft</p><h2 id="strategie-title">Ein Thema. Ein gemeinsamer Plan.</h2>
+        <header class="kapitel-kopf reveal"><p class="kicker">05 · Strategische Partnerschaft</p><h2 id="strategie-title">Ein Thema. Ein gemeinsamer Plan.</h2>
         <p class="lead">Verankern Sie ein strategisches Thema über Fachinhalte, eigene Erkenntnisse und persönlichen Austausch im Markt. Wir stellen ein Programm zusammen, das zu Ihrem Ziel, Ihrer Expertise und Ihrem Budget passt.</p>
         <p>Eine wiederkehrende Fachserie, belegbare Praxisfälle, eine Marktbefragung oder passende Podcast- und Veranstaltungsformate: Die Auswahl ergibt sich aus Ihrer Aufgabe. Monatliche Auswertungen und Quartalsgespräche halten das Programm auf Kurs.</p>
         <p class="strategy-price">Individuelles Angebot</p>
@@ -1185,13 +1241,13 @@
       </div>
     </section>
     <section class="kapitel" id="ergaenzungen" aria-labelledby="ergaenzungen-title">
-      <div class="wrap"><header class="kapitel-kopf reveal"><p class="kicker">05 · Ergänzende Leistungen</p><h2 id="ergaenzungen-title">Erweitern, wo es Ihrem Ziel hilft.</h2><p class="lead">Zusätzliche Inhalte, eigene Markterkenntnisse und passende Gelegenheiten für Austausch. Die enthaltenen Leistungen Ihres Bundles berücksichtigen wir im gemeinsamen Angebot.</p></header>
+      <div class="wrap"><header class="kapitel-kopf reveal"><p class="kicker">06 · Ergänzende Leistungen</p><h2 id="ergaenzungen-title">Erweitern, wo es Ihrem Ziel hilft.</h2><p class="lead">Zusätzliche Inhalte, eigene Markterkenntnisse und passende Gelegenheiten für Austausch. Die enthaltenen Leistungen Ihres Bundles berücksichtigen wir im gemeinsamen Angebot.</p></header>
       <div class="extras-overview">
-        <article><h3>Praxis &amp; Erkenntnisse</h3><p>Zusätzliche Praxisfallstudie, Marktbefragung oder Entscheider-Panel – mit nachvollziehbaren Fakten und einer klaren Fragestellung.</p><a href="#konfigurator" class="textlink" data-group-link="extras">Ergänzungen auswählen</a></article>
-        <article><h3>Austausch &amp; Veranstaltungen</h3><p>Zusätzliches Fachwebinar, Veranstaltungsbegleitung oder eine eigene Fachveranstaltung mit abgestimmtem Umfang.</p><a href="#konfigurator" class="textlink" data-group-link="extras">Formate auswählen</a></article>
+        <article><h3>Praxis &amp; Sichtbarkeit</h3><p>Eine zusätzliche Praxisfallstudie mit nachvollziehbaren Ergebnissen oder ein exklusives Rubrikensponsoring nach Verfügbarkeit.</p><a href="#konfigurator" class="textlink" data-group-link="extras">Ergänzungen auswählen</a></article>
+        <article><h3>Eigene Fachveranstaltung</h3><p>Ein eigenes Thema mit einem passenden Teilnehmerkreis vertiefen. Webinar und Eventbegleitung finden Sie als <a href="#einzelleistungen">Einzelleistungen zum Festpreis</a>.</p><a href="#konfigurator" class="textlink" data-group-link="extras">Format auswählen</a></article>
         <article><h3>Persönliche Kommunikation</h3><p>Vier persönliche LinkedIn-Beiträge pro Monat, ein Redaktionsgespräch und bis zu zwei Grafiken. 1.500 € netto pro Monat je Führungskraft.</p><a href="#konfigurator" class="textlink" data-add="fuehrungskraefte">Führungskräfte-Kommunikation auswählen</a></article>
       </div>
-      <p class="supplement-note">Exklusives Rubrikensponsoring ist nach Verfügbarkeitsprüfung individuell anfragbar. Leistungen mit offenem Umfang werden separat kalkuliert.</p>
+      <p class="supplement-note">Fallstudie, Rubrikensponsoring und eigene Fachveranstaltung werden nach Umfang individuell kalkuliert.</p>
       <details class="leistung-detail" id="detail-fuehrungskraefte"><summary>Führungskräfte-Kommunikation im Detail<span aria-hidden="true">+</span></summary><div class="leistung-details" data-details="fuehrungskraefte">
                 <p class="detail-priceline">1.500 € pro Monat je Führungskraft · netto, zuzüglich gesetzlicher Umsatzsteuer</p>
                 <div class="detail-grid">
@@ -1246,7 +1302,7 @@
     <section class="kapitel" id="konfigurator" aria-labelledby="konfigurator-title">
       <div class="wrap">
         <header class="kapitel-kopf reveal">
-          <p class="kicker">06 · Konfigurator</p>
+          <p class="kicker">07 · Konfigurator</p>
           <h2 id="konfigurator-title">Stellen Sie Ihr Paket zusammen.</h2>
           <p class="lead">
             Wählen Sie Ihr Hauptangebot und passende Ergänzungen. Passen Sie Laufzeit, Menge oder Edition an.
@@ -1320,6 +1376,131 @@
                     <div class="stepper" aria-label="Menge wählen">
                       <button type="button" data-step="-1" aria-label="Weniger">−</button>
                       <output>1 Jahr(e)</output>
+                      <button type="button" data-step="1" aria-label="Mehr">+</button>
+                    </div>
+                  </div>
+                </article>
+              </div></div>
+<div class="config-group" id="gruppe-einzel"><div class="config-group-head"><h3>VTM Einzelleistungen</h3><p class="meta">Einzeln buchbar · Festpreise</p></div><div class="config-grid" data-group="einzel">
+                <article class="offer-card" data-id="einzelartikel">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">Veröffentlichung</p>
+                      </div>
+                      <h4>Einzelartikel</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Einzelartikel auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">Ihr Fachbeitrag erscheint im VersicherungsTech Magazin und erreicht Entscheider über Newsletter und Social Media.</p>
+                  <ul class="offer-includes">
+                    <li>Redaktionelle Aufbereitung und Veröffentlichung auf VTM</li>
+                    <li>Versand im VTM-Newsletter per E-Mail</li>
+                    <li>Vermarktung auf den VTM-Social-Media-Kanälen</li>
+                    <li>Kennzeichnung nach geltenden Vorgaben</li>
+                  </ul>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong>2.000 €</strong><span>pro Artikel</span>
+                      <small class="offer-meta">inklusive Versand und Social Media</small>
+                    </div>
+                    <div class="stepper" aria-label="Menge wählen">
+                      <button type="button" data-step="-1" aria-label="Weniger">−</button>
+                      <output>1 Artikel</output>
+                      <button type="button" data-step="1" aria-label="Mehr">+</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="offer-card" data-id="fachwebinar">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">Austausch mit der Community</p>
+                      </div>
+                      <h4>Moderiertes Webinar</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Moderiertes Webinar auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">Wir laden unsere Community zu einem gemeinsamen 45-minütigen Webinar ein. Sie erhalten die Lead-Liste der Interessenten im Nachgang.</p>
+                  <ul class="offer-includes">
+                    <li>Themenkonzeption und Moderation durch VTM</li>
+                    <li>Einladung der VTM-Community</li>
+                    <li>45 Minuten mit Fragerunde</li>
+                    <li>Lead-Liste der Interessenten im Nachgang (bei Einwilligung zur Weitergabe)</li>
+                  </ul>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong>4.500 €</strong><span>pro Webinar</span>
+                      <small class="offer-meta">45 Minuten, inklusive Lead-Liste</small>
+                    </div>
+                    <div class="stepper" aria-label="Menge wählen">
+                      <button type="button" data-step="-1" aria-label="Weniger">−</button>
+                      <output>1 Webinar(e)</output>
+                      <button type="button" data-step="1" aria-label="Mehr">+</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="offer-card" data-id="marktcheck">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">Eigene Markterkenntnisse</p>
+                      </div>
+                      <h4>Markt-Check</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Markt-Check auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">Wir führen eine Marktbefragung in einem definierten Zeitraum zu einem gemeinsam definierten Thema durch. Sie dürfen die Ergebnisse für Ihr Marketing und Ihren Vertrieb nutzen.</p>
+                  <ul class="offer-includes">
+                    <li>Thema und Fragestellung gemeinsam festlegen</li>
+                    <li>Befragung im definierten Zeitraum</li>
+                    <li>Auswertung mit transparenter Methodik</li>
+                    <li>Nutzungsrecht der Ergebnisse für Marketing und Vertrieb</li>
+                  </ul>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong>4.800 €</strong><span>pro Befragung</span>
+                      <small class="offer-meta">inklusive Nutzungsrecht der Ergebnisse</small>
+                    </div>
+                    <div class="stepper" aria-label="Menge wählen">
+                      <button type="button" data-step="-1" aria-label="Weniger">−</button>
+                      <output>1 Befragung(en)</output>
+                      <button type="button" data-step="1" aria-label="Mehr">+</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="offer-card" data-id="eventbegleitung">
+                  <div class="offer-top">
+                    <div>
+                      <div class="offer-format-row">
+                        <p class="offer-format">Veranstaltung</p>
+                      </div>
+                      <h4>Eventbegleitung</h4>
+                    </div>
+                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Eventbegleitung auswählen">
+                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </div>
+                  <p class="offer-desc">Wir begleiten Ihr Event redaktionell und stellen eine professionelle Moderation, die unabhängig und fachlich bewandert durch die Veranstaltung führt.</p>
+                  <ul class="offer-includes">
+                    <li>Redaktionelle Begleitung vor, während und nach dem Event</li>
+                    <li>Professionelle, unabhängige Moderation</li>
+                    <li>Nachbericht auf VTM</li>
+                  </ul>
+                  <div class="offer-bottom">
+                    <div class="offer-price">
+                      <strong>5.490 €</strong><span>pro Event</span>
+                      <small class="offer-meta">zuzüglich Reisekosten</small>
+                    </div>
+                    <div class="stepper" aria-label="Menge wählen">
+                      <button type="button" data-step="-1" aria-label="Weniger">−</button>
+                      <output>1 Event(s)</output>
                       <button type="button" data-step="1" aria-label="Mehr">+</button>
                     </div>
                   </div>
@@ -1480,31 +1661,6 @@
                 </article>
               </div></div>
 <div class="config-group" id="gruppe-extras"><div class="config-group-head"><h3>Ergänzende Leistungen</h3><p class="meta">Gezielt erweitern · individuelle Preise nach Umfang</p></div><div class="config-grid" data-group="extras">
-                <article class="offer-card" data-id="marktcheck">
-                  <div class="offer-top">
-                    <div>
-                      <div class="offer-format-row">
-                        <p class="offer-format">Individuelle Ergänzung</p>
-                      </div>
-                      <h4>Marktbefragung / Entscheider-Panel</h4>
-                    </div>
-                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Marktbefragung / Entscheider-Panel auswählen">
-                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                    </button>
-                  </div>
-                  <p class="offer-desc">Eigene Erkenntnisse zu Fragen, Prioritäten und Einschätzungen Ihrer Zielgruppe gewinnen.</p>
-                  <ul class="offer-includes">
-                    <li>Zielgruppe, Rekrutierung und Fallzahl gemeinsam festlegen</li>
-                    <li>Fragebogen, Auswertung und transparente Methodik</li>
-                    <li>Optional eine zweite Befragungswelle</li>
-                  </ul>
-                  <div class="offer-bottom">
-                    <div class="offer-price">
-                      <strong>Individuelles Angebot</strong><span></span>
-                      <small class="offer-meta">Preis nach Umfang · unverbindlich anfragen</small>
-                    </div>
-                  </div>
-                </article>
                 <article class="offer-card" data-id="case-study">
                   <div class="offer-top">
                     <div>
@@ -1522,56 +1678,6 @@
                     <li>Recherche und Gespräche mit den Projektbeteiligten</li>
                     <li>Fachliche Aufbereitung und abgestimmte Veröffentlichung</li>
                     <li>Zusätzlicher Inhalt über den Bundle-Umfang hinaus</li>
-                  </ul>
-                  <div class="offer-bottom">
-                    <div class="offer-price">
-                      <strong>Individuelles Angebot</strong><span></span>
-                      <small class="offer-meta">Preis nach Umfang · unverbindlich anfragen</small>
-                    </div>
-                  </div>
-                </article>
-                <article class="offer-card" data-id="fachwebinar">
-                  <div class="offer-top">
-                    <div>
-                      <div class="offer-format-row">
-                        <p class="offer-format">Individuelle Ergänzung</p>
-                      </div>
-                      <h4>Zusätzliches Fachwebinar</h4>
-                    </div>
-                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Zusätzliches Fachwebinar auswählen">
-                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                    </button>
-                  </div>
-                  <p class="offer-desc">Eine weitere Frage vertiefen und Interessierten Raum für fachlichen Austausch geben.</p>
-                  <ul class="offer-includes">
-                    <li>Themenkonzeption, Vorbereitung und Moderation</li>
-                    <li>Bewerbung und Durchführung nach vereinbartem Umfang</li>
-                    <li>Zusätzlich zu den bereits enthaltenen Webinaren</li>
-                  </ul>
-                  <div class="offer-bottom">
-                    <div class="offer-price">
-                      <strong>Individuelles Angebot</strong><span></span>
-                      <small class="offer-meta">Preis nach Umfang · unverbindlich anfragen</small>
-                    </div>
-                  </div>
-                </article>
-                <article class="offer-card" data-id="eventbegleitung">
-                  <div class="offer-top">
-                    <div>
-                      <div class="offer-format-row">
-                        <p class="offer-format">Individuelle Ergänzung</p>
-                      </div>
-                      <h4>Veranstaltungsbegleitung</h4>
-                    </div>
-                    <button type="button" class="offer-check" role="checkbox" aria-checked="false" aria-label="Veranstaltungsbegleitung auswählen">
-                      <span class="box"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                    </button>
-                  </div>
-                  <p class="offer-desc">Ihren Auftritt vor, während und nach einer Veranstaltung sichtbar machen.</p>
-                  <ul class="offer-includes">
-                    <li>Vorbereitende Kommunikation</li>
-                    <li>Vor-Ort-Begleitung nach Vereinbarung</li>
-                    <li>Nachbericht mit freigegebenen Erkenntnissen</li>
                   </ul>
                   <div class="offer-bottom">
                     <div class="offer-price">
@@ -1717,7 +1823,7 @@
     <section class="kapitel" id="zusammenarbeit" aria-labelledby="zusammenarbeit-title">
       <div class="wrap">
         <header class="kapitel-kopf reveal">
-          <p class="kicker">07 · Zusammenarbeit · Qualität &amp; Transparenz</p>
+          <p class="kicker">08 · Zusammenarbeit · Qualität &amp; Transparenz</p>
           <h2 id="zusammenarbeit-title">Grundsätze der Zusammenarbeit.</h2>
           <p class="lead">Sechs Regeln, die für jede Leistung gelten, vom ersten Gespräch bis zur Auswertung.</p>
         </header>
@@ -1751,7 +1857,7 @@
               <div class="principle">
                 <p class="principle-label">Zusatzleistungen</p>
                 <h3>Zusätzliche Leistungen</h3>
-                <p>Die enthaltenen Leistungen stehen beim jeweiligen Angebot. Zusätzliche Inhalte, Marktbefragungen, Podcast- und Veranstaltungsformate sowie individuelles Design und Werbebudget werden gesondert vereinbart. Überschneidungen berücksichtigen wir im Gesamtangebot.</p>
+                <p>Die enthaltenen Leistungen stehen beim jeweiligen Angebot. Einzelleistungen wie Artikel, Webinar, Markt-Check und Eventbegleitung sind zum Festpreis buchbar. Weitere Inhalte, eigene Veranstaltungen, individuelles Design und Werbebudget werden gesondert vereinbart. Überschneidungen berücksichtigen wir im Gesamtangebot.</p>
               </div>
               </div>
 
@@ -1803,7 +1909,7 @@
     <section class="kapitel is-eis" id="anfrage" aria-labelledby="anfrage-title">
       <div class="wrap">
         <header class="kapitel-kopf reveal">
-          <p class="kicker">08 · Anfrage</p>
+          <p class="kicker">09 · Anfrage</p>
           <h2 id="anfrage-title">Anfrage senden.</h2>
           <p class="lead">
             Ihre Konfiguration wird automatisch übernommen. Sie erhalten
@@ -2015,6 +2121,77 @@
         "max": 3
       },
       {
+        "id": "einzelartikel",
+        "group": "einzel",
+        "format": "Veröffentlichung",
+        "name": "Einzelartikel",
+        "desc": "Ihr Fachbeitrag erscheint im VersicherungsTech Magazin und erreicht Entscheider über Newsletter und Social Media.",
+        "includes": [
+          "Redaktionelle Aufbereitung und Veröffentlichung auf VTM",
+          "Versand im VTM-Newsletter per E-Mail",
+          "Vermarktung auf den VTM-Social-Media-Kanälen",
+          "Kennzeichnung nach geltenden Vorgaben"
+        ],
+        "unit": 2000,
+        "unitSuffix": "pro Artikel",
+        "priceMeta": "inklusive Versand und Social Media",
+        "qtyLabel": "Artikel",
+        "max": 12
+      },
+      {
+        "id": "fachwebinar",
+        "group": "einzel",
+        "format": "Austausch mit der Community",
+        "name": "Moderiertes Webinar",
+        "desc": "Wir laden unsere Community zu einem gemeinsamen 45-minütigen Webinar ein. Sie erhalten die Lead-Liste der Interessenten im Nachgang.",
+        "includes": [
+          "Themenkonzeption und Moderation durch VTM",
+          "Einladung der VTM-Community",
+          "45 Minuten mit Fragerunde",
+          "Lead-Liste der Interessenten im Nachgang (bei Einwilligung zur Weitergabe)"
+        ],
+        "unit": 4500,
+        "unitSuffix": "pro Webinar",
+        "priceMeta": "45 Minuten, inklusive Lead-Liste",
+        "qtyLabel": "Webinar(e)",
+        "max": 6
+      },
+      {
+        "id": "marktcheck",
+        "group": "einzel",
+        "format": "Eigene Markterkenntnisse",
+        "name": "Markt-Check",
+        "desc": "Wir führen eine Marktbefragung in einem definierten Zeitraum zu einem gemeinsam definierten Thema durch. Sie dürfen die Ergebnisse für Ihr Marketing und Ihren Vertrieb nutzen.",
+        "includes": [
+          "Thema und Fragestellung gemeinsam festlegen",
+          "Befragung im definierten Zeitraum",
+          "Auswertung mit transparenter Methodik",
+          "Nutzungsrecht der Ergebnisse für Marketing und Vertrieb"
+        ],
+        "unit": 4800,
+        "unitSuffix": "pro Befragung",
+        "priceMeta": "inklusive Nutzungsrecht der Ergebnisse",
+        "qtyLabel": "Befragung(en)",
+        "max": 4
+      },
+      {
+        "id": "eventbegleitung",
+        "group": "einzel",
+        "format": "Veranstaltung",
+        "name": "Eventbegleitung",
+        "desc": "Wir begleiten Ihr Event redaktionell und stellen eine professionelle Moderation, die unabhängig und fachlich bewandert durch die Veranstaltung führt.",
+        "includes": [
+          "Redaktionelle Begleitung vor, während und nach dem Event",
+          "Professionelle, unabhängige Moderation",
+          "Nachbericht auf VTM"
+        ],
+        "unit": 5490,
+        "unitSuffix": "pro Event",
+        "priceMeta": "zuzüglich Reisekosten",
+        "qtyLabel": "Event(s)",
+        "max": 6
+      },
+      {
         "id": "quartalssponsoring",
         "group": "podcast",
         "format": "Sponsoring · pro Quartal",
@@ -2123,22 +2300,6 @@
         "max": 1
       },
       {
-        "id": "marktcheck",
-        "group": "extras",
-        "format": "Individuelle Ergänzung",
-        "name": "Marktbefragung / Entscheider-Panel",
-        "desc": "Eigene Erkenntnisse zu Fragen, Prioritäten und Einschätzungen Ihrer Zielgruppe gewinnen.",
-        "includes": [
-          "Zielgruppe, Rekrutierung und Fallzahl gemeinsam festlegen",
-          "Fragebogen, Auswertung und transparente Methodik",
-          "Optional eine zweite Befragungswelle"
-        ],
-        "unit": null,
-        "unitSuffix": "",
-        "priceMeta": "Preis nach Umfang · unverbindlich anfragen",
-        "max": 1
-      },
-      {
         "id": "case-study",
         "group": "extras",
         "format": "Individuelle Ergänzung",
@@ -2148,38 +2309,6 @@
           "Recherche und Gespräche mit den Projektbeteiligten",
           "Fachliche Aufbereitung und abgestimmte Veröffentlichung",
           "Zusätzlicher Inhalt über den Bundle-Umfang hinaus"
-        ],
-        "unit": null,
-        "unitSuffix": "",
-        "priceMeta": "Preis nach Umfang · unverbindlich anfragen",
-        "max": 1
-      },
-      {
-        "id": "fachwebinar",
-        "group": "extras",
-        "format": "Individuelle Ergänzung",
-        "name": "Zusätzliches Fachwebinar",
-        "desc": "Eine weitere Frage vertiefen und Interessierten Raum für fachlichen Austausch geben.",
-        "includes": [
-          "Themenkonzeption, Vorbereitung und Moderation",
-          "Bewerbung und Durchführung nach vereinbartem Umfang",
-          "Zusätzlich zu den bereits enthaltenen Webinaren"
-        ],
-        "unit": null,
-        "unitSuffix": "",
-        "priceMeta": "Preis nach Umfang · unverbindlich anfragen",
-        "max": 1
-      },
-      {
-        "id": "eventbegleitung",
-        "group": "extras",
-        "format": "Individuelle Ergänzung",
-        "name": "Veranstaltungsbegleitung",
-        "desc": "Ihren Auftritt vor, während und nach einer Veranstaltung sichtbar machen.",
-        "includes": [
-          "Vorbereitende Kommunikation",
-          "Vor-Ort-Begleitung nach Vereinbarung",
-          "Nachbericht mit freigegebenen Erkenntnissen"
         ],
         "unit": null,
         "unitSuffix": "",
@@ -2310,7 +2439,8 @@
       if (state["experts-sponsoring"]?.edition === "change-management-2026") {
         notes.push("Im 25-EXPERTS-Hauptsponsoring enthalten: 1 Executive Interview und 2 Tickets. Verfügbarkeit und fachliche Passung werden bestätigt.");
       }
-      if (state["case-study"] || state.fachwebinar) notes.push("Die ausgewählten zusätzlichen Fallstudien und Webinare erweitern den enthaltenen Umfang und werden separat kalkuliert.");
+      if (state["case-study"]) notes.push("Die zusätzliche Praxisfallstudie erweitert den enthaltenen Umfang und wird separat kalkuliert.");
+      if (state.fachwebinar && hasBundle) notes.push("Zusätzlich gebuchte Webinare kommen zu den im Bundle enthaltenen hinzu.");
       if (state["strategische-partnerschaft"]) notes.push("Ihre weitere Auswahl dient als Grundlage für das gemeinsame Programm. Enthaltene oder überlappende Leistungen führen wir im individuellen Gesamtangebot zusammen.");
       else if (hasBundle && state["experts-sponsoring"]) notes.push("Die gewählten Pakete enthalten jeweils ihre eigenen Leistungen. Eine mögliche Zusammenführung von Inhalten stimmen wir im Gesamtangebot ab; hier wird kein automatischer Rabatt abgezogen.");
       if (state.quartalssponsoring && (state["podcast-episode"] || state["podcast-ads"])) notes.push("Im Quartalssponsoring sind 3 Episoden und 30 Spot-Ausspielungen je Quartal enthalten. Separat ausgewählte Episoden und Pre-Roll-Pakete kommen zusätzlich hinzu.");

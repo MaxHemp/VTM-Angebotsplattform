@@ -8,6 +8,11 @@
       "meta": "Ein Thema erklären oder über zwölf Monate vertiefen"
     },
     {
+      "id": "einzel",
+      "label": "VTM Einzelleistungen",
+      "meta": "Einzeln buchbar · Festpreise"
+    },
+    {
       "id": "podcast",
       "label": "Insurance Monday",
       "meta": "Podcast-Formate unseres Kooperationspartners"
@@ -25,7 +30,7 @@
     {
       "id": "extras",
       "label": "Ergänzende Leistungen",
-      "meta": "Gezielt erweitern · individuelle Preise nach Umfang"
+      "meta": "Weitere Ergänzungen · Preis nach Umfang"
     }
   ],
   "items": [
@@ -68,6 +73,77 @@
       "priceMeta": "entspricht 3.000 € pro Monat",
       "qtyLabel": "Jahr(e)",
       "max": 3
+    },
+    {
+      "id": "einzelartikel",
+      "group": "einzel",
+      "format": "Veröffentlichung",
+      "name": "Einzelartikel",
+      "desc": "Ihr Fachbeitrag erscheint im VersicherungsTech Magazin und erreicht Entscheider über Newsletter und Social Media.",
+      "includes": [
+        "Redaktionelle Aufbereitung und Veröffentlichung auf VTM",
+        "Versand im VTM-Newsletter per E-Mail",
+        "Vermarktung auf den VTM-Social-Media-Kanälen",
+        "Kennzeichnung nach geltenden Vorgaben"
+      ],
+      "unit": 2000,
+      "unitSuffix": "pro Artikel",
+      "priceMeta": "inklusive Versand und Social Media",
+      "qtyLabel": "Artikel",
+      "max": 12
+    },
+    {
+      "id": "fachwebinar",
+      "group": "einzel",
+      "format": "Austausch mit der Community",
+      "name": "Moderiertes Webinar",
+      "desc": "Wir laden unsere Community zu einem gemeinsamen 45-minütigen Webinar ein. Sie erhalten die Lead-Liste der Interessenten im Nachgang.",
+      "includes": [
+        "Themenkonzeption und Moderation durch VTM",
+        "Einladung der VTM-Community",
+        "45 Minuten mit Fragerunde",
+        "Lead-Liste der Interessenten im Nachgang (bei Einwilligung zur Weitergabe)"
+      ],
+      "unit": 4500,
+      "unitSuffix": "pro Webinar",
+      "priceMeta": "45 Minuten, inklusive Lead-Liste",
+      "qtyLabel": "Webinar(e)",
+      "max": 6
+    },
+    {
+      "id": "marktcheck",
+      "group": "einzel",
+      "format": "Eigene Markterkenntnisse",
+      "name": "Markt-Check",
+      "desc": "Wir führen eine Marktbefragung in einem definierten Zeitraum zu einem gemeinsam definierten Thema durch. Sie dürfen die Ergebnisse für Ihr Marketing und Ihren Vertrieb nutzen.",
+      "includes": [
+        "Thema und Fragestellung gemeinsam festlegen",
+        "Befragung im definierten Zeitraum",
+        "Auswertung mit transparenter Methodik",
+        "Nutzungsrecht der Ergebnisse für Marketing und Vertrieb"
+      ],
+      "unit": 4800,
+      "unitSuffix": "pro Befragung",
+      "priceMeta": "inklusive Nutzungsrecht der Ergebnisse",
+      "qtyLabel": "Befragung(en)",
+      "max": 4
+    },
+    {
+      "id": "eventbegleitung",
+      "group": "einzel",
+      "format": "Veranstaltung",
+      "name": "Eventbegleitung",
+      "desc": "Wir begleiten Ihr Event redaktionell und stellen eine professionelle Moderation, die unabhängig und fachlich bewandert durch die Veranstaltung führt.",
+      "includes": [
+        "Redaktionelle Begleitung vor, während und nach dem Event",
+        "Professionelle, unabhängige Moderation",
+        "Nachbericht auf VTM"
+      ],
+      "unit": 5490,
+      "unitSuffix": "pro Event",
+      "priceMeta": "zuzüglich Reisekosten",
+      "qtyLabel": "Event(s)",
+      "max": 6
     },
     {
       "id": "quartalssponsoring",
@@ -178,22 +254,6 @@
       "max": 1
     },
     {
-      "id": "marktcheck",
-      "group": "extras",
-      "format": "Individuelle Ergänzung",
-      "name": "Marktbefragung / Entscheider-Panel",
-      "desc": "Eigene Erkenntnisse zu Fragen, Prioritäten und Einschätzungen Ihrer Zielgruppe gewinnen.",
-      "includes": [
-        "Zielgruppe, Rekrutierung und Fallzahl gemeinsam festlegen",
-        "Fragebogen, Auswertung und transparente Methodik",
-        "Optional eine zweite Befragungswelle"
-      ],
-      "unit": null,
-      "unitSuffix": "",
-      "priceMeta": "Preis nach Umfang · unverbindlich anfragen",
-      "max": 1
-    },
-    {
       "id": "case-study",
       "group": "extras",
       "format": "Individuelle Ergänzung",
@@ -203,38 +263,6 @@
         "Recherche und Gespräche mit den Projektbeteiligten",
         "Fachliche Aufbereitung und abgestimmte Veröffentlichung",
         "Zusätzlicher Inhalt über den Bundle-Umfang hinaus"
-      ],
-      "unit": null,
-      "unitSuffix": "",
-      "priceMeta": "Preis nach Umfang · unverbindlich anfragen",
-      "max": 1
-    },
-    {
-      "id": "fachwebinar",
-      "group": "extras",
-      "format": "Individuelle Ergänzung",
-      "name": "Zusätzliches Fachwebinar",
-      "desc": "Eine weitere Frage vertiefen und Interessierten Raum für fachlichen Austausch geben.",
-      "includes": [
-        "Themenkonzeption, Vorbereitung und Moderation",
-        "Bewerbung und Durchführung nach vereinbartem Umfang",
-        "Zusätzlich zu den bereits enthaltenen Webinaren"
-      ],
-      "unit": null,
-      "unitSuffix": "",
-      "priceMeta": "Preis nach Umfang · unverbindlich anfragen",
-      "max": 1
-    },
-    {
-      "id": "eventbegleitung",
-      "group": "extras",
-      "format": "Individuelle Ergänzung",
-      "name": "Veranstaltungsbegleitung",
-      "desc": "Ihren Auftritt vor, während und nach einer Veranstaltung sichtbar machen.",
-      "includes": [
-        "Vorbereitende Kommunikation",
-        "Vor-Ort-Begleitung nach Vereinbarung",
-        "Nachbericht mit freigegebenen Erkenntnissen"
       ],
       "unit": null,
       "unitSuffix": "",
@@ -514,7 +542,7 @@
     {
       "label": "Zusatzleistungen",
       "title": "Zusätzliche Leistungen",
-      "text": "Die enthaltenen Leistungen stehen beim jeweiligen Angebot. Zusätzliche Inhalte, Marktbefragungen, Podcast- und Veranstaltungsformate sowie individuelles Design und Werbebudget werden gesondert vereinbart. Überschneidungen berücksichtigen wir im Gesamtangebot."
+      "text": "Die enthaltenen Leistungen stehen beim jeweiligen Angebot. Einzelleistungen wie Artikel, Webinar, Markt-Check und Eventbegleitung sind zum Festpreis buchbar. Weitere Inhalte, eigene Veranstaltungen, individuelles Design und Werbebudget werden gesondert vereinbart. Überschneidungen berücksichtigen wir im Gesamtangebot."
     }
   ]
 }

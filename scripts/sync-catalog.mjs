@@ -122,7 +122,7 @@ function featuredHTML(item) {
     <div class="preis"><span class="betrag">${nb(fmt.format(item.unit))}<small>${esc(item.unitSuffix)}</small></span><p class="meta">${esc(item.priceMeta)}</p></div>
     <ul class="chevrons">${item.includes.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
     <div class="btn-row"><a class="btn ${primary ? "btn-primary" : "btn-secondary"}" href="#konfigurator" data-add="${item.id}">${item.editions ? "Edition auswählen und anfragen" : "In den Konfigurator"}</a>
-    <a class="btn detail-link" href="#detail-${item.id}" data-open="detail-${item.id}">Leistungsumfang im Detail</a></div>
+    ${catalog.details[item.id] ? `<a class="btn detail-link" href="#detail-${item.id}" data-open="detail-${item.id}">Leistungsumfang im Detail</a>` : ""}</div>
   </article>`;
 }
 

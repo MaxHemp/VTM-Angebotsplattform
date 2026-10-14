@@ -10,13 +10,17 @@ kein Framework und kein Build-Schritt für die Veröffentlichung.
 |---|---|---|
 | VTM | Themenkampagne, 6–8 Wochen | 9.000 € einmalig |
 | VTM | Themenpartnerschaft, 12 Monate | 36.000 € pro Jahr |
+| VTM Einzelleistung | Einzelartikel inkl. Newsletter-Versand und Social Media | 2.000 € pro Artikel |
+| VTM Einzelleistung | Moderiertes Webinar, 45 Minuten, inkl. Lead-Liste | 4.500 € pro Webinar |
+| VTM Einzelleistung | Markt-Check (Marktbefragung, Nutzungsrecht der Ergebnisse) | 4.800 € pro Befragung |
+| VTM Einzelleistung | Eventbegleitung mit redaktioneller Begleitung und Moderation | 5.490 € pro Event, zzgl. Reisekosten |
 | Insurance Monday | Quartalssponsoring | 30.000 € pro Quartal |
 | Insurance Monday | Podcast-Episode | 3.500 € pro Episode |
 | Insurance Monday | Pre-Roll-Paket, 3 Episoden | 2.500 € pro Paket |
 | 25 EXPERTS | Change Management, 2./3. Dezember 2026, Köln | 8.500 € pro Edition |
 | 25 EXPERTS | Weitere Edition | Individuelles Angebot |
 | Strategische Partnerschaft | Individuelles Programm | Individuelles Angebot |
-| Ergänzungen | Marktbefragung, weitere Fallstudie/Webinar, Veranstaltungsbegleitung, eigene Fachveranstaltung, Rubrikensponsoring | Individuelles Angebot |
+| Ergänzungen | Weitere Praxisfallstudie, eigene Fachveranstaltung, Rubrikensponsoring | Individuelles Angebot |
 | Ergänzungen | Führungskräfte-Kommunikation | 1.500 € pro Monat je Führungskraft |
 
 Alle Preise zuzüglich gesetzlicher Umsatzsteuer. Editionen und exklusive
@@ -41,7 +45,7 @@ node scripts/sync-catalog.mjs
 Die generierte Seite wird mit eingecheckt. Wiederholtes Synchronisieren ist
 idempotent. Übersichtskarten und Konfigurator beziehen ihre Daten aus demselben
 Katalog. Editorialtexte außerhalb der markierten Container werden direkt in
-`index.html` gepflegt. Der neue Katalog hat fünf Gruppen. Andere Angebotsseiten
+`index.html` gepflegt. Der Katalog hat sechs Gruppen (`vtm`, `einzel`, `podcast`, `experts`, `strategie`, `extras`). Andere Angebotsseiten
 werden nicht automatisch geändert; vor einer Übernahme müssen deren Layout und
 Konfigurator dieselben Gruppen und individuellen Preisarten unterstützen.
 
