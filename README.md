@@ -110,12 +110,13 @@ Der Einstieg bietet drei Wege: Einzelleistungen, Themenkampagne und laufende Par
 
 ## Visuelle Gestaltung
 
-`assets/editorial.css` ergänzt die bestehende Gestaltung um warme Papierflächen,
-lokal geladene Jakarta-/Serif-Schriften, Bildköpfe und wechselnde helle und dunkle
-Angebotskarten. `discoveryHTML` im Synchronisationsskript ordnet die Motive den
-Formaten zu. Die vier WebP-Motive sind zusammen rund 411 KB groß, werden verzögert
-geladen und sind dekorative Konzeptillustrationen. Sie bilden keine tatsächlichen
-Veranstaltungen, Studienergebnisse oder Kundenpublikationen ab. Bildherkunft und
-Gestaltungsbriefings stehen in `assets/ARTWORK.md`. Die Druckansicht lässt Bilder
-weg und behält die kompakte Leistungsübersicht. Bewegungen berücksichtigen die
-Einstellung für reduzierte Animationen.
+`assets/editorial.css` folgt der aktuellen Magazinwebsite: Nachtblau #0A1638,
+Kobalt #1F4FA3, Weiß #FFFFFF und Eisblau #F3F7FD. Bricolage Grotesque und
+Instrument Sans werden lokal geladen; die freien Schriftlizenzen liegen bei.
+Konkrete Format-Symbolbilder unter `assets/format-*.webp` ersetzen die früheren
+abstrakten Stillleben. Sie werden verzögert geladen und sichtbar als KI-generierte
+Symbolbilder gekennzeichnet. Die 25-EXPERTS-Karte verwendet das vorhandene
+Partnerlogo. Bildherkunft, vollständige Gestaltungsbriefings und Markenreferenz
+stehen in `assets/ARTWORK.md`. Die Druckansicht bleibt ohne Bilder kompakt;
+reduzierte Animationen werden berücksichtigt. Die Angebots- und Preislogik
+bleibt von diesen Gestaltungsänderungen unberührt.
