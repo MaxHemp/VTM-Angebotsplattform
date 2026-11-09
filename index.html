@@ -871,6 +871,7 @@
     }
 
   </style>
+  <link rel="stylesheet" href="assets/editorial.css">
 </head>
 <body id="top" data-catalog-order="einzel,podcast,vtm,experts,strategie,extras">
   <a class="skip-link" href="#konfigurator">Zum Konfigurator springen</a>
@@ -905,7 +906,7 @@
     <div class="wrap grid-12">
       <div class="col-7">
         <p class="kicker">Mediadaten · Leistungen &amp; Preise 2026</p>
-        <h1 id="hero-title">Ihr Ziel. Ihr Budget.<br>Die passende Bühne.</h1>
+        <h1 id="hero-title">Ihr Ziel. Ihr Budget.<span class="editorial-emphasis">Die passende Bühne.</span></h1>
         <p class="lead">Erreichen Sie die Versicherungsbranche mit dem Format, das zu Ihnen passt. Ein einzelner Fachbeitrag, ein Gespräch im Podcast oder eine ganze Kampagne: Hier finden Sie Leistungen und Preise auf einen Blick.</p>
         <p class="unterzeile">Einzelleistungen ab 2.000 € · Kampagnen ab 9.000 €<br><small>Alle Preise netto, zuzüglich gesetzlicher Umsatzsteuer.</small></p>
         <div class="btn-row">
@@ -942,8 +943,8 @@
       <div class="wrap">
         <header class="finder-heading">
           <div><p class="kicker">VersicherungsTech Magazin · Ihre Angebotsübersicht</p>
-          <h2 id="finder-title">Was möchten Sie erreichen?</h2>
-          <p class="lead">Starten Sie mit Ihrem Vorhaben. Jede Leistung ist einzeln anfragbar – eine Jahrespartnerschaft ist keine Voraussetzung.</p></div>
+          <h2 id="finder-title">Angebote, die<br><span class="editorial-emphasis">etwas bewegen.</span></h2>
+          <p class="lead">Für Ihren nächsten Impuls. Oder den großen Auftritt. Finden Sie das Format, das Ihr Thema in die Versicherungsbranche bringt – passend zu Ihrem Ziel und Budget.</p></div>
           <button class="btn btn-secondary js-only" id="print-overview" type="button">Übersicht drucken / als PDF speichern</button>
         </header>
         <div class="entry-paths" aria-label="Drei Wege zur Zusammenarbeit">
@@ -959,125 +960,170 @@
         <p class="finder-note">Der Budgetfilter bezieht sich bei Einzelleistungen auf den einmaligen Preis, bei laufenden Leistungen auf den monatlichen Preis. Laufende Pakete sind entsprechend gekennzeichnet. Individuelle Angebote haben keinen Festpreis.</p>
         <div class="finder-status"><p id="finder-count" role="status" aria-live="polite">Alle Leistungen im Überblick</p><a href="#anfrage">Sie sind noch unsicher? Persönlich beraten lassen ↗</a></div>
         <div class="discovery-grid" id="finder-results" tabindex="-1" aria-label="Passende Angebote">
-<article class="discovery-card" data-offer="einzelartikel">
-    <p class="discovery-format">Veröffentlichung · VTM</p>
+<article class="discovery-card" data-offer="einzelartikel" data-art="editorial">
+    <div class="discovery-art" aria-hidden="true"><img src="assets/editorial-editorial.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><span class="channel-tag">VTM</span><span class="art-mark">↗</span></div>
+    <div class="discovery-content">
+    <p class="discovery-format">Veröffentlichung</p>
     <h3>Einzelartikel</h3><p class="discovery-description">Ihr Fachbeitrag erscheint im VersicherungsTech Magazin und erreicht Entscheider über Newsletter und Social Media.</p>
     <p class="discovery-price">2.000 €</p>
     <p class="discovery-unit">pro Artikel · inklusive Versand und Social Media</p>
-    <a class="btn btn-secondary" href="#konfigurator" data-add="einzelartikel" aria-label="Einzelartikel für meine Anfrage auswählen">Für meine Anfrage auswählen</a>
+    <a class="btn btn-secondary" href="#konfigurator" data-add="einzelartikel" aria-label="Einzelartikel für meine Anfrage auswählen">Für meine Anfrage auswählen <span aria-hidden="true">↗</span></a>
     <a class="discovery-details" href="#gruppe-einzel">Leistungsumfang ansehen ↓</a>
+    </div>
   </article>
-<article class="discovery-card" data-offer="podcast-ads">
-    <p class="discovery-format">Podcast-Werbung · Insurance Monday</p>
+<article class="discovery-card discovery-dark" data-offer="podcast-ads" data-art="podcast">
+    <div class="discovery-art" aria-hidden="true"><img src="assets/editorial-podcast.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><span class="channel-tag">Insurance Monday</span><span class="art-mark">↗</span></div>
+    <div class="discovery-content">
+    <p class="discovery-format">Podcast-Werbung</p>
     <h3>Podcast-Werbespot (Pre-Roll)</h3><p class="discovery-description">Ihr Spot am Anfang von drei Episoden, dort, wo die Aufmerksamkeit am höchsten ist.</p>
     <p class="discovery-price">2.500 €</p>
     <p class="discovery-unit">pro Paket · ein Paket umfasst 3 Episoden</p>
-    <a class="btn btn-secondary" href="#konfigurator" data-add="podcast-ads" aria-label="Podcast-Werbespot (Pre-Roll) für meine Anfrage auswählen">Für meine Anfrage auswählen</a>
+    <a class="btn btn-secondary" href="#konfigurator" data-add="podcast-ads" aria-label="Podcast-Werbespot (Pre-Roll) für meine Anfrage auswählen">Für meine Anfrage auswählen <span aria-hidden="true">↗</span></a>
     <a class="discovery-details" href="#gruppe-podcast">Leistungsumfang ansehen ↓</a>
+    </div>
   </article>
-<article class="discovery-card" data-offer="podcast-episode">
-    <p class="discovery-format">Einzelformat · Insurance Monday</p>
+<article class="discovery-card" data-offer="podcast-episode" data-art="podcast">
+    <div class="discovery-art" aria-hidden="true"><img src="assets/editorial-podcast.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><span class="channel-tag">Insurance Monday</span><span class="art-mark">↗</span></div>
+    <div class="discovery-content">
+    <p class="discovery-format">Einzelformat</p>
     <h3>Einzelne Podcast-Episode</h3><p class="discovery-description">Ihre Expertin oder Ihr Experte im Gespräch bei Insurance Monday: eine ganze Folge zu Ihrem Thema, erzählt an Fällen aus der Praxis.</p>
     <p class="discovery-price">3.500 €</p>
     <p class="discovery-unit">pro Episode · Aufzeichnung remote oder im Studio</p>
-    <a class="btn btn-secondary" href="#konfigurator" data-add="podcast-episode" aria-label="Einzelne Podcast-Episode für meine Anfrage auswählen">Für meine Anfrage auswählen</a>
+    <a class="btn btn-secondary" href="#konfigurator" data-add="podcast-episode" aria-label="Einzelne Podcast-Episode für meine Anfrage auswählen">Für meine Anfrage auswählen <span aria-hidden="true">↗</span></a>
     <a class="discovery-details" href="#gruppe-podcast">Leistungsumfang ansehen ↓</a>
+    </div>
   </article>
-<article class="discovery-card" data-offer="fachwebinar">
-    <p class="discovery-format">Austausch mit der Community · VTM</p>
+<article class="discovery-card" data-offer="fachwebinar" data-art="dialog">
+    <div class="discovery-art" aria-hidden="true"><img src="assets/editorial-dialog.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><span class="channel-tag">VTM</span><span class="art-mark">↗</span></div>
+    <div class="discovery-content">
+    <p class="discovery-format">Austausch mit der Community</p>
     <h3>Moderiertes Webinar</h3><p class="discovery-description">Wir laden unsere Community zu einem gemeinsamen 45-minütigen Webinar ein. Sie erhalten die Lead-Liste der Interessenten im Nachgang.</p>
     <p class="discovery-price">4.500 €</p>
     <p class="discovery-unit">pro Webinar · 45 Minuten, inklusive Lead-Liste</p>
-    <a class="btn btn-secondary" href="#konfigurator" data-add="fachwebinar" aria-label="Moderiertes Webinar für meine Anfrage auswählen">Für meine Anfrage auswählen</a>
+    <a class="btn btn-secondary" href="#konfigurator" data-add="fachwebinar" aria-label="Moderiertes Webinar für meine Anfrage auswählen">Für meine Anfrage auswählen <span aria-hidden="true">↗</span></a>
     <a class="discovery-details" href="#gruppe-einzel">Leistungsumfang ansehen ↓</a>
+    </div>
   </article>
-<article class="discovery-card" data-offer="marktcheck">
-    <p class="discovery-format">Eigene Markterkenntnisse · VTM</p>
+<article class="discovery-card" data-offer="marktcheck" data-art="research">
+    <div class="discovery-art" aria-hidden="true"><img src="assets/editorial-research.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><span class="channel-tag">VTM</span><span class="art-mark">↗</span></div>
+    <div class="discovery-content">
+    <p class="discovery-format">Eigene Markterkenntnisse</p>
     <h3>Markt-Check</h3><p class="discovery-description">Wir führen eine Marktbefragung in einem definierten Zeitraum zu einem gemeinsam definierten Thema durch. Sie dürfen die Ergebnisse für Ihr Marketing und Ihren Vertrieb nutzen.</p>
     <p class="discovery-price">4.800 €</p>
     <p class="discovery-unit">pro Befragung · inklusive Nutzungsrecht der Ergebnisse</p>
-    <a class="btn btn-secondary" href="#konfigurator" data-add="marktcheck" aria-label="Markt-Check für meine Anfrage auswählen">Für meine Anfrage auswählen</a>
+    <a class="btn btn-secondary" href="#konfigurator" data-add="marktcheck" aria-label="Markt-Check für meine Anfrage auswählen">Für meine Anfrage auswählen <span aria-hidden="true">↗</span></a>
     <a class="discovery-details" href="#gruppe-einzel">Leistungsumfang ansehen ↓</a>
+    </div>
   </article>
-<article class="discovery-card" data-offer="eventbegleitung">
-    <p class="discovery-format">Veranstaltung · VTM</p>
+<article class="discovery-card" data-offer="eventbegleitung" data-art="dialog">
+    <div class="discovery-art" aria-hidden="true"><img src="assets/editorial-dialog.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><span class="channel-tag">VTM</span><span class="art-mark">↗</span></div>
+    <div class="discovery-content">
+    <p class="discovery-format">Veranstaltung</p>
     <h3>Eventbegleitung</h3><p class="discovery-description">Wir begleiten Ihr Event redaktionell und stellen eine professionelle Moderation, die unabhängig und fachlich bewandert durch die Veranstaltung führt.</p>
     <p class="discovery-price">5.490 €</p>
     <p class="discovery-unit">pro Event · zuzüglich Reisekosten</p>
-    <a class="btn btn-secondary" href="#konfigurator" data-add="eventbegleitung" aria-label="Eventbegleitung für meine Anfrage auswählen">Für meine Anfrage auswählen</a>
+    <a class="btn btn-secondary" href="#konfigurator" data-add="eventbegleitung" aria-label="Eventbegleitung für meine Anfrage auswählen">Für meine Anfrage auswählen <span aria-hidden="true">↗</span></a>
     <a class="discovery-details" href="#gruppe-einzel">Leistungsumfang ansehen ↓</a>
+    </div>
   </article>
-<article class="discovery-card" data-offer="experts-sponsoring">
-    <p class="discovery-format">Ein Hauptsponsor pro Edition · 25 EXPERTS</p>
+<article class="discovery-card" data-offer="experts-sponsoring" data-art="dialog">
+    <div class="discovery-art" aria-hidden="true"><img src="assets/editorial-dialog.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><span class="channel-tag">25 EXPERTS</span><span class="art-mark">↗</span></div>
+    <div class="discovery-content">
+    <p class="discovery-format">Ein Hauptsponsor pro Edition</p>
     <h3>25 EXPERTS · Hauptsponsoring</h3><p class="discovery-description">Eigene Erfahrung einbringen und persönliche Beziehungen aufbauen. Wählen Sie Ihre Edition; Verfügbarkeit und fachliche Passung bestätigen wir im Gespräch.</p>
     <p class="discovery-price">8.500 €</p>
     <p class="discovery-unit">netto pro Edition · Change Management · 2./3. Dezember 2026 · Köln</p>
-    <a class="btn btn-secondary" href="#konfigurator" data-add="experts-sponsoring" aria-label="25 EXPERTS · Hauptsponsoring für meine Anfrage auswählen">Für meine Anfrage auswählen</a>
+    <a class="btn btn-secondary" href="#konfigurator" data-add="experts-sponsoring" aria-label="25 EXPERTS · Hauptsponsoring für meine Anfrage auswählen">Für meine Anfrage auswählen <span aria-hidden="true">↗</span></a>
     <a class="discovery-details" href="#gruppe-experts">Leistungsumfang ansehen ↓</a>
+    </div>
   </article>
-<article class="discovery-card" data-offer="themenkampagne">
-    <p class="discovery-format">Fokussierte Kampagne · VTM</p>
+<article class="discovery-card discovery-dark" data-offer="themenkampagne" data-art="editorial">
+    <div class="discovery-art" aria-hidden="true"><img src="assets/editorial-editorial.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><span class="channel-tag">VTM</span><span class="art-mark">↗</span></div>
+    <div class="discovery-content">
+    <p class="discovery-format">Fokussierte Kampagne</p>
     <h3>Themenkampagne</h3><p class="discovery-description">Eine konkrete Frage Ihrer Zielgruppe beantworten: Expertise verständlich erklären, mit Praxis belegen und ins Gespräch bringen.</p>
     <p class="discovery-price">9.000 €</p>
     <p class="discovery-unit">einmalig · Umsetzung über 6 bis 8 Wochen</p>
-    <a class="btn btn-secondary" href="#konfigurator" data-add="themenkampagne" aria-label="Themenkampagne für meine Anfrage auswählen">Für meine Anfrage auswählen</a>
+    <a class="btn btn-secondary" href="#konfigurator" data-add="themenkampagne" aria-label="Themenkampagne für meine Anfrage auswählen">Für meine Anfrage auswählen <span aria-hidden="true">↗</span></a>
     <a class="discovery-details" href="#gruppe-vtm">Leistungsumfang ansehen ↓</a>
+    </div>
   </article>
-<article class="discovery-card" data-offer="fuehrungskraefte">
-    <p class="discovery-format">Persönliche Kommunikation · VTM</p>
+<article class="discovery-card" data-offer="fuehrungskraefte" data-art="editorial">
+    <div class="discovery-art" aria-hidden="true"><img src="assets/editorial-editorial.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><span class="channel-tag">VTM</span><span class="art-mark">↗</span></div>
+    <div class="discovery-content">
+    <p class="discovery-format">Persönliche Kommunikation</p>
     <h3>Führungskräfte-Kommunikation</h3><p class="discovery-description">Ein kontinuierlicher LinkedIn-Auftritt für eine Führungskraft: Aus einem monatlichen Redaktionsgespräch entstehen vier persönliche Beiträge, die die eigene Perspektive sichtbar machen.</p>
     <p class="discovery-price">1.500 €</p>
     <p class="discovery-unit">pro Monat · je Führungskraft</p>
-    <a class="btn btn-secondary" href="#konfigurator" data-add="fuehrungskraefte" aria-label="Führungskräfte-Kommunikation für meine Anfrage auswählen">Für meine Anfrage auswählen</a>
+    <a class="btn btn-secondary" href="#konfigurator" data-add="fuehrungskraefte" aria-label="Führungskräfte-Kommunikation für meine Anfrage auswählen">Für meine Anfrage auswählen <span aria-hidden="true">↗</span></a>
     <a class="discovery-details" href="#gruppe-extras">Leistungsumfang ansehen ↓</a>
+    </div>
   </article>
-<article class="discovery-card" data-offer="themenpartnerschaft">
-    <p class="discovery-format">Laufende Themenpartnerschaft · VTM</p>
+<article class="discovery-card" data-offer="themenpartnerschaft" data-art="editorial">
+    <div class="discovery-art" aria-hidden="true"><img src="assets/editorial-editorial.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><span class="channel-tag">VTM</span><span class="art-mark">↗</span></div>
+    <div class="discovery-content">
+    <p class="discovery-format">Laufende Themenpartnerschaft</p>
     <h3>Themenpartnerschaft</h3><p class="discovery-description">Ihre Expertise kontinuierlich sichtbar machen und ein Branchenthema vertiefen – mit einem Jahresplan aus vier aufeinander aufbauenden Schwerpunkten. Quartalsweise kündbar.</p>
     <p class="discovery-price">3.000 €</p>
     <p class="discovery-unit">pro Monat · Quartalsweise kündbar · Jahresprogramm</p>
-    <a class="btn btn-secondary" href="#konfigurator" data-add="themenpartnerschaft" aria-label="Themenpartnerschaft für meine Anfrage auswählen">Für meine Anfrage auswählen</a>
+    <a class="btn btn-secondary" href="#konfigurator" data-add="themenpartnerschaft" aria-label="Themenpartnerschaft für meine Anfrage auswählen">Für meine Anfrage auswählen <span aria-hidden="true">↗</span></a>
     <a class="discovery-details" href="#gruppe-vtm">Leistungsumfang ansehen ↓</a>
+    </div>
   </article>
-<article class="discovery-card" data-offer="quartalssponsoring">
-    <p class="discovery-format">Laufendes Podcast-Sponsoring · Insurance Monday</p>
+<article class="discovery-card" data-offer="quartalssponsoring" data-art="podcast">
+    <div class="discovery-art" aria-hidden="true"><img src="assets/editorial-podcast.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><span class="channel-tag">Insurance Monday</span><span class="art-mark">↗</span></div>
+    <div class="discovery-content">
+    <p class="discovery-format">Laufendes Podcast-Sponsoring</p>
     <h3>Quartalssponsoring Insurance Monday</h3><p class="discovery-description">Ihr Unternehmen ein Quartal lang als offizieller Sponsor des Podcasts mit rund 35.000 Downloads pro Monat.</p>
     <p class="discovery-price">10.000 €</p>
     <p class="discovery-unit">pro Monat · Quartalsweise kündbar · Umfang je Quartal</p>
-    <a class="btn btn-secondary" href="#konfigurator" data-add="quartalssponsoring" aria-label="Quartalssponsoring Insurance Monday für meine Anfrage auswählen">Für meine Anfrage auswählen</a>
+    <a class="btn btn-secondary" href="#konfigurator" data-add="quartalssponsoring" aria-label="Quartalssponsoring Insurance Monday für meine Anfrage auswählen">Für meine Anfrage auswählen <span aria-hidden="true">↗</span></a>
     <a class="discovery-details" href="#gruppe-podcast">Leistungsumfang ansehen ↓</a>
+    </div>
   </article>
-<article class="discovery-card" data-offer="strategische-partnerschaft">
-    <p class="discovery-format">Individuelles Jahresprogramm · VTM</p>
+<article class="discovery-card discovery-dark" data-offer="strategische-partnerschaft" data-art="editorial">
+    <div class="discovery-art" aria-hidden="true"><img src="assets/editorial-editorial.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><span class="channel-tag">VTM</span><span class="art-mark">↗</span></div>
+    <div class="discovery-content">
+    <p class="discovery-format">Individuelles Jahresprogramm</p>
     <h3>Strategische Partnerschaft</h3><p class="discovery-description">Ein strategisches Thema über Fachinhalte, eigene Erkenntnisse und persönlichen Austausch im Markt verankern.</p>
     <p class="discovery-price">Individuelles Angebot</p>
     <p class="discovery-unit"> · Umfang, Laufzeit und Budget im persönlichen Gespräch</p>
-    <a class="btn btn-secondary" href="#konfigurator" data-add="strategische-partnerschaft" aria-label="Strategische Partnerschaft für meine Anfrage auswählen">Für meine Anfrage auswählen</a>
+    <a class="btn btn-secondary" href="#konfigurator" data-add="strategische-partnerschaft" aria-label="Strategische Partnerschaft für meine Anfrage auswählen">Für meine Anfrage auswählen <span aria-hidden="true">↗</span></a>
     <a class="discovery-details" href="#gruppe-strategie">Leistungsumfang ansehen ↓</a>
+    </div>
   </article>
-<article class="discovery-card" data-offer="case-study">
-    <p class="discovery-format">Individuelle Ergänzung · VTM</p>
+<article class="discovery-card" data-offer="case-study" data-art="editorial">
+    <div class="discovery-art" aria-hidden="true"><img src="assets/editorial-editorial.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><span class="channel-tag">VTM</span><span class="art-mark">↗</span></div>
+    <div class="discovery-content">
+    <p class="discovery-format">Individuelle Ergänzung</p>
     <h3>Zusätzliche Praxisfallstudie</h3><p class="discovery-description">Einen weiteren Praxisfall mit Ausgangslage, Umsetzung und belegbaren Ergebnissen aufbereiten.</p>
     <p class="discovery-price">Individuelles Angebot</p>
     <p class="discovery-unit"> · Preis nach Umfang · unverbindlich anfragen</p>
-    <a class="btn btn-secondary" href="#konfigurator" data-add="case-study" aria-label="Zusätzliche Praxisfallstudie für meine Anfrage auswählen">Für meine Anfrage auswählen</a>
+    <a class="btn btn-secondary" href="#konfigurator" data-add="case-study" aria-label="Zusätzliche Praxisfallstudie für meine Anfrage auswählen">Für meine Anfrage auswählen <span aria-hidden="true">↗</span></a>
     <a class="discovery-details" href="#gruppe-extras">Leistungsumfang ansehen ↓</a>
+    </div>
   </article>
-<article class="discovery-card" data-offer="fachveranstaltung">
-    <p class="discovery-format">Individuelle Ergänzung · VTM</p>
+<article class="discovery-card" data-offer="fachveranstaltung" data-art="dialog">
+    <div class="discovery-art" aria-hidden="true"><img src="assets/editorial-dialog.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><span class="channel-tag">VTM</span><span class="art-mark">↗</span></div>
+    <div class="discovery-content">
+    <p class="discovery-format">Individuelle Ergänzung</p>
     <h3>Eigene Fachveranstaltung</h3><p class="discovery-description">Ein eigenes Thema mit einem passenden Teilnehmerkreis vertiefen.</p>
     <p class="discovery-price">Individuelles Angebot</p>
     <p class="discovery-unit"> · Preis nach Umfang · unverbindlich anfragen</p>
-    <a class="btn btn-secondary" href="#konfigurator" data-add="fachveranstaltung" aria-label="Eigene Fachveranstaltung für meine Anfrage auswählen">Für meine Anfrage auswählen</a>
+    <a class="btn btn-secondary" href="#konfigurator" data-add="fachveranstaltung" aria-label="Eigene Fachveranstaltung für meine Anfrage auswählen">Für meine Anfrage auswählen <span aria-hidden="true">↗</span></a>
     <a class="discovery-details" href="#gruppe-extras">Leistungsumfang ansehen ↓</a>
+    </div>
   </article>
-<article class="discovery-card" data-offer="rubrikensponsoring">
-    <p class="discovery-format">Individuelle Ergänzung · VTM</p>
+<article class="discovery-card" data-offer="rubrikensponsoring" data-art="editorial">
+    <div class="discovery-art" aria-hidden="true"><img src="assets/editorial-editorial.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><span class="channel-tag">VTM</span><span class="art-mark">↗</span></div>
+    <div class="discovery-content">
+    <p class="discovery-format">Individuelle Ergänzung</p>
     <h3>Exklusives Rubrikensponsoring</h3><p class="discovery-description">Einen klar definierten Sponsoringplatz in einem passenden fachlichen Umfeld reservieren.</p>
     <p class="discovery-price">Individuelles Angebot</p>
     <p class="discovery-unit"> · Preis nach Umfang · unverbindlich anfragen</p>
-    <a class="btn btn-secondary" href="#konfigurator" data-add="rubrikensponsoring" aria-label="Exklusives Rubrikensponsoring für meine Anfrage auswählen">Für meine Anfrage auswählen</a>
+    <a class="btn btn-secondary" href="#konfigurator" data-add="rubrikensponsoring" aria-label="Exklusives Rubrikensponsoring für meine Anfrage auswählen">Für meine Anfrage auswählen <span aria-hidden="true">↗</span></a>
     <a class="discovery-details" href="#gruppe-extras">Leistungsumfang ansehen ↓</a>
+    </div>
   </article>
               </div>
         <div id="finder-empty" hidden><h3>Für diese Kombination gibt es keinen ausgewiesenen Festpreis.</h3><p>Erweitern Sie den Budgetrahmen oder besprechen Sie Ihr Vorhaben mit uns.</p><a class="btn btn-primary" href="#anfrage">Vorhaben besprechen</a></div>

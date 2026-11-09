@@ -146,7 +146,10 @@ fs.mkdirSync(output, {recursive:true});
       await page.setViewportSize({width,height:1000});
       assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No horizontal overflow at '+width);
       await page.locator('#angebotsfinder').scrollIntoViewIfNeeded();
+      await page.evaluate(()=>scrollTo(0,document.getElementById('angebotsfinder').offsetTop-100));
       await page.screenshot({path:path.join(output,'finder-'+width+'.png')});
+      await page.evaluate(()=>scrollTo(0,document.getElementById('finder-results').getBoundingClientRect().top+scrollY-115));
+      await page.screenshot({path:path.join(output,'offers-'+width+'.png')});
       await page.locator('#experts').scrollIntoViewIfNeeded();
       await page.screenshot({path:path.join(output,'experts-'+width+'.png')});
       if (width===390 || width===1440) {

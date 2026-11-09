@@ -107,3 +107,15 @@ Nach dem Push den Pages-Build und die tatsächliche Website prüfen.
 ## Angebotsfinder
 
 Der Einstieg bietet drei Wege: Einzelleistungen, Themenkampagne und laufende Partnerschaften. Ziel- und Budgetfilter sind kombinierbar. Bei Einzelleistungen bezieht sich das Budget auf eine Einheit, bei laufenden Leistungen auf die Monatsrate. Individuelle Angebote werden separat gefiltert. Die Übersicht wird durch `sync` aus demselben Katalog wie der Konfigurator generiert (`goals` für die Zielzuordnung). Sie bleibt ohne JavaScript vollständig lesbar. Die Druckansicht enthält stets alle Angebote, unabhängig von aktiven Filtern, und kann über den Browser als PDF gespeichert werden.
+
+## Visuelle Gestaltung
+
+`assets/editorial.css` ergänzt die bestehende Gestaltung um warme Papierflächen,
+lokal geladene Jakarta-/Serif-Schriften, Bildköpfe und wechselnde helle und dunkle
+Angebotskarten. `discoveryHTML` im Synchronisationsskript ordnet die Motive den
+Formaten zu. Die vier WebP-Motive sind zusammen rund 411 KB groß, werden verzögert
+geladen und sind dekorative Konzeptillustrationen. Sie bilden keine tatsächlichen
+Veranstaltungen, Studienergebnisse oder Kundenpublikationen ab. Bildherkunft und
+Gestaltungsbriefings stehen in `assets/ARTWORK.md`. Die Druckansicht lässt Bilder
+weg und behält die kompakte Leistungsübersicht. Bewegungen berücksichtigen die
+Einstellung für reduzierte Animationen.
