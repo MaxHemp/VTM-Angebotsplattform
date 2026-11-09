@@ -129,16 +129,20 @@ function featuredHTML(item) {
 /* Same source for overview and configurator. Recurring services always use
    monthly rates; no aggregate contract prices are presented. */
 function discoveryHTML(item) {
-  const val = item.editions ? {edition:item.editions[0].id} : item.dims ? Object.fromEntries(item.dims.map(d=>[d.key,d.default])) : 1;
-  const total = itemTotal(item,val);
+  const art = item.group === 'podcast' ? 'podcast' : item.id === 'marktcheck' ? 'research' : ['fachwebinar','eventbegleitung','fachveranstaltung','experts-sponsoring'].includes(item.id) ? 'dialog' : 'editorial';
+  const dark = ['podcast-ads','themenkampagne','strategische-partnerschaft'].includes(item.id);
+  const channel = item.group === 'podcast' ? 'Insurance Monday' : item.group === 'experts' ? '25 EXPERTS' : 'VTM';
   const note = `${esc(item.unitSuffix)} · ${esc(item.priceMeta || '')}`;
-  return `<article class="discovery-card" data-offer="${item.id}">
-    <p class="discovery-format">${esc(item.format)} · ${item.group === 'podcast' ? 'Insurance Monday' : item.group === 'experts' ? '25 EXPERTS' : 'VTM'}</p>
+  return `<article class="discovery-card${dark ? ' discovery-dark' : ''}" data-offer="${item.id}" data-art="${art}">
+    <div class="discovery-art" aria-hidden="true"><img src="assets/editorial-${art}.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><span class="channel-tag">${channel}</span><span class="art-mark">↗</span></div>
+    <div class="discovery-content">
+    <p class="discovery-format">${esc(item.format)}</p>
     <h3>${esc(item.name)}</h3><p class="discovery-description">${esc(item.desc)}</p>
     <p class="discovery-price">${item.unit === null ? 'Individuelles Angebot' : nb(fmt.format(item.unit))}</p>
     <p class="discovery-unit">${note}</p>
-    <a class="btn btn-secondary" href="#konfigurator" data-add="${item.id}" aria-label="${esc(item.name)} für meine Anfrage auswählen">Für meine Anfrage auswählen</a>
+    <a class="btn btn-secondary" href="#konfigurator" data-add="${item.id}" aria-label="${esc(item.name)} für meine Anfrage auswählen">Für meine Anfrage auswählen <span aria-hidden="true">↗</span></a>
     <a class="discovery-details" href="#gruppe-${item.group}">Leistungsumfang ansehen ↓</a>
+    </div>
   </article>`;
 }
 
