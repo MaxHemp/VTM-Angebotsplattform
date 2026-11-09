@@ -1,5 +1,5 @@
 {
-  "version": "3.0",
+  "version": "4.0",
   "stand": "Leistungen & Preise · September 2026",
   "groups": [
     {
@@ -52,27 +52,36 @@
       "unitSuffix": "einmalig",
       "priceMeta": "Umsetzung über 6 bis 8 Wochen",
       "qtyLabel": "Kampagne(n)",
-      "max": 4
+      "max": 4,
+      "goals": [
+        "expertise",
+        "dialog",
+        "sichtbarkeit"
+      ]
     },
     {
       "id": "themenpartnerschaft",
       "group": "vtm",
-      "format": "Jahrespartnerschaft",
-      "badge": "Empfehlung",
+      "format": "Laufende Themenpartnerschaft",
       "name": "Themenpartnerschaft",
-      "desc": "Über zwölf Monate Expertise sichtbar machen und ein relevantes Branchenthema kontinuierlich vertiefen – entlang von vier aufeinander aufbauenden Schwerpunkten.",
+      "desc": "Ihre Expertise kontinuierlich sichtbar machen und ein Branchenthema vertiefen – mit einem Jahresplan aus vier aufeinander aufbauenden Schwerpunkten. Quartalsweise kündbar.",
       "includes": [
+        "Leistungsumfang bei zwölf Monaten Zusammenarbeit:",
         "8 fundierte Veröffentlichungen zu 4 Schwerpunkten",
         "1 fortlaufend gepflegtes Themendossier auf VTM",
         "2 moderierte Fachwebinare (je 45–60 Minuten)",
         "16 LinkedIn-Beiträge und 8 Newsletterplatzierungen",
         "Jahresplanung, 4 Quartalsgespräche und Nutzungsrechte"
       ],
-      "unit": 36000,
-      "unitSuffix": "pro Jahr",
-      "priceMeta": "entspricht 3.000 € pro Monat",
-      "qtyLabel": "Jahr(e)",
-      "max": 3
+      "unit": 3000,
+      "unitSuffix": "pro Monat",
+      "priceMeta": "Quartalsweise kündbar · Jahresprogramm",
+      "max": 1,
+      "goals": [
+        "expertise",
+        "sichtbarkeit"
+      ],
+      "billing": "monthly"
     },
     {
       "id": "einzelartikel",
@@ -90,7 +99,11 @@
       "unitSuffix": "pro Artikel",
       "priceMeta": "inklusive Versand und Social Media",
       "qtyLabel": "Artikel",
-      "max": 12
+      "max": 12,
+      "goals": [
+        "sichtbarkeit",
+        "expertise"
+      ]
     },
     {
       "id": "fachwebinar",
@@ -108,7 +121,11 @@
       "unitSuffix": "pro Webinar",
       "priceMeta": "45 Minuten, inklusive Lead-Liste",
       "qtyLabel": "Webinar(e)",
-      "max": 6
+      "max": 6,
+      "goals": [
+        "expertise",
+        "dialog"
+      ]
     },
     {
       "id": "marktcheck",
@@ -126,7 +143,10 @@
       "unitSuffix": "pro Befragung",
       "priceMeta": "inklusive Nutzungsrecht der Ergebnisse",
       "qtyLabel": "Befragung(en)",
-      "max": 4
+      "max": 4,
+      "goals": [
+        "erkenntnisse"
+      ]
     },
     {
       "id": "eventbegleitung",
@@ -143,13 +163,16 @@
       "unitSuffix": "pro Event",
       "priceMeta": "zuzüglich Reisekosten",
       "qtyLabel": "Event(s)",
-      "max": 6
+      "max": 6,
+      "goals": [
+        "dialog",
+        "sichtbarkeit"
+      ]
     },
     {
       "id": "quartalssponsoring",
       "group": "podcast",
-      "format": "Sponsoring · pro Quartal",
-      "badge": "Empfehlung",
+      "format": "Laufendes Podcast-Sponsoring",
       "name": "Quartalssponsoring Insurance Monday",
       "desc": "Ihr Unternehmen ein Quartal lang als offizieller Sponsor des Podcasts mit rund 35.000 Downloads pro Monat.",
       "includes": [
@@ -158,11 +181,15 @@
         "Produktion Ihres Audio-Spots und Ausspielung in 30 weiteren Episoden",
         "Nennung als Sponsor auf allen Materialien"
       ],
-      "unit": 30000,
-      "unitSuffix": "pro Quartal",
-      "priceMeta": "3 Episoden plus 30 Spot-Ausspielungen",
-      "qtyLabel": "Quartal(e)",
-      "max": 4
+      "unit": 10000,
+      "unitSuffix": "pro Monat",
+      "priceMeta": "Quartalsweise kündbar · Umfang je Quartal",
+      "max": 1,
+      "goals": [
+        "sichtbarkeit",
+        "expertise"
+      ],
+      "billing": "monthly"
     },
     {
       "id": "podcast-episode",
@@ -179,7 +206,11 @@
       "unitSuffix": "pro Episode",
       "priceMeta": "Aufzeichnung remote oder im Studio",
       "qtyLabel": "Episode(n)",
-      "max": 12
+      "max": 12,
+      "goals": [
+        "expertise",
+        "dialog"
+      ]
     },
     {
       "id": "podcast-ads",
@@ -196,7 +227,10 @@
       "unitSuffix": "pro Paket",
       "priceMeta": "ein Paket umfasst 3 Episoden",
       "qtyLabel": "Paket(e)",
-      "max": 10
+      "max": 10,
+      "goals": [
+        "sichtbarkeit"
+      ]
     },
     {
       "id": "experts-sponsoring",
@@ -234,6 +268,10 @@
             "Individuelles Angebot für Ihr Hauptsponsoring"
           ]
         }
+      ],
+      "goals": [
+        "dialog",
+        "expertise"
       ]
     },
     {
@@ -251,7 +289,13 @@
       "unit": null,
       "unitSuffix": "",
       "priceMeta": "Umfang, Laufzeit und Budget im persönlichen Gespräch",
-      "max": 1
+      "max": 1,
+      "goals": [
+        "expertise",
+        "dialog",
+        "erkenntnisse",
+        "sichtbarkeit"
+      ]
     },
     {
       "id": "case-study",
@@ -267,7 +311,10 @@
       "unit": null,
       "unitSuffix": "",
       "priceMeta": "Preis nach Umfang · unverbindlich anfragen",
-      "max": 1
+      "max": 1,
+      "goals": [
+        "expertise"
+      ]
     },
     {
       "id": "fachveranstaltung",
@@ -283,7 +330,10 @@
       "unit": null,
       "unitSuffix": "",
       "priceMeta": "Preis nach Umfang · unverbindlich anfragen",
-      "max": 1
+      "max": 1,
+      "goals": [
+        "dialog"
+      ]
     },
     {
       "id": "rubrikensponsoring",
@@ -299,7 +349,10 @@
       "unit": null,
       "unitSuffix": "",
       "priceMeta": "Preis nach Umfang · unverbindlich anfragen",
-      "max": 1
+      "max": 1,
+      "goals": [
+        "sichtbarkeit"
+      ]
     },
     {
       "id": "fuehrungskraefte",
@@ -325,22 +378,18 @@
           "min": 1,
           "max": 5,
           "default": 1
-        },
-        {
-          "key": "months",
-          "label": "Monat(e)",
-          "singular": "Monat",
-          "plural": "Monate",
-          "min": 1,
-          "max": 24,
-          "default": 6
         }
-      ]
+      ],
+      "goals": [
+        "sichtbarkeit",
+        "expertise"
+      ],
+      "billing": "monthly"
     }
   ],
   "details": {
     "themenpartnerschaft": {
-      "priceLine": "36.000 € pro Jahr · entspricht 3.000 € pro Monat · netto, zuzüglich gesetzlicher Umsatzsteuer",
+      "priceLine": "3.000 € pro Monat · quartalsweise kündbar · netto, zuzüglich gesetzlicher Umsatzsteuer. Der beschriebene Jahresumfang bezieht sich auf zwölf Monate Zusammenarbeit; die konkrete Terminplanung stimmen wir gemeinsam ab.",
       "blocks": [
         {
           "title": "Jahresplanung und vier Quartalsgespräche",

@@ -1,4 +1,4 @@
-# VTM Angebotsplattform · Leistungskonfigurator 3.0
+# VTM Angebotsplattform · Angebotsfinder und Leistungskonfigurator 4.0
 
 Statische Angebotsseite für VTM, Insurance Monday und 25 EXPERTS unter
 https://angebote.versicherungstech-magazin.de/. HTML, CSS und Vanilla JavaScript;
@@ -9,12 +9,12 @@ kein Framework und kein Build-Schritt für die Veröffentlichung.
 | Bereich | Leistung | Preis netto |
 |---|---|---|
 | VTM | Themenkampagne, 6–8 Wochen | 9.000 € einmalig |
-| VTM | Themenpartnerschaft, 12 Monate | 36.000 € pro Jahr |
+| VTM | Themenpartnerschaft, Jahresprogramm | 3.000 € pro Monat, quartalsweise kündbar |
 | VTM Einzelleistung | Einzelartikel inkl. Newsletter-Versand und Social Media | 2.000 € pro Artikel |
 | VTM Einzelleistung | Moderiertes Webinar, 45 Minuten, inkl. Lead-Liste | 4.500 € pro Webinar |
 | VTM Einzelleistung | Markt-Check (Marktbefragung, Nutzungsrecht der Ergebnisse) | 4.800 € pro Befragung |
 | VTM Einzelleistung | Eventbegleitung mit redaktioneller Begleitung und Moderation | 5.490 € pro Event, zzgl. Reisekosten |
-| Insurance Monday | Quartalssponsoring | 30.000 € pro Quartal |
+| Insurance Monday | Quartalssponsoring | 10.000 € pro Monat, quartalsweise kündbar |
 | Insurance Monday | Podcast-Episode | 3.500 € pro Episode |
 | Insurance Monday | Pre-Roll-Paket, 3 Episoden | 2.500 € pro Paket |
 | 25 EXPERTS | Change Management, 2./3. Dezember 2026, Köln | 8.500 € pro Edition |
@@ -51,7 +51,7 @@ Konfigurator dieselben Gruppen und individuellen Preisarten unterstützen.
 
 ## Konfigurator
 
-Festpreise werden nach Menge bzw. Personen × Monaten gerechnet. `unit: null`
+Einmalige Festpreise werden nach Menge gerechnet. Laufende Leistungen verwenden `billing: "monthly"`: Themenpartnerschaft 3.000 €/Monat, Podcast-Sponsoring 10.000 €/Monat und Führungskräfte-Kommunikation 1.500 €/Person/Monat. Monatsraten werden niemals zu Jahres- oder Laufzeitsummen hochgerechnet. Einmalige und monatliche Beträge werden in Zusammenfassung, mobiler Leiste, Kopiertext und Formular getrennt ausgewiesen. Der Leistungsumfang der Themenpartnerschaft beschreibt zwölf Monate Zusammenarbeit; die Pakete sind quartalsweise kündbar. `unit: null`
 bezeichnet ein individuelles Angebot, niemals einen Preis von 0 €. Bei Editionen
 entscheidet der ausgewählte Eintrag über Preis, Beschreibung und enthaltene
 Leistungen. Die bekannte Preissumme und offene Positionen erscheinen konsistent
@@ -62,8 +62,8 @@ den Umfang. Bei einer strategischen Partnerschaft dient die weitere Auswahl als
 Grundlage für ein individuell abgestimmtes Gesamtangebot; es wird kein automatischer
 Rabatt oder eine pauschale Doppelbereinigung erfunden.
 
-Auswahl wird unter `vtm-konfigurator-v3` in localStorage gespeichert. Alte v2-Auswahlen
-werden wegen des geänderten Leistungsumfangs nicht übernommen. Ungültige Mengen,
+Auswahl wird unter `vtm-konfigurator-v4` in localStorage gespeichert. Alte v2-/v3-Auswahlen
+werden wegen der geänderten Abrechnung nicht übernommen. Ungültige Mengen,
 Editionen und unbekannte IDs werden normalisiert oder verworfen. Ohne JavaScript
 bleiben Leistungen und Preise lesbar; das Formular erlaubt eine manuell beschriebene Anfrage.
 
@@ -103,3 +103,7 @@ Kundenpreise sind nicht Bestandteil der Website oder des Repositorys.
 GitHub Pages veröffentlicht den Root des Branches
 `claude/vtm-leistungen-konfigurator-arw4vr`. `CNAME` enthält die bestehende Domain.
 Nach dem Push den Pages-Build und die tatsächliche Website prüfen.
+
+## Angebotsfinder
+
+Der Einstieg bietet drei Wege: Einzelleistungen, Themenkampagne und laufende Partnerschaften. Ziel- und Budgetfilter sind kombinierbar. Bei Einzelleistungen bezieht sich das Budget auf eine Einheit, bei laufenden Leistungen auf die Monatsrate. Individuelle Angebote werden separat gefiltert. Die Übersicht wird durch `sync` aus demselben Katalog wie der Konfigurator generiert (`goals` für die Zielzuordnung). Sie bleibt ohne JavaScript vollständig lesbar. Die Druckansicht enthält stets alle Angebote, unabhängig von aktiven Filtern, und kann über den Browser als PDF gespeichert werden.
