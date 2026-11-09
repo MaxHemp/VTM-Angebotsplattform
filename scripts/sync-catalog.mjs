@@ -114,7 +114,7 @@ function cardHTML(item, indent) {
 }
 
 function featuredHTML(item) {
-  const primary = item.id === "themenpartnerschaft";
+  const primary = false;
   return `<article class="karte angebot ${primary ? "is-hero" : ""} reveal" aria-labelledby="angebot-${item.id}">
     <p class="format">${esc(item.format)}</p>
     <h3 id="angebot-${item.id}">${esc(item.name)}</h3>
@@ -123,6 +123,22 @@ function featuredHTML(item) {
     <ul class="chevrons">${item.includes.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
     <div class="btn-row"><a class="btn ${primary ? "btn-primary" : "btn-secondary"}" href="#konfigurator" data-add="${item.id}">${item.editions ? "Edition auswählen und anfragen" : "In den Konfigurator"}</a>
     ${catalog.details[item.id] ? `<a class="btn detail-link" href="#detail-${item.id}" data-open="detail-${item.id}">Leistungsumfang im Detail</a>` : ""}</div>
+  </article>`;
+}
+
+/* Same source for overview and configurator. Recurring services always use
+   monthly rates; no aggregate contract prices are presented. */
+function discoveryHTML(item) {
+  const val = item.editions ? {edition:item.editions[0].id} : item.dims ? Object.fromEntries(item.dims.map(d=>[d.key,d.default])) : 1;
+  const total = itemTotal(item,val);
+  const note = `${esc(item.unitSuffix)} · ${esc(item.priceMeta || '')}`;
+  return `<article class="discovery-card" data-offer="${item.id}">
+    <p class="discovery-format">${esc(item.format)} · ${item.group === 'podcast' ? 'Insurance Monday' : item.group === 'experts' ? '25 EXPERTS' : 'VTM'}</p>
+    <h3>${esc(item.name)}</h3><p class="discovery-description">${esc(item.desc)}</p>
+    <p class="discovery-price">${item.unit === null ? 'Individuelles Angebot' : nb(fmt.format(item.unit))}</p>
+    <p class="discovery-unit">${note}</p>
+    <a class="btn btn-secondary" href="#konfigurator" data-add="${item.id}" aria-label="${esc(item.name)} für meine Anfrage auswählen">Für meine Anfrage auswählen</a>
+    <a class="discovery-details" href="#gruppe-${item.group}">Leistungsumfang ansehen ↓</a>
   </article>`;
 }
 
@@ -213,6 +229,11 @@ function syncFile(file) {
   for (const g of known) if (!order.includes(g)) throw new Error(file + ": Gruppe fehlt in data-catalog-order: " + g);
 
   const sorted = [...catalog.items].sort((a, b) => order.indexOf(a.group) - order.indexOf(b.group));
+  // Ascending configured totals; custom quotes follow the fixed-price offers.
+  const initialTotal = item => itemTotal(item, item.dims ? Object.fromEntries(item.dims.map(d=>[d.key,d.default])) : 1);
+  const rank = item => item.unit === null ? 2 : item.billing === 'monthly' ? 1 : 0;
+  const discovery = [...sorted].sort((a,b)=>rank(a)-rank(b) || (initialTotal(a) ?? Infinity)-(initialTotal(b) ?? Infinity));
+  src = replaceContainer(file, src, '<div class="discovery-grid" id="finder-results" tabindex="-1" aria-label="Passende Angebote">', discovery.map(discoveryHTML).join('\n'), false).src;
 
   /* 1. JS-Block */
   src = src.replace(
