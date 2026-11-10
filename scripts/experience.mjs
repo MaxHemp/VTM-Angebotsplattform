@@ -1,6 +1,23 @@
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 const navigation=document.querySelector('.site-nav');
 new ResizeObserver(()=>document.documentElement.style.setProperty('--experience-nav-height',`${navigation.getBoundingClientRect().height}px`)).observe(navigation);
+const menuButton=navigation.querySelector('.nav-toggle');
+const menu=document.getElementById('primary-menu');
+const compactNavigation=matchMedia('(max-width: 1050px)');
+let menuOpen=false;
+function syncNavigation(){
+  const compact=compactNavigation.matches;
+  menuButton.hidden=!compact;menu.hidden=compact&&!menuOpen;
+  menuButton.setAttribute('aria-expanded',String(compact&&menuOpen));
+  menuButton.setAttribute('aria-label',menuOpen?'Menü schließen':'Menü öffnen');
+  navigation.classList.toggle('is-menu-open',compact&&menuOpen);
+}
+menuButton.addEventListener('click',()=>{menuOpen=!menuOpen;syncNavigation();});
+compactNavigation.addEventListener('change',()=>{menuOpen=false;syncNavigation();});
+menu.addEventListener('click',event=>{if(event.target.closest('a')){menuOpen=false;syncNavigation();}});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&menuOpen){menuOpen=false;syncNavigation();menuButton.focus();}});
+document.addEventListener('pointerdown',event=>{if(menuOpen&&!navigation.contains(event.target)){menuOpen=false;syncNavigation();}});
+syncNavigation();
 const tabs = [...document.querySelectorAll('[data-journey]')];
 const panels = [...document.querySelectorAll('.journey-panel')];
 const video = document.querySelector('.journey-video');

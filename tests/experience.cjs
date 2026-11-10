@@ -17,6 +17,10 @@ fs.mkdirSync(output,{recursive:true});
   try {
     await page.goto(base,{waitUntil:'networkidle'});
     await page.waitForFunction(()=>document.querySelector('.spatial-stage').dataset.renderer==='webgl');
+    assert.deepEqual(await page.locator('.site-nav').evaluate(e=>({height:e.getBoundingClientRect().height,color:getComputedStyle(e).backgroundColor})),{height:64,color:'rgb(255, 255, 255)'});
+    assert.equal(await page.locator('.experience-primary').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(31, 79, 163)');
+    assert.equal(await page.locator('#hero-title').evaluate(e=>getComputedStyle(e).fontWeight),'400');
+    assert.equal(await page.locator(':root').evaluate(e=>getComputedStyle(e).getPropertyValue('--vtm-gold').trim()),'#D9A53C');
     assert.equal(await page.locator('#stage-motion').isDisabled(),true);
     assert.equal(await page.locator('.journey-panel:visible').count(),1);
     assert.equal(await page.locator('.scope-library').getAttribute('open'),null);
@@ -45,6 +49,20 @@ fs.mkdirSync(output,{recursive:true});
     assert.equal(await page.locator('#weg-dialog').isVisible(),true);
     assert.equal(await page.locator('.journey-panel:visible').count(),1);
     assert.equal(await page.locator('.journey-video').evaluate(v=>v.paused),true);
+    // The compact navigation is a disclosure, with keyboard closing and stable height.
+    await page.setViewportSize({width:390,height:844});
+    const menu=page.locator('.nav-toggle');
+    await menu.click();
+    assert.equal(await page.locator('#primary-menu').isVisible(),true);
+    assert.equal(await menu.getAttribute('aria-expanded'),'true');
+    assert.equal(await page.locator('.site-nav').evaluate(e=>e.getBoundingClientRect().height),64);
+    await page.screenshot({path:path.join(output,'navigation-mobile.png')});
+    await menu.press('Escape');
+    assert.equal(await page.locator('#primary-menu').isVisible(),false);
+    await menu.click();
+    await page.locator('#primary-menu').getByRole('link',{name:'Ihr Weg',exact:true}).click();
+    assert.equal(await menu.getAttribute('aria-expanded'),'false');
+    await page.setViewportSize({width:1440,height:1000});
     await page.locator('.event-motion').click();
     await page.waitForFunction(()=>{const v=document.querySelector('.journey-video');return v.readyState>=2&&!v.paused;});
     await page.locator('.event-motion').click();
@@ -72,6 +90,11 @@ fs.mkdirSync(output,{recursive:true});
     // No horizontal overflow, including each journey and its media at phone widths.
     for(const width of [320,390,768,1440]){
       await page.setViewportSize({width,height:1000});
+      await page.getByRole('link',{name:'VersicherungsTech Magazin, zum Seitenanfang',exact:true}).click();
+      await page.locator('[data-scene="0"]').click();
+      assert.equal(await page.locator('.spatial-stage').getAttribute('data-layout'),width<=760?'compact':'wide');
+      await page.screenshot({path:path.join(output,`brand-header-${width}.png`)});
+      if(process.env.GENERATE_POSTERS&&width===390)await sharp(await page.locator('.spatial-stage').screenshot()).webp({quality:90}).toFile(path.join(__dirname,'../assets/stage-poster-mobile.webp'));
       for(const goal of ['sichtbarkeit','expertise','dialog']){
         await page.locator(`[data-journey="${goal}"]`).click();
         const overflow=await page.evaluate(()=>[...document.querySelectorAll('body *')].filter(e=>e.getBoundingClientRect().right>innerWidth+1&&getComputedStyle(e).position!=='fixed').slice(0,12).map(e=>({tag:e.tagName,cls:String(e.className),text:e.textContent.trim().slice(0,60)})));
@@ -90,9 +113,10 @@ fs.mkdirSync(output,{recursive:true});
     const fp=await fallback.newPage();await fp.goto(base,{waitUntil:'networkidle'});
     await fp.waitForFunction(()=>document.querySelector('.spatial-stage').dataset.renderer==='fallback');
     assert.equal(await fp.locator('.stage-poster').evaluate(i=>i.complete&&i.naturalWidth>0),true);
+    assert.match(await fp.locator('.stage-poster').evaluate(i=>i.currentSrc),/stage-poster-mobile/);
     await fp.locator('[data-journey="dialog"]').click();
     assert.equal(await fp.locator('#weg-dialog').isVisible(),true);
     await fallback.close();
-    console.log('PASS: actual WebGL scene, four viewpoints, pause and reduced motion, accessible journey tabs, event video controls, goal-to-offer flow, adding offers, responsive journeys and WebGL fallback. No real inquiries sent.');
+    console.log('PASS: v6.2 brand colors and typography, white 64px navigation, mobile menu and Escape handling, actual WebGL scene, four viewpoints, reduced motion, journey tabs, offer selection, responsive composition and desktop/mobile WebGL fallback. No real inquiries sent.');
   } finally {await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

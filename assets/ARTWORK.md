@@ -11,7 +11,8 @@
 - `format-article.webp` und `format-podcast.webp`: bereits vorhandene generierte
   Symbolbilder. Sichtbare Kennzeichnung bei beiden Besuchswegen. Sie zeigen
   keine konkreten Mitarbeitenden oder Räumlichkeiten von VTM.
-- `partner-insurance-monday.jpg`: vorhandenes offizielles Podcast-Artwork.
+- `insurance-monday-cover-guidelines.png`: das in v6.2 ausgewählte
+  Originalcover, vollständig und quadratisch aus Seite 6 extrahiert.
 - VTM- und 25-EXPERTS-Logos sowie `kontakt-hempel.webp`: bestehende Markenmaterialien.
 - Lokale Schriftdateien einschließlich OFL-Lizenzen in `fonts/`.
 - Three.js 0.187.0 (MIT), Lizenz in `vendor/THREE-LICENSE.txt`, lokal gebündelt.
@@ -19,7 +20,10 @@
 Nicht mehr verwendet: das Autorenporträt und der konkrete Kolumnenbeitrag aus
  dem vorherigen Header, die älteren abstrakten Stillleben und Skylinebilder.
 
-Corporate-Farben: Navy #0A1638, Kobalt #1F4FA3, Signalgelb #FFD700.
+Corporate-Farben gemäß v6.2: Nachtblau #0A1638, Kobalt #1F4FA3,
+Eisweiß #F3F7FD, Gold #D9A53C ausschließlich für Unterzeilen und Belege.
+Originalassets aus der bereitgestellten PDF: siehe ../BRAND.md.
+`stage-poster-mobile.webp` ist die separat angeordnete Smartphone-Ansicht.
 
 Die nachfolgenden Prompts dokumentieren die bereits vorhandenen Formatbilder.
 Nur Artikel und Podcast werden aktuell eingesetzt.

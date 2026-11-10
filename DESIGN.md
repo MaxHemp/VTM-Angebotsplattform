@@ -4,8 +4,8 @@
 
 - [VTM](https://www.versicherungstech-magazin.de/): fachliche Einordnung für die
   Versicherungswirtschaft; Magazin, Newsletter, Insurance Monday und 25 EXPERTS
-  sind zusammengehörige Zugänge. VTM-Farben Navy `#0A1638`, Kobalt `#1F4FA3`,
-  Signalgelb `#FFD700`; Bricolage Grotesque und Instrument Sans.
+  sind zusammengehörige Zugänge. Für Farben und Schriftrollen gilt die
+  bereitgestellte Fassung der VTM Design Guidelines v6.2; siehe BRAND.md.
 - [25 EXPERTS / Change Management](https://25-experts.de/editionen/change-management/):
   2./3. Dezember 2026, Köln, Rheinauhafen. Kuratierter Teilnehmerkreis, fachliche
   Arbeit und persönlicher Austausch über anderthalb Tage. Das Hauptsponsoring
@@ -23,12 +23,12 @@
 
 ## Aufbau
 
-1. Räumliche Studioansicht: ein digitales Display mit VTM-Inhalten, ein
-   detailliertes Broadcast-Mikrofon am Gelenkarm und ein Bildmotiv von 25 EXPERTS.
-   Reale Größenverhältnisse, eine niedrige Kameraposition und Flächenlichter
-   ersetzen die frühere Miniaturbühne. Vier anwählbare Blickwinkel; die
-   Nahansichten stellen das jeweilige Medium einzeln frei. Die Szene visualisiert
-   Formate und ist kein Produktfoto.
+1. Breite, gleichwertige Medienübersicht: VTM-Display, das Originalcover von
+   Insurance Monday mit einem kleinen Mikrofon am Tischständer sowie ein
+   Bildmotiv von 25 EXPERTS. Die drei Bereiche sind räumlich getrennt und
+   verdecken einander nicht. Mobil wird die Komposition neu angeordnet.
+   Vier anwählbare Blickwinkel; die Einzelansichten stellen das jeweilige
+   Medium frei. Die Szene visualisiert Formate und ist kein Produktfoto.
 2. Drei Besuchswege: Sichtbarkeit, fachliche Vertiefung, persönliche Gespräche.
    Jede Ansicht erklärt Anlass, Ablauf und konkrete passende Einstiege.
    Einzelleistungen und große Programme haben gleichberechtigte Zugänge.
@@ -87,3 +87,25 @@ Flächenlichter, eine kontrollierte Umgebungsbeleuchtung und weiche Bodenschatte
 sorgen für die Materialzeichnung. Die Objekte bewegen sich nicht gegeneinander;
 der Blickwinkel reagiert zurückhaltend auf die Eingabe. Ein neues, versioniertes
 Standbild zeigt dieselbe Szene auch bei fehlendem WebGL oder JavaScript.
+
+## Verbindlicher Markenabgleich, v6.2
+
+Die bereitgestellten VTM Design Guidelines v6.2 sind die verbindliche Quelle
+für den Farb- und Schriftabgleich. Kobalt #1F4FA3 ist die Aktionsfarbe, Gold
+#D9A53C bleibt auf Belege bzw. Unterzeilen beschränkt. Auf dunklen Flächen
+stehen Links in #8FB0F0. Die zuvor von der Website abgeleitete gelbe
+Signalfarbe wird nicht weiter eingesetzt.
+
+Die weiße Navigation ist inklusive Hairline 64 px hoch. Das originale
+farbige VTM-Logo führt; UI verwendet Instrument Sans mit 14–16 px.
+Das Smartphone-Menü öffnet als Disclosure, schließt bei Linkwahl oder
+Escape und verändert die Höhe der Leiste nicht. Bricolage-Titel stehen
+in Regular, der Payoff in Newsreader Light Italic.
+
+Die Markenassets aus den Seiten 5 und 6 wurden ohne Zuschnitt, Neusatz oder
+Farbänderung aus den eingebetteten Originalbildern extrahiert. Das Cover
+von Insurance Monday bleibt vollständig und quadratisch. Herkunft und
+Prüfsummen dokumentiert BRAND.md. Die PDF selbst wird nicht veröffentlicht.
+
+Desktop und Smartphone haben getrennte Standbilder, damit die neue
+Anordnung auch ohne JavaScript oder WebGL sichtbar bleibt.

@@ -25,7 +25,7 @@ export async function createStudioObjects(rig, renderer) {
     return g;
   }
   async function image(src){return new Promise(resolve=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=()=>resolve(null);i.src=src;});}
-  const [logo,article,event,eventLogo]=await Promise.all(['assets/vtm-logo-weiss.png','assets/format-article.webp','assets/experts-poster.webp','assets/25experts-logo-horizontal-on-dark.svg'].map(image));
+  const [logo,article,event,eventLogo,podcastCover]=await Promise.all(['assets/vtm-wordmark-guidelines.png','assets/format-article.webp','assets/experts-poster.webp','assets/25experts-logo-guidelines.png','assets/insurance-monday-cover-guidelines.png'].map(image));
   function texture(canvas){const t=new THREE.CanvasTexture(canvas);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());return t;}
   function coverImage(ctx,img,x,y,w,h){if(!img)return;const scale=Math.max(w/img.width,h/img.height);const sw=w/scale,sh=h/scale;ctx.drawImage(img,(img.width-sw)/2,(img.height-sh)/2,sw,sh,x,y,w,h);}
   function noise(size,base,range,repeat){
@@ -36,15 +36,16 @@ export async function createStudioObjects(rig, renderer) {
   // A thin, machined digital display. No paper block or oversized book spine.
   const screen=document.createElement('canvas');screen.width=1024;screen.height=1400;const c=screen.getContext('2d');
   c.fillStyle='#0A1638';c.fillRect(0,0,1024,1400);
-  if(logo)c.drawImage(logo,68,70,880,156);
+  c.fillStyle='#ffffff';c.fillRect(0,0,1024,240);
+  if(logo)c.drawImage(logo,72,64,880,132);
   c.fillStyle='#91a6ca';c.font='23px "VTM Instrument",sans-serif';c.fillText('KI  /  AUTOMATISIERUNG  /  VERSICHERUNG',68,292);
-  c.fillStyle='#FFD700';c.fillRect(68,355,66,5);
-  c.fillStyle='#fff';c.font='500 87px "VTM Bricolage",sans-serif';c.fillText('Technologie',68,476);c.fillText('verstehen.',68,574);c.fillText('Versicherung',68,696);c.fillText('gestalten.',68,794);
+  c.fillStyle='#1F4FA3';c.fillRect(68,355,66,3);
+  c.fillStyle='#fff';c.font='400 87px "VTM Bricolage",sans-serif';c.fillText('Technologie',68,476);c.fillText('verstehen.',68,574);c.fillText('Versicherung',68,696);c.fillText('gestalten.',68,794);
   coverImage(c,article,68,885,888,320);
   c.fillStyle='#bccbe3';c.font='29px "VTM Instrument",sans-serif';c.fillText('Perspektiven aus der Versicherungswelt',68,1280);
   c.fillStyle='#6e88b3';c.font='22px "VTM Instrument",sans-serif';c.fillText('MAGAZIN   +   NEWSLETTER   +   SOCIAL',68,1330);
   const displayTexture=texture(screen);
-  const tablet=new THREE.Group();tablet.position.set(-1.42,1.55,-.30);tablet.rotation.set(-.09,.16,-.045);rig.add(tablet);
+  const tablet=new THREE.Group();tablet.position.set(-4.25,1.55,0);tablet.rotation.set(-.06,.12,-.025);rig.add(tablet);
   mesh(rounded(2.18,3.08,.13,.055),graphite,tablet);
   mesh(new THREE.ShapeGeometry(outline(2.155,3.055,.12)),new THREE.MeshPhysicalMaterial({color:0x020304,metalness:.12,roughness:.18,clearcoat:1,clearcoatRoughness:.12}),tablet,0,0,.064);
   // A backlit display sits under a separate antireflective glass layer.
@@ -58,8 +59,9 @@ export async function createStudioObjects(rig, renderer) {
   const support=box(1.05,2.2,.035,graphite,tablet,0,-.52,-.33);support.rotation.x=-.39;
 
   // A modern dynamic broadcast microphone: acoustic foam, powder-coated body,
-  // machined fasteners, a real yoke and a mechanically connected boom arm.
-  const microphoneAssembly=new THREE.Group();rig.add(microphoneAssembly);
+  // machined fasteners, a real yoke and a compact tabletop stand.
+  const podcast=new THREE.Group();rig.add(podcast);
+  const microphoneAssembly=new THREE.Group();podcast.add(microphoneAssembly);
   const mic=new THREE.Group();mic.position.set(.79,1.88,1.12);microphoneAssembly.add(mic);
   const head=new THREE.Group();head.rotation.z=.66;head.rotation.x=.12;mic.add(head);
   const grain=noise(256,128,70,5);
@@ -90,34 +92,40 @@ export async function createStudioObjects(rig, renderer) {
   mesh(new THREE.PlaneGeometry(.30,.075),new THREE.MeshStandardMaterial({map:texture(badge),roughness:.6}),head,0,-.1,.329).castShadow=false;
   head.updateMatrixWorld(true);
   const mount=head.localToWorld(new THREE.Vector3(0,-.45,-.02));
-  const elbow=new THREE.Vector3(3.4,3.25,-.75),base=new THREE.Vector3(3.9,.12,-.9);
-  function beam(a,b,width,depth,material,parent=microphoneAssembly){const mid=a.clone().add(b).multiplyScalar(.5),m=box(width,a.distanceTo(b),depth,material,parent,...mid.toArray());m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),b.clone().sub(a).normalize());return m;}
-  for(const [a,b] of [[base,elbow],[elbow,mount]]){
-    for(const z of [-.07,.07])beam(a.clone().add(new THREE.Vector3(0,0,z)),b.clone().add(new THREE.Vector3(0,0,z)),.065,.045,bodyMaterial);
-  }
-  for(const point of [elbow,mount]){
-    const joint=cylinder(.105,.22,graphite,microphoneAssembly,...point.toArray());joint.rotation.x=Math.PI/2;
-    const cap=cylinder(.055,.225,steel,microphoneAssembly,...point.toArray());cap.rotation.x=Math.PI/2;
-  }
-  box(.24,.20,.27,graphite,microphoneAssembly,base.x,.09,base.z);
+  // Compact tabletop support keeps the microphone inside its own brand area.
+  cylinder(.32,.06,rubber,microphoneAssembly,mount.x,.03,mount.z);
+  cylinder(.285,.025,graphite,microphoneAssembly,mount.x,.072,mount.z);
+  cylinder(.055,mount.y-.07,graphite,microphoneAssembly,mount.x,(mount.y+.07)/2,mount.z);
+  cylinder(.072,.16,steel,microphoneAssembly,mount.x,.35,mount.z);
   const cable=new THREE.CatmullRomCurve3([
     head.localToWorld(new THREE.Vector3(0,-.80,0)),
-    new THREE.Vector3(1.55,1.12,1.08),new THREE.Vector3(2.18,1.94,.48),
-    elbow.clone().add(new THREE.Vector3(.05,-.15,.09)),new THREE.Vector3(3.94,.09,-.73),new THREE.Vector3(5.8,.025,-.2)
+    new THREE.Vector3(mount.x+.24,.55,mount.z+.2),
+    new THREE.Vector3(mount.x+.25,.08,mount.z+.5),
+    new THREE.Vector3(mount.x+.45,.035,mount.z+.55)
   ]);
-  mesh(new THREE.TubeGeometry(cable,64,.017,10,false),rubber,microphoneAssembly);
+  mesh(new THREE.TubeGeometry(cable,32,.017,8,false),rubber,microphoneAssembly);
+  microphoneAssembly.scale.setScalar(.40);
+  microphoneAssembly.position.set(1.50,0,0);
+  const coverFrame=new THREE.Group();coverFrame.position.set(-.15,1.25,.22);coverFrame.rotation.set(-.05,-.06,.015);podcast.add(coverFrame);
+  mesh(rounded(2.44,2.44,.04,.045),graphite,coverFrame);
+  if(podcastCover){
+    const coverTexture=new THREE.Texture(podcastCover);coverTexture.colorSpace=THREE.SRGBColorSpace;coverTexture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());coverTexture.needsUpdate=true;
+    mesh(new THREE.PlaneGeometry(2.37,2.37),new THREE.MeshBasicMaterial({map:coverTexture,toneMapped:false}),coverFrame,0,0,.055).castShadow=false;
+  }
+  const coverSupport=box(.95,1.7,.03,graphite,coverFrame,0,-.42,-.33);coverSupport.rotation.x=-.32;
 
   // Event imagery at the same physical scale as the equipment. No miniature venue.
   const eventCanvas=document.createElement('canvas');eventCanvas.width=1280;eventCanvas.height=960;const ec=eventCanvas.getContext('2d');
   ec.fillStyle='#0B1F26';ec.fillRect(0,0,1280,960);coverImage(ec,event,0,0,1280,730);
   const fade=ec.createLinearGradient(0,500,0,760);fade.addColorStop(0,'#0B1F2600');fade.addColorStop(1,'#0B1F26');ec.fillStyle=fade;ec.fillRect(0,500,1280,260);
-  if(eventLogo)ec.drawImage(eventLogo,65,750,440,98);
-  ec.fillStyle='#e2e8e8';ec.font='35px "VTM Instrument",sans-serif';ec.fillText('Zeit für die Fragen, die zählen.',65,898);
+  ec.fillStyle='#ffffff';ec.fillRect(0,730,1280,230);
+  if(eventLogo)ec.drawImage(eventLogo,65,765,500,111);
+  ec.fillStyle='#0B1F26';ec.font='35px "VTM Instrument",sans-serif';ec.fillText('Zeit für die Fragen, die zählen.',65,925);
   ec.fillStyle='#c1cacc';ec.font='19px "VTM Instrument",sans-serif';ec.textAlign='right';ec.fillText('Symbolszene · KI-generiert',1220,690);
   const eventTexture=texture(eventCanvas);
-  const eventFrame=new THREE.Group();eventFrame.position.set(2.18,1.08,-1.10);eventFrame.rotation.set(-.07,-.22,.015);rig.add(eventFrame);
+  const eventFrame=new THREE.Group();eventFrame.position.set(4.25,1.32,0);eventFrame.rotation.set(-.05,-.10,.015);eventFrame.scale.setScalar(1.15);rig.add(eventFrame);
   mesh(rounded(2.85,2.16,.025,.045),graphite,eventFrame);
   mesh(new THREE.PlaneGeometry(2.79,2.095),new THREE.MeshPhysicalMaterial({map:eventTexture,emissiveMap:eventTexture,emissive:0xffffff,emissiveIntensity:.2,roughness:.45,clearcoat:.65,clearcoatRoughness:.2,envMapIntensity:.12}),eventFrame,0,0,.054).castShadow=false;
   const backSupport=box(1.15,1.6,.028,graphite,eventFrame,0,-.25,-.34);backSupport.rotation.x=-.43;
-  return {microphoneAssembly, tablet, eventFrame};
+  return {podcast, tablet, eventFrame};
 }
