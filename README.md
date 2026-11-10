@@ -114,9 +114,8 @@ Der Einstieg bietet drei Wege: Einzelleistungen, Themenkampagne und laufende Par
 Kobalt #1F4FA3, Weiß #FFFFFF und Eisblau #F3F7FD. Bricolage Grotesque und
 Instrument Sans werden lokal geladen; die freien Schriftlizenzen liegen bei.
 Signalgelb #FFD700 entspricht den gelben Signalmarkierungen der aktuellen
-Magazinwebsite (experience.css). Es wird für Schaltflächen auf Nachtblau, die
-primäre Header-Aktion und kleine grafische Markierungen verwendet. Text auf
-hellen Flächen bleibt blau. Der helle Header zeigt Bild und Leistungsversprechen
+Magazinwebsite (experience.css). Es wird für die primäre Header-Aktion und kleine grafische Markierungen verwendet. Text auf
+hellen Flächen bleibt blau. Der dunkle Header zeigt Bild und Leistungsversprechen
 nebeneinander; die Reichweite steht kompakt darunter.
 Konkrete Format-Symbolbilder unter `assets/format-*.webp` ersetzen die früheren
 abstrakten Stillleben. Sie werden verzögert geladen und sichtbar als KI-generierte
@@ -125,3 +124,5 @@ Partnerlogo. Bildherkunft, vollständige Gestaltungsbriefings und Markenreferenz
 stehen in `assets/ARTWORK.md`. Die Druckansicht bleibt ohne Bilder kompakt;
 reduzierte Animationen werden berücksichtigt. Die Angebots- und Preislogik
 bleibt von diesen Gestaltungsänderungen unberührt.
+
+Alle Angebotskarten und die drei Einstiegswege sind visuell gleichwertig. Es gibt keine rein dekorative Hervorhebung einzelner Leistungen; die Auswahl im Konfigurator wird weiterhin funktional markiert.
