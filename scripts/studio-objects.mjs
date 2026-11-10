@@ -20,9 +20,10 @@ export async function createStudioObjects(rig, renderer) {
   }
   const rounded=(w,h,r,depth)=>new THREE.ExtrudeGeometry(outline(w,h,r),{depth,bevelEnabled:true,bevelSegments:3,steps:1,bevelSize:.008,bevelThickness:.008,curveSegments:12});
   async function image(src){return new Promise(resolve=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=()=>resolve(null);i.src=src;});}
-  const [magazine,event,eventLogo,podcastCover]=await Promise.all(['assets/vtm-magazin-cover.png','assets/experts-poster.webp','assets/25experts-logo-guidelines.png','assets/insurance-monday-cover-guidelines.png'].map(image));
+  const [magazine,event,eventLogo,podcastCover]=await Promise.all(['assets/vtm-magazin-cover.png','assets/experts-poster.webp','assets/25experts-logo-guidelines.png','assets/insurance-monday-cover-hd.jpg'].map(image));
   if(!magazine)throw new Error('Magazine artwork unavailable');
-  function texture(canvas){const t=new THREE.CanvasTexture(canvas);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());return t;}
+  const anisotropy=Math.min(16,renderer.capabilities.getMaxAnisotropy());
+  function texture(canvas){const t=new THREE.CanvasTexture(canvas);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=anisotropy;return t;}
   function coverImage(ctx,img,x,y,w,h){if(!img)return;const scale=Math.max(w/img.width,h/img.height);const sw=w/scale,sh=h/scale;ctx.drawImage(img,(img.width-sw)/2,(img.height-sh)/2,sw,sh,x,y,w,h);}
   function noise(size,base,range,repeat){
     const data=new Uint8Array(size*size*4);let seed=85391;
@@ -31,7 +32,7 @@ export async function createStudioObjects(rig, renderer) {
   }
   // Use the supplied magazine artwork directly, with no crop or typesetting.
   const coverTexture=new THREE.Texture(magazine);coverTexture.colorSpace=THREE.SRGBColorSpace;
-  coverTexture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());coverTexture.needsUpdate=true;
+  coverTexture.anisotropy=anisotropy;coverTexture.needsUpdate=true;
   // A closed, perfect-bound magazine: about 214 × 303 mm, with a 9 mm paper block.
   // Its silhouette stays within the previous object, so no medium gains prominence.
   const magazineWidth=2.14,magazineHeight=magazineWidth*magazine.height/magazine.width,pageDepth=.09;
@@ -118,13 +119,13 @@ export async function createStudioObjects(rig, renderer) {
   const coverFrame=new THREE.Group();coverFrame.position.set(-.15,1.25,.22);coverFrame.rotation.set(-.05,-.06,.015);podcast.add(coverFrame);
   mesh(rounded(2.44,2.44,.04,.045),graphite,coverFrame);
   if(podcastCover){
-    const coverTexture=new THREE.Texture(podcastCover);coverTexture.colorSpace=THREE.SRGBColorSpace;coverTexture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());coverTexture.needsUpdate=true;
+    const coverTexture=new THREE.Texture(podcastCover);coverTexture.colorSpace=THREE.SRGBColorSpace;coverTexture.anisotropy=anisotropy;coverTexture.needsUpdate=true;
     mesh(new THREE.PlaneGeometry(2.37,2.37),new THREE.MeshBasicMaterial({map:coverTexture,toneMapped:false}),coverFrame,0,0,.055).castShadow=false;
   }
   const coverSupport=box(.95,1.7,.03,graphite,coverFrame,0,-.42,-.33);coverSupport.rotation.x=-.32;
 
   // Event imagery at the same physical scale as the equipment. No miniature venue.
-  const eventCanvas=document.createElement('canvas');eventCanvas.width=1280;eventCanvas.height=960;const ec=eventCanvas.getContext('2d');
+  const eventCanvas=document.createElement('canvas');eventCanvas.width=2048;eventCanvas.height=1536;const ec=eventCanvas.getContext('2d');ec.scale(1.6,1.6);
   ec.fillStyle='#0B1F26';ec.fillRect(0,0,1280,960);coverImage(ec,event,0,0,1280,730);
   const fade=ec.createLinearGradient(0,500,0,760);fade.addColorStop(0,'#0B1F2600');fade.addColorStop(1,'#0B1F26');ec.fillStyle=fade;ec.fillRect(0,500,1280,260);
   ec.fillStyle='#ffffff';ec.fillRect(0,730,1280,230);
@@ -134,7 +135,13 @@ export async function createStudioObjects(rig, renderer) {
   const eventTexture=texture(eventCanvas);
   const eventFrame=new THREE.Group();eventFrame.position.set(4.25,1.32,0);eventFrame.rotation.set(-.05,-.10,.015);eventFrame.scale.setScalar(1.15);rig.add(eventFrame);
   mesh(rounded(2.85,2.16,.025,.045),graphite,eventFrame);
-  mesh(new THREE.PlaneGeometry(2.79,2.095),new THREE.MeshPhysicalMaterial({map:eventTexture,emissiveMap:eventTexture,emissive:0xffffff,emissiveIntensity:.2,roughness:.45,clearcoat:.65,clearcoatRoughness:.2,envMapIntensity:.12}),eventFrame,0,0,.054).castShadow=false;
+  const eventFace=new THREE.PlaneGeometry(2.79,2.095);
+  mesh(eventFace,new THREE.MeshBasicMaterial({map:eventTexture,toneMapped:false}),eventFrame,0,0,.054).castShadow=false;
+  mesh(eventFace,satin,eventFrame,0,0,.055).castShadow=false;
   const backSupport=box(1.15,1.6,.028,graphite,eventFrame,0,-.25,-.34);backSupport.rotation.x=-.43;
-  return {podcast, publication, eventFrame};
+  // Keep the podcast assembly centred while its cover and microphone turn together.
+  const podcastPivot=new THREE.Group();podcastPivot.position.y=1.3;
+  for(const child of [...podcast.children]){child.position.y-=1.3;podcastPivot.add(child);}
+  podcast.add(podcastPivot);
+  return {podcast, podcastPivot, publication, eventFrame};
 }

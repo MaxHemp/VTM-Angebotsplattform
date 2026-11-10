@@ -128,9 +128,10 @@ Aliasse derselben aktuellen Seite, damit ältere Links keine veraltete Fassung z
 `node tests/configurator.cjs` prüft Preise, Auswahl und Formular.
 `node tests/experience.cjs` prüft die räumliche Darstellung und die Besuchswege.
 `node tests/header-motion.cjs` prüft mit echten Mausbewegungen und gerenderten
-Bildvergleichen die Reaktion im gesamten Header, Ziehen und Loslassen,
-Pause und reduzierte Bewegung. Die Medien neigen sich um ihre eigene Mitte;
-ihre Positionen bleiben erhalten. Touch-Eingaben lösen keine Mausneigung aus.
+Bildvergleichen die unabhängige Reaktion aller drei Medien, ruhende Nachbarn,
+Ziehen und Loslassen, Pause, reduzierte Bewegung und die höhere Bildauflösung.
+Jedes Medium neigt sich ausschließlich in seinem eigenen Bereich um seine Mitte;
+seine Position bleibt erhalten. Touch-Eingaben lösen keine Mausneigung aus.
 `TEST_URL` kann eine andere Vorschauadresse auswählen; Referenzbilder liegen
 in `test-results/`. Formularanfragen werden abgefangen. Die optionale
 Standbildgenerierung (`GENERATE_POSTERS=1`) benötigt zusätzlich das Paket `sharp`.
