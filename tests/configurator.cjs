@@ -164,10 +164,8 @@ fs.mkdirSync(output, {recursive:true});
       await page.setViewportSize({width,height:1000});
       const overflow=await page.evaluate(()=>Array.from(document.querySelectorAll('body *')).filter(e=>e.getBoundingClientRect().right>innerWidth+1 && getComputedStyle(e).position!=='fixed').slice(0,12).map(e=>({tag:e.tagName,cls:e.className,text:e.textContent.trim().slice(0,60)})));
       assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No horizontal overflow at '+width+': '+JSON.stringify(overflow));
-      if(studio) {
-        await page.evaluate(()=>scrollTo(0,0));
-        await page.screenshot({path:path.join(output,'studio-'+width+'.png')});
-      }
+      await page.evaluate(()=>scrollTo(0,0));
+      await page.screenshot({path:path.join(output,'header-'+width+'.png')});
       await page.locator('#angebotsfinder').scrollIntoViewIfNeeded();
       await page.evaluate(()=>scrollTo(0,document.getElementById('angebotsfinder').offsetTop-100));
       await page.screenshot({path:path.join(output,'finder-'+width+'.png')});

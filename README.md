@@ -110,42 +110,26 @@ Der Einstieg bietet drei Wege: Einzelleistungen, Themenkampagne und laufende Par
 
 ## Visuelle Gestaltung
 
-`assets/editorial.css` folgt der aktuellen Magazinwebsite: Nachtblau #0A1638,
-Kobalt #1F4FA3, Weiß #FFFFFF und Eisblau #F3F7FD. Bricolage Grotesque und
-Instrument Sans werden lokal geladen; die freien Schriftlizenzen liegen bei.
-Signalgelb #FFD700 entspricht den gelben Signalmarkierungen der aktuellen
-Magazinwebsite (experience.css). Es wird für die primäre Header-Aktion und kleine grafische Markierungen verwendet. Text auf
-hellen Flächen bleibt blau. Der dunkle Header zeigt Bild und Leistungsversprechen
-nebeneinander; die Reichweite steht kompakt darunter.
-Konkrete Format-Symbolbilder unter `assets/format-*.webp` ersetzen die früheren
-abstrakten Stillleben. Sie werden verzögert geladen und sichtbar als KI-generierte
-Symbolbilder gekennzeichnet. Die 25-EXPERTS-Karte verwendet das vorhandene
-Partnerlogo. Bildherkunft, vollständige Gestaltungsbriefings und Markenreferenz
-stehen in `assets/ARTWORK.md`. Die Druckansicht bleibt ohne Bilder kompakt;
-reduzierte Animationen werden berücksichtigt. Die Angebots- und Preislogik
-bleibt von diesen Gestaltungsänderungen unberührt.
+Die Hauptseite und `studio.html` verwenden den redaktionellen Auftritt aus
+`assets/publication.css`, aufbauend auf den gemeinsamen Styles. Nachtblau,
+Kobalt, Weiß und Signalgelb #FFD700 sowie die lokalen VTM-Schriften bleiben
+bestehen. Der Header zeigt die Angebotsübersicht, eine tatsächlich veröffentlichte
+VTM-Kolumne mit Autorenporträt sowie die offizielle Podcast-Marke. Die Titelzeile
+verlinkt auf den Originalbeitrag. Die Preise sind direkt im Einstieg sichtbar.
 
-Alle Angebotskarten und die drei Einstiegswege sind visuell gleichwertig. Es gibt keine rein dekorative Hervorhebung einzelner Leistungen; die Auswahl im Konfigurator wird weiterhin funktional markiert.
+Die Leistungsübersicht enthält keine generierten Symbolbilder. Alle Leistungen
+sind in einem einheitlichen zweispaltigen Satzspiegel mit Format, Beschreibung,
+Preis und Aktion dargestellt; mobil untereinander. Die bisherige schwebende
+Medienkomposition, Wellenform und Parallax-Steuerung sind nicht mehr eingebunden.
+Vorhandene Studio- und KI-Bilddateien bleiben ungenutzte historische Ressourcen.
+Die ruhigere frühere Headeransicht bleibt unter `klassisch.html` erreichbar.
 
-## Studio-Version
+Die echte Autorenaufnahme `vtm-johannes-oberhofer.jpg` und die offizielle
+Podcast-Marke `insurance-monday-mark.png` stammen von der bestehenden öffentlichen
+VTM-Über-uns-Seite. Weitere Hinweise stehen in `assets/ARTWORK.md`.
 
-Die animierte Studio-Gestaltung ist unter `index.html` die Hauptversion.
-`studio.html` bleibt als nicht indexierter Alias erreichbar. Die frühere, ruhigere
-Ansicht liegt nicht indexiert unter `klassisch.html`. `assets/studio.css` und
-`assets/studio.js` ergänzen eine räumliche Formatkomposition, gestaffelte
-Texteinblendungen, schwebende Karten, eine animierte Wellenform und Signalpfade.
-Mausbewegungen steuern eine sanft interpolierte Perspektive; Scrollen ergänzt
-eine kleine Tiefenverschiebung. Es wird kein Audio abgespielt.
-
-Der Pausenschalter hält sämtliche Header-Animationen an. Die Einstellung
-`prefers-reduced-motion` deaktiviert Bewegung vollständig. Außerhalb des
-Sichtbereichs bzw. in einem ausgeblendeten Tab pausieren die Animationen;
-JavaScript zeichnet nur bei tatsächlichem Bedarf einen Frame. Ohne JavaScript
-bleibt die vollständige statische Komposition sichtbar. Die Druckansicht lässt
-auch diesen Header weg. Vorhandene Bilddateien werden wiederverwendet.
-
-`npm run sync` synchronisiert alle drei Versionen aus demselben Katalog. Alternativ:
-`node scripts/sync-catalog.mjs studio.html klassisch.html`. Studio-Prüfung mit
-`TEST_URL=http://127.0.0.1:8765/studio.html` und `node tests/configurator.cjs`.
-Die Suite prüft zusätzlich Pause/Fortsetzen, Bewegungspräferenz und das Anhalten
-der Animationen außerhalb des sichtbaren Bereichs.
+`npm run sync` synchronisiert die Katalogdaten aller drei Seiten. Alternativ:
+`node scripts/sync-catalog.mjs studio.html klassisch.html`. Die Browserprüfung
+`node tests/configurator.cjs` prüft die Hauptseite; `TEST_URL` kann eine andere
+Ansicht auswählen. Referenzbilder für Header, Angebotsübersicht und Mobilansichten
+werden in `test-results/` abgelegt. Formularanfragen werden im Test abgefangen.

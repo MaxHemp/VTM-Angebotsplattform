@@ -129,14 +129,11 @@ function featuredHTML(item) {
 /* Same source for overview and configurator. Recurring services always use
    monthly rates; no aggregate contract prices are presented. */
 function discoveryHTML(item) {
-  const art = item.group === 'podcast' ? 'podcast' : item.id === 'marktcheck' ? 'research' : ['fachwebinar','eventbegleitung','fachveranstaltung','experts-sponsoring'].includes(item.id) ? 'webinar' : 'article';
   const channel = item.group === 'podcast' ? 'Insurance Monday' : item.group === 'experts' ? '25 EXPERTS' : 'VTM';
-  const isExperts = item.group === 'experts';
   const note = `${esc(item.unitSuffix)} · ${esc(item.priceMeta || '')}`;
-  return `<article class="discovery-card" data-offer="${item.id}" data-art="${art}">
-    <div class="discovery-art${isExperts ? ' partner-art' : ''}"><img src="${isExperts ? 'assets/25experts-logo-horizontal-on-dark.svg' : `assets/format-${art}.webp`}" alt="" width="1000" height="667" loading="lazy" decoding="async"><span class="channel-tag">${channel}</span>${isExperts ? '' : '<span class="image-caption">Symbolbild · KI-generiert</span>'}</div>
+  return `<article class="discovery-card" data-offer="${item.id}">
     <div class="discovery-content">
-    <p class="discovery-format">${esc(item.format)}</p>
+    <p class="discovery-format">${channel} <span aria-hidden="true">/</span> ${esc(item.format)}</p>
     <h3>${esc(item.name)}</h3><p class="discovery-description">${esc(item.desc)}</p>
     <p class="discovery-price">${item.unit === null ? 'Individuelles Angebot' : nb(fmt.format(item.unit))}</p>
     <p class="discovery-unit">${note}</p>
