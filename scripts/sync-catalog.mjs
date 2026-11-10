@@ -130,11 +130,10 @@ function featuredHTML(item) {
    monthly rates; no aggregate contract prices are presented. */
 function discoveryHTML(item) {
   const art = item.group === 'podcast' ? 'podcast' : item.id === 'marktcheck' ? 'research' : ['fachwebinar','eventbegleitung','fachveranstaltung','experts-sponsoring'].includes(item.id) ? 'webinar' : 'article';
-  const dark = ['podcast-ads','themenkampagne','strategische-partnerschaft'].includes(item.id);
   const channel = item.group === 'podcast' ? 'Insurance Monday' : item.group === 'experts' ? '25 EXPERTS' : 'VTM';
   const isExperts = item.group === 'experts';
   const note = `${esc(item.unitSuffix)} · ${esc(item.priceMeta || '')}`;
-  return `<article class="discovery-card${dark ? ' discovery-dark' : ''}" data-offer="${item.id}" data-art="${art}">
+  return `<article class="discovery-card" data-offer="${item.id}" data-art="${art}">
     <div class="discovery-art${isExperts ? ' partner-art' : ''}"><img src="${isExperts ? 'assets/25experts-logo-horizontal-on-dark.svg' : `assets/format-${art}.webp`}" alt="" width="1000" height="667" loading="lazy" decoding="async"><span class="channel-tag">${channel}</span>${isExperts ? '' : '<span class="image-caption">Symbolbild · KI-generiert</span>'}</div>
     <div class="discovery-content">
     <p class="discovery-format">${esc(item.format)}</p>
