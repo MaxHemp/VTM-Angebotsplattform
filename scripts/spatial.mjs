@@ -27,7 +27,7 @@ async function start() {
   const camera = new THREE.PerspectiveCamera(28, 1, .1, 80);
   const rig = new THREE.Group(); scene.add(rig);
   await document.fonts.ready;
-  const {podcast,tablet,eventFrame}=await createStudioObjects(rig,renderer);
+  const {podcast,publication,eventFrame}=await createStudioObjects(rig,renderer);
   scene.environmentIntensity=.48;
   RectAreaLightUniformsLib.init();
   const key=new THREE.RectAreaLight(0xf4f6ff,7,3.5,5.5);key.position.set(-3,5,5);key.lookAt(.2,1.6,0);scene.add(key);
@@ -46,19 +46,19 @@ async function start() {
     const compact=matchMedia('(max-width:760px)').matches,aspect=width/height;
     host.dataset.layout=compact?'compact':'wide';
     if(compact){
-      tablet.position.set(-1.25,3.8,0);tablet.scale.setScalar(.72);
+      publication.position.set(-1.25,3.8,0);publication.scale.setScalar(.72);
       podcast.position.set(.90,2.8,0);podcast.scale.setScalar(.72);
       eventFrame.position.set(0,1.2,0);eventFrame.scale.setScalar(.90);
       targets[0].set(.2,2.65,0);positions[0].set(.2,2.85,Math.max(6.4,5.4/aspect)/(2*Math.tan(THREE.MathUtils.degToRad(14))));
-      targets[1].copy(tablet.position);positions[1].set(-1.9,3.95,Math.max(2.8,2.1/aspect)/(2*Math.tan(THREE.MathUtils.degToRad(14))));
+      targets[1].copy(publication.position);positions[1].set(-1.9,3.95,Math.max(2.8,2.1/aspect)/(2*Math.tan(THREE.MathUtils.degToRad(14))));
       targets[2].set(1.1,3.72,0);positions[2].set(1.35,3.95,7.8);
       targets[3].copy(eventFrame.position);positions[3].set(.4,1.4,Math.max(2.6,3.1/aspect)/(2*Math.tan(THREE.MathUtils.degToRad(14))));
     }else{
-      tablet.position.set(-4.25,1.55,0);tablet.scale.setScalar(1);
+      publication.position.set(-4.25,1.55,0);publication.scale.setScalar(1);
       podcast.position.set(0,0,0);podcast.scale.setScalar(1);
       eventFrame.position.set(4.25,1.32,0);eventFrame.scale.setScalar(1.15);
       targets[0].set(0,1.5,0);positions[0].set(.35,2.05,Math.max(4.5,12.8/aspect)/(2*Math.tan(THREE.MathUtils.degToRad(14))));
-      targets[1].copy(tablet.position);positions[1].set(-3.6,1.9,6.5);
+      targets[1].copy(publication.position);positions[1].set(-3.6,1.9,6.5);
       targets[2].set(.35,1.35,0);positions[2].set(.75,1.8,9.0);
       targets[3].copy(eventFrame.position);positions[3].set(4.9,1.7,6.4);
     }
@@ -92,7 +92,7 @@ async function start() {
   reduce.addEventListener('change',()=>{paused=reduce.matches;pointerX=pointerY=0;motionLabel();resume();});motionLabel();
   document.addEventListener('visibilitychange',resume);
   const captions=[...document.querySelectorAll('[data-stage-caption]')];
-  function choose(next){focus=next;tablet.visible=next===0||next===1;podcast.visible=next===0||next===2;eventFrame.visible=next===0||next===3;document.querySelectorAll('button[data-scene]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.scene)===next)));captions.forEach(c=>c.hidden=Number(c.dataset.stageCaption)!==next);drag=pointerX=pointerY=0;host.dataset.view=String(next);render(paused?0:.016);resume();}
+  function choose(next){focus=next;publication.visible=next===0||next===1;podcast.visible=next===0||next===2;eventFrame.visible=next===0||next===3;document.querySelectorAll('button[data-scene]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.scene)===next)));captions.forEach(c=>c.hidden=Number(c.dataset.stageCaption)!==next);drag=pointerX=pointerY=0;host.dataset.view=String(next);render(paused?0:.016);resume();}
   document.querySelectorAll('[data-scene]').forEach(b=>b.addEventListener('click',()=>choose(Number(b.dataset.scene))));
 
   let down=null;
