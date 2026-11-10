@@ -25,7 +25,8 @@ export async function createStudioObjects(rig, renderer) {
     return g;
   }
   async function image(src){return new Promise(resolve=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=()=>resolve(null);i.src=src;});}
-  const [logo,article,event,eventLogo,podcastCover]=await Promise.all(['assets/vtm-wordmark-guidelines.png','assets/format-article.webp','assets/experts-poster.webp','assets/25experts-logo-guidelines.png','assets/insurance-monday-cover-guidelines.png'].map(image));
+  const [magazine,event,eventLogo,podcastCover]=await Promise.all(['assets/vtm-magazin-cover.png','assets/experts-poster.webp','assets/25experts-logo-guidelines.png','assets/insurance-monday-cover-guidelines.png'].map(image));
+  if(!magazine)throw new Error('Magazine artwork unavailable');
   function texture(canvas){const t=new THREE.CanvasTexture(canvas);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());return t;}
   function coverImage(ctx,img,x,y,w,h){if(!img)return;const scale=Math.max(w/img.width,h/img.height);const sw=w/scale,sh=h/scale;ctx.drawImage(img,(img.width-sw)/2,(img.height-sh)/2,sw,sh,x,y,w,h);}
   function noise(size,base,range,repeat){
@@ -33,25 +34,18 @@ export async function createStudioObjects(rig, renderer) {
     for(let i=0;i<data.length;i+=4){seed=(Math.imul(seed,1664525)+1013904223)>>>0;const v=Math.round(base+(seed/4294967296-.5)*range);data[i]=data[i+1]=data[i+2]=v;data[i+3]=255;}
     const t=new THREE.DataTexture(data,size,size);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(repeat,repeat);t.magFilter=THREE.LinearFilter;t.minFilter=THREE.LinearMipmapLinearFilter;t.generateMipmaps=true;t.needsUpdate=true;return t;
   }
-  // A thin, machined digital display. No paper block or oversized book spine.
-  const screen=document.createElement('canvas');screen.width=1024;screen.height=1400;const c=screen.getContext('2d');
-  c.fillStyle='#0A1638';c.fillRect(0,0,1024,1400);
-  c.fillStyle='#ffffff';c.fillRect(0,0,1024,240);
-  if(logo)c.drawImage(logo,72,64,880,132);
-  c.fillStyle='#91a6ca';c.font='23px "VTM Instrument",sans-serif';c.fillText('KI  /  AUTOMATISIERUNG  /  VERSICHERUNG',68,292);
-  c.fillStyle='#1F4FA3';c.fillRect(68,355,66,3);
-  c.fillStyle='#fff';c.font='400 87px "VTM Bricolage",sans-serif';c.fillText('Technologie',68,476);c.fillText('verstehen.',68,574);c.fillText('Versicherung',68,696);c.fillText('gestalten.',68,794);
-  coverImage(c,article,68,885,888,320);
-  c.fillStyle='#bccbe3';c.font='29px "VTM Instrument",sans-serif';c.fillText('Perspektiven aus der Versicherungswelt',68,1280);
-  c.fillStyle='#6e88b3';c.font='22px "VTM Instrument",sans-serif';c.fillText('MAGAZIN   +   NEWSLETTER   +   SOCIAL',68,1330);
-  const displayTexture=texture(screen);
+  // Use the supplied magazine artwork directly, with no crop or typesetting.
+  const displayTexture=new THREE.Texture(magazine);displayTexture.colorSpace=THREE.SRGBColorSpace;
+  displayTexture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());displayTexture.needsUpdate=true;
+  const displayWidth=Math.min(2.015,2.86*magazine.width/magazine.height);
+  const displayHeight=displayWidth*magazine.height/magazine.width;
   const tablet=new THREE.Group();tablet.position.set(-4.25,1.55,0);tablet.rotation.set(-.06,.12,-.025);rig.add(tablet);
   mesh(rounded(2.18,3.08,.13,.055),graphite,tablet);
   mesh(new THREE.ShapeGeometry(outline(2.155,3.055,.12)),new THREE.MeshPhysicalMaterial({color:0x020304,metalness:.12,roughness:.18,clearcoat:1,clearcoatRoughness:.12}),tablet,0,0,.064);
   // A backlit display sits under a separate antireflective glass layer.
   const screenMaterial=new THREE.MeshBasicMaterial({map:displayTexture,toneMapped:false});
-  mesh(roundedFace(2.015,2.755,.055),screenMaterial,tablet,0,-.014,.068).castShadow=false;
-  mesh(roundedFace(2.015,2.755,.055),new THREE.MeshPhysicalMaterial({color:0x000000,transparent:true,opacity:.065,roughness:.15,clearcoat:1,clearcoatRoughness:.12,specularIntensity:.25,depthWrite:false}),tablet,0,-.014,.071).castShadow=false;
+  mesh(new THREE.PlaneGeometry(displayWidth,displayHeight),screenMaterial,tablet,0,-.014,.068).castShadow=false;
+  mesh(roundedFace(displayWidth,displayHeight,.055),new THREE.MeshPhysicalMaterial({color:0x000000,transparent:true,opacity:.065,roughness:.15,clearcoat:1,clearcoatRoughness:.12,specularIntensity:.25,depthWrite:false}),tablet,0,-.014,.071).castShadow=false;
   const cameraLens=mesh(new THREE.CircleGeometry(.016,20),new THREE.MeshPhysicalMaterial({color:0x14253c,metalness:.65,roughness:.07,clearcoat:1}),tablet,0,1.464,.074);cameraLens.castShadow=false;
   box(.026,.23,.025,steel,tablet,-1.1,.83,.017);box(.026,.14,.025,steel,tablet,-1.1,.51,.017);
   box(.29,.016,.019,black,tablet,0,-1.55,.022);

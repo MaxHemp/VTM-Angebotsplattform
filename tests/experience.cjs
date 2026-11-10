@@ -3,7 +3,8 @@ const {chromium}=require('playwright');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
-const sharp=process.env.GENERATE_POSTERS?require('sharp'):null;
+const generateStagePosters=Boolean(process.env.GENERATE_POSTERS||process.env.GENERATE_STAGE_POSTERS);
+const sharp=generateStagePosters?require('sharp'):null;
 const base=process.env.TEST_URL||'http://127.0.0.1:8765';
 const output=path.join(__dirname,'../test-results');
 fs.mkdirSync(output,{recursive:true});
@@ -31,7 +32,7 @@ fs.mkdirSync(output,{recursive:true});
       assert.equal(await page.locator(`[data-stage-caption="${scene}"]`).isVisible(),true);
       await page.locator('.spatial-stage').screenshot({path:path.join(output,`studio-view-${scene}.png`)});
     }
-    if(process.env.GENERATE_POSTERS){
+    if(generateStagePosters){
       await sharp(await page.locator('.spatial-stage').screenshot()).webp({quality:88}).toFile(path.join(__dirname,'../assets/stage-poster.webp'));
     }
     await page.emulateMedia({reducedMotion:'no-preference'});
@@ -95,7 +96,7 @@ fs.mkdirSync(output,{recursive:true});
       assert.equal(await page.locator('.spatial-stage').getAttribute('data-layout'),width<=760?'compact':'wide');
       assert(await page.locator('.stage-choices strong').evaluateAll(items=>items.every(e=>e.scrollWidth<=e.clientWidth+1)),`Brand captions remain within their own columns at ${width}px`);
       await page.screenshot({path:path.join(output,`brand-header-${width}.png`)});
-      if(process.env.GENERATE_POSTERS&&width===390)await sharp(await page.locator('.spatial-stage').screenshot()).webp({quality:90}).toFile(path.join(__dirname,'../assets/stage-poster-mobile.webp'));
+      if(generateStagePosters&&width===390)await sharp(await page.locator('.spatial-stage').screenshot()).webp({quality:90}).toFile(path.join(__dirname,'../assets/stage-poster-mobile.webp'));
       for(const goal of ['sichtbarkeit','expertise','dialog']){
         await page.locator(`[data-journey="${goal}"]`).click();
         const overflow=await page.evaluate(()=>[...document.querySelectorAll('body *')].filter(e=>e.getBoundingClientRect().right>innerWidth+1&&getComputedStyle(e).position!=='fixed').slice(0,12).map(e=>({tag:e.tagName,cls:String(e.className),text:e.textContent.trim().slice(0,60)})));

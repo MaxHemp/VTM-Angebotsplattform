@@ -1,5 +1,12 @@
 # Aktive Materialien (10. November 2026)
 
+- `vtm-magazin-cover.png`: vom Herausgeber bereitgestelltes Magazinmotiv,
+  Originaldatei `Wer den Kunden nicht liest, verliert ihn. (5).png`.
+  Unveränderte PNG-Datei, 954 × 1350 Pixel. Im Header vollständig und
+  proportional auf der Magazinfläche dargestellt; kein Beschnitt oder Neusatz.
+  SHA-256: `e1faed8a8ffa43f54cc13030e907784be132c6a053fddb40b48ae42b898f65e6`.
+  Das vorher programmatisch gesetzte Magazinmotiv wird nicht mehr verwendet.
+
 - `stage-poster.webp`: Standbild der eigens implementierten Three.js-Szene.
   Digitales Display, Broadcast-Mikrofon und 25-EXPERTS-Bildmotiv sind
   Formatvisualisierungen, keine Produktfotos. Die frühere Miniaturbestuhlung
