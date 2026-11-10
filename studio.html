@@ -41,7 +41,7 @@
   <style>
     /* =========================================================
        VTM LEISTUNGSKONFIGURATOR 2.0
-       Design: VTM Design Guidelines v6.1 (August 2026)
+       Design: VTM Design Guidelines v6.2 (September 2026)
        Nachtblau trägt, Kobalt handelt, Gold belegt.
        Token-Schichten: primitiv (--vtm-*) → semantisch (--sem-*)
        → Komponente. Alles funktioniert ohne JavaScript und ohne
@@ -56,7 +56,7 @@
       --vtm-kobalt-700: #183F85;     /* Hover */
       --vtm-kobalt-hell: #8FB0F0;    /* Text/Links auf Nachtblau */
       --vtm-kobalt-050: #EEF3FC;     /* Auswahlfläche, Icon-Chip */
-      --vtm-gold: #FFD700;           /* Signalgelb der Magazinwebsite */
+      --vtm-gold: #D9A53C;           /* v6.2: ausschließlich Unterzeilen und Belege */
       --vtm-gold-text: #1F4FA3;      /* Quellen auf hellen Flächen bleiben kontrastreich blau */
       --vtm-eis: #F3F7FD;
       --vtm-grau-700: #51607A;       /* Fließtext sekundär (6,4:1) */
@@ -393,7 +393,7 @@
       text-transform: uppercase;
       margin-bottom: 1rem;
     }
-    .badge .punkt { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--vtm-gold); margin-right: 0.45rem; vertical-align: 1px; }
+    .badge .punkt { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--vtm-kobalt); margin-right: 0.45rem; vertical-align: 1px; }
 
     ul.chevrons { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; }
     ul.chevrons li { position: relative; padding-left: 1.15rem; font-size: var(--vtm-size-s); color: var(--sem-text-sekundaer); line-height: 1.45; }
@@ -556,7 +556,7 @@
     --------------------------------------------------------- */
     .keymessage { background: var(--sem-flaeche-anker); color: var(--vtm-weiss); padding-block: clamp(3rem, 6vw, 5rem); }
     .keymessage-box { position: relative; max-width: 46rem; padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.75rem); border: 1px solid var(--vtm-kobalt); border-radius: var(--vtm-radius-karte); }
-    .keymessage-box::before { content: ""; position: absolute; top: -6px; left: 1.5rem; width: 11px; height: 11px; border-radius: 50%; background: var(--vtm-gold); }
+    .keymessage-box::before { content: ""; position: absolute; top: -6px; left: 1.5rem; width: 11px; height: 11px; border-radius: 50%; background: var(--vtm-kobalt); }
     .keymessage-box .kicker { color: var(--sem-link-invers); }
     .keymessage-box .satz { margin: 0; font-family: var(--vtm-font-display); font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.3rem); line-height: 1.2; letter-spacing: -0.015em; max-width: 20ch; }
     .keymessage .quelle { margin-top: 1.25rem; }
@@ -873,54 +873,45 @@
 
   </style>
   <link rel="stylesheet" href="assets/editorial.css">
-  <link rel="stylesheet" href="assets/experience.css?v=20261110-studio2">
-  <script type="module" src="assets/experience.js?v=20261110-studio2"></script>
+  <link rel="stylesheet" href="assets/experience.css?v=20261110-guidelines62">
+  <script type="module" src="assets/experience.js?v=20261110-guidelines62"></script>
 </head>
 <body id="top" data-catalog-order="einzel,podcast,vtm,experts,strategie,extras">
   <a class="skip-link" href="#konfigurator">Zum Konfigurator springen</a>
 
   <nav class="site-nav" aria-label="Hauptnavigation">
     <div class="wrap nav-inner">
-      <a class="logo-link" href="#top" aria-label="VersicherungsTech Magazin, zum Seitenanfang">
-        <img src="assets/vtm-logo-weiss.png" alt="VersicherungsTech Magazin" width="520" height="92">
-      </a>
-      <a class="btn btn-primary nav-cta-mobile" href="#anfrage">Anfragen ↗</a>
-      <ul class="nav-links">
+      <a class="logo-link" href="#top" aria-label="VersicherungsTech Magazin, zum Seitenanfang"><img src="assets/vtm-wordmark-guidelines.png" alt="VersicherungsTech Magazin" width="440" height="66"></a>
+      <span class="nav-context">Für Unternehmen</span>
+      <button class="nav-toggle js-only" type="button" aria-expanded="false" aria-controls="primary-menu" aria-label="Menü öffnen"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <ul class="nav-links" id="primary-menu">
         <li><a href="#ihr-weg" data-nav="ihr-weg">Ihr Weg</a></li>
         <li><a href="#angebotsfinder" data-nav="angebotsfinder">Leistungen &amp; Preise</a></li>
         <li><a href="#ihr-weg" data-journey-link="dialog">25 EXPERTS</a></li>
         <li><a href="#konfigurator" data-nav="konfigurator">Ihre Auswahl</a></li>
-        <li><a class="btn btn-primary" href="#anfrage">Vorhaben besprechen ↗</a></li>
+        <li><a class="btn btn-primary" href="#anfrage">Kontakt aufnehmen <span aria-hidden="true">↗</span></a></li>
       </ul>
     </div>
   </nav>
 
   <header class="experience-hero" aria-labelledby="hero-title">
-    <div class="wrap hero-topline"><span>VTM / Kooperationen &amp; Mediadaten</span><span>Magazin. Audio. Begegnung.</span></div>
     <div class="wrap experience-layout">
       <div class="experience-intro">
-        <p class="eyebrow"><span aria-hidden="true"></span> Für Unternehmen in der Versicherungswelt</p>
-        <h1 id="hero-title">Ihr Thema.<br>Die richtigen<br><em>Menschen.</em></h1>
-        <p class="experience-lead">Sie haben etwas zu sagen. Wir bringen Ihr Fachwissen dorthin, wo sich die Versicherungsbranche informiert, zuhört und austauscht.</p>
-        <div class="hero-actions"><a class="btn experience-primary" href="#ihr-weg">Meinen Weg entdecken <span aria-hidden="true">↗</span></a><a href="#angebotsfinder">Direkt zu Leistungen &amp; Preisen ↓</a></div>
-        <p class="hero-entry">Ein Fachbeitrag ab <strong>2.000 €</strong>.<br>Oder ein ganzes Thema gemeinsam entwickeln.</p>
+        <div class="experience-heading"><p class="eyebrow">VTM / Kooperationen &amp; Mediadaten</p><h1 id="hero-title">Ihr Thema.<br>Die richtigen Menschen.</h1><p class="hero-payoff">Inhalte. Gespräche. Begegnungen.</p></div>
+        <div class="experience-context"><p class="experience-lead">Sie haben etwas zu sagen. Wir bringen Ihr Fachwissen dorthin, wo sich die Versicherungsbranche informiert, zuhört und austauscht.</p><div class="hero-actions"><a class="btn experience-primary" href="#ihr-weg">Meinen Weg entdecken <span aria-hidden="true">↗</span></a><a href="#angebotsfinder">Direkt zu Leistungen &amp; Preisen ↓</a></div><p class="hero-entry">Ein Fachbeitrag ab <strong>2.000 €</strong>.<br>Oder ein ganzes Thema gemeinsam entwickeln.</p></div>
       </div>
       <div class="experience-visual">
-        <div class="spatial-stage" data-renderer="loading" role="group" aria-label="Drei Wege in die Branche: digitales Magazin, Podcast und 25 EXPERTS. Wählen Sie unten einen Blickwinkel.">
-          <img class="stage-poster" src="assets/stage-poster.webp?v=20261110-studio2" alt="Studioansicht: digitales VTM-Magazin, Broadcast-Mikrofon und Bildmotiv von 25 EXPERTS" width="1400" height="1200" fetchpriority="high">
-          <button class="stage-label js-only" type="button" data-stage-label="0">Magazin &amp; Newsletter <span aria-hidden="true">↗</span></button>
-          <button class="stage-label js-only" type="button" data-stage-label="1">Insurance Monday <span aria-hidden="true">↗</span></button>
-          <button class="stage-label js-only" type="button" data-stage-label="2">25 EXPERTS <span aria-hidden="true">↗</span></button>
+        <div class="spatial-stage" data-renderer="loading" role="group" aria-label="Die VTM-Medienwelt: Magazin und Newsletter, Insurance Monday und 25 EXPERTS. Drei gleichberechtigte Wege in die Versicherungsbranche.">
+          <picture class="stage-poster-frame"><source media="(max-width:760px)" srcset="assets/stage-poster-mobile.webp?v=20261110-guidelines62"><img class="stage-poster" src="assets/stage-poster.webp?v=20261110-guidelines62" alt="VTM-Magazin, Originalcover von Insurance Monday mit kleinem Mikrofon und 25-EXPERTS-Motiv" width="1400" height="500" fetchpriority="high"></picture>
         </div>
-        <div class="stage-toolbar js-only"><span>Formatvisualisierung · Ziehen, um den Blick zu ändern</span><button id="stage-motion" type="button" aria-pressed="false">Bewegung pausieren</button></div>
+        <div class="stage-toolbar js-only"><span>Unsere Medienwelt · interaktiv entdecken</span><div><button type="button" data-scene="0" aria-pressed="true">Gesamtansicht</button><button id="stage-motion" type="button" aria-pressed="false">Bewegung pausieren</button></div></div>
       </div>
     </div>
     <div class="wrap stage-navigation">
-      <div class="stage-choices js-only" role="group" aria-label="Blickwinkel der 3D-Bühne">
-        <button type="button" data-scene="0" aria-pressed="true">Alle Formate</button>
-        <button type="button" data-scene="1" aria-pressed="false"><span>01</span> Gelesen werden</button>
-        <button type="button" data-scene="2" aria-pressed="false"><span>02</span> Gehört werden</button>
-        <button type="button" data-scene="3" aria-pressed="false"><span>03</span> Zusammenkommen</button>
+      <div class="stage-choices js-only" role="group" aria-label="Drei Bereiche der VTM-Medienwelt">
+        <button type="button" data-scene="1" aria-pressed="false"><span>01 / Inhalte</span><strong>VersicherungsTech Magazin</strong><small>Magazin · Newsletter · Social Media</small></button>
+        <button type="button" data-scene="2" aria-pressed="false"><span>02 / Gespräche</span><strong>Insurance Monday</strong><small>Podcast · Episoden · Spots</small></button>
+        <button type="button" data-scene="3" aria-pressed="false"><span>03 / Begegnungen</span><strong>25 EXPERTS</strong><small>Events · Fachlicher Austausch</small></button>
       </div>
       <div class="stage-captions" aria-live="polite">
         <p data-stage-caption="0"><strong>Einzelne Leistung oder gemeinsame Kampagne?</strong> Fachartikel, Newsletter, Podcast, Webinare, Events und Marktforschung: Der richtige Einstieg beginnt bei Ihrem Ziel.</p>
@@ -930,6 +921,7 @@
       </div>
     </div>
   </header>
+
 
   <main id="main-content">
     <section class="journey-section" id="ihr-weg" aria-labelledby="journey-title">
@@ -945,11 +937,11 @@
           <div class="journey-copy"><p class="eyebrow">Ein klarer Einstieg</p><h3>Ihr Thema soll<br>die Branche erreichen.</h3><p>Sie möchten einen Praxisfall teilen, einen Ansatz erklären oder auf Ihr Unternehmen aufmerksam machen. Beginnen Sie mit einer einzelnen Veröffentlichung oder einem Podcast-Spot.</p><ol class="journey-steps"><li><span>1</span><div><strong>Den Anlass schärfen</strong><p>Welche Frage Ihrer Zielgruppe können Sie beantworten?</p></div></li><li><span>2</span><div><strong>Das passende Format wählen</strong><p>Ein Fachbeitrag zum Nachlesen oder ein kurzer Impuls zum Zuhören.</p></div></li><li><span>3</span><div><strong>Im richtigen Umfeld erscheinen</strong><p>Im VTM-Magazin mit Newsletter und Social Media oder im Podcast von Insurance Monday.</p></div></li></ol><div class="journey-price-options"><a href="#konfigurator" data-add="einzelartikel"><span>Fachbeitrag im VTM</span><strong>2.000 € <small>pro Artikel</small></strong><b aria-hidden="true">+</b></a><a href="#konfigurator" data-add="podcast-ads"><span>Podcast-Spot in 3 Episoden</span><strong>2.500 € <small>pro Paket</small></strong><b aria-hidden="true">+</b></a></div><a class="journey-more" href="#angebotsfinder" data-find-goal="sichtbarkeit">Alle Wege zu mehr Sichtbarkeit vergleichen ↗</a></div>
         </article>
         <article class="journey-panel" id="weg-expertise" aria-labelledby="tab-expertise">
-          <div class="journey-art audio-art"><img src="assets/format-podcast.webp" alt="Symbolbild: Studiomikrofon und Kopfhörer für eine Podcast-Aufnahme" width="1200" height="800" loading="lazy"><span class="image-disclosure">Symbolbild · KI-generiert</span><div class="art-note"><span>VTM + Insurance Monday</span><strong>Ein Thema.<br>Mehr Perspektiven.</strong></div><div class="audio-cover"><img src="assets/partner-insurance-monday.jpg" alt="Insurance Monday Podcast" width="640" height="640" loading="lazy"><span>Raum für<br>Ihre Erfahrung.</span></div></div>
+          <div class="journey-art audio-art"><img src="assets/format-podcast.webp" alt="Symbolbild: Studiomikrofon und Kopfhörer für eine Podcast-Aufnahme" width="1200" height="800" loading="lazy"><span class="image-disclosure">Symbolbild · KI-generiert</span><div class="art-note"><span>VTM + Insurance Monday</span><strong>Ein Thema.<br>Mehr Perspektiven.</strong></div><div class="audio-cover"><img src="assets/insurance-monday-cover-guidelines.png" alt="Insurance Monday Podcast" width="640" height="640" loading="lazy"><span>Raum für<br>Ihre Erfahrung.</span></div></div>
           <div class="journey-copy"><p class="eyebrow">Zusammenhänge verständlich machen</p><h3>Ihre Lösung braucht<br>mehr als eine Schlagzeile.</h3><p>Wenn Ihr Thema Erklärung und Belege braucht, geben wir ihm Raum: in einer eigenen Podcast-Episode oder einer Themenkampagne über sechs bis acht Wochen.</p><ol class="journey-steps"><li><span>1</span><div><strong>Verstehen</strong><p>Ein Erklärbeitrag ordnet die Herausforderung ein.</p></div></li><li><span>2</span><div><strong>Belegen</strong><p>Eine Praxisfallstudie oder ein Interview zeigt, wie Ihr Ansatz funktioniert.</p></div></li><li><span>3</span><div><strong>Besprechen</strong><p>Ein moderiertes Webinar öffnet die Diskussion; Newsletter und LinkedIn begleiten das Thema.</p></div></li></ol><p class="journey-scope">So ist die VTM-Themenkampagne aufgebaut. Eine Podcast-Episode ist separat buchbar.</p><div class="journey-price-options"><a href="#konfigurator" data-add="podcast-episode"><span>Eigene Podcast-Episode</span><strong>3.500 € <small>pro Episode</small></strong><b aria-hidden="true">+</b></a><a href="#konfigurator" data-add="themenkampagne"><span>Themenkampagne · 6–8 Wochen</span><strong>9.000 € <small>einmalig</small></strong><b aria-hidden="true">+</b></a></div><a class="journey-more" href="#angebotsfinder" data-find-goal="expertise">Kampagnen und laufende Partnerschaften vergleichen ↗</a></div>
         </article>
         <article class="journey-panel" id="weg-dialog" aria-labelledby="tab-dialog">
-          <div class="journey-art event-art"><video class="journey-video" muted loop playsinline preload="none" poster="assets/experts-poster.webp" aria-label="Symbolszene von 25 EXPERTS: fachlicher Austausch am gemeinsamen Tisch"><source src="assets/experts-dialog.webm" type="video/webm"></video><span class="image-disclosure">Symbolszene · 25 EXPERTS · KI-generiert</span><div class="art-note"><img src="assets/25experts-logo-horizontal-on-dark.svg" alt="25 EXPERTS" width="360" height="80" loading="lazy"><strong>Ein Tisch.<br>Viele Perspektiven.</strong></div><button class="event-motion js-only" type="button" aria-pressed="true">Szene abspielen</button><div class="event-edition"><span>Nächste Edition</span><strong>Change Management</strong><span>2./3. Dezember 2026 · Köln</span></div></div>
+          <div class="journey-art event-art"><video class="journey-video" muted loop playsinline preload="none" poster="assets/experts-poster.webp" aria-label="Symbolszene von 25 EXPERTS: fachlicher Austausch am gemeinsamen Tisch"><source src="assets/experts-dialog.webm" type="video/webm"></video><span class="image-disclosure">Symbolszene · 25 EXPERTS · KI-generiert</span><div class="art-note"><img src="assets/25experts-logo-guidelines.png" alt="25 EXPERTS" width="360" height="80" loading="lazy"><strong>Ein Tisch.<br>Viele Perspektiven.</strong></div><button class="event-motion js-only" type="button" aria-pressed="true">Szene abspielen</button><div class="event-edition"><span>Nächste Edition</span><strong>Change Management</strong><span>2./3. Dezember 2026 · Köln</span></div></div>
           <div class="journey-copy"><p class="eyebrow">Persönlich weiterkommen</p><h3>Die besten Fragen<br>entstehen im Gespräch.</h3><p>Erreichen Sie Menschen im direkten Austausch: digital im moderierten Webinar, bei Ihrer eigenen Veranstaltung oder als Hauptsponsor einer Edition von 25 EXPERTS.</p><ol class="journey-steps"><li><span>1</span><div><strong>Das gemeinsame Thema</strong><p>25 EXPERTS bringt 25 ausgewählte Verantwortliche aus der Versicherungswirtschaft zusammen.</p></div></li><li><span>2</span><div><strong>Ihre Erfahrung am Tisch</strong><p>Als Hauptsponsor der Change-Management-Edition bringen Sie einen abgestimmten Praxisimpuls ein.</p></div></li><li><span>3</span><div><strong>Zeit für persönliche Gespräche</strong><p>Anderthalb Tage mit Arbeitsphasen, Aperitif und Dinner. Zwei Sponsor-Tickets sind enthalten.</p></div></li></ol><div class="journey-price-options"><a href="#konfigurator" data-add="fachwebinar"><span>Moderiertes Webinar · 45 Minuten</span><strong>4.500 € <small>pro Webinar</small></strong><b aria-hidden="true">+</b></a><a href="#konfigurator" data-add="experts-sponsoring"><span>25 EXPERTS · Hauptsponsoring</span><strong>8.500 € <small>Change-Management-Edition</small></strong><b aria-hidden="true">+</b></a></div><a class="journey-more" href="#angebotsfinder" data-find-goal="dialog">Events, Webinare und Begleitung vergleichen ↗</a><a class="event-source" href="https://25-experts.de/editionen/change-management/" target="_blank" rel="noopener">Edition und Programm bei 25 EXPERTS ansehen ↗</a></div>
         </article>
         <p class="journey-tax">Alle Preise netto, zuzüglich gesetzlicher Umsatzsteuer. Die Auswahl ist eine unverbindliche Anfrage. Verfügbarkeit und fachliche Passung des Hauptsponsorings bestätigen wir persönlich.</p>
@@ -1341,7 +1333,7 @@
         <div class="grid-12">
           <div class="col-5 reveal">
             <div class="cover">
-              <img src="assets/partner-insurance-monday.jpg" alt="Cover des Insurance Monday Podcasts" width="640" height="640" loading="lazy" decoding="async">
+              <img src="assets/insurance-monday-cover-guidelines.png" alt="Cover des Insurance Monday Podcasts" width="640" height="640" loading="lazy" decoding="async">
             </div>
             <div class="kennzahl-hell">
               <span class="zahl">35.000</span>
@@ -1426,7 +1418,7 @@
       <div class="wrap">
         <div class="experts-intro">
           <div><p class="kicker">04 · Persönlicher Austausch</p>
-            <img class="experts-logo" src="assets/25experts-logo-horizontal-on-dark.svg" alt="25 EXPERTS" width="360" height="80" loading="lazy">
+            <img class="experts-logo" src="assets/25experts-logo-guidelines.png" alt="25 EXPERTS" width="360" height="80" loading="lazy">
             <h2 id="experts-title">Expertise einbringen.<br>Persönliche Beziehungen aufbauen.</h2>
             <p class="lead">25 EXPERTS bringt 25 ausgewählte Verantwortliche aus der Versicherungswirtschaft zusammen. Im Mittelpunkt stehen konkrete Erfahrungen, offene Fragen und die gemeinsame Arbeit an einem relevanten Branchenthema.</p>
             <p class="experts-quote">Ein Thema. Anderthalb Tage. Zeit für die Fragen, die zählen.</p>

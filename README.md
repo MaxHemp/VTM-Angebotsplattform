@@ -5,7 +5,8 @@ https://angebote.versicherungstech-magazin.de/. HTML, CSS und Vanilla JavaScript
 kein Framework. Die lokal gebündelte 3D-Szene wird eingecheckt; für die Veröffentlichung ist kein Build-Schritt erforderlich.
 
 Gestaltungsentscheidungen, Recherchequellen und Pflege der interaktiven Bühne:
-[DESIGN.md](DESIGN.md).
+[DESIGN.md](DESIGN.md). Die verbindlichen Markenwerte aus v6.2 und die Herkunft
+der Original-Logos und des Podcast-Covers stehen in [BRAND.md](BRAND.md).
 
 ## Angebot
 
