@@ -25,6 +25,23 @@ fs.mkdirSync(output, {recursive:true});
   const reset=async()=>page.locator('#reset-config').click();
   try {
     await page.goto(base,{waitUntil:'networkidle'});
+    const studio=await page.locator('.studio-hero').count()===1;
+    if(studio) {
+      const motion=page.getByRole('button',{name:'Reduzierte Bewegung aktiv',exact:true});
+      assert(await motion.isDisabled(),'reduced-motion preference disables decorative motion');
+      await page.emulateMedia({reducedMotion:'no-preference'});
+      await page.waitForFunction(()=>document.querySelector('.studio-hero').dataset.motion==='on');
+      await page.getByRole('button',{name:'Animation pausieren',exact:true}).click();
+      assert.equal(await page.getByRole('button',{name:'Animation fortsetzen',exact:true}).getAttribute('aria-pressed'),'true');
+      assert.equal(await page.locator('.studio-wave i').first().evaluate(e=>getComputedStyle(e).animationPlayState),'paused');
+      await page.getByRole('button',{name:'Animation fortsetzen',exact:true}).click();
+      await page.locator('#konfigurator').scrollIntoViewIfNeeded();
+      await page.waitForFunction(()=>document.querySelector('.studio-hero').classList.contains('is-offscreen'));
+      assert.equal(await page.locator('.studio-wave i').first().evaluate(e=>getComputedStyle(e).animationPlayState),'paused','offscreen animations stop');
+      await page.emulateMedia({reducedMotion:'reduce'});
+      await page.waitForFunction(()=>document.querySelector('.studio-hero').dataset.motion==='off');
+      await page.evaluate(()=>scrollTo(0,0));
+    }
     // Discovery must lead small-budget visitors to actual selectable offers.
     const visibleOffers=()=>page.locator('.discovery-card:not([hidden])').evaluateAll(cards=>cards.map(c=>c.dataset.offer));
     assert.equal(await page.locator('.discovery-card').count(),15);
@@ -147,6 +164,10 @@ fs.mkdirSync(output, {recursive:true});
       await page.setViewportSize({width,height:1000});
       const overflow=await page.evaluate(()=>Array.from(document.querySelectorAll('body *')).filter(e=>e.getBoundingClientRect().right>innerWidth+1 && getComputedStyle(e).position!=='fixed').slice(0,12).map(e=>({tag:e.tagName,cls:e.className,text:e.textContent.trim().slice(0,60)})));
       assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No horizontal overflow at '+width+': '+JSON.stringify(overflow));
+      if(studio) {
+        await page.evaluate(()=>scrollTo(0,0));
+        await page.screenshot({path:path.join(output,'studio-'+width+'.png')});
+      }
       await page.locator('#angebotsfinder').scrollIntoViewIfNeeded();
       await page.evaluate(()=>scrollTo(0,document.getElementById('angebotsfinder').offsetTop-100));
       await page.screenshot({path:path.join(output,'finder-'+width+'.png')});
@@ -173,6 +194,10 @@ fs.mkdirSync(output, {recursive:true});
     assert.equal(await staticPage.locator('.offer-check').first().isVisible(),false);
     assert.equal(await staticPage.locator('.discovery-card:visible').count(),15);
     assert.equal(await staticPage.locator('#finder-filters').isVisible(),false);
+    if(studio) {
+      assert.equal(await staticPage.locator('.studio-motion').isVisible(),false);
+      assert.equal(await staticPage.locator('.studio-hero h1').isVisible(),true);
+    }
     await nojs.close();
     console.log('PASS: content, anchors, 15 offers, single services, prices, editions, custom quotes, deduplication notes, persistence, malformed storage, keyboard selection, copy, form validation, mocked success/failure, responsive layouts and no-JS fallback. No real inquiries sent.');
   } finally { await browser.close(); }

@@ -3,7 +3,7 @@
   "private": true,
   "version": "3.0.0",
   "scripts": {
-    "sync": "node scripts/sync-catalog.mjs",
+    "sync": "node scripts/sync-catalog.mjs studio.html",
     "test": "node tests/configurator.cjs"
   },
   "devDependencies": {
