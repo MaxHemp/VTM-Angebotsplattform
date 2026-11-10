@@ -31,14 +31,14 @@
   .spatial-stage canvas { display:block; position:absolute; inset:0; width:100%; height:100%; }
   .stage-poster { width:100%; height:100%; object-fit:contain; transition:opacity .4s; }
   .spatial-stage[data-renderer="webgl"] .stage-poster { opacity:0; pointer-events:none; }
-  .stage-label { position:absolute; z-index:2; transform:translate(-50%,-100%); white-space:nowrap; background:#13284bd9; color:#dde9fc; border:1px solid #ffffff25; backdrop-filter:blur(10px); border-radius:30px; padding:.45rem .65rem; font:500 .6rem var(--vtm-font-text); box-shadow:0 4px 20px #0002; cursor:pointer; }
+  .stage-label { position:absolute; z-index:2; transform:translate(-50%,-100%); white-space:nowrap; background:transparent; color:#bdcce4; border:0; border-bottom:1px solid #a1b5d344; border-radius:0; padding:.45rem .1rem; font:500 .58rem var(--vtm-font-text); letter-spacing:.02em; cursor:pointer; }
   .stage-label span { color:#FFD700; padding-left:.6rem; }
-  .stage-label:hover { background:#1F4FA3; color:#fff; }
+  .stage-label:hover { border-color:#FFD700; color:#fff; }
   .stage-label[data-stage-label="0"] { left:23%; top:30%; }
   .stage-label[data-stage-label="1"] { left:53%; top:25%; }
   .stage-label[data-stage-label="2"] { left:76%; top:55%; }
   .spatial-stage:not([data-renderer="webgl"]) .stage-label { display:none; }
-  .stage-toolbar { position:relative; z-index:2; display:flex; gap:1rem; justify-content:space-between; align-items:center; margin:-2rem 4rem 1rem 3rem; color:#8196b9; font-size:.55rem; }
+  .stage-toolbar { position:relative; z-index:2; display:flex; gap:1rem; justify-content:space-between; align-items:center; margin:.25rem 4rem 1rem 3rem; color:#8196b9; font-size:.55rem; }
   .stage-toolbar button { font:inherit; color:#c5d2e8; background:none; border:0; border-bottom:1px solid #ffffff40; padding:.4rem 0; cursor:pointer; flex:none; }
   .stage-toolbar button:disabled { color:#8196b9; cursor:default; }
   .stage-navigation { padding-bottom:2rem; }

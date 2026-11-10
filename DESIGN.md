@@ -23,9 +23,12 @@
 
 ## Aufbau
 
-1. Räumliche Formatvisualisierung: digitales Magazin, Studiomikrofon und ein
-   Tisch mit 25 Plätzen. Vier anwählbare Blickwinkel, Drehen per Zeiger,
-   Kamerafahrten. Die Szene visualisiert Formate und ist kein Produktfoto.
+1. Räumliche Studioansicht: ein digitales Display mit VTM-Inhalten, ein
+   detailliertes Broadcast-Mikrofon am Gelenkarm und ein Bildmotiv von 25 EXPERTS.
+   Reale Größenverhältnisse, eine niedrige Kameraposition und Flächenlichter
+   ersetzen die frühere Miniaturbühne. Vier anwählbare Blickwinkel; die
+   Nahansichten stellen das jeweilige Medium einzeln frei. Die Szene visualisiert
+   Formate und ist kein Produktfoto.
 2. Drei Besuchswege: Sichtbarkeit, fachliche Vertiefung, persönliche Gespräche.
    Jede Ansicht erklärt Anlass, Ablauf und konkrete passende Einstiege.
    Einzelleistungen und große Programme haben gleichberechtigte Zugänge.
@@ -57,7 +60,7 @@
 ## Pflege und Prüfung
 
 `pnpm install`, anschließend `pnpm run build:experience` bei Änderungen an
-`scripts/experience.mjs` oder `scripts/spatial.mjs`. Das gebündelte Ergebnis in
+`scripts/experience.mjs`, `scripts/spatial.mjs` oder `scripts/studio-objects.mjs`. Das gebündelte Ergebnis in
 `assets/` wird eingecheckt; GitHub Pages benötigt keinen Build-Schritt.
 
 `node scripts/sync-catalog.mjs` nach Katalogänderungen; anschließend
@@ -69,3 +72,18 @@ Leistungsänderungen ebenfalls prüfen.
 Formular und Layout. `node tests/experience.cjs` prüft 3D-Blickwinkel,
 Bewegungssteuerung, Besuchswege, Eventvideo, mobile Ansichten und WebGL-Ausfall.
 Formularanfragen werden lokal abgefangen; es werden keine echten Anfragen versandt.
+
+## Material- und Kameraüberarbeitung, 10. November 2026
+
+Die elliptische Bühne, der Goldrand, das dicke Buch und die Miniaturbestuhlung
+sind entfernt. Die Studioobjekte sind ungefähr im Maßstab 1 Einheit = 10 cm
+modelliert. Das Mikrofon hat eine eigene Schaumstoffstruktur, ein pulverbeschichtetes
+Gehäuse, Befestigungsschrauben, einen Bügel, einen verbundenen Gelenkarm und
+Kabel. Das Display besteht aus einem schlanken Metallkörper, einer selbstleuchtenden
+Bildfläche und einer separaten, schwach reflektierenden Glasschicht. 25 EXPERTS
+wird durch ein Bildmotiv des Formats dargestellt, nicht als verkleinerter Raum.
+
+Flächenlichter, eine kontrollierte Umgebungsbeleuchtung und weiche Bodenschatten
+sorgen für die Materialzeichnung. Die Objekte bewegen sich nicht gegeneinander;
+der Blickwinkel reagiert zurückhaltend auf die Eingabe. Ein neues, versioniertes
+Standbild zeigt dieselbe Szene auch bei fehlendem WebGL oder JavaScript.

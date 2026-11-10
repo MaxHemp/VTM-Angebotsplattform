@@ -25,6 +25,7 @@ fs.mkdirSync(output,{recursive:true});
       await page.locator(`[data-scene="${scene}"]`).click();
       assert.equal(await page.locator(`[data-scene="${scene}"]`).getAttribute('aria-pressed'),'true');
       assert.equal(await page.locator(`[data-stage-caption="${scene}"]`).isVisible(),true);
+      await page.locator('.spatial-stage').screenshot({path:path.join(output,`studio-view-${scene}.png`)});
     }
     if(process.env.GENERATE_POSTERS){
       await sharp(await page.locator('.spatial-stage').screenshot()).webp({quality:88}).toFile(path.join(__dirname,'../assets/stage-poster.webp'));
