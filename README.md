@@ -1,8 +1,11 @@
-# VTM Angebotsplattform · Angebotsfinder und Leistungskonfigurator 4.0
+# VTM Angebotsplattform · Geführte Angebotsauswahl und 3D-Einstieg
 
 Statische Angebotsseite für VTM, Insurance Monday und 25 EXPERTS unter
 https://angebote.versicherungstech-magazin.de/. HTML, CSS und Vanilla JavaScript;
-kein Framework und kein Build-Schritt für die Veröffentlichung.
+kein Framework. Die lokal gebündelte 3D-Szene wird eingecheckt; für die Veröffentlichung ist kein Build-Schritt erforderlich.
+
+Gestaltungsentscheidungen, Recherchequellen und Pflege der interaktiven Bühne:
+[DESIGN.md](DESIGN.md).
 
 ## Angebot
 
@@ -110,26 +113,19 @@ Der Einstieg bietet drei Wege: Einzelleistungen, Themenkampagne und laufende Par
 
 ## Visuelle Gestaltung
 
-Die Hauptseite und `studio.html` verwenden den redaktionellen Auftritt aus
-`assets/publication.css`, aufbauend auf den gemeinsamen Styles. Nachtblau,
-Kobalt, Weiß und Signalgelb #FFD700 sowie die lokalen VTM-Schriften bleiben
-bestehen. Der Header zeigt die Angebotsübersicht, eine tatsächlich veröffentlichte
-VTM-Kolumne mit Autorenporträt sowie die offizielle Podcast-Marke. Die Titelzeile
-verlinkt auf den Originalbeitrag. Die Preise sind direkt im Einstieg sichtbar.
+Die Hauptseite verwendet `assets/experience.css` auf der bestehenden VTM-Basis.
+Der räumliche Einstieg wird aus `scripts/spatial.mjs` mit Three.js gebaut und
+lokal ausgeliefert. Die drei geführten Besuchswege, die kompakte Preisübersicht
+und die Auswahlprüfung sind in [DESIGN.md](DESIGN.md) beschrieben. Bildquellen
+und Kennzeichnungen stehen in [assets/ARTWORK.md](assets/ARTWORK.md).
 
-Die Leistungsübersicht enthält keine generierten Symbolbilder. Alle Leistungen
-sind in einem einheitlichen zweispaltigen Satzspiegel mit Format, Beschreibung,
-Preis und Aktion dargestellt; mobil untereinander. Die bisherige schwebende
-Medienkomposition, Wellenform und Parallax-Steuerung sind nicht mehr eingebunden.
-Vorhandene Studio- und KI-Bilddateien bleiben ungenutzte historische Ressourcen.
-Die ruhigere frühere Headeransicht bleibt unter `klassisch.html` erreichbar.
+Nach Änderungen an der interaktiven Szene: `pnpm run build:experience`.
+Nach Katalogänderungen: `pnpm run sync`. Die bereits gebauten Assets werden
+mit eingecheckt. `studio.html` und `klassisch.html` sind mit `noindex` versehene
+Aliasse derselben aktuellen Seite, damit ältere Links keine veraltete Fassung zeigen.
 
-Die echte Autorenaufnahme `vtm-johannes-oberhofer.jpg` und die offizielle
-Podcast-Marke `insurance-monday-mark.png` stammen von der bestehenden öffentlichen
-VTM-Über-uns-Seite. Weitere Hinweise stehen in `assets/ARTWORK.md`.
-
-`npm run sync` synchronisiert die Katalogdaten aller drei Seiten. Alternativ:
-`node scripts/sync-catalog.mjs studio.html klassisch.html`. Die Browserprüfung
-`node tests/configurator.cjs` prüft die Hauptseite; `TEST_URL` kann eine andere
-Ansicht auswählen. Referenzbilder für Header, Angebotsübersicht und Mobilansichten
-werden in `test-results/` abgelegt. Formularanfragen werden im Test abgefangen.
+`node tests/configurator.cjs` prüft Preise, Auswahl und Formular.
+`node tests/experience.cjs` prüft die räumliche Darstellung und die Besuchswege.
+`TEST_URL` kann eine andere Vorschauadresse auswählen; Referenzbilder liegen
+in `test-results/`. Formularanfragen werden abgefangen. Die optionale
+Standbildgenerierung (`GENERATE_POSTERS=1`) benötigt zusätzlich das Paket `sharp`.

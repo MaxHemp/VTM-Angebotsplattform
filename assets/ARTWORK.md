@@ -1,22 +1,26 @@
-# Aktive Materialien
+# Aktive Materialien (10. November 2026)
 
-Der aktuelle Hauptauftritt verwendet keine KI-generierten Angebotsbilder.
+- `stage-poster.webp`: Standbild der eigens implementierten Three.js-Szene.
+  Magazin, Mikrofon und Tisch sind Formatvisualisierungen, keine Produktfotos.
+- `experts-dialog.webm`: Original-Symbolszene von 25 EXPERTS:
+  https://25-experts.de/assets/video/hero-teilnehmer-v1-720.webm
+  Ausgeliefert erst bei sichtbarer Eventansicht. Als KI-generierte Symbolszene
+  gekennzeichnet. `experts-poster.webp` ist ein extrahiertes Standbild daraus.
+- `format-article.webp` und `format-podcast.webp`: bereits vorhandene generierte
+  Symbolbilder. Sichtbare Kennzeichnung bei beiden Besuchswegen. Sie zeigen
+  keine konkreten Mitarbeitenden oder Räumlichkeiten von VTM.
+- `partner-insurance-monday.jpg`: vorhandenes offizielles Podcast-Artwork.
+- VTM- und 25-EXPERTS-Logos sowie `kontakt-hempel.webp`: bestehende Markenmaterialien.
+- Lokale Schriftdateien einschließlich OFL-Lizenzen in `fonts/`.
+- Three.js 0.187.0 (MIT), Lizenz in `vendor/THREE-LICENSE.txt`, lokal gebündelt.
 
-- `vtm-johannes-oberhofer.jpg`: echtes Autorenporträt von der öffentlichen
-  VTM-Über-uns-Seite, Original unverändert übernommen:
-  https://ueberuns.versicherungstech-magazin.de/assets/img/team/johannes-oberhofer-320.jpg
-- `insurance-monday-mark.png`: offizielle Podcast-Marke von derselben Seite:
-  https://ueberuns.versicherungstech-magazin.de/assets/img/partners/insurance-monday-135.png
-- Redaktioneller Originalbeitrag im Header:
-  https://www.versicherungstech-magazin.de/die-ki-baut-das-werkzeug-beurteilen-musst-du-es-selbst/
+Nicht mehr verwendet: das Autorenporträt und der konkrete Kolumnenbeitrag aus
+ dem vorherigen Header, die älteren abstrakten Stillleben und Skylinebilder.
 
-Nachfolgende generierte Motive sind historische, aktuell ungenutzte Ressourcen.
+Corporate-Farben: Navy #0A1638, Kobalt #1F4FA3, Signalgelb #FFD700.
 
-# Frühere Formatbilder
-
-Active images are generic symbolic photos generated with the built-in image generation tool, not actual VTM employees, studios, webinars or studies. Each carries the caption “Symbolbild · KI-generiert”. The 25 EXPERTS card uses the existing official partner logo. WebP assets are resized to 1000px at quality 82; original PNGs remain in the generation library. Former editorial-*.webp still lifes remain as unused legacy assets.
-
-Brand reference: https://www.versicherungstech-magazin.de/, inspected 9 November 2026. Observed core colors: #0A1638 (navy), #1F4FA3 (cobalt), #FFFFFF (white), #F3F7FD (pale blue). Bricolage Grotesque is used for headings, Instrument Sans for editorial components. Local font files and OFL licenses are included in fonts/.
+Die nachfolgenden Prompts dokumentieren die bereits vorhandenen Formatbilder.
+Nur Artikel und Podcast werden aktuell eingesetzt.
 
 ## Final generation prompts
 

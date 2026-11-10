@@ -131,15 +131,17 @@ function featuredHTML(item) {
 function discoveryHTML(item) {
   const channel = item.group === 'podcast' ? 'Insurance Monday' : item.group === 'experts' ? '25 EXPERTS' : 'VTM';
   const note = `${esc(item.unitSuffix)} · ${esc(item.priceMeta || '')}`;
-  return `<article class="discovery-card" data-offer="${item.id}">
+  const destination = ({'podcast-ads':'format-ads','podcast-episode':'format-episode','quartalssponsoring':'format-sponsoring','strategische-partnerschaft':'strategie'})[item.id] || (item.group === 'extras' ? 'ergaenzungen' : `angebot-${item.id}`);
+  return `<article class="discovery-card" data-offer="${item.id}" data-channel="${item.group}">
+    <details>
+    <summary><span class="catalog-channel">${channel}</span><div class="catalog-title"><h3>${esc(item.name)}</h3><span>${esc(item.format)}</span></div><div class="catalog-price${item.unit === null ? ' is-custom' : ''}"><strong>${item.unit === null ? 'Individuelles Angebot' : nb(fmt.format(item.unit))}</strong><small>${esc(item.unitSuffix)}</small></div><span class="catalog-toggle" aria-hidden="true">+</span></summary>
     <div class="discovery-content">
-    <p class="discovery-format">${channel} <span aria-hidden="true">/</span> ${esc(item.format)}</p>
-    <h3>${esc(item.name)}</h3><p class="discovery-description">${esc(item.desc)}</p>
-    <p class="discovery-price">${item.unit === null ? 'Individuelles Angebot' : nb(fmt.format(item.unit))}</p>
+    <p class="discovery-description">${esc(item.desc)}</p>
+    <ul class="catalog-includes">${item.includes.map(i=>`<li>${esc(i)}</li>`).join('')}</ul>
     <p class="discovery-unit">${note}</p>
     <a class="btn btn-secondary" href="#konfigurator" data-add="${item.id}" aria-label="${esc(item.name)} für meine Anfrage auswählen">Für meine Anfrage auswählen <span aria-hidden="true">↗</span></a>
-    <a class="discovery-details" href="#gruppe-${item.group}">Leistungsumfang ansehen ↓</a>
-    </div>
+    <a class="discovery-details" href="#${destination}">Leistungsumfang im Detail ↓</a>
+    </div></details>
   </article>`;
 }
 
