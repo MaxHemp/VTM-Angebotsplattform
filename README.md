@@ -13,7 +13,7 @@ der Original-Logos und des Podcast-Covers stehen in [BRAND.md](BRAND.md).
 | Bereich | Leistung | Preis netto |
 |---|---|---|
 | VTM | Themenkampagne, 6–8 Wochen | 9.000 € einmalig |
-| VTM | VTM Marktpositionierung, Jahresprogramm | 3.000 € pro Monat, quartalsweise kündbar |
+| VTM | Thought Leadership Kampagne, Jahresprogramm | 3.000 € pro Monat, quartalsweise kündbar |
 | VTM Einzelleistung | Einzelartikel inkl. Newsletter-Versand und Social Media | 2.000 € pro Artikel |
 | VTM Einzelleistung | Moderiertes Webinar, 45 Minuten, inkl. Lead-Liste | 4.500 € pro Webinar |
 | VTM Einzelleistung | Markt-Check (Marktbefragung, Nutzungsrecht der Ergebnisse) | 4.800 € pro Befragung |
@@ -55,7 +55,7 @@ Konfigurator dieselben Gruppen und individuellen Preisarten unterstützen.
 
 ## Konfigurator
 
-Einmalige Festpreise werden nach Menge gerechnet. Laufende Leistungen verwenden `billing: "monthly"`: VTM Marktpositionierung 3.000 €/Monat, Podcast-Sponsoring 10.000 €/Monat und Führungskräfte-Kommunikation 1.500 €/Person/Monat. Monatsraten werden niemals zu Jahres- oder Laufzeitsummen hochgerechnet. Einmalige und monatliche Beträge werden in Zusammenfassung, mobiler Leiste, Kopiertext und Formular getrennt ausgewiesen. Der Leistungsumfang von VTM Marktpositionierung beschreibt zwölf Monate Zusammenarbeit; die Pakete sind quartalsweise kündbar. `unit: null`
+Einmalige Festpreise werden nach Menge gerechnet. Laufende Leistungen verwenden `billing: "monthly"`: Thought Leadership Kampagne 3.000 €/Monat, Podcast-Sponsoring 10.000 €/Monat und Führungskräfte-Kommunikation 1.500 €/Person/Monat. Monatsraten werden niemals zu Jahres- oder Laufzeitsummen hochgerechnet. Einmalige und monatliche Beträge werden in Zusammenfassung, mobiler Leiste, Kopiertext und Formular getrennt ausgewiesen. Der Leistungsumfang der Thought Leadership Kampagne beschreibt zwölf Monate Zusammenarbeit; die Pakete sind quartalsweise kündbar. `unit: null`
 bezeichnet ein individuelles Angebot, niemals einen Preis von 0 €. Bei Editionen
 entscheidet der ausgewählte Eintrag über Preis, Beschreibung und enthaltene
 Leistungen. Die bekannte Preissumme und offene Positionen erscheinen konsistent
@@ -129,7 +129,7 @@ Aliasse derselben aktuellen Seite, damit ältere Links keine veraltete Fassung z
 `node tests/experience.cjs` prüft die räumliche Darstellung und die Besuchswege.
 `node tests/partnership-content.cjs` prüft das einmalige Hochzählen der KPIs,
 statische Endwerte für reduzierte Bewegung und ohne JavaScript, die Nummerierung
-05/06 sowie VTM Marktpositionierung und den Kontakt Maximilian Dahmen.
+05/06 sowie Thought Leadership Kampagne und den Kontakt Maximilian Dahmen.
 `node tests/header-motion.cjs` prüft mit echten Mausbewegungen und gerenderten
 Bildvergleichen die unabhängige Reaktion aller drei Medien, ruhende Nachbarn,
 Ziehen und Loslassen, Pause, reduzierte Bewegung und die höhere Bildauflösung.
