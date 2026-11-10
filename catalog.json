@@ -110,7 +110,7 @@
       "group": "einzel",
       "format": "Austausch mit der Community",
       "name": "Moderiertes Webinar",
-      "desc": "Wir laden unsere Community zu einem gemeinsamen 45-minütigen Webinar ein. Sie erhalten die Lead-Liste der Interessenten im Nachgang.",
+      "desc": "Besprechen Sie Ihr Thema in einem gemeinsamen 45-minütigen Webinar mit der VTM-Community. Im Nachgang erhalten Sie die Kontaktdaten der Interessenten, die der Weitergabe zugestimmt haben.",
       "includes": [
         "Themenkonzeption und Moderation durch VTM",
         "Einladung der VTM-Community",
@@ -217,7 +217,7 @@
       "group": "podcast",
       "format": "Podcast-Werbung",
       "name": "Podcast-Werbespot (Pre-Roll)",
-      "desc": "Ihr Spot am Anfang von drei Episoden, dort, wo die Aufmerksamkeit am höchsten ist.",
+      "desc": "Ihr Spot läuft direkt vor dem Inhalt von drei Episoden bei Insurance Monday.",
       "includes": [
         "Produktion des Spots durch das Insurance-Monday-Team",
         "Ausspielung als Pre-Roll in 3 Episoden",

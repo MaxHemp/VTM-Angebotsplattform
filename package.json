@@ -3,10 +3,14 @@
   "private": true,
   "version": "3.0.0",
   "scripts": {
-    "sync": "node scripts/sync-catalog.mjs studio.html klassisch.html",
-    "test": "node tests/configurator.cjs"
+    "sync": "node scripts/sync-catalog.mjs && node scripts/sync-aliases.mjs",
+    "test": "node tests/configurator.cjs",
+    "build:experience": "node scripts/build-experience.mjs",
+    "test:experience": "node tests/experience.cjs"
   },
   "devDependencies": {
-    "playwright": "1.62.1"
+    "esbuild": "0.25.12",
+    "playwright": "1.62.1",
+    "three": "0.187.0"
   }
 }
