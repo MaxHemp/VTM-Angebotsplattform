@@ -113,9 +113,11 @@ Der Einstieg bietet drei Wege: Einzelleistungen, Themenkampagne und laufende Par
 `assets/editorial.css` folgt der aktuellen Magazinwebsite: Nachtblau #0A1638,
 Kobalt #1F4FA3, Weiß #FFFFFF und Eisblau #F3F7FD. Bricolage Grotesque und
 Instrument Sans werden lokal geladen; die freien Schriftlizenzen liegen bei.
-Gold #D9A53C ergänzt die blau-weiße Grundgestaltung gezielt als Signalfarbe auf
-dunklen Angebotskarten und bei Hervorhebungen; auf hellen Flächen wird der
-kontrastreichere Goldton #8A6512 verwendet.
+Signalgelb #FFD700 entspricht den gelben Signalmarkierungen der aktuellen
+Magazinwebsite (experience.css). Es wird für Schaltflächen auf Nachtblau, die
+primäre Header-Aktion und kleine grafische Markierungen verwendet. Text auf
+hellen Flächen bleibt blau. Der helle Header zeigt Bild und Leistungsversprechen
+nebeneinander; die Reichweite steht kompakt darunter.
 Konkrete Format-Symbolbilder unter `assets/format-*.webp` ersetzen die früheren
 abstrakten Stillleben. Sie werden verzögert geladen und sichtbar als KI-generierte
 Symbolbilder gekennzeichnet. Die 25-EXPERTS-Karte verwendet das vorhandene

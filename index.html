@@ -55,8 +55,8 @@
       --vtm-kobalt-700: #183F85;     /* Hover */
       --vtm-kobalt-hell: #8FB0F0;    /* Text/Links auf Nachtblau */
       --vtm-kobalt-050: #EEF3FC;     /* Auswahlfläche, Icon-Chip */
-      --vtm-gold: #D9A53C;           /* Marker, Punkte, Text auf Nachtblau */
-      --vtm-gold-text: #8A6512;      /* Quellenzeilen auf hellen Flächen (5,3:1) */
+      --vtm-gold: #FFD700;           /* Signalgelb der Magazinwebsite */
+      --vtm-gold-text: #1F4FA3;      /* Quellen auf hellen Flächen bleiben kontrastreich blau */
       --vtm-eis: #F3F7FD;
       --vtm-grau-700: #51607A;       /* Fließtext sekundär (6,4:1) */
       --vtm-grau-500: #6B7A99;       /* nur große Schrift / Deko */
@@ -893,48 +893,31 @@
     </div>
   </nav>
 
-  <!-- =====================================================
-       HERO · Nachtblau-Anker, Skyline zur blauen Stunde
-  ====================================================== -->
-  <header class="hero" aria-labelledby="hero-title">
-    <div class="hero-bild" aria-hidden="true">
-      <picture>
-        <source media="(max-width: 760px)" srcset="assets/format-article.webp">
-        <img src="assets/format-article.webp" alt="" width="1800" height="1005" fetchpriority="high" decoding="async">
-      </picture>
-    </div>
-    <div class="wrap grid-12">
-      <div class="col-7">
-        <p class="kicker">Mediadaten · Leistungen &amp; Preise 2026</p>
-        <h1 id="hero-title">Ihr Ziel. Ihr Budget.<span class="editorial-emphasis">Die passende Bühne.</span></h1>
-        <p class="lead">Erreichen Sie die Versicherungsbranche mit dem Format, das zu Ihnen passt. Ein einzelner Fachbeitrag, ein Gespräch im Podcast oder eine ganze Kampagne: Hier finden Sie Leistungen und Preise auf einen Blick.</p>
-        <p class="unterzeile">Einzelleistungen ab 2.000 € · Kampagnen ab 9.000 €<br><small>Alle Preise netto, zuzüglich gesetzlicher Umsatzsteuer.</small></p>
-        <div class="btn-row">
-          <a class="btn btn-light" href="#angebotsfinder">Passendes Angebot finden</a>
-          <a class="btn btn-ghost-light" href="#konfigurator">Konfigurator öffnen</a>
+  <!-- Editorial opening: clear offer, visible photography, compact reach. -->
+  <header class="hero editorial-header" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="header-story">
+        <div class="header-copy">
+          <p class="kicker">VTM für Unternehmen · Leistungen &amp; Preise 2026</p>
+          <h1 id="hero-title">Ihre Expertise.<br><span>Im Fokus der Branche.</span></h1>
+          <p class="lead">Bringen Sie Ihr Thema zu den Menschen, die Versicherung gestalten. Mit einem Fachbeitrag, einem Podcast-Gespräch oder einer Kampagne über mehrere Kanäle.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#angebotsfinder">Leistungen entdecken <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-secondary" href="#konfigurator">Konfigurator öffnen</a>
+          </div>
+          <p class="header-entry">Einzelleistungen ab <strong>2.000 €</strong> · Kampagnen ab <strong>9.000 €</strong><small>Alle Preise netto, zuzüglich gesetzlicher Umsatzsteuer.</small></p>
         </div>
-        <p class="caption">Symbolbild · Redaktionelle Arbeit · KI-generiert</p>
+        <figure class="header-image">
+          <img src="assets/format-article.webp" alt="" width="1000" height="667" fetchpriority="high" decoding="async">
+          <figcaption>Redaktionelle Arbeit · Symbolbild · KI-generiert</figcaption>
+        </figure>
       </div>
-      <aside class="col-5 kennzahlen" aria-label="Reichweite des VersicherungsTech Magazins">
-        <div class="kennzahl">
-          <span class="zahl">6.000+</span>
-          <span class="einheit">Newsletter-Empfänger</span>
-          <p class="kontext">VTM Briefing, rund 50&nbsp;% Öffnungsrate</p>
-          <div class="balken" role="img" aria-label="Öffnungsrate rund 50 Prozent"><span style="width: 50%;"></span></div>
-        </div>
-        <div class="kennzahl">
-          <span class="zahl">35.000</span>
-          <span class="einheit">Downloads pro Monat</span>
-          <p class="kontext">Insurance Monday Podcast, unser Kooperationspartner</p>
-        </div>
-        <div class="kennzahl">
-          <span class="zahl">20.000+</span>
-          <span class="einheit">LinkedIn-Follower</span>
-          <p class="kontext">VTM-Kanal und persönliche Accounts des Teams</p>
-        </div>
-        <p class="quelle">Quelle: VTM und Insurance Monday · Stand 08/2026</p>
-        <p class="leserschaft"><span class="mono">Leserschaft u. a. bei</span>ERGO, HUK-COBURG, Provinzial, BarmeniaGothaer</p>
+      <aside class="header-reach" aria-label="Reichweite des VersicherungsTech Magazins">
+        <div><strong>6.000+</strong><span>Newsletter-Empfänger</span><small>VTM Briefing · rund 50 % Öffnungsrate</small></div>
+        <div><strong>35.000</strong><span>Podcast-Downloads pro Monat</span><small>Insurance Monday · unser Kooperationspartner</small></div>
+        <div><strong>20.000+</strong><span>LinkedIn-Follower</span><small>VTM-Kanal und persönliche Accounts des Teams</small></div>
       </aside>
+      <p class="header-source">Quelle: VTM und Insurance Monday · Stand 08/2026</p>
     </div>
   </header>
 
