@@ -130,3 +130,7 @@ Aliasse derselben aktuellen Seite, damit ältere Links keine veraltete Fassung z
 `TEST_URL` kann eine andere Vorschauadresse auswählen; Referenzbilder liegen
 in `test-results/`. Formularanfragen werden abgefangen. Die optionale
 Standbildgenerierung (`GENERATE_POSTERS=1`) benötigt zusätzlich das Paket `sharp`.
+
+Bei einem Austausch des Header-Motivs aktualisiert `GENERATE_STAGE_POSTERS=1`
+mit `node tests/experience.cjs` nur die beiden Header-Standbilder. Andere
+Bild- und Videoassets werden dabei nicht neu erzeugt.
