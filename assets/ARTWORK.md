@@ -1,5 +1,9 @@
 # Aktive Materialien (10. November 2026)
 
+- `kontakt-dahmen.png`: vom Herausgeber bereitgestelltes Foto von Maximilian
+  Dahmen, Partnership Manager. Originaldatei unverändert übernommen,
+  400 × 400 Pixel; verwendet in der Kontaktkarte für Partnerschaftsanfragen.
+
 - `vtm-magazin-cover.png`: vom Herausgeber bereitgestelltes Magazinmotiv,
   Originaldatei `Wer den Kunden nicht liest, verliert ihn. (5).png`.
   Unveränderte PNG-Datei, 954 × 1350 Pixel. Im Header vollständig und

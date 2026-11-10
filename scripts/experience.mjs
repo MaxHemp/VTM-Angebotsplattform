@@ -1,3 +1,4 @@
+import './kpi-countup.mjs';
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 const navigation=document.querySelector('.site-nav');
 new ResizeObserver(()=>document.documentElement.style.setProperty('--experience-nav-height',`${navigation.getBoundingClientRect().height}px`)).observe(navigation);
