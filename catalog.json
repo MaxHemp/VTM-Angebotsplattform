@@ -62,9 +62,9 @@
     {
       "id": "themenpartnerschaft",
       "group": "vtm",
-      "format": "Laufende Themenpartnerschaft",
-      "name": "Themenpartnerschaft",
-      "desc": "Ihre Expertise kontinuierlich sichtbar machen und ein Branchenthema vertiefen – mit einem Jahresplan aus vier aufeinander aufbauenden Schwerpunkten. Quartalsweise kündbar.",
+      "format": "Langfristig im Markt verankern",
+      "name": "VTM Marktpositionierung",
+      "desc": "Verankern Sie Ihr Unternehmen mit klarer Expertise im Versicherungsmarkt. Ein auf zwölf Monate angelegter Redaktionsplan verbindet vier Schwerpunkte, fundierte Inhalte und regelmäßigen Austausch. Quartalsweise kündbar.",
       "includes": [
         "Leistungsumfang bei zwölf Monaten Zusammenarbeit:",
         "8 fundierte Veröffentlichungen zu 4 Schwerpunkten",
@@ -75,7 +75,7 @@
       ],
       "unit": 3000,
       "unitSuffix": "pro Monat",
-      "priceMeta": "Quartalsweise kündbar · Jahresprogramm",
+      "priceMeta": "Empfohlen: zwölf Monate · quartalsweise kündbar",
       "max": 1,
       "goals": [
         "expertise",
@@ -393,7 +393,7 @@
       "blocks": [
         {
           "title": "Jahresplanung und vier Quartalsgespräche",
-          "text": "Gemeinsam entwickeln wir ein Jahresthema mit vier aufeinander aufbauenden Schwerpunkten. Neue Entwicklungen und Publikumsresonanz fließen in die weitere Planung ein."
+          "text": "Gemeinsam schärfen wir, wofür Ihr Unternehmen im Versicherungsmarkt stehen soll. Daraus entwickeln wir einen auf zwölf Monate angelegten Plan mit vier aufeinander aufbauenden Schwerpunkten. Neue Entwicklungen und Publikumsresonanz fließen in die weitere Planung ein."
         },
         {
           "title": "Acht fundierte Veröffentlichungen",
@@ -423,7 +423,7 @@
       "benefits": [
         {
           "for": "Für Ihr Unternehmen",
-          "text": "Ein wachsendes Themendossier, wiederkehrende Präsenz und Erkenntnisse aus dem fachlichen Austausch."
+          "text": "Eine klare fachliche Positionierung, wiederkehrende Präsenz bei Ihrer Zielgruppe und ein wachsendes Dossier, das Ihre Expertise nachvollziehbar belegt."
         },
         {
           "for": "Für Leser",
