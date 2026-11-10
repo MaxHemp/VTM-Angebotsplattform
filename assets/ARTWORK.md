@@ -6,9 +6,12 @@
   proportional auf der Magazinfläche dargestellt; kein Beschnitt oder Neusatz.
   SHA-256: `e1faed8a8ffa43f54cc13030e907784be132c6a053fddb40b48ae42b898f65e6`.
   Das vorher programmatisch gesetzte Magazinmotiv wird nicht mehr verwendet.
+  Das 3D-Objekt ist ein geschlossenes Printmagazin mit einem schmalen Papierblock,
+  sichtbaren Blattkanten, bedrucktem Rücken und dezent gewölbtem Satinumschlag.
+  Kein Displayrahmen oder Geräteständer; die bisherige Stellfläche bleibt erhalten.
 
 - `stage-poster.webp`: Standbild der eigens implementierten Three.js-Szene.
-  Digitales Display, Broadcast-Mikrofon und 25-EXPERTS-Bildmotiv sind
+  Printmagazin, Broadcast-Mikrofon und 25-EXPERTS-Bildmotiv sind
   Formatvisualisierungen, keine Produktfotos. Die frühere Miniaturbestuhlung
   und die erhöhte Bühne sind entfernt.
 - `experts-dialog.webm`: Original-Symbolszene von 25 EXPERTS:

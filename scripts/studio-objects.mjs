@@ -19,11 +19,6 @@ export async function createStudioObjects(rig, renderer) {
     s.lineTo(x,y+r);s.quadraticCurveTo(x,y,x+r,y);return s;
   }
   const rounded=(w,h,r,depth)=>new THREE.ExtrudeGeometry(outline(w,h,r),{depth,bevelEnabled:true,bevelSegments:3,steps:1,bevelSize:.008,bevelThickness:.008,curveSegments:12});
-  function roundedFace(w,h,r){
-    const g=new THREE.ShapeGeometry(outline(w,h,r)),p=g.getAttribute('position'),uv=g.getAttribute('uv');
-    for(let i=0;i<p.count;i++)uv.setXY(i,(p.getX(i)+w/2)/w,(p.getY(i)+h/2)/h);
-    return g;
-  }
   async function image(src){return new Promise(resolve=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=()=>resolve(null);i.src=src;});}
   const [magazine,event,eventLogo,podcastCover]=await Promise.all(['assets/vtm-magazin-cover.png','assets/experts-poster.webp','assets/25experts-logo-guidelines.png','assets/insurance-monday-cover-guidelines.png'].map(image));
   if(!magazine)throw new Error('Magazine artwork unavailable');
@@ -35,22 +30,42 @@ export async function createStudioObjects(rig, renderer) {
     const t=new THREE.DataTexture(data,size,size);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(repeat,repeat);t.magFilter=THREE.LinearFilter;t.minFilter=THREE.LinearMipmapLinearFilter;t.generateMipmaps=true;t.needsUpdate=true;return t;
   }
   // Use the supplied magazine artwork directly, with no crop or typesetting.
-  const displayTexture=new THREE.Texture(magazine);displayTexture.colorSpace=THREE.SRGBColorSpace;
-  displayTexture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());displayTexture.needsUpdate=true;
-  const displayWidth=Math.min(2.015,2.86*magazine.width/magazine.height);
-  const displayHeight=displayWidth*magazine.height/magazine.width;
-  const tablet=new THREE.Group();tablet.position.set(-4.25,1.55,0);tablet.rotation.set(-.06,.12,-.025);rig.add(tablet);
-  mesh(rounded(2.18,3.08,.13,.055),graphite,tablet);
-  mesh(new THREE.ShapeGeometry(outline(2.155,3.055,.12)),new THREE.MeshPhysicalMaterial({color:0x020304,metalness:.12,roughness:.18,clearcoat:1,clearcoatRoughness:.12}),tablet,0,0,.064);
-  // A backlit display sits under a separate antireflective glass layer.
-  const screenMaterial=new THREE.MeshBasicMaterial({map:displayTexture,toneMapped:false});
-  mesh(new THREE.PlaneGeometry(displayWidth,displayHeight),screenMaterial,tablet,0,-.014,.068).castShadow=false;
-  mesh(roundedFace(displayWidth,displayHeight,.055),new THREE.MeshPhysicalMaterial({color:0x000000,transparent:true,opacity:.065,roughness:.15,clearcoat:1,clearcoatRoughness:.12,specularIntensity:.25,depthWrite:false}),tablet,0,-.014,.071).castShadow=false;
-  const cameraLens=mesh(new THREE.CircleGeometry(.016,20),new THREE.MeshPhysicalMaterial({color:0x14253c,metalness:.65,roughness:.07,clearcoat:1}),tablet,0,1.464,.074);cameraLens.castShadow=false;
-  box(.026,.23,.025,steel,tablet,-1.1,.83,.017);box(.026,.14,.025,steel,tablet,-1.1,.51,.017);
-  box(.29,.016,.019,black,tablet,0,-1.55,.022);
-  // A discreet rear support, dimensioned like an actual tablet kickstand.
-  const support=box(1.05,2.2,.035,graphite,tablet,0,-.52,-.33);support.rotation.x=-.39;
+  const coverTexture=new THREE.Texture(magazine);coverTexture.colorSpace=THREE.SRGBColorSpace;
+  coverTexture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());coverTexture.needsUpdate=true;
+  // A closed, perfect-bound magazine: about 214 × 303 mm, with a 9 mm paper block.
+  // Its silhouette stays within the previous object, so no medium gains prominence.
+  const magazineWidth=2.14,magazineHeight=magazineWidth*magazine.height/magazine.width,pageDepth=.09;
+  const publication=new THREE.Group();publication.position.set(-4.25,1.55,0);publication.rotation.set(-.035,-.34,-.025);rig.add(publication);
+  const paperCanvas=document.createElement('canvas');paperCanvas.width=128;paperCanvas.height=512;
+  const pc=paperCanvas.getContext('2d');pc.fillStyle='#eeede8';pc.fillRect(0,0,128,512);
+  for(let i=0;i<64;i++){
+    pc.fillStyle=i%5===0?'#c9c9c2':'#dadad3';pc.fillRect(0,i*8,128,i%5===0?2:1);
+  }
+  const paperTexture=texture(paperCanvas);
+  const paper=new THREE.MeshStandardMaterial({color:0xf4f3ed,roughness:.92,metalness:0});
+  const pageEdges=new THREE.MeshStandardMaterial({map:paperTexture,roughness:.92,metalness:0});
+  const topEdges=pageEdges.clone();topEdges.map=paperTexture.clone();topEdges.map.rotation=Math.PI/2;topEdges.map.center.set(.5,.5);topEdges.map.needsUpdate=true;
+  box(magazineWidth-.025,magazineHeight-.025,pageDepth,[pageEdges,paper,topEdges,topEdges,paper,paper],publication,0,0,-.004);
+  const coverStock=new THREE.MeshPhysicalMaterial({color:0x0a1638,roughness:.52,metalness:0,clearcoat:.12,clearcoatRoughness:.6});
+  box(magazineWidth,magazineHeight,.006,coverStock,publication,0,0,-pageDepth/2-.009);
+  // The spine is printed cover stock, with a narrow binding crease at the fold.
+  box(.014,magazineHeight,pageDepth+.018,coverStock,publication,-magazineWidth/2+.004,0,-.004);
+  box(.004,magazineHeight-.012,.003,new THREE.MeshStandardMaterial({color:0x071127,roughness:.8}),publication,-magazineWidth/2+.018,0,pageDepth/2+.004);
+  const coverGeometry=new THREE.PlaneGeometry(magazineWidth,magazineHeight,48,48);
+  const coverPositions=coverGeometry.getAttribute('position');
+  for(let i=0;i<coverPositions.count;i++){
+    const u=(coverPositions.getX(i)+magazineWidth/2)/magazineWidth;
+    const v=(coverPositions.getY(i)+magazineHeight/2)/magazineHeight;
+    // A millimetre-scale paper bow catches the softbox without bending the typography.
+    coverPositions.setZ(i,.008*Math.sin(u*Math.PI)+.012*u*u*u*Math.pow(1-v,3));
+  }
+  coverGeometry.computeVertexNormals();
+  // Preserve the supplied ink colours under the studio lighting. A separate, very
+  // faint satin varnish catches reflections; it is rough paper stock, not glass.
+  const printedCover=new THREE.MeshBasicMaterial({map:coverTexture,toneMapped:false,side:THREE.DoubleSide});
+  mesh(coverGeometry,printedCover,publication,0,0,pageDepth/2+.003);
+  const satin=new THREE.MeshPhysicalMaterial({color:0xffffff,transparent:true,opacity:.035,roughness:.82,metalness:0,specularIntensity:.12,clearcoat:0,depthWrite:false,side:THREE.DoubleSide});
+  mesh(coverGeometry,satin,publication,0,0,pageDepth/2+.004).castShadow=false;
 
   // A modern dynamic broadcast microphone: acoustic foam, powder-coated body,
   // machined fasteners, a real yoke and a compact tabletop stand.
@@ -121,5 +136,5 @@ export async function createStudioObjects(rig, renderer) {
   mesh(rounded(2.85,2.16,.025,.045),graphite,eventFrame);
   mesh(new THREE.PlaneGeometry(2.79,2.095),new THREE.MeshPhysicalMaterial({map:eventTexture,emissiveMap:eventTexture,emissive:0xffffff,emissiveIntensity:.2,roughness:.45,clearcoat:.65,clearcoatRoughness:.2,envMapIntensity:.12}),eventFrame,0,0,.054).castShadow=false;
   const backSupport=box(1.15,1.6,.028,graphite,eventFrame,0,-.25,-.34);backSupport.rotation.x=-.43;
-  return {podcast, tablet, eventFrame};
+  return {podcast, publication, eventFrame};
 }
