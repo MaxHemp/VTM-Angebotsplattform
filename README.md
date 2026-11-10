@@ -126,3 +126,25 @@ reduzierte Animationen werden berücksichtigt. Die Angebots- und Preislogik
 bleibt von diesen Gestaltungsänderungen unberührt.
 
 Alle Angebotskarten und die drei Einstiegswege sind visuell gleichwertig. Es gibt keine rein dekorative Hervorhebung einzelner Leistungen; die Auswahl im Konfigurator wird weiterhin funktional markiert.
+
+## Studio-Version
+
+`studio.html` ist eine zusätzliche, nicht indexierte Vergleichsversion mit eigenem
+Header. Die Hauptseite `index.html` bleibt unverändert. `assets/studio.css` und
+`assets/studio.js` ergänzen eine räumliche Formatkomposition, gestaffelte
+Texteinblendungen, schwebende Karten, eine animierte Wellenform und Signalpfade.
+Mausbewegungen steuern eine sanft interpolierte Perspektive; Scrollen ergänzt
+eine kleine Tiefenverschiebung. Es wird kein Audio abgespielt.
+
+Der Pausenschalter hält sämtliche Header-Animationen an. Die Einstellung
+`prefers-reduced-motion` deaktiviert Bewegung vollständig. Außerhalb des
+Sichtbereichs bzw. in einem ausgeblendeten Tab pausieren die Animationen;
+JavaScript zeichnet nur bei tatsächlichem Bedarf einen Frame. Ohne JavaScript
+bleibt die vollständige statische Komposition sichtbar. Die Druckansicht lässt
+auch diesen Header weg. Vorhandene Bilddateien werden wiederverwendet.
+
+`npm run sync` synchronisiert beide Versionen aus demselben Katalog. Alternativ:
+`node scripts/sync-catalog.mjs studio.html`. Studio-Prüfung mit
+`TEST_URL=http://127.0.0.1:8765/studio.html` und `node tests/configurator.cjs`.
+Die Suite prüft zusätzlich Pause/Fortsetzen, Bewegungspräferenz und das Anhalten
+der Animationen außerhalb des sichtbaren Bereichs.
