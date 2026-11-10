@@ -129,8 +129,9 @@ Alle Angebotskarten und die drei Einstiegswege sind visuell gleichwertig. Es gib
 
 ## Studio-Version
 
-`studio.html` ist eine zusätzliche, nicht indexierte Vergleichsversion mit eigenem
-Header. Die Hauptseite `index.html` bleibt unverändert. `assets/studio.css` und
+Die animierte Studio-Gestaltung ist unter `index.html` die Hauptversion.
+`studio.html` bleibt als nicht indexierter Alias erreichbar. Die frühere, ruhigere
+Ansicht liegt nicht indexiert unter `klassisch.html`. `assets/studio.css` und
 `assets/studio.js` ergänzen eine räumliche Formatkomposition, gestaffelte
 Texteinblendungen, schwebende Karten, eine animierte Wellenform und Signalpfade.
 Mausbewegungen steuern eine sanft interpolierte Perspektive; Scrollen ergänzt
@@ -143,8 +144,8 @@ JavaScript zeichnet nur bei tatsächlichem Bedarf einen Frame. Ohne JavaScript
 bleibt die vollständige statische Komposition sichtbar. Die Druckansicht lässt
 auch diesen Header weg. Vorhandene Bilddateien werden wiederverwendet.
 
-`npm run sync` synchronisiert beide Versionen aus demselben Katalog. Alternativ:
-`node scripts/sync-catalog.mjs studio.html`. Studio-Prüfung mit
+`npm run sync` synchronisiert alle drei Versionen aus demselben Katalog. Alternativ:
+`node scripts/sync-catalog.mjs studio.html klassisch.html`. Studio-Prüfung mit
 `TEST_URL=http://127.0.0.1:8765/studio.html` und `node tests/configurator.cjs`.
 Die Suite prüft zusätzlich Pause/Fortsetzen, Bewegungspräferenz und das Anhalten
 der Animationen außerhalb des sichtbaren Bereichs.
