@@ -1,4 +1,18 @@
-# VTM format imagery
+# Aktive Materialien
+
+Der aktuelle Hauptauftritt verwendet keine KI-generierten Angebotsbilder.
+
+- `vtm-johannes-oberhofer.jpg`: echtes Autorenporträt von der öffentlichen
+  VTM-Über-uns-Seite, Original unverändert übernommen:
+  https://ueberuns.versicherungstech-magazin.de/assets/img/team/johannes-oberhofer-320.jpg
+- `insurance-monday-mark.png`: offizielle Podcast-Marke von derselben Seite:
+  https://ueberuns.versicherungstech-magazin.de/assets/img/partners/insurance-monday-135.png
+- Redaktioneller Originalbeitrag im Header:
+  https://www.versicherungstech-magazin.de/die-ki-baut-das-werkzeug-beurteilen-musst-du-es-selbst/
+
+Nachfolgende generierte Motive sind historische, aktuell ungenutzte Ressourcen.
+
+# Frühere Formatbilder
 
 Active images are generic symbolic photos generated with the built-in image generation tool, not actual VTM employees, studios, webinars or studies. Each carries the caption “Symbolbild · KI-generiert”. The 25 EXPERTS card uses the existing official partner logo. WebP assets are resized to 1000px at quality 82; original PNGs remain in the generation library. Former editorial-*.webp still lifes remain as unused legacy assets.
 
