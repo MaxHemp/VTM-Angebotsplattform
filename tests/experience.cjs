@@ -93,6 +93,7 @@ fs.mkdirSync(output,{recursive:true});
       await page.getByRole('link',{name:'VersicherungsTech Magazin, zum Seitenanfang',exact:true}).click();
       await page.locator('[data-scene="0"]').click();
       assert.equal(await page.locator('.spatial-stage').getAttribute('data-layout'),width<=760?'compact':'wide');
+      assert(await page.locator('.stage-choices strong').evaluateAll(items=>items.every(e=>e.scrollWidth<=e.clientWidth+1)),`Brand captions remain within their own columns at ${width}px`);
       await page.screenshot({path:path.join(output,`brand-header-${width}.png`)});
       if(process.env.GENERATE_POSTERS&&width===390)await sharp(await page.locator('.spatial-stage').screenshot()).webp({quality:90}).toFile(path.join(__dirname,'../assets/stage-poster-mobile.webp'));
       for(const goal of ['sichtbarkeit','expertise','dialog']){

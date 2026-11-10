@@ -16,6 +16,8 @@
   .site-nav .nav-links .btn-primary { display:inline-flex; gap:18px; min-height:44px; background:#1F4FA3; border-color:#1F4FA3; color:#fff; border-radius:8px; box-shadow:none; font:500 14px var(--vtm-font-text); padding:10px 16px; }
   .site-nav .nav-links .btn-primary:hover { background:#183F85; border-color:#183F85; }
   .site-nav .nav-toggle { display:none; margin-left:auto; padding:10px; width:44px; height:44px; align-items:center; justify-content:center; background:white; color:#0A1638; border:1px solid #D3DCEA; border-radius:8px; cursor:pointer; }
+  .nav-toggle .menu-close,.nav-toggle[aria-expanded="true"] .menu-lines { display:none; }
+  .nav-toggle[aria-expanded="true"] .menu-close { display:block; }
   .site-nav :focus-visible { outline:2px solid #1F4FA3; outline-offset:3px; box-shadow:none; }
   .experience-hero { background:#0A1638; color:#fff; overflow:clip; position:relative; isolation:isolate; }
   .experience-layout { display:block; padding-block:3.5rem 0; }
@@ -51,7 +53,8 @@
   .stage-choices button { position:relative; min-width:0; border:0; background:none; color:#d8e2f2; padding:20px 24px; text-align:left; cursor:pointer; }
   .stage-choices button + button { border-left:1px solid #b6bfcf26; }
   .stage-choices button > span { display:block; color:#8494AD; font:400 10px var(--vtm-font-mono); letter-spacing:.12em; text-transform:uppercase; margin-bottom:8px; }
-  .stage-choices strong { display:block; font:400 22px/1.2 'VTM Bricolage',Arial,sans-serif; }
+  .stage-choices strong { display:block; overflow-wrap:anywhere; font:400 22px/1.2 'VTM Bricolage',Arial,sans-serif; }
+  .brand-name-short { display:none; }
   .stage-choices small { display:block; color:#a6b8d5; font:400 14px/1.5 var(--vtm-font-text); margin-top:7px; }
   .stage-choices button[aria-pressed="true"]::before { content:''; height:2px; background:#8FB0F0; position:absolute; inset:-1px 0 auto; }
   .stage-choices button:hover { background:#ffffff05; }
@@ -344,6 +347,8 @@
     .stage-choices strong { font-size:19px; }
   }
   @media(max-width:760px) {
+    .brand-name-full { display:none; }
+    .brand-name-short { display:inline; }
     .spatial-stage { height:440px; }
     .experience-hero h1 { font-size:clamp(2.45rem,7.5vw,3.5rem); }
     .stage-toolbar { gap:12px; margin-top:0; margin-bottom:1rem; }
