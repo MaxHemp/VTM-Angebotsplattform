@@ -1,7 +1,9 @@
 # Aktive Materialien (10. November 2026)
 
 - `stage-poster.webp`: Standbild der eigens implementierten Three.js-Szene.
-  Magazin, Mikrofon und Tisch sind Formatvisualisierungen, keine Produktfotos.
+  Digitales Display, Broadcast-Mikrofon und 25-EXPERTS-Bildmotiv sind
+  Formatvisualisierungen, keine Produktfotos. Die frühere Miniaturbestuhlung
+  und die erhöhte Bühne sind entfernt.
 - `experts-dialog.webm`: Original-Symbolszene von 25 EXPERTS:
   https://25-experts.de/assets/video/hero-teilnehmer-v1-720.webm
   Ausgeliefert erst bei sichtbarer Eventansicht. Als KI-generierte Symbolszene

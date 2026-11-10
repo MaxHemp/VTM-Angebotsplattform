@@ -114,7 +114,7 @@ Der Einstieg bietet drei Wege: Einzelleistungen, Themenkampagne und laufende Par
 ## Visuelle Gestaltung
 
 Die Hauptseite verwendet `assets/experience.css` auf der bestehenden VTM-Basis.
-Der räumliche Einstieg wird aus `scripts/spatial.mjs` mit Three.js gebaut und
+Der räumliche Einstieg wird aus `scripts/spatial.mjs` und `scripts/studio-objects.mjs` mit Three.js gebaut und
 lokal ausgeliefert. Die drei geführten Besuchswege, die kompakte Preisübersicht
 und die Auswahlprüfung sind in [DESIGN.md](DESIGN.md) beschrieben. Bildquellen
 und Kennzeichnungen stehen in [assets/ARTWORK.md](assets/ARTWORK.md).
