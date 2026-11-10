@@ -10,7 +10,6 @@ if (host) start().catch(() => { host.dataset.renderer = 'fallback'; const b=docu
 async function start() {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   const renderer = new THREE.WebGLRenderer({ alpha:true, antialias:true, powerPreference:'low-power' });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = .92;
@@ -27,8 +26,8 @@ async function start() {
   const camera = new THREE.PerspectiveCamera(28, 1, .1, 80);
   const rig = new THREE.Group(); scene.add(rig);
   await document.fonts.ready;
-  const {podcast,publication,eventFrame}=await createStudioObjects(rig,renderer);
-  const media=[publication,podcast,eventFrame].map(object=>({object,rest:object.rotation.clone()}));
+  const {podcast,podcastPivot,publication,eventFrame}=await createStudioObjects(rig,renderer);
+  const media=[publication,podcastPivot,eventFrame].map((object,index)=>({object,root:[publication,podcast,eventFrame][index],id:String(index+1),rest:object.rotation.clone(),bounds:new THREE.Box3(),x:0,y:0}));
   const pointerSurface=host.closest('.experience-hero');
   scene.environmentIntensity=.48;
   RectAreaLightUniformsLib.init();
@@ -40,7 +39,7 @@ async function start() {
   shadowLight.shadow.mapSize.set(1024,1024);shadowLight.shadow.camera.left=-5;shadowLight.shadow.camera.right=6;shadowLight.shadow.camera.top=6;shadowLight.shadow.camera.bottom=-4;
   shadowLight.shadow.bias=-.0004;shadowLight.shadow.normalBias=.012;shadowLight.shadow.radius=5;shadowLight.shadow.blurSamples=8;scene.add(shadowLight);
   const floor=new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.ShadowMaterial({opacity:.2}));floor.rotation.x=-Math.PI/2;floor.position.y=-.05;floor.receiveShadow=true;scene.add(floor);
-  let focus=0, visible=true, paused=reduce.matches, destroyed=false, raf=0, last=0, elapsed=0, drag=0, pointerX=0, pointerY=0;
+  let focus=0, visible=true, paused=reduce.matches, destroyed=false, raf=0, last=0, down=null;
   const look=new THREE.Vector3(0,1.5,0),desiredLook=look.clone();
   const positions=Array.from({length:4},()=>new THREE.Vector3());
   const targets=Array.from({length:4},()=>new THREE.Vector3());
@@ -65,22 +64,27 @@ async function start() {
       targets[3].copy(eventFrame.position);positions[3].set(4.9,1.7,6.4);
     }
     floor.visible=!compact;
+    // Stable hit areas use the neutral geometry, so tilted edges do not flicker
+    // between hover and leave. Layout and camera views can change independently.
+    for(const item of media){
+      const current=item.object.rotation.clone();item.object.rotation.copy(item.rest);
+      rig.updateMatrixWorld(true);item.bounds.setFromObject(item.root);
+      item.object.rotation.copy(current);
+    }
+    rig.updateMatrixWorld(true);
   }
   const initial=host.getBoundingClientRect();compose(initial.width,initial.height);
   camera.position.copy(positions[0]);if(!paused)camera.position.z+=1;
   look.copy(targets[0]);rig.rotation.y=0;
   function render(dt=0) {
-    elapsed+=dt;
     const smooth=paused?1:1-Math.exp(-dt*5);
     camera.position.lerp(positions[focus],smooth);desiredLook.copy(targets[focus]);look.lerp(desiredLook,smooth);
     // Tilt around each medium's own centre: close-ups stay framed and all three
     // retain their positions. Time-based easing is consistent at any refresh rate.
-    const response=1-Math.exp(-dt*9);
-    const yaw=drag+pointerX*.18+(paused?0:Math.sin(elapsed*.19)*.012);
-    const pitch=pointerY*.09;
-    for(const {object,rest} of media){
-      object.rotation.y=THREE.MathUtils.lerp(object.rotation.y,rest.y+yaw,response);
-      object.rotation.x=THREE.MathUtils.lerp(object.rotation.x,rest.x+pitch,response);
+    const response=1-Math.exp(-dt*8);
+    for(const {object,rest,x,y} of media){
+      object.rotation.y=THREE.MathUtils.lerp(object.rotation.y,rest.y+x*.34,response);
+      object.rotation.x=THREE.MathUtils.lerp(object.rotation.x,rest.x-y*.18,response);
     }
     camera.lookAt(look);renderer.render(scene,camera);
 
@@ -94,12 +98,19 @@ async function start() {
     raf=requestAnimationFrame(frame);
   }
   function resume(){cancelAnimationFrame(raf);raf=0;last=0;if(!paused&&visible&&!document.hidden)raf=requestAnimationFrame(frame);else render(0);}
-  const resize=new ResizeObserver(()=>{const {width,height}=host.getBoundingClientRect();if(!width||!height)return;compose(width,height);renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();render(0);});resize.observe(host);
+  const resize=new ResizeObserver(()=>{
+    const {width,height}=host.getBoundingClientRect();if(!width||!height)return;
+    compose(width,height);
+    // Supersample ordinary displays and respect high-DPI screens, within a
+    // three-megapixel budget so sharpness does not sacrifice interaction speed.
+    renderer.setPixelRatio(Math.min(Math.max(devicePixelRatio,1.5),2.5,Math.sqrt(3000000/(width*height))));
+    renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();neutral();render(0);
+  });resize.observe(host);
   const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;host.dataset.visible=String(visible);resume();},{rootMargin:'80px'});observer.observe(host);
   const motion=document.getElementById('stage-motion');
   function motionLabel(){motion.disabled=reduce.matches;motion.textContent=reduce.matches?'Bewegung reduziert':paused?'Bewegung fortsetzen':'Bewegung pausieren';motion.setAttribute('aria-pressed',String(paused));host.dataset.motion=paused?'off':'on';}
   motion.addEventListener('click',()=>{paused=!paused;motionLabel();resume();});
-  function neutral(){down=null;drag=pointerX=pointerY=0;}
+  function neutral(){down=null;for(const item of media)item.x=item.y=0;host.dataset.activeMedium='';}
   reduce.addEventListener('change',()=>{
     paused=reduce.matches;neutral();
     if(paused)for(const {object,rest} of media)object.rotation.copy(rest);
@@ -108,23 +119,46 @@ async function start() {
   document.addEventListener('visibilitychange',()=>{if(document.hidden)neutral();resume();});
   window.addEventListener('blur',()=>{neutral();});
   const captions=[...document.querySelectorAll('[data-stage-caption]')];
-  function choose(next){focus=next;publication.visible=next===0||next===1;podcast.visible=next===0||next===2;eventFrame.visible=next===0||next===3;document.querySelectorAll('button[data-scene]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.scene)===next)));captions.forEach(c=>c.hidden=Number(c.dataset.stageCaption)!==next);drag=pointerX=pointerY=0;host.dataset.view=String(next);render(paused?0:.016);resume();}
+  function choose(next){focus=next;publication.visible=next===0||next===1;podcast.visible=next===0||next===2;eventFrame.visible=next===0||next===3;document.querySelectorAll('button[data-scene]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.scene)===next)));captions.forEach(c=>c.hidden=Number(c.dataset.stageCaption)!==next);neutral();host.dataset.view=String(next);render(paused?0:.016);resume();}
   document.querySelectorAll('[data-scene]').forEach(b=>b.addEventListener('click',()=>choose(Number(b.dataset.scene))));
 
-  let down=null;
+  const corner=new THREE.Vector3();
+  function region(item){
+    const r=host.getBoundingClientRect(),min=item.bounds.min,max=item.bounds.max;
+    let left=Infinity,right=-Infinity,top=Infinity,bottom=-Infinity;
+    for(const x of [min.x,max.x])for(const y of [min.y,max.y])for(const z of [min.z,max.z]){
+      corner.set(x,y,z).project(camera);
+      const px=r.left+(corner.x+1)*r.width/2,py=r.top+(1-corner.y)*r.height/2;
+      left=Math.min(left,px);right=Math.max(right,px);top=Math.min(top,py);bottom=Math.max(bottom,py);
+    }
+    return {left:left-10,top:top-10,width:right-left+20,height:bottom-top+20};
+  }
+  function point(ev){
+    if(paused||ev.pointerType==='touch')return;
+    let active=down?.item,area=down?.area;
+    if(!active){
+      active=media.find(item=>{
+        if(!item.root.visible)return false;
+        const r=region(item);
+        if(ev.clientX>=r.left&&ev.clientX<=r.left+r.width&&ev.clientY>=r.top&&ev.clientY<=r.top+r.height){area=r;return true;}
+        return false;
+      });
+    }
+    for(const item of media){
+      item.x=item===active?THREE.MathUtils.clamp((ev.clientX-area.left)/area.width*2-1,-1,1):0;
+      item.y=item===active?THREE.MathUtils.clamp((ev.clientY-area.top)/area.height*2-1,-1,1):0;
+    }
+    host.dataset.activeMedium=active?.id||'';
+    return active;
+  }
   host.addEventListener('pointerdown',ev=>{
     if(ev.target!==renderer.domElement||paused||ev.pointerType==='touch'||ev.button!==0)return;
-    down={x:ev.clientX,start:drag};host.setPointerCapture(ev.pointerId);
+    const item=point(ev);if(!item)return;
+    down={item,area:region(item)};host.setPointerCapture(ev.pointerId);
   });
-  pointerSurface.addEventListener('pointermove',ev=>{
-    if(paused||ev.pointerType==='touch')return;
-    const r=pointerSurface.getBoundingClientRect();
-    pointerX=THREE.MathUtils.clamp((ev.clientX-r.left)/r.width*2-1,-1,1);
-    pointerY=THREE.MathUtils.clamp((ev.clientY-r.top)/r.height*2-1,-1,1);
-    if(down)drag=THREE.MathUtils.clamp(down.start+(ev.clientX-down.x)*.0015,-.18,.18);
-  },{passive:true});
-  host.addEventListener('pointerup',ev=>{down=null;drag=0;if(host.hasPointerCapture(ev.pointerId))host.releasePointerCapture(ev.pointerId);});
-  host.addEventListener('lostpointercapture',()=>{down=null;drag=0;});
+  pointerSurface.addEventListener('pointermove',point,{passive:true});
+  host.addEventListener('pointerup',ev=>{down=null;if(host.hasPointerCapture(ev.pointerId))host.releasePointerCapture(ev.pointerId);point(ev);});
+  host.addEventListener('lostpointercapture',()=>{down=null;});
   pointerSurface.addEventListener('pointercancel',neutral);
   pointerSurface.addEventListener('pointerleave',neutral);
   renderer.domElement.addEventListener('webglcontextlost',ev=>{ev.preventDefault();destroyed=true;cancelAnimationFrame(raf);host.dataset.renderer='fallback';motion.disabled=true;motion.textContent='Standansicht';});

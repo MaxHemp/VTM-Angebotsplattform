@@ -10,7 +10,7 @@ const output=path.join(__dirname,'../test-results');
 fs.mkdirSync(output,{recursive:true});
 (async()=>{
   const browser=await chromium.launch({channel:'chrome'});
-  const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
+  const context=await browser.newContext({viewport:{width:1440,height:1000},deviceScaleFactor:generateStagePosters?2:1,reducedMotion:'reduce'});
   await context.route('https://formspree.io/**',r=>r.abort());
   const page=await context.newPage(),errors=[];
   page.setDefaultTimeout(15000);
@@ -33,7 +33,7 @@ fs.mkdirSync(output,{recursive:true});
       await page.locator('.spatial-stage').screenshot({path:path.join(output,`studio-view-${scene}.png`)});
     }
     if(generateStagePosters){
-      await sharp(await page.locator('.spatial-stage').screenshot()).webp({quality:88}).toFile(path.join(__dirname,'../assets/stage-poster.webp'));
+      await sharp(await page.locator('.spatial-stage').screenshot()).webp({quality:92}).toFile(path.join(__dirname,'../assets/stage-poster.webp'));
     }
     await page.emulateMedia({reducedMotion:'no-preference'});
     await page.waitForFunction(()=>document.querySelector('.spatial-stage').dataset.motion==='on');
@@ -96,7 +96,7 @@ fs.mkdirSync(output,{recursive:true});
       assert.equal(await page.locator('.spatial-stage').getAttribute('data-layout'),width<=760?'compact':'wide');
       assert(await page.locator('.stage-choices strong').evaluateAll(items=>items.every(e=>e.scrollWidth<=e.clientWidth+1)),`Brand captions remain within their own columns at ${width}px`);
       await page.screenshot({path:path.join(output,`brand-header-${width}.png`)});
-      if(generateStagePosters&&width===390)await sharp(await page.locator('.spatial-stage').screenshot()).webp({quality:90}).toFile(path.join(__dirname,'../assets/stage-poster-mobile.webp'));
+      if(generateStagePosters&&width===390)await sharp(await page.locator('.spatial-stage').screenshot()).webp({quality:92}).toFile(path.join(__dirname,'../assets/stage-poster-mobile.webp'));
       for(const goal of ['sichtbarkeit','expertise','dialog']){
         await page.locator(`[data-journey="${goal}"]`).click();
         const overflow=await page.evaluate(()=>[...document.querySelectorAll('body *')].filter(e=>e.getBoundingClientRect().right>innerWidth+1&&getComputedStyle(e).position!=='fixed').slice(0,12).map(e=>({tag:e.tagName,cls:String(e.className),text:e.textContent.trim().slice(0,60)})));

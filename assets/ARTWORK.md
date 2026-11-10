@@ -23,6 +23,10 @@
   keine konkreten Mitarbeitenden oder Räumlichkeiten von VTM.
 - `insurance-monday-cover-guidelines.png`: das in v6.2 ausgewählte
   Originalcover, vollständig und quadratisch aus Seite 6 extrahiert.
+- `insurance-monday-cover-hd.jpg`: dieselbe Gestaltung in 1400 × 1400 Pixel,
+  unverändert aus dem offiziellen Podcast-Auftritt übernommen:
+  https://insurancemonday.buzzsprout.com/1766431 (`twitter:image`).
+  Diese höher aufgelöste Datei ersetzt im 3D-Header die 200-Pixel-PDF-Abbildung.
 - VTM- und 25-EXPERTS-Logos sowie `kontakt-hempel.webp`: bestehende Markenmaterialien.
 - Lokale Schriftdateien einschließlich OFL-Lizenzen in `fonts/`.
 - Three.js 0.187.0 (MIT), Lizenz in `vendor/THREE-LICENSE.txt`, lokal gebündelt.
@@ -34,6 +38,9 @@ Corporate-Farben gemäß v6.2: Nachtblau #0A1638, Kobalt #1F4FA3,
 Eisweiß #F3F7FD, Gold #D9A53C ausschließlich für Unterzeilen und Belege.
 Originalassets aus der bereitgestellten PDF: siehe ../BRAND.md.
 `stage-poster-mobile.webp` ist die separat angeordnete Smartphone-Ansicht.
+Beide Header-Standbilder werden für hochauflösende Displays mit doppelter
+Pixeldichte aufgenommen. Die WebGL-Darstellung nutzt 1,5- bis 2,5-fache
+Pixeldichte mit einer Obergrenze von drei Millionen Bildpunkten.
 
 Die nachfolgenden Prompts dokumentieren die bereits vorhandenen Formatbilder.
 Nur Artikel und Podcast werden aktuell eingesetzt.

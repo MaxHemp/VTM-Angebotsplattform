@@ -28,25 +28,42 @@ fs.mkdirSync(output,{recursive:true});
       },[a.toString('base64'),b.toString('base64')]);
     }
     // Settling waits are intentional: compare final visible poses, not event flags.
-    await page.mouse.move(80,150);await page.waitForTimeout(800);
-    const left=await stage.screenshot({path:path.join(output,'header-pointer-left.png')});
-    await page.mouse.move(1360,300,{steps:16});await page.waitForTimeout(800);
-    const right=await stage.screenshot({path:path.join(output,'header-pointer-right.png')});
-    const headerChange=await difference(left,right);
-    assert(headerChange>.01,`Mouse above the artwork visibly tilts the scene: ${headerChange}`);
-    await page.mouse.move(720,55);await page.waitForTimeout(800);
-    const neutral=await stage.screenshot();
-    await page.mouse.move(720,800);await page.waitForTimeout(800);
-    const lower=await stage.screenshot();
-    assert(await difference(neutral,lower)>.003,'Vertical mouse movement visibly affects the scene');
-    // Check the actual stage surface too, including release outside its bounds.
+    await page.mouse.move(720,55);await page.waitForTimeout(1000);
     const bounds=await stage.boundingBox();
-    await page.mouse.move(bounds.x+bounds.width*.5,bounds.y+bounds.height*.5);
-    await page.mouse.down();await page.mouse.move(1420,1000,{steps:15});await page.mouse.up();
-    await page.mouse.move(80,150);await page.waitForTimeout(800);
-    const afterRelease=await stage.screenshot();
-    await page.mouse.move(1360,300,{steps:16});await page.waitForTimeout(800);
-    assert(await difference(afterRelease,await stage.screenshot())>.01,'Pointer capture releases and hover continues');
+    assert(await stage.locator('canvas').evaluate(c=>c.width/c.getBoundingClientRect().width>=1.5),'Canvas supersamples standard displays');
+    const images=await page.evaluate(async()=>{
+      const img=new Image();img.src='assets/insurance-monday-cover-hd.jpg';await img.decode();return [img.naturalWidth,img.naturalHeight];
+    });
+    assert.deepEqual(images,[1400,1400],'Podcast artwork uses the high-resolution original');
+    const pieces=[{x:.22,spread:.04},{x:.50,spread:.05},{x:.80,spread:.06}];
+    const move=async(x,y=.55)=>{await page.mouse.move(bounds.x+bounds.width*x,bounds.y+bounds.height*y,{steps:12});await page.waitForTimeout(1000);};
+    async function columns(){
+      const result=[];
+      for(let i=0;i<3;i++)result.push(await page.screenshot({clip:{x:bounds.x+bounds.width*i/3,y:bounds.y,width:bounds.width/3,height:bounds.height*.85}}));
+      return result;
+    }
+    const changes=[];
+    for(let i=0;i<3;i++){
+      const {x,spread}=pieces[i];
+      await move(x-spread);assert.equal(await stage.getAttribute('data-active-medium'),String(i+1));
+      const before=await columns();
+      await stage.screenshot({path:path.join(output,`medium-${i+1}-left.png`)});
+      await move(x+spread);assert.equal(await stage.getAttribute('data-active-medium'),String(i+1));
+      const after=await columns();
+      await stage.screenshot({path:path.join(output,`medium-${i+1}-right.png`)});
+      for(let j=0;j<3;j++){
+        const change=await difference(before[j],after[j]);
+        if(j===i){assert(change>.04,`Medium ${i+1} has visible spatial motion: ${change}`);changes.push(change);}
+        else assert(change<.003,`Medium ${j+1} remains still while ${i+1} moves: ${change}`);
+      }
+      await move(x,.40);const upper=await stage.screenshot();
+      await move(x,.68);assert(await difference(upper,await stage.screenshot())>.003,`Medium ${i+1} responds vertically`);
+      // Captured drag stays attached to this medium, even over another one.
+      await move(x);await page.mouse.down();await page.mouse.move(1420,1000,{steps:15});
+      assert.equal(await stage.getAttribute('data-active-medium'),String(i+1));
+      await page.mouse.up();await page.mouse.move(720,55);await page.waitForTimeout(1000);
+      assert.equal(await stage.getAttribute('data-active-medium'),'','Release and leaving the artwork restore neutral motion');
+    }
     // Pause freezes the visible artwork, including subsequent pointer movement.
     await page.locator('#stage-motion').click();
     const stopped=await stage.screenshot();
@@ -64,6 +81,6 @@ fs.mkdirSync(output,{recursive:true});
     const reduced=await stage.screenshot();
     await page.mouse.move(80,150);await page.waitForTimeout(400);
     assert.equal(await difference(reduced,await stage.screenshot()),0,'System reduced motion disables pointer animation');
-    console.log(`PASS: Header-wide horizontal and vertical mouse motion, drag release outside the scene, pause, four close-ups and reduced motion. Left/right pixel change: ${(headerChange*100).toFixed(1)}%.`);
+    console.log(`PASS: All three media move independently horizontally and vertically; inactive media stay still. Drag capture/release, pause, four close-ups, reduced motion, supersampling and 1400px artwork. Active-column pixel changes: ${changes.map(n=>(n*100).toFixed(1)).join(', ')}%.`);
   }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

@@ -31,6 +31,7 @@ wurden nicht verwendet.
   SHA-256: `32e778b6487790c60cfe69d1036d0fa5bc0a2f33725c6db40d7801501dd441a5`.
 
 Das Podcast-Cover bleibt in seinen Originalfarben, quadratisch und vollständig.
-Für großflächige weitere Anwendungen ist ein höher aufgelöster Master
-derselben Gestaltung erforderlich. Die anderen, zuvor vorhandenen Cover
-werden nicht als Ersatz für dieses Original eingesetzt.
+Für den räumlichen Header wird `assets/insurance-monday-cover-hd.jpg` verwendet:
+1400 × 1400 px, dieselbe Gestaltung aus dem offiziellen Podcast-Auftritt auf
+[Buzzsprout](https://insurancemonday.buzzsprout.com/1766431), unverändert
+über dessen `twitter:image` bezogen. Das ursprüngliche PDF-Bild bleibt erhalten.
