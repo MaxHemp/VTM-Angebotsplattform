@@ -87,11 +87,13 @@ async function start() {
   }
   function frame(time) {
     raf=0;if(destroyed||paused||!visible||document.hidden)return;
-    const dt=Math.min((time-last)/1000,.05);
+    // A queued frame can predate a resume/resize callback during cold shader
+    // compilation. Never feed a negative delta into exponential interpolation.
+    const dt=last===0?0:THREE.MathUtils.clamp((time-last)/1000,0,.05);
     last=time;render(dt);
     raf=requestAnimationFrame(frame);
   }
-  function resume(){cancelAnimationFrame(raf);raf=0;last=performance.now();if(!paused&&visible&&!document.hidden)raf=requestAnimationFrame(frame);else render(0);}
+  function resume(){cancelAnimationFrame(raf);raf=0;last=0;if(!paused&&visible&&!document.hidden)raf=requestAnimationFrame(frame);else render(0);}
   const resize=new ResizeObserver(()=>{const {width,height}=host.getBoundingClientRect();if(!width||!height)return;compose(width,height);renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();render(0);});resize.observe(host);
   const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;host.dataset.visible=String(visible);resume();},{rootMargin:'80px'});observer.observe(host);
   const motion=document.getElementById('stage-motion');
