@@ -28,6 +28,8 @@ async function start() {
   const rig = new THREE.Group(); scene.add(rig);
   await document.fonts.ready;
   const {podcast,publication,eventFrame}=await createStudioObjects(rig,renderer);
+  const media=[publication,podcast,eventFrame].map(object=>({object,rest:object.rotation.clone()}));
+  const pointerSurface=host.closest('.experience-hero');
   scene.environmentIntensity=.48;
   RectAreaLightUniformsLib.init();
   const key=new THREE.RectAreaLight(0xf4f6ff,7,3.5,5.5);key.position.set(-3,5,5);key.lookAt(.2,1.6,0);scene.add(key);
@@ -71,16 +73,22 @@ async function start() {
     elapsed+=dt;
     const smooth=paused?1:1-Math.exp(-dt*5);
     camera.position.lerp(positions[focus],smooth);desiredLook.copy(targets[focus]);look.lerp(desiredLook,smooth);
-    rig.rotation.y=THREE.MathUtils.lerp(rig.rotation.y,drag+pointerX*.12+(paused?0:Math.sin(elapsed*.19)*.018),paused?1:.08);
-    rig.rotation.x=THREE.MathUtils.lerp(rig.rotation.x,pointerY*.025,paused?1:.08);
-    // Equipment stays mechanically still; only the viewing angle moves.
+    // Tilt around each medium's own centre: close-ups stay framed and all three
+    // retain their positions. Time-based easing is consistent at any refresh rate.
+    const response=1-Math.exp(-dt*9);
+    const yaw=drag+pointerX*.18+(paused?0:Math.sin(elapsed*.19)*.012);
+    const pitch=pointerY*.09;
+    for(const {object,rest} of media){
+      object.rotation.y=THREE.MathUtils.lerp(object.rotation.y,rest.y+yaw,response);
+      object.rotation.x=THREE.MathUtils.lerp(object.rotation.x,rest.x+pitch,response);
+    }
     camera.lookAt(look);renderer.render(scene,camera);
 
   }
   function frame(time) {
     raf=0;if(destroyed||paused||!visible||document.hidden)return;
     const dt=Math.min((time-last)/1000,.05);
-    if(time-last>=30){last=time;render(dt);}
+    last=time;render(dt);
     raf=requestAnimationFrame(frame);
   }
   function resume(){cancelAnimationFrame(raf);raf=0;last=performance.now();if(!paused&&visible&&!document.hidden)raf=requestAnimationFrame(frame);else render(0);}
@@ -89,20 +97,34 @@ async function start() {
   const motion=document.getElementById('stage-motion');
   function motionLabel(){motion.disabled=reduce.matches;motion.textContent=reduce.matches?'Bewegung reduziert':paused?'Bewegung fortsetzen':'Bewegung pausieren';motion.setAttribute('aria-pressed',String(paused));host.dataset.motion=paused?'off':'on';}
   motion.addEventListener('click',()=>{paused=!paused;motionLabel();resume();});
-  reduce.addEventListener('change',()=>{paused=reduce.matches;pointerX=pointerY=0;motionLabel();resume();});motionLabel();
-  document.addEventListener('visibilitychange',resume);
+  function neutral(){down=null;drag=pointerX=pointerY=0;}
+  reduce.addEventListener('change',()=>{
+    paused=reduce.matches;neutral();
+    if(paused)for(const {object,rest} of media)object.rotation.copy(rest);
+    motionLabel();resume();
+  });motionLabel();
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)neutral();resume();});
+  window.addEventListener('blur',()=>{neutral();});
   const captions=[...document.querySelectorAll('[data-stage-caption]')];
   function choose(next){focus=next;publication.visible=next===0||next===1;podcast.visible=next===0||next===2;eventFrame.visible=next===0||next===3;document.querySelectorAll('button[data-scene]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.scene)===next)));captions.forEach(c=>c.hidden=Number(c.dataset.stageCaption)!==next);drag=pointerX=pointerY=0;host.dataset.view=String(next);render(paused?0:.016);resume();}
   document.querySelectorAll('[data-scene]').forEach(b=>b.addEventListener('click',()=>choose(Number(b.dataset.scene))));
 
   let down=null;
-  host.addEventListener('pointerdown',ev=>{if(ev.target!==renderer.domElement||paused)return;down={x:ev.clientX,y:ev.clientY,start:drag};});
-  host.addEventListener('pointermove',ev=>{
-    if(paused)return;
-    const r=host.getBoundingClientRect();pointerX=(ev.clientX-r.left)/r.width-.5;pointerY=(ev.clientY-r.top)/r.height-.5;
-    if(down&&Math.abs(ev.clientX-down.x)>Math.abs(ev.clientY-down.y)){drag=Math.max(-.35,Math.min(.35,down.start+(ev.clientX-down.x)*.003));}
+  host.addEventListener('pointerdown',ev=>{
+    if(ev.target!==renderer.domElement||paused||ev.pointerType==='touch'||ev.button!==0)return;
+    down={x:ev.clientX,start:drag};host.setPointerCapture(ev.pointerId);
   });
-  for(const type of ['pointerup','pointercancel','pointerleave'])host.addEventListener(type,()=>{down=null;pointerX=pointerY=0;});
+  pointerSurface.addEventListener('pointermove',ev=>{
+    if(paused||ev.pointerType==='touch')return;
+    const r=pointerSurface.getBoundingClientRect();
+    pointerX=THREE.MathUtils.clamp((ev.clientX-r.left)/r.width*2-1,-1,1);
+    pointerY=THREE.MathUtils.clamp((ev.clientY-r.top)/r.height*2-1,-1,1);
+    if(down)drag=THREE.MathUtils.clamp(down.start+(ev.clientX-down.x)*.0015,-.18,.18);
+  },{passive:true});
+  host.addEventListener('pointerup',ev=>{down=null;drag=0;if(host.hasPointerCapture(ev.pointerId))host.releasePointerCapture(ev.pointerId);});
+  host.addEventListener('lostpointercapture',()=>{down=null;drag=0;});
+  pointerSurface.addEventListener('pointercancel',neutral);
+  pointerSurface.addEventListener('pointerleave',neutral);
   renderer.domElement.addEventListener('webglcontextlost',ev=>{ev.preventDefault();destroyed=true;cancelAnimationFrame(raf);host.dataset.renderer='fallback';motion.disabled=true;motion.textContent='Standansicht';});
   window.addEventListener('pagehide',()=>{destroyed=true;cancelAnimationFrame(raf);observer.disconnect();resize.disconnect();renderer.dispose();environment.dispose();},{once:true});
   render(0);host.dataset.renderer='webgl';resume();
